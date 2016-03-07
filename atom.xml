@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://benvim.github.io/"/>
-  <updated>2016-03-07T12:54:32.000Z</updated>
+  <updated>2016-03-07T14:09:31.000Z</updated>
   <id>http://benvim.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://benvim.github.io/2016/03/07/%E8%A8%80%E8%BD%BB%E8%AF%AD%E9%95%BF/"/>
     <id>http://benvim.github.io/2016/03/07/言轻语长/</id>
     <published>2016-03-07T12:53:50.000Z</published>
-    <updated>2016-03-07T12:54:32.000Z</updated>
+    <updated>2016-03-07T14:09:31.000Z</updated>
     
     <content type="html">&lt;p&gt;当意识再次醒来时，过去如同山崩之流，倾泻而来，将萌芽的光线拖入无尽的黑暗之中。挣脱之后，恍如昨日，一线之隔，南为乾坤，北为虚无。&lt;/p&gt;
 &lt;p&gt;一把岁月，无尽悲伤，聚散离合皆付风中。不曾相遇，何曾相识；不曾相识，何曾相知；未曾相知，遑论感伤。如若初遇，不如不遇。于世之最大谎言在于问心无愧。&lt;/p&gt;
@@ -36,6 +36,8 @@
     </summary>
     
     
+      <category term="随笔" scheme="http://benvim.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
   </entry>
   
   <entry>
@@ -43,7 +45,7 @@
     <link href="http://benvim.github.io/2016/03/07/%E5%8D%81%E5%B9%B4/"/>
     <id>http://benvim.github.io/2016/03/07/十年/</id>
     <published>2016-03-07T12:51:39.000Z</published>
-    <updated>2016-03-07T12:52:42.000Z</updated>
+    <updated>2016-03-07T14:08:57.000Z</updated>
     
     <content type="html">&lt;p&gt;昨日之事已在风中冷却，明天的回忆会不会被忘却？我想在这黑暗的城市上空飞行，看看灯火里别人的故事是否也如此的彷徨？&lt;/p&gt;
 &lt;p&gt;千家灯火万家难。望着他人的幸福，徒生向往；注目他人的难处，油然怜悯。他们时而欢笑，时而落泪。因为小事而倍感幸福，因为小事而万分感伤。&lt;/p&gt;
@@ -60,16 +62,18 @@
     </summary>
     
     
+      <category term="随笔" scheme="http://benvim.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
   </entry>
   
   <entry>
-    <title>My New Post</title>
+    <title>开始码字生活</title>
     <link href="http://benvim.github.io/2016/03/07/test/"/>
     <id>http://benvim.github.io/2016/03/07/test/</id>
     <published>2016-03-07T05:59:30.000Z</published>
-    <updated>2016-03-07T12:58:55.000Z</updated>
+    <updated>2016-03-07T14:08:26.000Z</updated>
     
-    <content type="html">&lt;p&gt;===#用VIM写文章不晓得会是一种什么样的体验===&lt;/p&gt;
+    <content type="html">&lt;p&gt;用VIM写文章不晓得会是一种什么样的体验&lt;/p&gt;
 &lt;p&gt;发现个最大的问题就是输入法的切换问题，因为每次切换成VIM的正常模式，都要切换输入法，这是个很麻烦的操作，或许有更方法的操作我不晓得。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;这是一个列表&lt;/li&gt;
@@ -84,14 +88,17 @@ int c = a+b;
     
     <summary type="html">
     
-      &lt;p&gt;===#用VIM写文章不晓得会是一种什么样的体验===&lt;/p&gt;
+      &lt;p&gt;用VIM写文章不晓得会是一种什么样的体验&lt;/p&gt;
 &lt;p&gt;发现个最大的问题就是输入法的切换问题，因为每次切换成VIM的正常模式，都要切换输入法，这是个很麻烦的操作，或许有更方法的操作我不晓得。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;这是一个列表&lt;/li&gt;
-&lt;li&gt;真的是列表
+&lt;li&gt;真的是列表&lt;/li&gt;
+&lt;
     
     </summary>
     
+    
+      <category term="随笔" scheme="http://benvim.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
