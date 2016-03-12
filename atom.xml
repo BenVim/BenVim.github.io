@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://benvim.github.io/"/>
-  <updated>2016-03-10T00:27:12.000Z</updated>
+  <updated>2016-03-12T01:12:47.000Z</updated>
   <id>http://benvim.github.io/</id>
   
   <author>
@@ -14,6 +14,42 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>shell命令的操作及命令的搜索</title>
+    <link href="http://benvim.github.io/2016/03/12/shell-Oprate/"/>
+    <id>http://benvim.github.io/2016/03/12/shell-Oprate/</id>
+    <published>2016-03-12T00:50:07.000Z</published>
+    <updated>2016-03-12T01:12:47.000Z</updated>
+    
+    <content type="html">&lt;p&gt;经常会使用shell对文件进行一些操作。但是命令行的操作不熟悉也是特别影响效率的，如何快速度的返回上一次目录，如何编辑当前命令行的内容对于提高效率是非常有帮助的。&lt;br&gt;你是否经常连续按“backSpace”键来删除当前的命令，是否为了返回上次目录而不断的“cd”,而又或者不断的按方向键去修改其中写错的某个单词…..这些土鳖的方向必须抛弃。&lt;/p&gt;
+&lt;h3 id=&quot;回到上一次操作的目录&quot;&gt;&lt;a href=&quot;#回到上一次操作的目录&quot; class=&quot;headerlink&quot; title=&quot;回到上一次操作的目录&quot;&gt;&lt;/a&gt;回到上一次操作的目录&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;cd -
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;历史命令快捷键&quot;&gt;&lt;a href=&quot;#历史命令快捷键&quot; class=&quot;headerlink&quot; title=&quot;历史命令快捷键&quot;&gt;&lt;/a&gt;历史命令快捷键&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;[Ctrl+r], [Ctrl+p], [Ctrl+n]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;[Ctrl+r] 是搜索历史命令的，当使用这个组合键后，会出现个输入框，你每按一个字符都会自动从历史命令中匹配出相关结果，选择你要的按回车即可,该命令可以快速定位到你之前使用的任何命令，比如cd过哪个很长的目录。&lt;/p&gt;
+&lt;p&gt;[Ctrl+p]和[Ctrl+n]主要功能是翻阅历史命令，上一条和下一条。此命令一般在最近使用过的命令比较方便。&lt;/p&gt;
+&lt;h3 id=&quot;命令行内快速操作键&quot;&gt;&lt;a href=&quot;#命令行内快速操作键&quot; class=&quot;headerlink&quot; title=&quot;命令行内快速操作键&quot;&gt;&lt;/a&gt;命令行内快速操作键&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;移动操作快捷键&lt;br&gt;Ctrl + f– 向右移动一个字符，当然多数人用→&lt;br&gt;Ctrl + b– 向左移动一个字符， 多数人用←&lt;br&gt;ESC + f– 向右移动一个单词，MAC下建议用ALT + →&lt;br&gt;ESC + b– 向左移动一个单词，MAC下建议用ALT + ←&lt;br&gt;Ctrl + a– 跳到行首&lt;br&gt;Ctrl + e– 跳到行尾&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;删除操作快捷键&lt;br&gt;Ctrl + d– 向右删除一个字符&lt;br&gt;Ctrl + h– 向左删除一个字符&lt;br&gt;Ctrl + u– 删除当前位置字符至行首（输入密码错误的时候多用下这个）&lt;br&gt;Ctrl + k– 删除当前位置字符至行尾&lt;br&gt;Ctrl + w– 删除从光标到当前单词开头&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;其他操作快捷键&lt;br&gt;Ctrl + y– 插入最近删除的单词&lt;br&gt;Ctrl + c– 终止操作&lt;br&gt;Ctrl + d– 当前操作转到后台&lt;br&gt;Ctrl + l– 清屏 （有时候为了好看）&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;使用了这些快捷后，立马感觉神清气爽~。over.&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;经常会使用shell对文件进行一些操作。但是命令行的操作不熟悉也是特别影响效率的，如何快速度的返回上一次目录，如何编辑当前命令行的内容对于提高效率是非常有帮助的。&lt;br&gt;你是否经常连续按“backSpace”键来删除当前的命令，是否为了返回上次目录而不断的“cd”,而又或者
+    
+    </summary>
+    
+      <category term="shell" scheme="http://benvim.github.io/categories/shell/"/>
+    
+    
+      <category term="shell" scheme="http://benvim.github.io/tags/shell/"/>
+    
+  </entry>
   
   <entry>
     <title>AlphaGo VS Human</title>
@@ -120,7 +156,7 @@
     <link href="http://benvim.github.io/2016/03/07/test/"/>
     <id>http://benvim.github.io/2016/03/07/test/</id>
     <published>2016-03-07T05:59:30.000Z</published>
-    <updated>2016-03-07T23:11:32.000Z</updated>
+    <updated>2016-03-12T00:38:54.000Z</updated>
     
     <content type="html">&lt;p&gt;用VIM写文章不晓得会是一种什么样的体验&lt;/p&gt;
 &lt;p&gt;发现个最大的问题就是输入法的切换问题，因为每次切换成VIM的正常模式，都要切换输入法，这是个很麻烦的操作，或许有更方法的操作我不晓得。&lt;/p&gt;
@@ -133,6 +169,7 @@ int b = 2;
 int c = a+b;
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;$$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$&lt;br&gt;\(x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}\)&lt;/p&gt;
 </content>
     
     <summary type="html">

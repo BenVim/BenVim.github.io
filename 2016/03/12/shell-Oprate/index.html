@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="随记," />
+  <meta name="keywords" content="shell," />
 
 
 
@@ -59,21 +59,22 @@
 
 
 
-<meta name="description" content="3月9日可能会成为写入人类史册的一天，一场世界上最会下围棋的人与人工智能的超级对弈，被全人类通过网络直播共同围观。谷歌董事长斯密特说，“输赢都是人类的胜利”。他这么说是因为李世石要迎战的不单是个机器人，而是这个世界上最聪明的霸道总裁和科学狂人们。
-AlphaGo机器人最厉害的地方，他不是一个机械的编码程序，他有一个“监督预判机制”，每走一步，他会考虑这种走法是不是更有前途，这是一种类似“想象力”的">
+<meta name="description" content="经常会使用shell对文件进行一些操作。但是命令行的操作不熟悉也是特别影响效率的，如何快速度的返回上一次目录，如何编辑当前命令行的内容对于提高效率是非常有帮助的。你是否经常连续按“backSpace”键来删除当前的命令，是否为了返回上次目录而不断的“cd”,而又或者不断的按方向键去修改其中写错的某个单词…..这些土鳖的方向必须抛弃。
+回到上一次操作的目录cd -
+历史命令快捷键[Ctrl+r],">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AlphaGo VS Human">
-<meta property="og:url" content="http://benvim.github.io/2016/03/10/Human/index.html">
+<meta property="og:title" content="shell命令的操作及命令的搜索">
+<meta property="og:url" content="http://benvim.github.io/2016/03/12/shell-Oprate/index.html">
 <meta property="og:site_name" content="一纸墨迹">
-<meta property="og:description" content="3月9日可能会成为写入人类史册的一天，一场世界上最会下围棋的人与人工智能的超级对弈，被全人类通过网络直播共同围观。谷歌董事长斯密特说，“输赢都是人类的胜利”。他这么说是因为李世石要迎战的不单是个机器人，而是这个世界上最聪明的霸道总裁和科学狂人们。
-AlphaGo机器人最厉害的地方，他不是一个机械的编码程序，他有一个“监督预判机制”，每走一步，他会考虑这种走法是不是更有前途，这是一种类似“想象力”的">
-<meta property="og:image" content="http://benvim.github.io/uploads/12.jpg">
-<meta property="og:updated_time" content="2016-03-10T00:27:12.000Z">
+<meta property="og:description" content="经常会使用shell对文件进行一些操作。但是命令行的操作不熟悉也是特别影响效率的，如何快速度的返回上一次目录，如何编辑当前命令行的内容对于提高效率是非常有帮助的。你是否经常连续按“backSpace”键来删除当前的命令，是否为了返回上次目录而不断的“cd”,而又或者不断的按方向键去修改其中写错的某个单词…..这些土鳖的方向必须抛弃。
+回到上一次操作的目录cd -
+历史命令快捷键[Ctrl+r],">
+<meta property="og:updated_time" content="2016-03-12T01:12:47.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AlphaGo VS Human">
-<meta name="twitter:description" content="3月9日可能会成为写入人类史册的一天，一场世界上最会下围棋的人与人工智能的超级对弈，被全人类通过网络直播共同围观。谷歌董事长斯密特说，“输赢都是人类的胜利”。他这么说是因为李世石要迎战的不单是个机器人，而是这个世界上最聪明的霸道总裁和科学狂人们。
-AlphaGo机器人最厉害的地方，他不是一个机械的编码程序，他有一个“监督预判机制”，每走一步，他会考虑这种走法是不是更有前途，这是一种类似“想象力”的">
-<meta name="twitter:image" content="http://benvim.github.io/uploads/12.jpg">
+<meta name="twitter:title" content="shell命令的操作及命令的搜索">
+<meta name="twitter:description" content="经常会使用shell对文件进行一些操作。但是命令行的操作不熟悉也是特别影响效率的，如何快速度的返回上一次目录，如何编辑当前命令行的内容对于提高效率是非常有帮助的。你是否经常连续按“backSpace”键来删除当前的命令，是否为了返回上次目录而不断的“cd”,而又或者不断的按方向键去修改其中写错的某个单词…..这些土鳖的方向必须抛弃。
+回到上一次操作的目录cd -
+历史命令快捷键[Ctrl+r],">
 
 
 
@@ -91,7 +92,7 @@ AlphaGo机器人最厉害的地方，他不是一个机械的编码程序，他�
   };
 </script>
 
-  <title> AlphaGo VS Human | 一纸墨迹 </title>
+  <title> shell命令的操作及命令的搜索 | 一纸墨迹 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -276,7 +277,7 @@ AlphaGo机器人最厉害的地方，他不是一个机械的编码程序，他�
             
             
               
-                AlphaGo VS Human
+                shell命令的操作及命令的搜索
               
             
           </h1>
@@ -288,8 +289,8 @@ AlphaGo机器人最厉害的地方，他不是一个机械的编码程序，他�
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-10T08:19:34+08:00" content="2016-03-10">
-              2016-03-10
+            <time itemprop="dateCreated" datetime="2016-03-12T08:50:07+08:00" content="2016-03-12">
+              2016-03-12
             </time>
           </span>
 
@@ -302,8 +303,8 @@ AlphaGo机器人最厉害的地方，他不是一个机械的编码程序，他�
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/闲聊/" itemprop="url" rel="index">
-                    <span itemprop="name">闲聊</span>
+                  <a href="/categories/shell/" itemprop="url" rel="index">
+                    <span itemprop="name">shell</span>
                   </a>
                 </span>
 
@@ -318,8 +319,8 @@ AlphaGo机器人最厉害的地方，他不是一个机械的编码程序，他�
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/10/Human/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/10/Human/" itemprop="commentsCount"></span>
+                <a href="/2016/03/12/shell-Oprate/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/12/shell-Oprate/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -341,9 +342,20 @@ AlphaGo机器人最厉害的地方，他不是一个机械的编码程序，他�
       
 
       
-        <p>3月9日可能会成为写入人类史册的一天，一场世界上最会下围棋的人与人工智能的超级对弈，被全人类通过网络直播共同围观。谷歌董事长斯密特说，“输赢都是人类的胜利”。他这么说是因为李世石要迎战的不单是个机器人，而是这个世界上最聪明的霸道总裁和科学狂人们。</p>
-<p>AlphaGo机器人最厉害的地方，他不是一个机械的编码程序，他有一个“监督预判机制”，每走一步，他会考虑这种走法是不是更有前途，这是一种类似“想象力”的能力。这种思维模式，几乎和人类的直觉类似，使得他前所未有地更加像人类。</p>
-<p><img src="uploads/12.jpg" alt="AlphaGo vs Human"></p>
+        <p>经常会使用shell对文件进行一些操作。但是命令行的操作不熟悉也是特别影响效率的，如何快速度的返回上一次目录，如何编辑当前命令行的内容对于提高效率是非常有帮助的。<br>你是否经常连续按“backSpace”键来删除当前的命令，是否为了返回上次目录而不断的“cd”,而又或者不断的按方向键去修改其中写错的某个单词…..这些土鳖的方向必须抛弃。</p>
+<h3 id="回到上一次操作的目录"><a href="#回到上一次操作的目录" class="headerlink" title="回到上一次操作的目录"></a>回到上一次操作的目录</h3><pre><code>cd -
+</code></pre><h3 id="历史命令快捷键"><a href="#历史命令快捷键" class="headerlink" title="历史命令快捷键"></a>历史命令快捷键</h3><pre><code>[Ctrl+r], [Ctrl+p], [Ctrl+n]
+</code></pre><p>[Ctrl+r] 是搜索历史命令的，当使用这个组合键后，会出现个输入框，你每按一个字符都会自动从历史命令中匹配出相关结果，选择你要的按回车即可,该命令可以快速定位到你之前使用的任何命令，比如cd过哪个很长的目录。</p>
+<p>[Ctrl+p]和[Ctrl+n]主要功能是翻阅历史命令，上一条和下一条。此命令一般在最近使用过的命令比较方便。</p>
+<h3 id="命令行内快速操作键"><a href="#命令行内快速操作键" class="headerlink" title="命令行内快速操作键"></a>命令行内快速操作键</h3><ol>
+<li><p>移动操作快捷键<br>Ctrl + f– 向右移动一个字符，当然多数人用→<br>Ctrl + b– 向左移动一个字符， 多数人用←<br>ESC + f– 向右移动一个单词，MAC下建议用ALT + →<br>ESC + b– 向左移动一个单词，MAC下建议用ALT + ←<br>Ctrl + a– 跳到行首<br>Ctrl + e– 跳到行尾</p>
+</li>
+<li><p>删除操作快捷键<br>Ctrl + d– 向右删除一个字符<br>Ctrl + h– 向左删除一个字符<br>Ctrl + u– 删除当前位置字符至行首（输入密码错误的时候多用下这个）<br>Ctrl + k– 删除当前位置字符至行尾<br>Ctrl + w– 删除从光标到当前单词开头</p>
+</li>
+<li><p>其他操作快捷键<br>Ctrl + y– 插入最近删除的单词<br>Ctrl + c– 终止操作<br>Ctrl + d– 当前操作转到后台<br>Ctrl + l– 清屏 （有时候为了好看）</p>
+</li>
+</ol>
+<p>使用了这些快捷后，立马感觉神清气爽~。over.</p>
 
       
     </div>
@@ -358,7 +370,7 @@ AlphaGo机器人最厉害的地方，他不是一个机械的编码程序，他�
       
         <div class="post-tags">
           
-            <a href="/tags/随记/" rel="tag">#随记</a>
+            <a href="/tags/shell/" rel="tag">#shell</a>
           
         </div>
       
@@ -367,17 +379,13 @@ AlphaGo机器人最厉害的地方，他不是一个机械的编码程序，他�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/08/東京日和/" rel="next" title="東京日和">
-                <i class="fa fa-chevron-left"></i> 東京日和
+              <a href="/2016/03/10/Human/" rel="next" title="AlphaGo VS Human">
+                <i class="fa fa-chevron-left"></i> AlphaGo VS Human
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/03/12/shell-Oprate/" rel="prev" title="shell命令的操作及命令的搜索">
-                shell命令的操作及命令的搜索 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -429,8 +437,8 @@ AlphaGo机器人最厉害的地方，他不是一个机械的编码程序，他�
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/03/10/Human/"
-           data-title="AlphaGo VS Human" data-url="http://benvim.github.io/2016/03/10/Human/">
+      <div class="ds-thread" data-thread-key="2016/03/12/shell-Oprate/"
+           data-title="shell命令的操作及命令的搜索" data-url="http://benvim.github.io/2016/03/12/shell-Oprate/">
       </div>
     
   </div>
@@ -566,7 +574,7 @@ AlphaGo机器人最厉害的地方，他不是一个机械的编码程序，他�
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#回到上一次操作的目录"><span class="nav-number">1.</span> <span class="nav-text">回到上一次操作的目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#历史命令快捷键"><span class="nav-number">2.</span> <span class="nav-text">历史命令快捷键</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令行内快速操作键"><span class="nav-number">3.</span> <span class="nav-text">命令行内快速操作键</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
