@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://benvim.github.io/"/>
-  <updated>2016-03-08T04:37:11.000Z</updated>
+  <updated>2016-03-10T00:27:12.000Z</updated>
   <id>http://benvim.github.io/</id>
   
   <author>
@@ -14,6 +14,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>AlphaGo VS Human</title>
+    <link href="http://benvim.github.io/2016/03/10/Human/"/>
+    <id>http://benvim.github.io/2016/03/10/Human/</id>
+    <published>2016-03-10T00:19:34.000Z</published>
+    <updated>2016-03-10T00:27:12.000Z</updated>
+    
+    <content type="html">&lt;p&gt;3月9日可能会成为写入人类史册的一天，一场世界上最会下围棋的人与人工智能的超级对弈，被全人类通过网络直播共同围观。谷歌董事长斯密特说，“输赢都是人类的胜利”。他这么说是因为李世石要迎战的不单是个机器人，而是这个世界上最聪明的霸道总裁和科学狂人们。&lt;/p&gt;
+&lt;p&gt;AlphaGo机器人最厉害的地方，他不是一个机械的编码程序，他有一个“监督预判机制”，每走一步，他会考虑这种走法是不是更有前途，这是一种类似“想象力”的能力。这种思维模式，几乎和人类的直觉类似，使得他前所未有地更加像人类。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;uploads/12.jpg&quot; alt=&quot;AlphaGo vs Human&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;3月9日可能会成为写入人类史册的一天，一场世界上最会下围棋的人与人工智能的超级对弈，被全人类通过网络直播共同围观。谷歌董事长斯密特说，“输赢都是人类的胜利”。他这么说是因为李世石要迎战的不单是个机器人，而是这个世界上最聪明的霸道总裁和科学狂人们。&lt;/p&gt;
+&lt;p&gt;AlphaG
+    
+    </summary>
+    
+      <category term="闲聊" scheme="http://benvim.github.io/categories/%E9%97%B2%E8%81%8A/"/>
+    
+    
+      <category term="随记" scheme="http://benvim.github.io/tags/%E9%9A%8F%E8%AE%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>東京日和</title>
