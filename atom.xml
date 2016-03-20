@@ -846,9 +846,9 @@ mysql&amp;gt; select * form `test_db`
       <category term="mysql" scheme="http://benvim.github.io/categories/mysql/"/>
     
     
-      <category term="mysql" scheme="http://benvim.github.io/tags/mysql/"/>
-    
       <category term="php" scheme="http://benvim.github.io/tags/php/"/>
+    
+      <category term="mysql" scheme="http://benvim.github.io/tags/mysql/"/>
     
   </entry>
   
