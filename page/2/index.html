@@ -273,6 +273,413 @@
             
               
                 
+                <a class="post-title-link" href="/2016/01/09/cenos-ssh/" itemprop="url">
+                  ssh连接缓慢解决方法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-01-09T20:12:05+08:00" content="2016-01-09">
+              2016-01-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/09/cenos-ssh/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/09/cenos-ssh/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+          
+
+          
+          
+             <span id="/2016/01/09/cenos-ssh/" class="leancloud_visitors" data-flag-title="ssh连接缓慢解决方法">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>连接服务器的SSH服务的时候，等待输入密码的状态时间太长，要等很久。而且是局域网，并且PING的速度非常快，所以很有必要解决一下连接速度的问题了。</p>
+<p>下面说下如何解决这样的问题，最为常见的原因是因为server的sshd会去DNS查找访问client IP的hostname,如果DNS不可用或者没有相关记录，就会耗费大量时间。</p>
+<ol>
+<li>在server上 <em>/etc/hosts</em> 文件中把你本机的ip和hostname加入 </li>
+<li>在server上 <em>/etc/ssh/sshd_config</em> 文件中修改或加入UseDNS=no，另外在 <em>authentication gssapi-with-mic</em> 也有可能出现问题，在server上 <em>/etc/ssh/sshd_config</em> 文件中修改GSSAPIAuthentication no.</li>
+<li>修改 <em>server上/etc/nsswitch.conf</em> 中hosts为hosts： files</li>
+<li>reboot server使配置生效</li>
+</ol>
+<p>※虽然配置文件中[UseDNS yes]被注释点，但默认开关就是yes…(SSH服务默认启用了DNS反向解析的功能)</p>
+<p>在目标服务器上有一个文件/etc/nsswitch.conf ，里面有如下一行</p>
+<pre><code>hoosts:files dns
+</code></pre><p>这行的含义是对于访问的主机进行域名解析的顺序，是先访问file，也就是/etc/hosts文件，如果hosts中没有记录域名，则访问dns，进行域名解析，如果dns也无法访问，就会等待访问超时后返回，因此等待时间比较长。</p>
+<p>那如果将这一行屏蔽掉是不是也可以达到同样的效果呢？应该是可以的，但是如果本机要通过域名访问其他服务器，则肯定无法访问，因此这行应该需要保留。这个问题也提示我们，dns如果不可用，会带来的一些副作用的。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/12/29/php-time/" itemprop="url">
+                  PHP关于时间的问题，今天、昨天、前天、最近7天，最近30天
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-12-29T10:20:34+08:00" content="2015-12-29">
+              2015-12-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/12/29/php-time/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/29/php-time/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+          
+
+          
+          
+             <span id="/2015/12/29/php-time/" class="leancloud_visitors" data-flag-title="PHP关于时间的问题，今天、昨天、前天、最近7天，最近30天">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>获取日期</li>
+<li>获取日期时间</li>
+</ul>
+<p>经常会用到时间查询之类问题，直接获取天日期由以下方法即可达到。</p>
+<pre><code>echo &quot;今天:&quot;.date(&quot;Y-m-d&quot;).&quot;&lt;br&gt;&quot;;     
+echo &quot;今天:&quot;.date(&quot;Y-m-d&quot;).&quot;&lt;br&gt;&quot;;     
+echo &quot;今天:&quot;.date(&quot;Y-m-d&quot;).&quot;&lt;br&gt;&quot;;     
+echo &quot;昨天:&quot;.date(&quot;Y-m-d&quot;,strtotime(&quot;-1 day&quot;)), &quot;&lt;br&gt;&quot;; 
+echo &quot;前天:&quot;.date(&quot;Y-m-d&quot;,strtotime(&quot;-2 day&quot;)), &quot;&lt;br&gt;&quot;;
+echo &quot;最近30天：&quot;.date(&quot;Y-m-d&quot;,strtotime(&quot;-30 day&quot;)), &quot;&lt;br&gt;&quot;;
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/12/23/centos-aws/" itemprop="url">
+                  AWS中Centos创建后登录以及修改密码配置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-12-23T19:22:43+08:00" content="2015-12-23">
+              2015-12-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/12/23/centos-aws/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/23/centos-aws/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+          
+
+          
+          
+             <span id="/2015/12/23/centos-aws/" class="leancloud_visitors" data-flag-title="AWS中Centos创建后登录以及修改密码配置">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>根据AWS中的文档，创建并启动实例后，使用pem密钥进行登录系统，但是使用的是centos用户登录，权限受限，可以使用sudo提升权限进行安装、删除软件，除此之外我们还需要修改root的密码，方便系统管理。修改方法如下：</p>
+<pre><code>sudo passwd root
+</code></pre><p>系统会提示输入密码和确认密码，就修改完成。然后使用su切换成root用户，输入密码即切换成root用户了。</p>
+<h4 id="修改centos登录方式为密码登录"><a href="#修改centos登录方式为密码登录" class="headerlink" title="修改centos登录方式为密码登录"></a>修改centos登录方式为密码登录</h4><p>打开配置文件 /etc/ssh/sshd_config (ubuntu 为/etc/ssh/sshd-config)，设置如下几个参数</p>
+<pre><code>PermitRootLogin yes
+PubkeyAuthentication no #（也可用#号注释）
+PasswordAuthentication yes
+</code></pre><h4 id="重启sshd服务"><a href="#重启sshd服务" class="headerlink" title="重启sshd服务"></a>重启sshd服务</h4><pre><code>/etc/init.d/sshd restart
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/12/20/centos-yum/" itemprop="url">
                   Centos配置国内yum源
                 </a>
@@ -610,6 +1017,355 @@ private function formatURL($url){
             
               
                 
+                <a class="post-title-link" href="/2015/11/28/php-numberformat/" itemprop="url">
+                  财务数值表示法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-11-28T14:19:00+08:00" content="2015-11-28">
+              2015-11-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/11/28/php-numberformat/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/28/php-numberformat/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+          
+
+          
+          
+             <span id="/2015/11/28/php-numberformat/" class="leancloud_visitors" data-flag-title="财务数值表示法">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>类似这样的： <em>￥97,709.99元</em> 保留两位小数并且千位分隔。</p>
+<pre><code>//财务四舍五入保留两位小数。
+function getPrecisionNumber($cash, $type=&quot;0&quot;){
+    $cash = round($cash, 2);
+    $cash = number_format($cash, 2, &apos;.&apos;, &quot;,&quot;);
+    if(!$type){
+        $cash = &quot;￥&quot;.$cash.&quot;元&quot;;
+    }
+    return $cash;
+}
+</code></pre><p>由于财务要求高精度对帐， 所以要使用round进行四舍五入后的值来显示，本身数据是7位小数点的高精度值。使用 <em>number_format</em> 方法格式化数值对象。</p>
+<p><strong>number_format() 函数通过千位分组来格式化数字。</strong></p>
+<p>注释：该函数支持一个、两个或四个参数（不是三个）</p>
+<pre><code>number_format(number,decimals,decimalpoint,separator)
+</code></pre><table>
+<thead>
+<tr>
+<th>参数</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>number</td>
+<td style="text-align:left">必需。要格式化的数字。<br>如果未设置其他参数，则数字会被格式化为不带小数点且以逗号（,）作为千位分隔符。</td>
+</tr>
+<tr>
+<td>decimals</td>
+<td style="text-align:left">可选。规定多少个小数。如果设置了该参数，则使用点号（.）作为小数点来格式化数字。</td>
+</tr>
+<tr>
+<td>decimalpoint</td>
+<td style="text-align:left">可选。规定用作小数点的字符串。</td>
+</tr>
+<tr>
+<td>separator</td>
+<td style="text-align:left">可选。规定用作千位分隔符的字符串。仅使用该参数的第一个字符。比如 “xxx” 仅输出 “x”。</td>
+</tr>
+</tbody>
+</table>
+<p>注释：如果设置了该参数，那么所有其他参数都是必需的。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/11/17/php-appSecret/" itemprop="url">
+                  生成appkey和appSecret
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-11-17T20:54:01+08:00" content="2015-11-17">
+              2015-11-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/11/17/php-appSecret/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/17/php-appSecret/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+          
+
+          
+          
+             <span id="/2015/11/17/php-appSecret/" class="leancloud_visitors" data-flag-title="生成appkey和appSecret">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>通常情况下，这种很长一段数字字母的key和secret都是通过md5和sha1加密算法来生成的</p>
+<ol>
+<li><p>appkey的生成</p>
+<p> appkey生成比较简单，一般是客户的唯一值+字符串组成，方法很多，做到唯一性的字符串就可以。比如使用用户的uid+”abc”字符串组成。</p>
+</li>
+<li><p>appSecret生成方法</p>
+<p> 其原始数据有可能是你的账号的id，还有注册时间之类的唯一值进行组合再通过md5和sha1来生成，而md5和sha1对比的话，md5比sha1更快，但sha1比md5强度更高，所以在此类授权应用里，通常都使用sha1算法，例如oauth的签名算法</p>
+</li>
+<li><p>验证授权</p>
+<p> 例如要和微信通信里，要传递三个参数ABC，则需要将ABC与appsecret一起sha1一遍，得到一个签名串，然后将这个签名串与appkey一起传递给微信，<br>此时，微信会通过appkey去查找对应的appsecret，然后再将ABC参数与查询出来的appsecret做一遍相同的签名算法，如果得到的签名串一致，则认为是授权成功</p>
+</li>
+</ol>
+<p>如下的代码可以参考：</p>
+<pre><code>public function  test(){
+    if(!isset($_GET[&apos;token&apos;])){
+        $this-&gt;apiReturn(4001,&apos;invalid token&apos;);
+    }else if(!S($_GET[&apos;token&apos;])){            
+        $this-&gt;apiReturn(4001,&apos;invalid token&apos;); 
+    }
+    $data = array(
+    &apos;id&apos;=&gt;2,
+    &apos;username&apos;=&gt;&apos;明之暗夜&apos;,
+    &apos;info&apos;=&gt;array(&apos;age&apos;=&gt;24,&apos;address&apos;=&gt;&apos;学府路&apos;,&apos;url&apos;=&gt;&apos;http://cnblogs.com/dmm888&apos;));
+    if($data){
+    $this-&gt;apiReturn(200,&apos;读取用户信息成功&apos;,$data,xml);
+    }
+}
+
+public function getToken(){
+    $ori_str = S($this-&gt;appid.&apos;_&apos;.$this-&gt;appsecret);
+    //这里appid和appsecret我写固定了，实际是通过客户端获取  所以这里我们可以做很多 比如判断appid和appsecret有效性等
+    if($ori_str){//重新获取就把以前的token删除
+        S($ori_str,null);
+    }
+
+    //这里是token产生的机制  您也可以自己定义
+    $nonce = $this-&gt;createNoncestr(32);
+    $tmpArr = array($nonce,$this-&gt;appid,$this-&gt;appsecret);
+
+    sort($tmpArr, SORT_STRING);
+    $tmpStr = implode( $tmpArr );
+    $tmpStr = sha1( $tmpStr );
+    // echo $tmpStr;
+    //这里做了缓存 &apos;a&apos;=&gt;b 和&apos;b&apos;=&gt;a格式的缓存
+    S($this-&gt;appid.&apos;_&apos;.$this-&gt;appsecret,$tmpStr,7200);  
+    S($tmpStr,$this-&gt;appid.&apos;_&apos;.$this-&gt;appsecret,7200);
+}
+/**
+* 作用：产生随机字符串，不长于32位
+*/
+function createNoncestr( $length = 32 ) 
+{
+    $chars = &quot;abcdefghijklmnopqrstuvwxyz0123456789&quot;;              $str =&quot;&quot;;
+    for ( $i = 0; $i &lt; $length; $i++ )  {  
+        $str.= substr($chars, mt_rand(0, strlen($chars)-1), 1);
+    }  
+    return $str;
+}     
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/11/12/db-mysql-transaction/" itemprop="url">
                   mysql事务处理原理与实例详解
                 </a>
@@ -794,6 +1550,140 @@ mysql&gt; select * form `test_db`
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/10/02/codeTech-wc/" itemprop="url">
+                  使用命令行wc命令统计代码行数
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-10-02T12:12:32+08:00" content="2015-10-02">
+              2015-10-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/codeTech/" itemprop="url" rel="index">
+                    <span itemprop="name">codeTech</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/10/02/codeTech-wc/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/02/codeTech-wc/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+          
+
+          
+          
+             <span id="/2015/10/02/codeTech-wc/" class="leancloud_visitors" data-flag-title="使用命令行wc命令统计代码行数">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>要统计代码行数，我们需要用到wc命令：<em>wc -l filename</em> 可以用来统计filename的行数。例如：我们要统计<em>index.php</em>的代码行数，可以这样写</p>
+<pre><code>wc -l     index.php
+</code></pre><p>#####结合 find 命令统计行数<br>使用find命令查找出要统计的文件。</p>
+<pre><code>wc -l `find . -name &apos;*.h&apos;`  # find部分是用键盘上数字1左边的键那个引号括起来的。
+</code></pre><p><strong>统计当前目录下所有css文件的代码行数</strong></p>
+<pre><code>wc -l `gfind . \( -path &quot;./data&quot; -o -path &quot;./uc_client&quot; -o -path &quot;./thinkphp&quot; -o -path &quot;./.svn&quot; -o -path &quot;./.idea&quot; \) -prune -o -not -regex &apos;.*\.\(png\|gif\|swp\|jpg\|swf\|jpeg\|DS_Store\|svn-base\|docx\|zip\|rar\|doc\|log\|JPG\|JPEG\|GIF\|js\|ico\|psd\|html\|ttf\|woff\|svg\|otf\|eot\|txt\|db\)&apos; -type f `
+</code></pre><p><strong>统计所有JS文件的代码行数</strong></p>
+<pre><code>wc -l `gfind . \( -path &quot;./procurement&quot; -o -path &quot;./bootstrap&quot; -o -path &quot;./cpk/plugins&quot; -o -path &quot;./js/calendar&quot; -o -path &quot;./js/kindeditor&quot; -o -path &quot;./uploadify&quot; -o -path &quot;./umeditor&quot; -o -path &quot;./data&quot; -o -path &quot;./uc_client&quot; -o -path &quot;./thinkphp&quot; -o -path &quot;./.svn&quot; -o -path &quot;./.idea&quot; \) -prune -o -not -regex &apos;.*\.\(png\|gif\|swp\|jpg\|swf\|jpeg\|DS_Store\|svn-base\|docx\|zip\|rar\|doc\|log\|JPG\|JPEG\|GIF\|ico\|psd\|html\|ttf\|woff\|svg\|otf\|eot\|txt\|db\|css\)&apos; -type f `
+</code></pre><p><em>-prune</em>是忽略的意思，<em>-o</em>是逻辑<em>或</em>的意思。上面 <em>-path “XXX” -o -path “YYY”</em> 意思是忽略掉XXX目录或YYY目录。这些都是JS插件的目录。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -839,7 +1729,7 @@ mysql&gt; select * form `test_db`
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-count">19</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -847,7 +1737,7 @@ mysql&gt; select * form `test_db`
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -856,7 +1746,7 @@ mysql&gt; select * form `test_db`
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

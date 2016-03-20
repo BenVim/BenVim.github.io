@@ -301,6 +301,129 @@ int c = a+b;
   </entry>
   
   <entry>
+    <title>MYSQL数据库备份操作</title>
+    <link href="http://benvim.github.io/2016/01/13/mysql-mysqldump/"/>
+    <id>http://benvim.github.io/2016/01/13/mysql-mysqldump/</id>
+    <published>2016-01-13T07:29:14.000Z</published>
+    <updated>2016-03-20T14:45:40.000Z</updated>
+    
+    <content type="html">&lt;p&gt;用PHP语言进行MYSQL数据库备份操作。技术上需要的函数 &lt;em&gt;mysqldump&lt;/em&gt; 方法，该方法是 &lt;em&gt;MYSQL&lt;/em&gt; 的程序，所以需要指明该程序的地址，另外需要PHP语言的 &lt;em&gt;exec&lt;/em&gt;去执行该方法。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    public function export(){
+    $cfg_dbhost = C(&amp;quot;DB_HOST&amp;quot;);
+    $cfg_dbuser = C(&amp;quot;DB_USER&amp;quot;);
+    $cfg_dbpwd  = C(&amp;quot;DB_PWD&amp;quot;);
+    $cfg_dbname = C(&amp;quot;DB_NAME&amp;quot;);
+
+    $cfg_dbname = &amp;quot;cpk&amp;quot;;
+    $filename=date(&amp;quot;Y-m-d_H-i-s&amp;quot;).&amp;quot;-&amp;quot;.$cfg_dbname.&amp;quot;.sql&amp;quot;; 
+    // 所保存的文件名 
+    header(&amp;quot;Content-disposition:filename=&amp;quot;.$filename); 
+    header(&amp;quot;Content-type:application/octetstream&amp;quot;); 
+    header(&amp;quot;Pragma:no-cache&amp;quot;); 
+    header(&amp;quot;Expires:0&amp;quot;); 
+
+    $tmpFile = $_SERVER[&amp;apos;DOCUMENT_ROOT&amp;apos;].$this-&amp;gt;path.$filename;// 获取当前页面文件路径，SQL文件就导出到此文件夹内 
+    exec($this-&amp;gt;mysqlDumpPath.&amp;quot;mysqldump -u$cfg_dbuser -p$cfg_dbpwd -h$cfg_dbhost  $cfg_dbname &amp;gt; &amp;quot;.$tmpFile); 
+    $file = fopen($tmpFile, &amp;quot;r&amp;quot;); // 打开文件 
+    $info = fread($file,filesize($tmpFile));
+    $this-&amp;gt;ajaxReturn(&amp;quot;0&amp;quot;, &amp;quot;备份完成&amp;quot;,&amp;quot;$filename&amp;quot;);
+    fclose($file);
+}
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;用PHP语言进行MYSQL数据库备份操作。技术上需要的函数 &lt;em&gt;mysqldump&lt;/em&gt; 方法，该方法是 &lt;em&gt;MYSQL&lt;/em&gt; 的程序，所以需要指明该程序的地址，另外需要PHP语言的 &lt;em&gt;exec&lt;/em&gt;去执行该方法。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; 
+    
+    </summary>
+    
+      <category term="mysql" scheme="http://benvim.github.io/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="http://benvim.github.io/tags/mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ssh连接缓慢解决方法</title>
+    <link href="http://benvim.github.io/2016/01/09/cenos-ssh/"/>
+    <id>http://benvim.github.io/2016/01/09/cenos-ssh/</id>
+    <published>2016-01-09T12:12:05.000Z</published>
+    <updated>2016-03-20T14:39:42.000Z</updated>
+    
+    <content type="html">&lt;p&gt;连接服务器的SSH服务的时候，等待输入密码的状态时间太长，要等很久。而且是局域网，并且PING的速度非常快，所以很有必要解决一下连接速度的问题了。&lt;/p&gt;
+&lt;p&gt;下面说下如何解决这样的问题，最为常见的原因是因为server的sshd会去DNS查找访问client IP的hostname,如果DNS不可用或者没有相关记录，就会耗费大量时间。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在server上 &lt;em&gt;/etc/hosts&lt;/em&gt; 文件中把你本机的ip和hostname加入 &lt;/li&gt;
+&lt;li&gt;在server上 &lt;em&gt;/etc/ssh/sshd_config&lt;/em&gt; 文件中修改或加入UseDNS=no，另外在 &lt;em&gt;authentication gssapi-with-mic&lt;/em&gt; 也有可能出现问题，在server上 &lt;em&gt;/etc/ssh/sshd_config&lt;/em&gt; 文件中修改GSSAPIAuthentication no.&lt;/li&gt;
+&lt;li&gt;修改 &lt;em&gt;server上/etc/nsswitch.conf&lt;/em&gt; 中hosts为hosts： files&lt;/li&gt;
+&lt;li&gt;reboot server使配置生效&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;※虽然配置文件中[UseDNS yes]被注释点，但默认开关就是yes…(SSH服务默认启用了DNS反向解析的功能)&lt;/p&gt;
+&lt;p&gt;在目标服务器上有一个文件/etc/nsswitch.conf ，里面有如下一行&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;hoosts:files dns
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这行的含义是对于访问的主机进行域名解析的顺序，是先访问file，也就是/etc/hosts文件，如果hosts中没有记录域名，则访问dns，进行域名解析，如果dns也无法访问，就会等待访问超时后返回，因此等待时间比较长。&lt;/p&gt;
+&lt;p&gt;那如果将这一行屏蔽掉是不是也可以达到同样的效果呢？应该是可以的，但是如果本机要通过域名访问其他服务器，则肯定无法访问，因此这行应该需要保留。这个问题也提示我们，dns如果不可用，会带来的一些副作用的。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;连接服务器的SSH服务的时候，等待输入密码的状态时间太长，要等很久。而且是局域网，并且PING的速度非常快，所以很有必要解决一下连接速度的问题了。&lt;/p&gt;
+&lt;p&gt;下面说下如何解决这样的问题，最为常见的原因是因为server的sshd会去DNS查找访问client IP的ho
+    
+    </summary>
+    
+      <category term="linux" scheme="http://benvim.github.io/categories/linux/"/>
+    
+    
+      <category term="centos" scheme="http://benvim.github.io/tags/centos/"/>
+    
+      <category term="ssh" scheme="http://benvim.github.io/tags/ssh/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PHP关于时间的问题，今天、昨天、前天、最近7天，最近30天</title>
+    <link href="http://benvim.github.io/2015/12/29/php-time/"/>
+    <id>http://benvim.github.io/2015/12/29/php-time/</id>
+    <published>2015-12-29T02:20:34.000Z</published>
+    <updated>2016-03-20T14:37:47.000Z</updated>
+    
+    <content type="html">&lt;ul&gt;
+&lt;li&gt;获取日期&lt;/li&gt;
+&lt;li&gt;获取日期时间&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;经常会用到时间查询之类问题，直接获取天日期由以下方法即可达到。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;echo &amp;quot;今天:&amp;quot;.date(&amp;quot;Y-m-d&amp;quot;).&amp;quot;&amp;lt;br&amp;gt;&amp;quot;;     
+echo &amp;quot;今天:&amp;quot;.date(&amp;quot;Y-m-d&amp;quot;).&amp;quot;&amp;lt;br&amp;gt;&amp;quot;;     
+echo &amp;quot;今天:&amp;quot;.date(&amp;quot;Y-m-d&amp;quot;).&amp;quot;&amp;lt;br&amp;gt;&amp;quot;;     
+echo &amp;quot;昨天:&amp;quot;.date(&amp;quot;Y-m-d&amp;quot;,strtotime(&amp;quot;-1 day&amp;quot;)), &amp;quot;&amp;lt;br&amp;gt;&amp;quot;; 
+echo &amp;quot;前天:&amp;quot;.date(&amp;quot;Y-m-d&amp;quot;,strtotime(&amp;quot;-2 day&amp;quot;)), &amp;quot;&amp;lt;br&amp;gt;&amp;quot;;
+echo &amp;quot;最近30天：&amp;quot;.date(&amp;quot;Y-m-d&amp;quot;,strtotime(&amp;quot;-30 day&amp;quot;)), &amp;quot;&amp;lt;br&amp;gt;&amp;quot;;
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;获取日期&lt;/li&gt;
+&lt;li&gt;获取日期时间&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;经常会用到时间查询之类问题，直接获取天日期由以下方法即可达到。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;echo &amp;quot;今天:&amp;quot;.date(&amp;quot;Y-m-d&amp;quot;).&amp;quo
+    
+    </summary>
+    
+      <category term="php" scheme="http://benvim.github.io/categories/php/"/>
+    
+    
+      <category term="php" scheme="http://benvim.github.io/tags/php/"/>
+    
+      <category term="time" scheme="http://benvim.github.io/tags/time/"/>
+    
+  </entry>
+  
+  <entry>
     <title>AWS中Centos创建后登录以及修改密码配置</title>
     <link href="http://benvim.github.io/2015/12/23/centos-aws/"/>
     <id>http://benvim.github.io/2015/12/23/centos-aws/</id>
@@ -471,6 +594,159 @@ private function formatURL($url){
   </entry>
   
   <entry>
+    <title>财务数值表示法</title>
+    <link href="http://benvim.github.io/2015/11/28/php-numberformat/"/>
+    <id>http://benvim.github.io/2015/11/28/php-numberformat/</id>
+    <published>2015-11-28T06:19:00.000Z</published>
+    <updated>2016-03-20T14:42:03.000Z</updated>
+    
+    <content type="html">&lt;p&gt;类似这样的： &lt;em&gt;￥97,709.99元&lt;/em&gt; 保留两位小数并且千位分隔。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//财务四舍五入保留两位小数。
+function getPrecisionNumber($cash, $type=&amp;quot;0&amp;quot;){
+    $cash = round($cash, 2);
+    $cash = number_format($cash, 2, &amp;apos;.&amp;apos;, &amp;quot;,&amp;quot;);
+    if(!$type){
+        $cash = &amp;quot;￥&amp;quot;.$cash.&amp;quot;元&amp;quot;;
+    }
+    return $cash;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;由于财务要求高精度对帐， 所以要使用round进行四舍五入后的值来显示，本身数据是7位小数点的高精度值。使用 &lt;em&gt;number_format&lt;/em&gt; 方法格式化数值对象。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;number_format() 函数通过千位分组来格式化数字。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;注释：该函数支持一个、两个或四个参数（不是三个）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;number_format(number,decimals,decimalpoint,separator)
+&lt;/code&gt;&lt;/pre&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;参数&lt;/th&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;number&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;必需。要格式化的数字。&lt;br&gt;如果未设置其他参数，则数字会被格式化为不带小数点且以逗号（,）作为千位分隔符。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;decimals&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;可选。规定多少个小数。如果设置了该参数，则使用点号（.）作为小数点来格式化数字。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;decimalpoint&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;可选。规定用作小数点的字符串。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;separator&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;可选。规定用作千位分隔符的字符串。仅使用该参数的第一个字符。比如 “xxx” 仅输出 “x”。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;注释：如果设置了该参数，那么所有其他参数都是必需的。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;类似这样的： &lt;em&gt;￥97,709.99元&lt;/em&gt; 保留两位小数并且千位分隔。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//财务四舍五入保留两位小数。
+function getPrecisionNumber($cash, $type=&amp;quot;0&amp;quot;){
+    $ca
+    
+    </summary>
+    
+      <category term="php" scheme="http://benvim.github.io/categories/php/"/>
+    
+    
+      <category term="php" scheme="http://benvim.github.io/tags/php/"/>
+    
+      <category term="number_format" scheme="http://benvim.github.io/tags/number-format/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>生成appkey和appSecret</title>
+    <link href="http://benvim.github.io/2015/11/17/php-appSecret/"/>
+    <id>http://benvim.github.io/2015/11/17/php-appSecret/</id>
+    <published>2015-11-17T12:54:01.000Z</published>
+    <updated>2016-03-20T14:36:03.000Z</updated>
+    
+    <content type="html">&lt;p&gt;通常情况下，这种很长一段数字字母的key和secret都是通过md5和sha1加密算法来生成的&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;appkey的生成&lt;/p&gt;
+&lt;p&gt; appkey生成比较简单，一般是客户的唯一值+字符串组成，方法很多，做到唯一性的字符串就可以。比如使用用户的uid+”abc”字符串组成。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;appSecret生成方法&lt;/p&gt;
+&lt;p&gt; 其原始数据有可能是你的账号的id，还有注册时间之类的唯一值进行组合再通过md5和sha1来生成，而md5和sha1对比的话，md5比sha1更快，但sha1比md5强度更高，所以在此类授权应用里，通常都使用sha1算法，例如oauth的签名算法&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;验证授权&lt;/p&gt;
+&lt;p&gt; 例如要和微信通信里，要传递三个参数ABC，则需要将ABC与appsecret一起sha1一遍，得到一个签名串，然后将这个签名串与appkey一起传递给微信，&lt;br&gt;此时，微信会通过appkey去查找对应的appsecret，然后再将ABC参数与查询出来的appsecret做一遍相同的签名算法，如果得到的签名串一致，则认为是授权成功&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;如下的代码可以参考：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public function  test(){
+    if(!isset($_GET[&amp;apos;token&amp;apos;])){
+        $this-&amp;gt;apiReturn(4001,&amp;apos;invalid token&amp;apos;);
+    }else if(!S($_GET[&amp;apos;token&amp;apos;])){            
+        $this-&amp;gt;apiReturn(4001,&amp;apos;invalid token&amp;apos;); 
+    }
+    $data = array(
+    &amp;apos;id&amp;apos;=&amp;gt;2,
+    &amp;apos;username&amp;apos;=&amp;gt;&amp;apos;明之暗夜&amp;apos;,
+    &amp;apos;info&amp;apos;=&amp;gt;array(&amp;apos;age&amp;apos;=&amp;gt;24,&amp;apos;address&amp;apos;=&amp;gt;&amp;apos;学府路&amp;apos;,&amp;apos;url&amp;apos;=&amp;gt;&amp;apos;http://cnblogs.com/dmm888&amp;apos;));
+    if($data){
+    $this-&amp;gt;apiReturn(200,&amp;apos;读取用户信息成功&amp;apos;,$data,xml);
+    }
+}
+
+public function getToken(){
+    $ori_str = S($this-&amp;gt;appid.&amp;apos;_&amp;apos;.$this-&amp;gt;appsecret);
+    //这里appid和appsecret我写固定了，实际是通过客户端获取  所以这里我们可以做很多 比如判断appid和appsecret有效性等
+    if($ori_str){//重新获取就把以前的token删除
+        S($ori_str,null);
+    }
+
+    //这里是token产生的机制  您也可以自己定义
+    $nonce = $this-&amp;gt;createNoncestr(32);
+    $tmpArr = array($nonce,$this-&amp;gt;appid,$this-&amp;gt;appsecret);
+
+    sort($tmpArr, SORT_STRING);
+    $tmpStr = implode( $tmpArr );
+    $tmpStr = sha1( $tmpStr );
+    // echo $tmpStr;
+    //这里做了缓存 &amp;apos;a&amp;apos;=&amp;gt;b 和&amp;apos;b&amp;apos;=&amp;gt;a格式的缓存
+    S($this-&amp;gt;appid.&amp;apos;_&amp;apos;.$this-&amp;gt;appsecret,$tmpStr,7200);  
+    S($tmpStr,$this-&amp;gt;appid.&amp;apos;_&amp;apos;.$this-&amp;gt;appsecret,7200);
+}
+/**
+* 作用：产生随机字符串，不长于32位
+*/
+function createNoncestr( $length = 32 ) 
+{
+    $chars = &amp;quot;abcdefghijklmnopqrstuvwxyz0123456789&amp;quot;;              $str =&amp;quot;&amp;quot;;
+    for ( $i = 0; $i &amp;lt; $length; $i++ )  {  
+        $str.= substr($chars, mt_rand(0, strlen($chars)-1), 1);
+    }  
+    return $str;
+}     
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;通常情况下，这种很长一段数字字母的key和secret都是通过md5和sha1加密算法来生成的&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;appkey的生成&lt;/p&gt;
+&lt;p&gt; appkey生成比较简单，一般是客户的唯一值+字符串组成，方法很多，做到唯一性的字符串就可以。比如使用用户的u
+    
+    </summary>
+    
+      <category term="php" scheme="http://benvim.github.io/categories/php/"/>
+    
+    
+      <category term="php" scheme="http://benvim.github.io/tags/php/"/>
+    
+      <category term="appSecret" scheme="http://benvim.github.io/tags/appSecret/"/>
+    
+  </entry>
+  
+  <entry>
     <title>mysql事务处理原理与实例详解</title>
     <link href="http://benvim.github.io/2015/11/12/db-mysql-transaction/"/>
     <id>http://benvim.github.io/2015/11/12/db-mysql-transaction/</id>
@@ -570,9 +846,42 @@ mysql&amp;gt; select * form `test_db`
       <category term="mysql" scheme="http://benvim.github.io/categories/mysql/"/>
     
     
+      <category term="mysql" scheme="http://benvim.github.io/tags/mysql/"/>
+    
       <category term="php" scheme="http://benvim.github.io/tags/php/"/>
     
-      <category term="mysql" scheme="http://benvim.github.io/tags/mysql/"/>
+  </entry>
+  
+  <entry>
+    <title>使用命令行wc命令统计代码行数</title>
+    <link href="http://benvim.github.io/2015/10/02/codeTech-wc/"/>
+    <id>http://benvim.github.io/2015/10/02/codeTech-wc/</id>
+    <published>2015-10-02T04:12:32.000Z</published>
+    <updated>2016-03-20T14:32:58.000Z</updated>
+    
+    <content type="html">&lt;p&gt;要统计代码行数，我们需要用到wc命令：&lt;em&gt;wc -l filename&lt;/em&gt; 可以用来统计filename的行数。例如：我们要统计&lt;em&gt;index.php&lt;/em&gt;的代码行数，可以这样写&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;wc -l     index.php
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;#####结合 find 命令统计行数&lt;br&gt;使用find命令查找出要统计的文件。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;wc -l `find . -name &amp;apos;*.h&amp;apos;`  # find部分是用键盘上数字1左边的键那个引号括起来的。
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;统计当前目录下所有css文件的代码行数&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;wc -l `gfind . \( -path &amp;quot;./data&amp;quot; -o -path &amp;quot;./uc_client&amp;quot; -o -path &amp;quot;./thinkphp&amp;quot; -o -path &amp;quot;./.svn&amp;quot; -o -path &amp;quot;./.idea&amp;quot; \) -prune -o -not -regex &amp;apos;.*\.\(png\|gif\|swp\|jpg\|swf\|jpeg\|DS_Store\|svn-base\|docx\|zip\|rar\|doc\|log\|JPG\|JPEG\|GIF\|js\|ico\|psd\|html\|ttf\|woff\|svg\|otf\|eot\|txt\|db\)&amp;apos; -type f `
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;统计所有JS文件的代码行数&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;wc -l `gfind . \( -path &amp;quot;./procurement&amp;quot; -o -path &amp;quot;./bootstrap&amp;quot; -o -path &amp;quot;./cpk/plugins&amp;quot; -o -path &amp;quot;./js/calendar&amp;quot; -o -path &amp;quot;./js/kindeditor&amp;quot; -o -path &amp;quot;./uploadify&amp;quot; -o -path &amp;quot;./umeditor&amp;quot; -o -path &amp;quot;./data&amp;quot; -o -path &amp;quot;./uc_client&amp;quot; -o -path &amp;quot;./thinkphp&amp;quot; -o -path &amp;quot;./.svn&amp;quot; -o -path &amp;quot;./.idea&amp;quot; \) -prune -o -not -regex &amp;apos;.*\.\(png\|gif\|swp\|jpg\|swf\|jpeg\|DS_Store\|svn-base\|docx\|zip\|rar\|doc\|log\|JPG\|JPEG\|GIF\|ico\|psd\|html\|ttf\|woff\|svg\|otf\|eot\|txt\|db\|css\)&amp;apos; -type f `
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;em&gt;-prune&lt;/em&gt;是忽略的意思，&lt;em&gt;-o&lt;/em&gt;是逻辑&lt;em&gt;或&lt;/em&gt;的意思。上面 &lt;em&gt;-path “XXX” -o -path “YYY”&lt;/em&gt; 意思是忽略掉XXX目录或YYY目录。这些都是JS插件的目录。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;要统计代码行数，我们需要用到wc命令：&lt;em&gt;wc -l filename&lt;/em&gt; 可以用来统计filename的行数。例如：我们要统计&lt;em&gt;index.php&lt;/em&gt;的代码行数，可以这样写&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;wc -l     index.php
+&lt;/c
+    
+    </summary>
+    
+      <category term="codeTech" scheme="http://benvim.github.io/categories/codeTech/"/>
+    
+    
+      <category term="wc" scheme="http://benvim.github.io/tags/wc/"/>
     
   </entry>
   
