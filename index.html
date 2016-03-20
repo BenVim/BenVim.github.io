@@ -353,16 +353,12 @@
       
         
           
-          汇编语言（assembly language)：介于机器语言与C语言之间的一种低级语言。书写风格分为windows/dos常用的intel风格和UNIX的AT&amp;T风格。
-mac 下的汇编代码：
-1234567891011_syscall:               # declaring 
-          ...
+            <p>汇编语言（assembly language)：介于机器语言与C语言之间的一种低级语言。书写风格分为windows/dos常用的intel风格和UNIX的AT&amp;T风格。</p>
+<p>mac 下的汇编代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">_syscall:               # declaring a kernel call function </span><br><span class="line">    int      $0x80      # make the system call </span><br><span class="line">    ret                 # return to the caller  </span><br><span class="line">_print_info_s:          # entry point for linker </span><br><span class="line">    pushl    $len       # message length</span><br><span class="line">    pushl    $msg       # message to write</span><br><span class="line">    pushl    $0x1       # file descriptor value </span><br><span class="line">    movl     $0x4, %eax # system call number (sys_write) </span><br><span class="line">    call     _syscall   # call the kernel </span><br><span class="line">    addl     $12, %esp  # clean the stack</span><br><span class="line">    ret</span><br></pre></td></tr></table></figure>
+<p>参数传递:linux主要是靠寄存器，而 BSD 主要靠堆栈。<br>在Xcode里如果需要使用 Intel 风格的代码，请将扩展名改成 .nasm，如果是 AT&amp;T ，那么.s 即可。要在 C 代码里调用汇编写的函数，请在汇编里用 global (.globl) 导出符号</p>
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/20/assembly/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
         
       
     </div>
@@ -486,14 +482,9 @@ mac 下的汇编代码：
       
         
           
-          　　如若我是来还债的，　　那就尽量多还一些，　　宁人负我，我不负人。　　如若我是来报恩的，　　那就尽量多报一些，　　今生为人实属不易，　　我要把人性发挥到极致。　　　　每当遭遇困境、　　面对挫折、　　感觉不被理解、　　内心不能够平静时，　　告诉自己：　　今生已经是最后一生，　　我将永远告别这个　　娑
-          ...
+            <p>　　如若我是来还债的，<br>　　那就尽量多还一些，<br>　　宁人负我，我不负人。<br>　　如若我是来报恩的，<br>　　那就尽量多报一些，<br>　　今生为人实属不易，<br>　　我要把人性发挥到极致。<br>　　<br>　　每当遭遇困境、<br>　　面对挫折、<br>　　感觉不被理解、<br>　　内心不能够平静时，<br>　　告诉自己：<br>　　今生已经是最后一生，<br>　　我将永远告别这个<br>　　娑婆世界，<br>　　没有什么值得长久计较。<br>　　虽一时之间<br>　　偶尔会有抵触与抱怨，<br>　　但我会很快<br>　　提醒自己保持正念觉知。<br>　　<br>　　人生再长，<br>　　不过百年，<br>　　这一生的岁月<br>　　只是我在这个空间的<br>　　一场梦幻。<br>　　不论如何活着，<br>　　快乐着或是痛苦着，<br>　　其实都是最有意义的一生，<br>　　值得自豪的一生，<br>　　值得珍惜的一生。<br>　　<br>　　今生。<br>　　将是我在娑婆世界的<br>　　最后一生，<br>　　这真是一件天大喜事。<br>　　当慧命在红尘历尽<br>　　劫难之后，<br>　　我终于可以回归<br>　　万有的源头。<br>　　那么，<br>　　还有什么值得抱怨、<br>　　唠叨、遗憾、<br>　　痛悔、嗔恨的呢？<br>　　<br>　　如果还有，<br>　　就是忘记了<br>　　“最后”这两个字，<br>　　或者是对“最后”<br>　　这两个字认识不够、<br>　　信心不够。<br>　　时时牢记着：<br>　　今生，<br>　　是我在红尘的最后一生！<br>　　再来时，我必脚踏莲花，<br>　　乘愿而来。来时凡夫，<br>　　回时必己超凡入圣！<br>　　人身难得今已得，<br>　　佛法难闻今已闻，<br>　　今生不借此身渡，<br>　　更待何生渡此身</p>
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/19/fo/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
         
       
     </div>
@@ -617,14 +608,22 @@ mac 下的汇编代码：
       
         
           
-          经常会使用shell对文件进行一些操作。但是命令行的操作不熟悉也是特别影响效率的，如何快速度的返回上一次目录，如何编辑当前命令行的内容对于提高效率是非常有帮助的。你是否经常连续按“backSpace”键来删除当前的命令，是否为了返回上次目录而不断的“cd”,而又或者不断的按方向键去修改其中写错的某个
-          ...
+            <p>经常会使用shell对文件进行一些操作。但是命令行的操作不熟悉也是特别影响效率的，如何快速度的返回上一次目录，如何编辑当前命令行的内容对于提高效率是非常有帮助的。<br>你是否经常连续按“backSpace”键来删除当前的命令，是否为了返回上次目录而不断的“cd”,而又或者不断的按方向键去修改其中写错的某个单词…..这些土鳖的方向必须抛弃。</p>
+<h3 id="回到上一次操作的目录"><a href="#回到上一次操作的目录" class="headerlink" title="回到上一次操作的目录"></a>回到上一次操作的目录</h3><pre><code>cd -
+</code></pre><h3 id="历史命令快捷键"><a href="#历史命令快捷键" class="headerlink" title="历史命令快捷键"></a>历史命令快捷键</h3><pre><code>[Ctrl+r], [Ctrl+p], [Ctrl+n]
+</code></pre><p>[Ctrl+r] 是搜索历史命令的，当使用这个组合键后，会出现个输入框，你每按一个字符都会自动从历史命令中匹配出相关结果，选择你要的按回车即可,该命令可以快速定位到你之前使用的任何命令，比如cd过哪个很长的目录。</p>
+<p>[Ctrl+p]和[Ctrl+n]主要功能是翻阅历史命令，上一条和下一条。此命令一般在最近使用过的命令比较方便。</p>
+<h3 id="命令行内快速操作键"><a href="#命令行内快速操作键" class="headerlink" title="命令行内快速操作键"></a>命令行内快速操作键</h3><ol>
+<li><p>移动操作快捷键<br>Ctrl + f– 向右移动一个字符，当然多数人用→<br>Ctrl + b– 向左移动一个字符， 多数人用←<br>ESC + f– 向右移动一个单词，MAC下建议用ALT + →<br>ESC + b– 向左移动一个单词，MAC下建议用ALT + ←<br>Ctrl + a– 跳到行首<br>Ctrl + e– 跳到行尾</p>
+</li>
+<li><p>删除操作快捷键<br>Ctrl + d– 向右删除一个字符<br>Ctrl + h– 向左删除一个字符<br>Ctrl + u– 删除当前位置字符至行首（输入密码错误的时候多用下这个）<br>Ctrl + k– 删除当前位置字符至行尾<br>Ctrl + w– 删除从光标到当前单词开头</p>
+</li>
+<li><p>其他操作快捷键<br>Ctrl + y– 插入最近删除的单词<br>Ctrl + c– 终止操作<br>Ctrl + d– 当前操作转到后台<br>Ctrl + l– 清屏 （有时候为了好看）</p>
+</li>
+</ol>
+<p>使用了这些快捷后，立马感觉神清气爽~。over.</p>
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/12/shell-Oprate/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
         
       
     </div>
@@ -748,15 +747,11 @@ mac 下的汇编代码：
       
         
           
-          3月9日可能会成为写入人类史册的一天，一场世界上最会下围棋的人与人工智能的超级对弈，被全人类通过网络直播共同围观。谷歌董事长斯密特说，“输赢都是人类的胜利”。他这么说是因为李世石要迎战的不单是个机器人，而是这个世界上最聪明的霸道总裁和科学狂人们。
-AlphaGo机器人最厉害的地方，他不是一个机械的编
-          ...
+            <p>3月9日可能会成为写入人类史册的一天，一场世界上最会下围棋的人与人工智能的超级对弈，被全人类通过网络直播共同围观。谷歌董事长斯密特说，“输赢都是人类的胜利”。他这么说是因为李世石要迎战的不单是个机器人，而是这个世界上最聪明的霸道总裁和科学狂人们。</p>
+<p>AlphaGo机器人最厉害的地方，他不是一个机械的编码程序，他有一个“监督预判机制”，每走一步，他会考虑这种走法是不是更有前途，这是一种类似“想象力”的能力。这种思维模式，几乎和人类的直觉类似，使得他前所未有地更加像人类。</p>
+<p><img src="uploads/12.jpg" alt="AlphaGo vs Human"></p>
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/10/Human/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
         
       
     </div>
@@ -801,15 +796,9 @@ AlphaGo机器人最厉害的地方，他不是一个机械的编
       
         
           
+            <a href="/2016/03/08/東京日和/"><div class="group-picture"><div class="group-picture-container"><div class="group-picture-row"><div class="group-picture-column" style="width: 100%;"><img src="/uploads/p2260354451.jpg" alt="东京日和"></div></div><div class="group-picture-row"><div class="group-picture-column" style="width: 33.333333333333336%;"><img src="/uploads/p2260498779.jpg" alt="东京日和"></div><div class="group-picture-column" style="width: 33.333333333333336%;"><img src="/uploads/p2260498780.jpg" alt="东京日和"></div><div class="group-picture-column" style="width: 33.333333333333336%;"><img src="/uploads/p2322111491.jpg" alt="东京日和"></div></div></div></div>
+</a>
           
-
-          
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/08/東京日和/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
         
       
     </div>
@@ -914,16 +903,12 @@ AlphaGo机器人最厉害的地方，他不是一个机械的编
       
         
           
-          当意识再次醒来时，过去如同山崩之流，倾泻而来，将萌芽的光线拖入无尽的黑暗之中。挣脱之后，恍如昨日，一线之隔，南为乾坤，北为虚无。
-一把岁月，无尽悲伤，聚散离合皆付风中。不曾相遇，何曾相识；不曾相识，何曾相知；未曾相知，遑论感伤。如若初遇，不如不遇。于世之最大谎言在于问心无愧。
-风来雨去，日落月升，蓦
-          ...
+            <p>当意识再次醒来时，过去如同山崩之流，倾泻而来，将萌芽的光线拖入无尽的黑暗之中。挣脱之后，恍如昨日，一线之隔，南为乾坤，北为虚无。</p>
+<p>一把岁月，无尽悲伤，聚散离合皆付风中。不曾相遇，何曾相识；不曾相识，何曾相知；未曾相知，遑论感伤。如若初遇，不如不遇。于世之最大谎言在于问心无愧。</p>
+<p>风来雨去，日落月升，蓦然回首时物是人非。虚度彩练当空，徘徊庭树遍绿，长叹夕阳沉暮。不言问心无愧，只许一纸墨迹。</p>
+<p>言轻轻待摆渡，语长长候倾听。</p>
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/07/言轻语长/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
         
       
     </div>
@@ -1028,16 +1013,12 @@ AlphaGo机器人最厉害的地方，他不是一个机械的编
       
         
           
-          昨日之事已在风中冷却，明天的回忆会不会被忘却？我想在这黑暗的城市上空飞行，看看灯火里别人的故事是否也如此的彷徨？
-千家灯火万家难。望着他人的幸福，徒生向往；注目他人的难处，油然怜悯。他们时而欢笑，时而落泪。因为小事而倍感幸福，因为小事而万分感伤。
-那些绽放如花的笑容，那些泪洒如雨的忧伤，都随着时间的
-          ...
+            <p>昨日之事已在风中冷却，明天的回忆会不会被忘却？我想在这黑暗的城市上空飞行，看看灯火里别人的故事是否也如此的彷徨？</p>
+<p>千家灯火万家难。望着他人的幸福，徒生向往；注目他人的难处，油然怜悯。他们时而欢笑，时而落泪。因为小事而倍感幸福，因为小事而万分感伤。</p>
+<p>那些绽放如花的笑容，那些泪洒如雨的忧伤，都随着时间的流逝或被遗忘，或被掩藏。万物皆无法摆脱时间的摆弄。时间是一个随意的雕刻家，雕塑着一幕幕的喜怒哀乐。</p>
+<p>一幕无人视，繁华一曲谁人听。半生浮萍，一世漂泊，肝肠寸断，所为几何？</p>
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/07/十年/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
         
       
     </div>
@@ -1161,25 +1142,20 @@ AlphaGo机器人最厉害的地方，他不是一个机械的编
       
         
           
-          用VIM写文章不晓得会是一种什么样的体验
-发现个最大的问题就是输入法的切换问题，因为每次切换成VIM的正常模式，都要切换输入法，这是个很麻烦的操作，或许有更方法的操作我不晓得。
-
-这是一个列表
-真的是列表
-好像支持语法
-int a = 1;
+            <p>用VIM写文章不晓得会是一种什么样的体验</p>
+<p>发现个最大的问题就是输入法的切换问题，因为每次切换成VIM的正常模式，都要切换输入法，这是个很麻烦的操作，或许有更方法的操作我不晓得。</p>
+<ul>
+<li>这是一个列表</li>
+<li>真的是列表</li>
+<li><p>好像支持语法</p>
+<pre><code>int a = 1;
 int b = 2;
 int c = a+b;
+</code></pre></li>
+</ul>
+<p>$$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$<br>\(x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}\)</p>
 
-
-$$x
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/07/test/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
         
       
     </div>
@@ -1303,16 +1279,30 @@ $$x
       
         
           
-          用PHP语言进行MYSQL数据库备份操作。技术上需要的函数 mysqldump 方法，该方法是 MYSQL 的程序，所以需要指明该程序的地址，另外需要PHP语言的 exec去执行该方法。
-    public function export(){
-    $cfg_dbhost = C(&quot;
-          ...
+            <p>用PHP语言进行MYSQL数据库备份操作。技术上需要的函数 <em>mysqldump</em> 方法，该方法是 <em>MYSQL</em> 的程序，所以需要指明该程序的地址，另外需要PHP语言的 <em>exec</em>去执行该方法。</p>
+<pre><code>    public function export(){
+    $cfg_dbhost = C(&quot;DB_HOST&quot;);
+    $cfg_dbuser = C(&quot;DB_USER&quot;);
+    $cfg_dbpwd  = C(&quot;DB_PWD&quot;);
+    $cfg_dbname = C(&quot;DB_NAME&quot;);
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/13/mysql-mysqldump/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+    $cfg_dbname = &quot;cpk&quot;;
+    $filename=date(&quot;Y-m-d_H-i-s&quot;).&quot;-&quot;.$cfg_dbname.&quot;.sql&quot;; 
+    // 所保存的文件名 
+    header(&quot;Content-disposition:filename=&quot;.$filename); 
+    header(&quot;Content-type:application/octetstream&quot;); 
+    header(&quot;Pragma:no-cache&quot;); 
+    header(&quot;Expires:0&quot;); 
+
+    $tmpFile = $_SERVER[&apos;DOCUMENT_ROOT&apos;].$this-&gt;path.$filename;// 获取当前页面文件路径，SQL文件就导出到此文件夹内 
+    exec($this-&gt;mysqlDumpPath.&quot;mysqldump -u$cfg_dbuser -p$cfg_dbpwd -h$cfg_dbhost  $cfg_dbname &gt; &quot;.$tmpFile); 
+    $file = fopen($tmpFile, &quot;r&quot;); // 打开文件 
+    $info = fread($file,filesize($tmpFile));
+    $this-&gt;ajaxReturn(&quot;0&quot;, &quot;备份完成&quot;,&quot;$filename&quot;);
+    fclose($file);
+}
+</code></pre>
+          
         
       
     </div>
@@ -1436,15 +1426,21 @@ $$x
       
         
           
-          连接服务器的SSH服务的时候，等待输入密码的状态时间太长，要等很久。而且是局域网，并且PING的速度非常快，所以很有必要解决一下连接速度的问题了。
-下面说下如何解决这样的问题，最为常见的原因是因为server的sshd会去DNS查找访问client IP的hostname,如果DNS不可用或者没有相
-          ...
+            <p>连接服务器的SSH服务的时候，等待输入密码的状态时间太长，要等很久。而且是局域网，并且PING的速度非常快，所以很有必要解决一下连接速度的问题了。</p>
+<p>下面说下如何解决这样的问题，最为常见的原因是因为server的sshd会去DNS查找访问client IP的hostname,如果DNS不可用或者没有相关记录，就会耗费大量时间。</p>
+<ol>
+<li>在server上 <em>/etc/hosts</em> 文件中把你本机的ip和hostname加入 </li>
+<li>在server上 <em>/etc/ssh/sshd_config</em> 文件中修改或加入UseDNS=no，另外在 <em>authentication gssapi-with-mic</em> 也有可能出现问题，在server上 <em>/etc/ssh/sshd_config</em> 文件中修改GSSAPIAuthentication no.</li>
+<li>修改 <em>server上/etc/nsswitch.conf</em> 中hosts为hosts： files</li>
+<li>reboot server使配置生效</li>
+</ol>
+<p>※虽然配置文件中[UseDNS yes]被注释点，但默认开关就是yes…(SSH服务默认启用了DNS反向解析的功能)</p>
+<p>在目标服务器上有一个文件/etc/nsswitch.conf ，里面有如下一行</p>
+<pre><code>hoosts:files dns
+</code></pre><p>这行的含义是对于访问的主机进行域名解析的顺序，是先访问file，也就是/etc/hosts文件，如果hosts中没有记录域名，则访问dns，进行域名解析，如果dns也无法访问，就会等待访问超时后返回，因此等待时间比较长。</p>
+<p>那如果将这一行屏蔽掉是不是也可以达到同样的效果呢？应该是可以的，但是如果本机要通过域名访问其他服务器，则肯定无法访问，因此这行应该需要保留。这个问题也提示我们，dns如果不可用，会带来的一些副作用的。</p>
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/09/cenos-ssh/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
         
       
     </div>
