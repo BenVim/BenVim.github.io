@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://benvim.github.io/"/>
-  <updated>2016-03-12T01:12:47.000Z</updated>
+  <updated>2016-03-20T13:14:16.000Z</updated>
   <id>http://benvim.github.io/</id>
   
   <author>
@@ -14,6 +14,116 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>PHP语言获取客户端IP地址的方法</title>
+    <link href="http://benvim.github.io/2016/03/20/php-ip/"/>
+    <id>http://benvim.github.io/2016/03/20/php-ip/</id>
+    <published>2016-03-20T13:00:53.000Z</published>
+    <updated>2016-03-20T13:14:16.000Z</updated>
+    
+    <content type="html">&lt;p&gt;PHP语言获取客户端IP地址的方法&lt;/p&gt;
+&lt;p&gt;第一种方法&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;function getIPAderss(){
+    global $ip; 
+    if (getenv(&amp;quot;HTTP_CLIENT_IP&amp;quot;)) 
+        $ip = getenv(&amp;quot;HTTP_CLIENT_IP&amp;quot;); 
+    else if(getenv(&amp;quot;HTTP_X_FORWARDED_FOR&amp;quot;)) 
+        $ip = getenv(&amp;quot;HTTP_X_FORWARDED_FOR&amp;quot;); 
+    else if(getenv(&amp;quot;REMOTE_ADDR&amp;quot;)) 
+        $ip = getenv(&amp;quot;REMOTE_ADDR&amp;quot;); 
+    else 
+        $ip = &amp;quot;Unknow&amp;quot;; 
+    return $ip;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;第二种方法&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;static function getIP(){
+$ip=false; 
+if(!empty($_SERVER[&amp;apos;HTTP_CLIENT_IP&amp;apos;])){ 
+    $ip=$_SERVER[&amp;apos;HTTP_CLIENT_IP&amp;apos;]; 
+}
+if(!empty($_SERVER[&amp;apos;HTTP_X_FORWARDED_FOR&amp;apos;])){ 
+    $ips=explode (&amp;apos;, &amp;apos;, $_SERVER[&amp;apos;HTTP_X_FORWARDED_FOR&amp;apos;]); 
+    if($ip){ array_unshift($ips, $ip); $ip=FALSE; }
+    for ($i=0; $i &amp;lt; count($ips); $i++){
+        if(!eregi (&amp;apos;^(10│172.16│192.168).&amp;apos;, $ips[$i])){
+            $ip=$ips[$i];
+            break;
+        }
+    }
+}
+return ($ip ? $ip : $_SERVER[&amp;apos;REMOTE_ADDR&amp;apos;]);
+}
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;PHP语言获取客户端IP地址的方法&lt;/p&gt;
+&lt;p&gt;第一种方法&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;function getIPAderss(){
+    global $ip; 
+    if (getenv(&amp;quot;HTTP_CLIENT_IP&amp;quot;)) 
+     
+    
+    </summary>
+    
+      <category term="php" scheme="http://benvim.github.io/categories/php/"/>
+    
+    
+      <category term="php" scheme="http://benvim.github.io/tags/php/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MAC OS X系统下编写汇编 assembly language</title>
+    <link href="http://benvim.github.io/2016/03/20/assembly/"/>
+    <id>http://benvim.github.io/2016/03/20/assembly/</id>
+    <published>2016-03-20T12:44:53.000Z</published>
+    <updated>2016-03-20T12:58:34.000Z</updated>
+    
+    <content type="html">&lt;p&gt;汇编语言（assembly language)：介于机器语言与C语言之间的一种低级语言。书写风格分为windows/dos常用的intel风格和UNIX的AT&amp;amp;T风格。&lt;/p&gt;
+&lt;p&gt;mac 下的汇编代码：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;_syscall:               # declaring a kernel call function &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    int      $0x80      # make the system call &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ret                 # return to the caller  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;_print_info_s:          # entry point for linker &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    pushl    $len       # message length&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    pushl    $msg       # message to write&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    pushl    $0x1       # file descriptor value &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    movl     $0x4, %eax # system call number (sys_write) &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    call     _syscall   # call the kernel &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    addl     $12, %esp  # clean the stack&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ret&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;参数传递:linux主要是靠寄存器，而 BSD 主要靠堆栈。&lt;br&gt;在Xcode里如果需要使用 Intel 风格的代码，请将扩展名改成 .nasm，如果是 AT&amp;amp;T ，那么.s 即可。要在 C 代码里调用汇编写的函数，请在汇编里用 global (.globl) 导出符号&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;汇编语言（assembly language)：介于机器语言与C语言之间的一种低级语言。书写风格分为windows/dos常用的intel风格和UNIX的AT&amp;amp;T风格。&lt;/p&gt;
+&lt;p&gt;mac 下的汇编代码：&lt;/p&gt;
+&lt;figure class=&quot;highlight 
+    
+    </summary>
+    
+      <category term="assembly" scheme="http://benvim.github.io/categories/assembly/"/>
+    
+    
+      <category term="assembly" scheme="http://benvim.github.io/tags/assembly/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>冥冥天籁之音涤荡你我的心灵，红尘中还有谁能及？</title>
+    <link href="http://benvim.github.io/2016/03/19/fo/"/>
+    <id>http://benvim.github.io/2016/03/19/fo/</id>
+    <published>2016-03-19T06:02:42.000Z</published>
+    <updated>2016-03-19T06:12:05.000Z</updated>
+    
+    <content type="html">&lt;p&gt;　　如若我是来还债的，&lt;br&gt;　　那就尽量多还一些，&lt;br&gt;　　宁人负我，我不负人。&lt;br&gt;　　如若我是来报恩的，&lt;br&gt;　　那就尽量多报一些，&lt;br&gt;　　今生为人实属不易，&lt;br&gt;　　我要把人性发挥到极致。&lt;br&gt;　　&lt;br&gt;　　每当遭遇困境、&lt;br&gt;　　面对挫折、&lt;br&gt;　　感觉不被理解、&lt;br&gt;　　内心不能够平静时，&lt;br&gt;　　告诉自己：&lt;br&gt;　　今生已经是最后一生，&lt;br&gt;　　我将永远告别这个&lt;br&gt;　　娑婆世界，&lt;br&gt;　　没有什么值得长久计较。&lt;br&gt;　　虽一时之间&lt;br&gt;　　偶尔会有抵触与抱怨，&lt;br&gt;　　但我会很快&lt;br&gt;　　提醒自己保持正念觉知。&lt;br&gt;　　&lt;br&gt;　　人生再长，&lt;br&gt;　　不过百年，&lt;br&gt;　　这一生的岁月&lt;br&gt;　　只是我在这个空间的&lt;br&gt;　　一场梦幻。&lt;br&gt;　　不论如何活着，&lt;br&gt;　　快乐着或是痛苦着，&lt;br&gt;　　其实都是最有意义的一生，&lt;br&gt;　　值得自豪的一生，&lt;br&gt;　　值得珍惜的一生。&lt;br&gt;　　&lt;br&gt;　　今生。&lt;br&gt;　　将是我在娑婆世界的&lt;br&gt;　　最后一生，&lt;br&gt;　　这真是一件天大喜事。&lt;br&gt;　　当慧命在红尘历尽&lt;br&gt;　　劫难之后，&lt;br&gt;　　我终于可以回归&lt;br&gt;　　万有的源头。&lt;br&gt;　　那么，&lt;br&gt;　　还有什么值得抱怨、&lt;br&gt;　　唠叨、遗憾、&lt;br&gt;　　痛悔、嗔恨的呢？&lt;br&gt;　　&lt;br&gt;　　如果还有，&lt;br&gt;　　就是忘记了&lt;br&gt;　　“最后”这两个字，&lt;br&gt;　　或者是对“最后”&lt;br&gt;　　这两个字认识不够、&lt;br&gt;　　信心不够。&lt;br&gt;　　时时牢记着：&lt;br&gt;　　今生，&lt;br&gt;　　是我在红尘的最后一生！&lt;br&gt;　　再来时，我必脚踏莲花，&lt;br&gt;　　乘愿而来。来时凡夫，&lt;br&gt;　　回时必己超凡入圣！&lt;br&gt;　　人身难得今已得，&lt;br&gt;　　佛法难闻今已闻，&lt;br&gt;　　今生不借此身渡，&lt;br&gt;　　更待何生渡此身&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　如若我是来还债的，&lt;br&gt;　　那就尽量多还一些，&lt;br&gt;　　宁人负我，我不负人。&lt;br&gt;　　如若我是来报恩的，&lt;br&gt;　　那就尽量多报一些，&lt;br&gt;　　今生为人实属不易，&lt;br&gt;　　我要把人性发挥到极致。&lt;br&gt;　　&lt;br&gt;　　每当遭遇困境、&lt;br&gt;　　面对挫折、&lt;br
+    
+    </summary>
+    
+      <category term="碎碎念" scheme="http://benvim.github.io/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/"/>
+    
+    
+      <category term="碎碎念" scheme="http://benvim.github.io/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/"/>
+    
+  </entry>
   
   <entry>
     <title>shell命令的操作及命令的搜索</title>
@@ -56,7 +166,7 @@
     <link href="http://benvim.github.io/2016/03/10/Human/"/>
     <id>http://benvim.github.io/2016/03/10/Human/</id>
     <published>2016-03-10T00:19:34.000Z</published>
-    <updated>2016-03-10T00:27:12.000Z</updated>
+    <updated>2016-03-19T06:09:51.000Z</updated>
     
     <content type="html">&lt;p&gt;3月9日可能会成为写入人类史册的一天，一场世界上最会下围棋的人与人工智能的超级对弈，被全人类通过网络直播共同围观。谷歌董事长斯密特说，“输赢都是人类的胜利”。他这么说是因为李世石要迎战的不单是个机器人，而是这个世界上最聪明的霸道总裁和科学狂人们。&lt;/p&gt;
 &lt;p&gt;AlphaGo机器人最厉害的地方，他不是一个机械的编码程序，他有一个“监督预判机制”，每走一步，他会考虑这种走法是不是更有前途，这是一种类似“想象力”的能力。这种思维模式，几乎和人类的直觉类似，使得他前所未有地更加像人类。&lt;/p&gt;
@@ -191,29 +301,278 @@ int c = a+b;
   </entry>
   
   <entry>
-    <title>Hello World</title>
-    <link href="http://benvim.github.io/2016/03/07/hello-world/"/>
-    <id>http://benvim.github.io/2016/03/07/hello-world/</id>
-    <published>2016-03-07T04:22:29.000Z</published>
-    <updated>2016-03-07T04:22:29.000Z</updated>
+    <title>AWS中Centos创建后登录以及修改密码配置</title>
+    <link href="http://benvim.github.io/2015/12/23/centos-aws/"/>
+    <id>http://benvim.github.io/2015/12/23/centos-aws/</id>
+    <published>2015-12-23T11:22:43.000Z</published>
+    <updated>2016-03-20T13:38:58.000Z</updated>
     
-    <content type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo new &lt;span class=&quot;string&quot;&gt;&quot;My New Post&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/writing.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Writing&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Run-server&quot;&gt;&lt;a href=&quot;#Run-server&quot; class=&quot;headerlink&quot; title=&quot;Run server&quot;&gt;&lt;/a&gt;Run server&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo server&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/server.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Server&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Generate-static-files&quot;&gt;&lt;a href=&quot;#Generate-static-files&quot; class=&quot;headerlink&quot; title=&quot;Generate static files&quot;&gt;&lt;/a&gt;Generate static files&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo generate&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/generating.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Generating&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Deploy-to-remote-sites&quot;&gt;&lt;a href=&quot;#Deploy-to-remote-sites&quot; class=&quot;headerlink&quot; title=&quot;Deploy to remote sites&quot;&gt;&lt;/a&gt;Deploy to remote sites&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo deploy&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/deployment.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Deployment&lt;/a&gt;&lt;/p&gt;
+    <content type="html">&lt;p&gt;根据AWS中的文档，创建并启动实例后，使用pem密钥进行登录系统，但是使用的是centos用户登录，权限受限，可以使用sudo提升权限进行安装、删除软件，除此之外我们还需要修改root的密码，方便系统管理。修改方法如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo passwd root
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;系统会提示输入密码和确认密码，就修改完成。然后使用su切换成root用户，输入密码即切换成root用户了。&lt;/p&gt;
+&lt;h4 id=&quot;修改centos登录方式为密码登录&quot;&gt;&lt;a href=&quot;#修改centos登录方式为密码登录&quot; class=&quot;headerlink&quot; title=&quot;修改centos登录方式为密码登录&quot;&gt;&lt;/a&gt;修改centos登录方式为密码登录&lt;/h4&gt;&lt;p&gt;打开配置文件 /etc/ssh/sshd_config (ubuntu 为/etc/ssh/sshd-config)，设置如下几个参数&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;PermitRootLogin yes
+PubkeyAuthentication no #（也可用#号注释）
+PasswordAuthentication yes
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;重启sshd服务&quot;&gt;&lt;a href=&quot;#重启sshd服务&quot; class=&quot;headerlink&quot; title=&quot;重启sshd服务&quot;&gt;&lt;/a&gt;重启sshd服务&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;/etc/init.d/sshd restart
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;根据AWS中的文档，创建并启动实例后，使用pem密钥进行登录系统，但是使用的是centos用户登录，权限受限，可以使用sudo提升权限进行安装、删除软件，除此之外我们还需要修改root的密码，方便系统管理。修改方法如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo passwd
+    
+    </summary>
+    
+      <category term="linux" scheme="http://benvim.github.io/categories/linux/"/>
+    
+    
+      <category term="aws" scheme="http://benvim.github.io/tags/aws/"/>
+    
+      <category term="linux" scheme="http://benvim.github.io/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Centos配置国内yum源</title>
+    <link href="http://benvim.github.io/2015/12/20/centos-yum/"/>
+    <id>http://benvim.github.io/2015/12/20/centos-yum/</id>
+    <published>2015-12-20T02:00:12.000Z</published>
+    <updated>2016-03-20T13:17:06.000Z</updated>
+    
+    <content type="html">&lt;p&gt;网易（163）yum源是国内最好的yum源之一，无论是速度还是软件版本，都非常的不错，将yum源设置为163yum，可以提升软件包安装和更新的速度，同时避免一些常见软件版本无法找到。具体设置方法如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;进入yum源配置目录&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;cd /etc/yum.repos.d
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;备份系统自带的yum源&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;mv CentOS-Base.repo CentOS-Base.repo.bk #下载163网易的yum源：
+wget http://mirrors.163.com/.help/CentOS6-Base-163.repo
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;更新玩yum源后，执行下边命令更新yum配置，使操作立即生效&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;yum makecache
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;除了网易之外，国内还有其他不错的yum源，比如中科大和搜狐的，大家可以根据自己需求下载&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;中科大的yum源：&lt;/li&gt;
+&lt;li&gt;sohu的yum源&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;wget &lt;a href=&quot;http://centos.ustc.edu.cn/CentOS-Base.repo&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://centos.ustc.edu.cn/CentOS-Base.repo&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;wget &lt;a href=&quot;http://mirrors.sohu.com/help/CentOS-Base-sohu.repo&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://mirrors.sohu.com/help/CentOS-Base-sohu.repo&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;理论上讲，这些yum源redhat系统以及fedora也是可以用的，但是没有经过测试，需要的站长可以自己测试一下。&lt;/p&gt;
 </content>
     
     <summary type="html">
     
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      &lt;p&gt;网易（163）yum源是国内最好的yum源之一，无论是速度还是软件版本，都非常的不错，将yum源设置为163yum，可以提升软件包安装和更新的速度，同时避免一些常见软件版本无法找到。具体设置方法如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;进入yum源配置目录&lt;/p&gt;
+&lt;pre&gt;
     
     </summary>
     
+      <category term="linux" scheme="http://benvim.github.io/categories/linux/"/>
+    
+    
+      <category term="centos" scheme="http://benvim.github.io/tags/centos/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>正则表达式替换图片格式</title>
+    <link href="http://benvim.github.io/2015/12/10/php-reg/"/>
+    <id>http://benvim.github.io/2015/12/10/php-reg/</id>
+    <published>2015-12-10T06:12:00.000Z</published>
+    <updated>2016-03-20T13:40:28.000Z</updated>
+    
+    <content type="html">&lt;p&gt;项目中需要对现有的用户发表的详情图片展示功能增加点击放大预览的效果。查看代码：现有代码逻辑为上传图片，生成最大宽600像素以内和最大高400像素以内的缩略图，并删除原图。所以修改该代码，上传图片生成600x400像素的缩略图，并保留原图以备点击放大使用。&lt;/p&gt;
+&lt;p&gt;使用的jquery插件&lt;a href=&quot;http://www.helloweba.com/view-blog-65.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;fancybox&lt;/a&gt;。Fancybox是一款优秀的jquery插件，它能够展示丰富的弹出层效果。前面我们有文章介绍了facybox弹出层效果，相比facybox，fancybox显得功能更为齐全，它除了可以加载DIV，图片、图片集、Ajax数据，还能加载SWF影片，iframe页面等等&lt;/p&gt;
+&lt;h3 id=&quot;fancybox具有以下特性：&quot;&gt;&lt;a href=&quot;#fancybox具有以下特性：&quot; class=&quot;headerlink&quot; title=&quot;fancybox具有以下特性：&quot;&gt;&lt;/a&gt;fancybox具有以下特性：&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;可以加载DIV、图片、图片集、Ajax数据、SWF影片，iframe页面等。&lt;/li&gt;
+&lt;li&gt;支持键盘方向键和ESC键。&lt;/li&gt;
+&lt;li&gt;丰富的参数设置和方法调用。&lt;/li&gt;
+&lt;li&gt;可扩展性强.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;基本的代码如下：&quot;&gt;&lt;a href=&quot;#基本的代码如下：&quot; class=&quot;headerlink&quot; title=&quot;基本的代码如下：&quot;&gt;&lt;/a&gt;基本的代码如下：&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;/**
+* 对投稿者上交的稿件描述内容的图片增加点击放大功能;
+* 1.匹配所有相关的项，找出描述中上传的图片;
+* 2.遍历数组，找到图形中的src.并保存到$res中;
+* 3.对src值进行查询替换，改装成正则表达式。对元字符做转义;
+* 4.用改装的正则去匹配并替换格式化的IMG地址;
+* @param string $str 需要遍历并替换的文本
+* @return string $str 替换处理过的文本  
+*/
+private function taskManuscriptInfoImagesOperate($str){
+    preg_match_all(&amp;apos;/&amp;lt;\s*img\s+[^&amp;gt;]*?src\s*=\s*(\&amp;apos;|\&amp;quot;)(.*?)\\1[^&amp;gt;]*?\/?\s*&amp;gt;/i&amp;apos;,$str,$match);
+    foreach ($match[0] as $key =&amp;gt; $value) {
+    preg_match(&amp;quot;/\/data\/upload\/editer\/image\/.*g/&amp;quot;, $value, $res);
+    $r = preg_replace(&amp;quot;/\//&amp;quot;, &amp;quot;\\/&amp;quot;, $res);
+    $r = preg_replace(&amp;quot;/\./&amp;quot;, &amp;quot;\\.&amp;quot;, $r);
+    $str = preg_replace(&amp;quot;/&amp;lt;\s*img\s+[^&amp;gt;]*?src\s*=\s*(\&amp;apos;|\&amp;quot;)(&amp;quot;.$r[0].&amp;quot;)\\1[^&amp;gt;]*?\/?\s*&amp;gt;/i&amp;quot;, $this-&amp;gt;formatURL($res[0]), $str);
+    }
+    return $str;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;该函数中的perg_match_all函数是PHP正则匹配多次的函数。并通过正则查找字符串中的图片。该函数返回的是一个数组，匹配结果中可能会有1个或多个图片对象。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;preg_match_all(&amp;apos;/&amp;lt;\s*img\s+[^&amp;gt;]*?src\s*=\s*(\&amp;apos;|\&amp;quot;)(.*?)\\1[^&amp;gt;]*?\/?\s*&amp;gt;/i&amp;apos;,$str,$match);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;找出每个图片IMG标签中的SRC值，并用formatURL()方法重新生成符合&lt;a href=&quot;http://www.helloweba.com/view-blog-65.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;fancybox&lt;/a&gt;的语法格式的字符串，并通过匹配查询并替换现有的图片代码块。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;preg_match(&amp;quot;/\/data\/upload\/editer\/image\/.*g/&amp;quot;, $value, $res);//找出SRC值
+$r = preg_replace(&amp;quot;/\//&amp;quot;, &amp;quot;\\/&amp;quot;, $res);//把SRC值的字符进行替换，以符合正则规则。
+$r = preg_replace(&amp;quot;/\./&amp;quot;, &amp;quot;\\.&amp;quot;, $r);
+$str = preg_replace(&amp;quot;/&amp;lt;\s*img\s+[^&amp;gt;]*?src\s*=\s*(\&amp;apos;|\&amp;quot;)(&amp;quot;.$r[0].&amp;quot;)\\1[^&amp;gt;]*?\/?\s*&amp;gt;/i&amp;quot;, $this-&amp;gt;formatURL($res[0]), $str);//查找并替换
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;格式化地址代码如下：使用匹配出来的图片地址，生成新的图片地址信息，符合&lt;a href=&quot;http://www.helloweba.com/view-blog-65.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;fancybox&lt;/a&gt;的要求格式。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/**
+* 格式化地址
+* @return [type] [description]
+*/
+private function formatURL($url){
+    $name = basename($url);
+    $path = dirname($url);
+    $arr  = explode(&amp;quot;_&amp;quot;, $name);
+    $len  = count($arr);
+    $html = &amp;quot;&amp;quot;;
+    if($len&amp;gt;2 || $len==1){
+        $html = &amp;quot;&amp;lt;a rel=&amp;apos;group&amp;apos; href=&amp;apos;&amp;quot;.$url.&amp;quot;&amp;apos;&amp;gt;&amp;lt;img src=&amp;apos;&amp;quot;.$url.&amp;quot;&amp;apos;&amp;gt;&amp;lt;/a&amp;gt;&amp;quot;; //兼容老地址。
+    }else if($len&amp;gt;1){
+        $p = $arr[1];
+        $p = explode(&amp;quot;?&amp;quot;, $p);
+        if (count($p)&amp;gt;1){$p = $p[0];}
+        $u = $path.&amp;quot;/&amp;quot;.$p[0];
+        $char = substr($u, 0, 1 );
+        if($char==&amp;quot;/&amp;quot;){$u = substr($u,1,(strlen($u)-1));}
+        if(file_exists($u)){
+            $html = &amp;quot;&amp;lt;a rel=&amp;apos;group&amp;apos; href=&amp;apos;/&amp;quot;.$u.&amp;quot;&amp;apos;&amp;gt;&amp;lt;img src=&amp;apos;&amp;quot;.$url.&amp;quot;&amp;apos;&amp;gt;&amp;lt;/a&amp;gt;&amp;quot;;
+            }else{
+            $html = &amp;quot;&amp;lt;a rel=&amp;apos;group&amp;apos; href=&amp;apos;&amp;quot;.$url.&amp;quot;&amp;apos;&amp;gt;&amp;lt;img src=&amp;apos;&amp;quot;.$url.&amp;quot;&amp;apos;&amp;gt;&amp;lt;/a&amp;gt;&amp;quot;;
+            }
+    }
+    return $html;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;}&lt;/p&gt;
+&lt;p&gt;总的思路就是查找图片，找出图片地址，用地址生成新的格式，然后再用地址匹配并用新的格式替换老的图片代码块。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;项目中需要对现有的用户发表的详情图片展示功能增加点击放大预览的效果。查看代码：现有代码逻辑为上传图片，生成最大宽600像素以内和最大高400像素以内的缩略图，并删除原图。所以修改该代码，上传图片生成600x400像素的缩略图，并保留原图以备点击放大使用。&lt;/p&gt;
+&lt;p&gt;使用
+    
+    </summary>
+    
+      <category term="php" scheme="http://benvim.github.io/categories/php/"/>
+    
+    
+      <category term="php" scheme="http://benvim.github.io/tags/php/"/>
+    
+      <category term="fancybox" scheme="http://benvim.github.io/tags/fancybox/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mysql事务处理原理与实例详解</title>
+    <link href="http://benvim.github.io/2015/11/12/db-mysql-transaction/"/>
+    <id>http://benvim.github.io/2015/11/12/db-mysql-transaction/</id>
+    <published>2015-11-12T12:12:20.000Z</published>
+    <updated>2016-03-20T13:39:54.000Z</updated>
+    
+    <content type="html">&lt;p&gt;首先先了解一下MySQL的存储引擎：&lt;br&gt;1.MyISAM：查询性能较高,用于只读程序提高性能&lt;br&gt;2.InnoDB：支持ACID事务、行级锁、并发&lt;br&gt;3.Berkeley DB: 支持事务。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;一个事务是一个连续的一组数据库操作，就好像它是一个单一的工作单元执行。简单的说就是一个事务中，每个单独的操作都成功了，那么才算成功，否则，有任务何一个操作失败，那么整个事务将失败，并执行回滚。注：MYSQL中只有InnoDB和BDB(Berkeley DB)类型的数据表才能支持事务处理。其它类型不支持。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&quot;一、事务的四个特性，简称ACID&quot;&gt;&lt;a href=&quot;#一、事务的四个特性，简称ACID&quot; class=&quot;headerlink&quot; title=&quot;一、事务的四个特性，简称ACID.&quot;&gt;&lt;/a&gt;一、事务的四个特性，简称ACID.&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;原子性：确保工作单元 内的所有操作都成功完成， 否则事务将被中止在故障点，和以前的操作将回滚到以前的状态。&lt;/li&gt;
+&lt;li&gt;一致性：确保数据库正确的改变状态后，最后成功提交事务。&lt;/li&gt;
+&lt;li&gt;隔离性：使事务操作彼此独立和透明&lt;/li&gt;
+&lt;li&gt;持久性：确保提交的事务的结果或效果仍然存在，换言之：提交失败，回滚后保持原来的状态。问题和故障仍然存在。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;二、MYSQL的事务处理主要有两种方法&quot;&gt;&lt;a href=&quot;#二、MYSQL的事务处理主要有两种方法&quot; class=&quot;headerlink&quot; title=&quot;二、MYSQL的事务处理主要有两种方法&quot;&gt;&lt;/a&gt;二、MYSQL的事务处理主要有两种方法&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;用begin,rollback, commit来实现&lt;ul&gt;
+&lt;li&gt;begin:开始一个事务&lt;/li&gt;
+&lt;li&gt;rollback:事务回滚&lt;/li&gt;
+&lt;li&gt;commit:事务确认&lt;br&gt;在事务开始(begin)与事务确认（commit）之间的会形成大量的事务，当成功完成一个事务后，发出commit命令，使所有参与表的更改才会生效。发生故障时，应发出一个rollback回滚命令，返回事务中引用的每个表到以前的状态。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;直接用set来改变mysql的自动提交模式&lt;br&gt; MYSQL默认是自动提交的，也就是你提交一个QUERY，它就直接执行。我们可以通过set autocommit设置来实现事务处理。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;如下设置说明：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;set autocommit = 0 #禁止自动提交
+set autocommit = 1 #开启自动提交
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;但注意当你用set autocommit=0的时候，你以后的所有的sql都将做为事务处理，直到你用commit确认或rollback结束，注意当你结束这个事务的同时也开启了新的事务，用第一种方法只将当前做为事务。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;mysql&amp;gt; use test
+Database changed
+mysql&amp;gt; 
+
+mysql&amp;gt; CREATE TABLE `test_db`(
+    -&amp;gt; id int(8),
+    -&amp;gt; name varchar(50)
+    -&amp;gt; ) ENGINE=&amp;quot;InnoDB&amp;quot;;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql&amp;gt; begin;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&amp;gt; insert into `test_db` (`id`,`name`) value(1, &amp;apos;name_1&amp;apos;);
+Query OK, 1 row affected (0.00 sec)
+
+mysql&amp;gt; insert into `test_db` (`id`,`name`) value(2, &amp;apos;name_2&amp;apos;);
+Query OK, 1 row affected (0.00 sec)
+
+mysql&amp;gt; insert into `test_db` (`id`,`name`) value(3, &amp;apos;name_3&amp;apos;);
+Query OK, 1 row affected (0.00 sec)
+
+commit;
+
+mysql&amp;gt; select * from test_db;
++------+--------+
+| id   | name   |
++------+--------+
+|    1 | name_1 |
+|    2 | name_2 |
+|    3 | name_3 |
++------+--------+
+3 rows in set (0.00 sec)
+
+mysql&amp;gt; begin;#开始事务
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&amp;gt; insert into `test_db` (`id`,`name`) value(4, &amp;apos;name_4&amp;apos;);#插入记录
+Query OK, 1 row affected (0.00 sec)
+
+mysql&amp;gt; insert into `test_db` (`id`,`name`) value(5, &amp;apos;name_5&amp;apos;);#插入记录
+Query OK, 1 row affected (0.01 sec)
+
+mysql&amp;gt; rollback; #回滚
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&amp;gt; select * form `test_db`
++------+--------+
+| id   | name   |
++------+--------+
+|    1 | name_1 |
+|    2 | name_2 |
+|    3 | name_3 |
++------+--------+
+3 rows in set (0.00 sec) #没有增加记录
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;其实不管成功与否，只要没有commit之前，执行了rollback就恢复begin之前的状态。&lt;/p&gt;
+&lt;p&gt;[TOC]&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;首先先了解一下MySQL的存储引擎：&lt;br&gt;1.MyISAM：查询性能较高,用于只读程序提高性能&lt;br&gt;2.InnoDB：支持ACID事务、行级锁、并发&lt;br&gt;3.Berkeley DB: 支持事务。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;一个事务是一个连续的一组数据库操
+    
+    </summary>
+    
+      <category term="mysql" scheme="http://benvim.github.io/categories/mysql/"/>
+    
+    
+      <category term="php" scheme="http://benvim.github.io/tags/php/"/>
+    
+      <category term="mysql" scheme="http://benvim.github.io/tags/mysql/"/>
     
   </entry>
   
