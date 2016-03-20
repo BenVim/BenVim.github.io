@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://benvim.github.io/"/>
-  <updated>2016-03-20T14:19:36.000Z</updated>
+  <updated>2016-03-20T12:58:34.000Z</updated>
   <id>http://benvim.github.io/</id>
   
   <author>
@@ -14,65 +14,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>PHP语言获取客户端IP地址的方法</title>
-    <link href="http://benvim.github.io/2016/03/20/php-ip/"/>
-    <id>http://benvim.github.io/2016/03/20/php-ip/</id>
-    <published>2016-03-20T13:00:53.000Z</published>
-    <updated>2016-03-20T14:19:36.000Z</updated>
-    
-    <content type="html">&lt;p&gt;PHP语言获取客户端IP地址的方法&lt;/p&gt;
-&lt;p&gt;第一种方法&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;function getIPAderss(){
-    global $ip; 
-    if (getenv(&amp;quot;HTTP_CLIENT_IP&amp;quot;)) 
-        $ip = getenv(&amp;quot;HTTP_CLIENT_IP&amp;quot;); 
-    else if(getenv(&amp;quot;HTTP_X_FORWARDED_FOR&amp;quot;)) 
-        $ip = getenv(&amp;quot;HTTP_X_FORWARDED_FOR&amp;quot;); 
-    else if(getenv(&amp;quot;REMOTE_ADDR&amp;quot;)) 
-        $ip = getenv(&amp;quot;REMOTE_ADDR&amp;quot;); 
-    else 
-        $ip = &amp;quot;Unknow&amp;quot;; 
-    return $ip;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;第二种方法&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;static function getIP(){
-$ip=false; 
-if(!empty($_SERVER[&amp;apos;HTTP_CLIENT_IP&amp;apos;])){ 
-    $ip=$_SERVER[&amp;apos;HTTP_CLIENT_IP&amp;apos;]; 
-}
-if(!empty($_SERVER[&amp;apos;HTTP_X_FORWARDED_FOR&amp;apos;])){ 
-    $ips=explode (&amp;apos;, &amp;apos;, $_SERVER[&amp;apos;HTTP_X_FORWARDED_FOR&amp;apos;]); 
-    if($ip){ array_unshift($ips, $ip); $ip=FALSE; }
-    for ($i=0; $i &amp;lt; count($ips); $i++){
-        if(!eregi (&amp;apos;^(10│172.16│192.168).&amp;apos;, $ips[$i])){
-            $ip=$ips[$i];
-            break;
-        }
-    }
-}
-return ($ip ? $ip : $_SERVER[&amp;apos;REMOTE_ADDR&amp;apos;]);
-}
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;PHP语言获取客户端IP地址的方法&lt;/p&gt;
-&lt;p&gt;第一种方法&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;function getIPAderss(){
-    global $ip; 
-    if (getenv(&amp;quot;HTTP_CLIENT_IP&amp;quot;)) 
-     
-    
-    </summary>
-    
-      <category term="php" scheme="http://benvim.github.io/categories/php/"/>
-    
-    
-      <category term="php" scheme="http://benvim.github.io/tags/php/"/>
-    
-  </entry>
   
   <entry>
     <title>MAC OS X系统下编写汇编 assembly language</title>
@@ -305,7 +246,7 @@ int c = a+b;
     <link href="http://benvim.github.io/2016/01/13/mysql-mysqldump/"/>
     <id>http://benvim.github.io/2016/01/13/mysql-mysqldump/</id>
     <published>2016-01-13T07:29:14.000Z</published>
-    <updated>2016-03-20T14:45:40.000Z</updated>
+    <updated>2016-03-20T16:01:22.000Z</updated>
     
     <content type="html">&lt;p&gt;用PHP语言进行MYSQL数据库备份操作。技术上需要的函数 &lt;em&gt;mysqldump&lt;/em&gt; 方法，该方法是 &lt;em&gt;MYSQL&lt;/em&gt; 的程序，所以需要指明该程序的地址，另外需要PHP语言的 &lt;em&gt;exec&lt;/em&gt;去执行该方法。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;    public function export(){
@@ -350,7 +291,7 @@ int c = a+b;
     <link href="http://benvim.github.io/2016/01/09/cenos-ssh/"/>
     <id>http://benvim.github.io/2016/01/09/cenos-ssh/</id>
     <published>2016-01-09T12:12:05.000Z</published>
-    <updated>2016-03-20T14:39:42.000Z</updated>
+    <updated>2016-03-20T16:00:59.000Z</updated>
     
     <content type="html">&lt;p&gt;连接服务器的SSH服务的时候，等待输入密码的状态时间太长，要等很久。而且是局域网，并且PING的速度非常快，所以很有必要解决一下连接速度的问题了。&lt;/p&gt;
 &lt;p&gt;下面说下如何解决这样的问题，最为常见的原因是因为server的sshd会去DNS查找访问client IP的hostname,如果DNS不可用或者没有相关记录，就会耗费大量时间。&lt;/p&gt;
@@ -388,7 +329,7 @@ int c = a+b;
     <link href="http://benvim.github.io/2015/12/29/php-time/"/>
     <id>http://benvim.github.io/2015/12/29/php-time/</id>
     <published>2015-12-29T02:20:34.000Z</published>
-    <updated>2016-03-20T14:37:47.000Z</updated>
+    <updated>2016-03-20T16:00:53.000Z</updated>
     
     <content type="html">&lt;ul&gt;
 &lt;li&gt;获取日期&lt;/li&gt;
@@ -510,7 +451,7 @@ wget http://mirrors.163.com/.help/CentOS6-Base-163.repo
     <link href="http://benvim.github.io/2015/12/10/php-reg/"/>
     <id>http://benvim.github.io/2015/12/10/php-reg/</id>
     <published>2015-12-10T06:12:00.000Z</published>
-    <updated>2016-03-20T13:40:28.000Z</updated>
+    <updated>2016-03-20T16:00:39.000Z</updated>
     
     <content type="html">&lt;p&gt;项目中需要对现有的用户发表的详情图片展示功能增加点击放大预览的效果。查看代码：现有代码逻辑为上传图片，生成最大宽600像素以内和最大高400像素以内的缩略图，并删除原图。所以修改该代码，上传图片生成600x400像素的缩略图，并保留原图以备点击放大使用。&lt;/p&gt;
 &lt;p&gt;使用的jquery插件&lt;a href=&quot;http://www.helloweba.com/view-blog-65.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;fancybox&lt;/a&gt;。Fancybox是一款优秀的jquery插件，它能够展示丰富的弹出层效果。前面我们有文章介绍了facybox弹出层效果，相比facybox，fancybox显得功能更为齐全，它除了可以加载DIV，图片、图片集、Ajax数据，还能加载SWF影片，iframe页面等等&lt;/p&gt;
@@ -598,7 +539,7 @@ private function formatURL($url){
     <link href="http://benvim.github.io/2015/11/28/php-numberformat/"/>
     <id>http://benvim.github.io/2015/11/28/php-numberformat/</id>
     <published>2015-11-28T06:19:00.000Z</published>
-    <updated>2016-03-20T14:42:03.000Z</updated>
+    <updated>2016-03-20T16:01:46.000Z</updated>
     
     <content type="html">&lt;p&gt;类似这样的： &lt;em&gt;￥97,709.99元&lt;/em&gt; 保留两位小数并且千位分隔。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;//财务四舍五入保留两位小数。
@@ -882,6 +823,60 @@ mysql&amp;gt; select * form `test_db`
     
     
       <category term="wc" scheme="http://benvim.github.io/tags/wc/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PHP语言获取客户端IP地址的方法</title>
+    <link href="http://benvim.github.io/2015/03/20/php-ip/"/>
+    <id>http://benvim.github.io/2015/03/20/php-ip/</id>
+    <published>2015-03-20T13:00:53.000Z</published>
+    <updated>2016-03-20T16:04:38.000Z</updated>
+    
+    <content type="html">&lt;p&gt;PHP语言获取客户端IP地址的方法&lt;/p&gt;
+&lt;h3 id=&quot;第一种方法&quot;&gt;&lt;a href=&quot;#第一种方法&quot; class=&quot;headerlink&quot; title=&quot;第一种方法&quot;&gt;&lt;/a&gt;第一种方法&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;function getIPAderss(){
+    global $ip; 
+    if (getenv(&amp;quot;HTTP_CLIENT_IP&amp;quot;)) 
+        $ip = getenv(&amp;quot;HTTP_CLIENT_IP&amp;quot;); 
+    else if(getenv(&amp;quot;HTTP_X_FORWARDED_FOR&amp;quot;)) 
+        $ip = getenv(&amp;quot;HTTP_X_FORWARDED_FOR&amp;quot;); 
+    else if(getenv(&amp;quot;REMOTE_ADDR&amp;quot;)) 
+        $ip = getenv(&amp;quot;REMOTE_ADDR&amp;quot;); 
+    else 
+        $ip = &amp;quot;Unknow&amp;quot;; 
+    return $ip;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;第二种方法&quot;&gt;&lt;a href=&quot;#第二种方法&quot; class=&quot;headerlink&quot; title=&quot;第二种方法&quot;&gt;&lt;/a&gt;第二种方法&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;static function getIP(){
+$ip=false; 
+if(!empty($_SERVER[&amp;apos;HTTP_CLIENT_IP&amp;apos;])){ 
+    $ip=$_SERVER[&amp;apos;HTTP_CLIENT_IP&amp;apos;]; 
+}
+if(!empty($_SERVER[&amp;apos;HTTP_X_FORWARDED_FOR&amp;apos;])){ 
+    $ips=explode (&amp;apos;, &amp;apos;, $_SERVER[&amp;apos;HTTP_X_FORWARDED_FOR&amp;apos;]); 
+    if($ip){ array_unshift($ips, $ip); $ip=FALSE; }
+    for ($i=0; $i &amp;lt; count($ips); $i++){
+        if(!eregi (&amp;apos;^(10│172.16│192.168).&amp;apos;, $ips[$i])){
+            $ip=$ips[$i];
+            break;
+        }
+    }
+}
+return ($ip ? $ip : $_SERVER[&amp;apos;REMOTE_ADDR&amp;apos;]);
+}
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;PHP语言获取客户端IP地址的方法&lt;/p&gt;
+&lt;h3 id=&quot;第一种方法&quot;&gt;&lt;a href=&quot;#第一种方法&quot; class=&quot;headerlink&quot; title=&quot;第一种方法&quot;&gt;&lt;/a&gt;第一种方法&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;function getIPAderss(){
+ 
+    
+    </summary>
+    
+      <category term="php" scheme="http://benvim.github.io/categories/php/"/>
+    
+    
+      <category term="php" scheme="http://benvim.github.io/tags/php/"/>
     
   </entry>
   

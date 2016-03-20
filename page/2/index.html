@@ -273,144 +273,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/01/09/cenos-ssh/" itemprop="url">
-                  ssh连接缓慢解决方法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-09T20:12:05+08:00" content="2016-01-09">
-              2016-01-09
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/01/09/cenos-ssh/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/09/cenos-ssh/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-          
-
-          
-          
-             <span id="/2016/01/09/cenos-ssh/" class="leancloud_visitors" data-flag-title="ssh连接缓慢解决方法">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>连接服务器的SSH服务的时候，等待输入密码的状态时间太长，要等很久。而且是局域网，并且PING的速度非常快，所以很有必要解决一下连接速度的问题了。</p>
-<p>下面说下如何解决这样的问题，最为常见的原因是因为server的sshd会去DNS查找访问client IP的hostname,如果DNS不可用或者没有相关记录，就会耗费大量时间。</p>
-<ol>
-<li>在server上 <em>/etc/hosts</em> 文件中把你本机的ip和hostname加入 </li>
-<li>在server上 <em>/etc/ssh/sshd_config</em> 文件中修改或加入UseDNS=no，另外在 <em>authentication gssapi-with-mic</em> 也有可能出现问题，在server上 <em>/etc/ssh/sshd_config</em> 文件中修改GSSAPIAuthentication no.</li>
-<li>修改 <em>server上/etc/nsswitch.conf</em> 中hosts为hosts： files</li>
-<li>reboot server使配置生效</li>
-</ol>
-<p>※虽然配置文件中[UseDNS yes]被注释点，但默认开关就是yes…(SSH服务默认启用了DNS反向解析的功能)</p>
-<p>在目标服务器上有一个文件/etc/nsswitch.conf ，里面有如下一行</p>
-<pre><code>hoosts:files dns
-</code></pre><p>这行的含义是对于访问的主机进行域名解析的顺序，是先访问file，也就是/etc/hosts文件，如果hosts中没有记录域名，则访问dns，进行域名解析，如果dns也无法访问，就会等待访问超时后返回，因此等待时间比较长。</p>
-<p>那如果将这一行屏蔽掉是不是也可以达到同样的效果呢？应该是可以的，但是如果本机要通过域名访问其他服务器，则肯定无法访问，因此这行应该需要保留。这个问题也提示我们，dns如果不可用，会带来的一些副作用的。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2015/12/29/php-time/" itemprop="url">
                   PHP关于时间的问题，今天、昨天、前天、最近7天，最近30天
                 </a>
@@ -1661,6 +1523,161 @@ mysql&gt; select * form `test_db`
 <pre><code>wc -l `gfind . \( -path &quot;./procurement&quot; -o -path &quot;./bootstrap&quot; -o -path &quot;./cpk/plugins&quot; -o -path &quot;./js/calendar&quot; -o -path &quot;./js/kindeditor&quot; -o -path &quot;./uploadify&quot; -o -path &quot;./umeditor&quot; -o -path &quot;./data&quot; -o -path &quot;./uc_client&quot; -o -path &quot;./thinkphp&quot; -o -path &quot;./.svn&quot; -o -path &quot;./.idea&quot; \) -prune -o -not -regex &apos;.*\.\(png\|gif\|swp\|jpg\|swf\|jpeg\|DS_Store\|svn-base\|docx\|zip\|rar\|doc\|log\|JPG\|JPEG\|GIF\|ico\|psd\|html\|ttf\|woff\|svg\|otf\|eot\|txt\|db\|css\)&apos; -type f `
 </code></pre><p><em>-prune</em>是忽略的意思，<em>-o</em>是逻辑<em>或</em>的意思。上面 <em>-path “XXX” -o -path “YYY”</em> 意思是忽略掉XXX目录或YYY目录。这些都是JS插件的目录。</p>
 
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/03/20/php-ip/" itemprop="url">
+                  PHP语言获取客户端IP地址的方法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-03-20T21:00:53+08:00" content="2015-03-20">
+              2015-03-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/03/20/php-ip/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/03/20/php-ip/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+          
+
+          
+          
+             <span id="/2015/03/20/php-ip/" class="leancloud_visitors" data-flag-title="PHP语言获取客户端IP地址的方法">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>PHP语言获取客户端IP地址的方法</p>
+<h3 id="第一种方法"><a href="#第一种方法" class="headerlink" title="第一种方法"></a>第一种方法</h3><pre><code>function getIPAderss(){
+    global $ip; 
+    if (getenv(&quot;HTTP_CLIENT_IP&quot;)) 
+        $ip = getenv(&quot;HTTP_CLIENT_IP&quot;); 
+    else if(getenv(&quot;HTTP_X_FORWARDED_FOR&quot;)) 
+        $ip = getenv(&quot;HTTP_X_FORWARDED_FOR&quot;); 
+    else if(getenv(&quot;REMOTE_ADDR&quot;)) 
+        $ip = getenv(&quot;REMOTE_ADDR&quot;); 
+    else 
+        $ip = &quot;Unknow&quot;; 
+    return $ip;
+}
+</code></pre><h3 id="第二种方法"><a href="#第二种方法" class="headerlink" title="第二种方法"></a>第二种方法</h3><pre><code>static function getIP(){
+$ip=false; 
+if(!empty($_SERVER[&apos;HTTP_CLIENT_IP&apos;])){ 
+    $ip=$_SERVER[&apos;HTTP_CLIENT_IP&apos;]; 
+}
+if(!empty($_SERVER[&apos;HTTP_X_FORWARDED_FOR&apos;])){ 
+    $ips=explode (&apos;, &apos;, $_SERVER[&apos;HTTP_X_FORWARDED_FOR&apos;]); 
+    if($ip){ array_unshift($ips, $ip); $ip=FALSE; }
+    for ($i=0; $i &lt; count($ips); $i++){
+        if(!eregi (&apos;^(10│172.16│192.168).&apos;, $ips[$i])){
+            $ip=$ips[$i];
+            break;
+        }
+    }
+}
+return ($ip ? $ip : $_SERVER[&apos;REMOTE_ADDR&apos;]);
+}
+</code></pre>
           
         
       
