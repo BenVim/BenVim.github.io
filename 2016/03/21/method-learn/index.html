@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="centos,ssh," />
+  <meta name="keywords" content="method,learn," />
 
 
 
@@ -59,25 +59,16 @@
 
 
 
-<meta name="description" content="连接服务器的SSH服务的时候，等待输入密码的状态时间太长，要等很久。而且是局域网，并且PING的速度非常快，所以很有必要解决一下连接速度的问题了。
-下面说下如何解决这样的问题，最为常见的原因是因为server的sshd会去DNS查找访问client IP的hostname,如果DNS不可用或者没有相关记录，就会耗费大量时间。
-
-在server上 /etc/hosts 文件中把你本机的ip和host">
+<meta name="description" content="钻研（The Drilldown Method):使用你学得更快经年累月，我完善了一个方法，可以加速逐层增进理解的过程。这个方法至今已被我用于各科目的课题，包括数学、生物学、物理学、经济学与工程学。只需些许修改，它对掌握实用技能也效果很好，比如编程、设计或语言。这个方法的基本结构是：知识面、练习、自省。我将解释每个阶段，让你了解如何尽可能有效率地执行它们，同时给出详细的例子，展示我是怎么应用在实际">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ssh连接缓慢解决方法">
-<meta property="og:url" content="http://benvim.github.io/2016/01/09/cenos-ssh/index.html">
+<meta property="og:title" content="如何更快的学习">
+<meta property="og:url" content="http://benvim.github.io/2016/03/21/method-learn/index.html">
 <meta property="og:site_name" content="一纸墨迹">
-<meta property="og:description" content="连接服务器的SSH服务的时候，等待输入密码的状态时间太长，要等很久。而且是局域网，并且PING的速度非常快，所以很有必要解决一下连接速度的问题了。
-下面说下如何解决这样的问题，最为常见的原因是因为server的sshd会去DNS查找访问client IP的hostname,如果DNS不可用或者没有相关记录，就会耗费大量时间。
-
-在server上 /etc/hosts 文件中把你本机的ip和host">
-<meta property="og:updated_time" content="2016-03-20T16:00:59.000Z">
+<meta property="og:description" content="钻研（The Drilldown Method):使用你学得更快经年累月，我完善了一个方法，可以加速逐层增进理解的过程。这个方法至今已被我用于各科目的课题，包括数学、生物学、物理学、经济学与工程学。只需些许修改，它对掌握实用技能也效果很好，比如编程、设计或语言。这个方法的基本结构是：知识面、练习、自省。我将解释每个阶段，让你了解如何尽可能有效率地执行它们，同时给出详细的例子，展示我是怎么应用在实际">
+<meta property="og:updated_time" content="2016-03-21T01:32:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ssh连接缓慢解决方法">
-<meta name="twitter:description" content="连接服务器的SSH服务的时候，等待输入密码的状态时间太长，要等很久。而且是局域网，并且PING的速度非常快，所以很有必要解决一下连接速度的问题了。
-下面说下如何解决这样的问题，最为常见的原因是因为server的sshd会去DNS查找访问client IP的hostname,如果DNS不可用或者没有相关记录，就会耗费大量时间。
-
-在server上 /etc/hosts 文件中把你本机的ip和host">
+<meta name="twitter:title" content="如何更快的学习">
+<meta name="twitter:description" content="钻研（The Drilldown Method):使用你学得更快经年累月，我完善了一个方法，可以加速逐层增进理解的过程。这个方法至今已被我用于各科目的课题，包括数学、生物学、物理学、经济学与工程学。只需些许修改，它对掌握实用技能也效果很好，比如编程、设计或语言。这个方法的基本结构是：知识面、练习、自省。我将解释每个阶段，让你了解如何尽可能有效率地执行它们，同时给出详细的例子，展示我是怎么应用在实际">
 
 
 
@@ -95,7 +86,7 @@
   };
 </script>
 
-  <title> ssh连接缓慢解决方法 | 一纸墨迹 </title>
+  <title> 如何更快的学习 | 一纸墨迹 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -280,7 +271,7 @@
             
             
               
-                ssh连接缓慢解决方法
+                如何更快的学习
               
             
           </h1>
@@ -292,8 +283,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-09T20:12:05+08:00" content="2016-01-09">
-              2016-01-09
+            <time itemprop="dateCreated" datetime="2016-03-21T09:20:23+08:00" content="2016-03-21">
+              2016-03-21
             </time>
           </span>
 
@@ -306,8 +297,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
+                  <a href="/categories/method/" itemprop="url" rel="index">
+                    <span itemprop="name">method</span>
                   </a>
                 </span>
 
@@ -322,8 +313,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/01/09/cenos-ssh/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/09/cenos-ssh/" itemprop="commentsCount"></span>
+                <a href="/2016/03/21/method-learn/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/21/method-learn/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -335,7 +326,7 @@
 
           
           
-             <span id="/2016/01/09/cenos-ssh/" class="leancloud_visitors" data-flag-title="ssh连接缓慢解决方法">
+             <span id="/2016/03/21/method-learn/" class="leancloud_visitors" data-flag-title="如何更快的学习">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -356,19 +347,38 @@
       
 
       
-        <p>连接服务器的SSH服务的时候，等待输入密码的状态时间太长，要等很久。而且是局域网，并且PING的速度非常快，所以很有必要解决一下连接速度的问题了。</p>
-<p>下面说下如何解决这样的问题，最为常见的原因是因为server的sshd会去DNS查找访问client IP的hostname,如果DNS不可用或者没有相关记录，就会耗费大量时间。</p>
-<ol>
-<li>在server上 <em>/etc/hosts</em> 文件中把你本机的ip和hostname加入 </li>
-<li>在server上 <em>/etc/ssh/sshd_config</em> 文件中修改或加入UseDNS=no，另外在 <em>authentication gssapi-with-mic</em> 也有可能出现问题，在server上 <em>/etc/ssh/sshd_config</em> 文件中修改GSSAPIAuthentication no.</li>
-<li>修改 <em>server上/etc/nsswitch.conf</em> 中hosts为hosts： files</li>
-<li>reboot server使配置生效</li>
-</ol>
-<p>※虽然配置文件中[UseDNS yes]被注释点，但默认开关就是yes…(SSH服务默认启用了DNS反向解析的功能)</p>
-<p>在目标服务器上有一个文件/etc/nsswitch.conf ，里面有如下一行</p>
-<pre><code>hoosts:files dns
-</code></pre><p>这行的含义是对于访问的主机进行域名解析的顺序，是先访问file，也就是/etc/hosts文件，如果hosts中没有记录域名，则访问dns，进行域名解析，如果dns也无法访问，就会等待访问超时后返回，因此等待时间比较长。</p>
-<p>那如果将这一行屏蔽掉是不是也可以达到同样的效果呢？应该是可以的，但是如果本机要通过域名访问其他服务器，则肯定无法访问，因此这行应该需要保留。这个问题也提示我们，dns如果不可用，会带来的一些副作用的。</p>
+        <h4 id="钻研（The-Drilldown-Method-使用你学得更快"><a href="#钻研（The-Drilldown-Method-使用你学得更快" class="headerlink" title="钻研（The Drilldown Method):使用你学得更快"></a>钻研（The Drilldown Method):使用你学得更快</h4><p>经年累月，我完善了一个方法，可以加速逐层增进理解的过程。这个方法至今已被我用于各科目的课题，包括数学、生物学、物理学、经济学与工程学。只需些许修改，它对掌握实用技能也效果很好，比如编程、设计或语言。这个方法的基本结构是：知识面、练习、自省。我将解释每个阶段，让你了解如何尽可能有效率地执行它们，同时给出详细的例子，展示我是怎么应用在实际课程的。</p>
+<h4 id="第一阶段：-知识面覆盖"><a href="#第一阶段：-知识面覆盖" class="headerlink" title="第一阶段： 知识面覆盖"></a>第一阶段： 知识面覆盖</h4><p>你不可能组织一场进攻，如果你连一张地形图都没有。因此，深入研习的第一步，就是对你需要学习的内容有个大致印象。若在课堂上，这意味着你要看讲义或读课本；若是自学，你可能要多读几本同主题的书，相互考证。</p>
+<p>学生们常犯的一个错误，就是认为这个阶段是最重要的。从很多方面来讲，这个阶段却是效率最低的，因为你每单位时间的投入只换来了最少量的知识回报。我常常加速完成这个阶段，很有好处，这样，我就可以投入更多时间到后面两个阶段。</p>
+<p>如果你在看课程讲座的视频，最好是调到1.5x或2x倍速快进。这很容易做到，只要你下载好视频，然后使用播放器（如VLC）的“调速”功能。我用这法子两天内看完了一学期的课程视频。如果你在读一本书，我建议你不要花时间去高亮文本。这样只会让你的知识理解停留在低层次，而从长远来看，也使学习效率低下。更好的方法是，阅读时只偶尔做做笔记，或在读过每个主要章节后写一段落的总结。</p>
+<p>这里有个<a href="http://www.scotthyoung.com/mit/machine-vision-notes.pdf" target="_blank" rel="external">例子</a>，是我上机器视觉这门课时的笔记。</p>
+<h4 id="第二阶段：练习"><a href="#第二阶段：练习" class="headerlink" title="第二阶段：练习"></a>第二阶段：练习</h4><p>做练习题，能极大地促进你的知识理解。但是，如果你不小心，可能会落入两个效率陷阱：</p>
+<ul>
+<li>没有获得即时的反馈：研究表明，如果你想更好地学习，你需要即时的反馈。因此，做题时最好是答案在手，天下我有，每做完一题就对答案，自我审查。没有反馈或反馈迟来的练习，只会严重牵制学习效率；</li>
+<li>题海战术：正如有人以为学习是始于教室终于教室，一些学生也认为大多数的知识理解产自练习题。是的，你总能通过题海战术最终搭起知识框架，但过程缓慢、效率低下。</li>
+</ul>
+<p>练习题，应该能凸显你需要建立更好直觉的知识领域。一些技巧，比如我将会谈到的费曼技巧（the Feynman technique），对此则相当有效。对于非技术类学科，它更多的是要求你掌握概念而不是解决问题，所以，你常常只需要完成最少量的习题。对这些科目，你最好花更多的时间在第三阶段，形成学科的洞察力。</p>
+<h3 id="第三阶段：自省"><a href="#第三阶段：自省" class="headerlink" title="第三阶段：自省"></a>第三阶段：自省</h3><p>知识面覆盖，与做练习题，是为了让你知道你还有什么不懂。这并不像听上去那么容易，毕竟知之为知之，不知为不知，难矣。你以为你都懂了，其实不是，所以老犯错；或者，你对某综合性学科心里没底，但又看不确切还有哪里不懂。</p>
+<p>接下来的技巧，我称之为“费曼技巧”，将帮助你查漏补缺，在求知路上走得更远。当你能准确识别出你不懂的知识点时，这个技巧助你填补知识的缺口，尤其是那些最难以填补的巨大缺口。这个技巧还能两用。即使你真的理解了某个想法，它也能让你关联更多的想法，于是，你可以继续钻研，深化理解。</p>
+<h3 id="费曼技巧（The-Feynman-Technique）"><a href="#费曼技巧（The-Feynman-Technique）" class="headerlink" title="费曼技巧（The Feynman Technique）"></a>费曼技巧（The Feynman Technique）</h3><p>这个技巧的灵感，源于诺贝尔物理奖获得者，理查德·费曼（Richard Feynman）。在他的自传里，他提到曾纠结于某篇艰深的研究论文。他的办法是，仔细审阅这篇论文的辅助材料（supporting material），直到他掌握了相关的知识基础、足以理解其中的艰深想法为止。</p>
+<p>费曼技巧，亦同此理。对付一个知识枝节繁杂如发丝、富有内涵的想法，应该分而化之，切成小知识块，再逐个对付，你最终能填补所有的知识缺口，否则，这些缺口将阻挠你理解这个想法。对此，<a href="https://www.youtube.com/watch?v=FrNqSLPaZLc&amp;feature=youtu.be&amp;t=1m17s" target="_blank" rel="external">请看这个简短的教程视频</a>。</p>
+<h4 id="费曼技巧很简单："><a href="#费曼技巧很简单：" class="headerlink" title="费曼技巧很简单："></a>费曼技巧很简单：</h4><ul>
+<li>拿张白纸；</li>
+<li>在白纸顶部写上你想理解的某想法或某过程 </li>
+<li>用你自己的话解释它，就像你在教给别人这个想法。</li>
+</ul>
+<p><em>最要紧的是，对一个想法分而化之，虽然可能重复解释某些已经弄懂的知识点。</em> 但你最终会到达一个临界点，无法再解释清楚。那里正是你需要填补的知识缺口。为了填补这个缺口，你可以查课本、问老师、或到互联网搜寻答案。通常来说，一旦你精准地定义了你的不解或误解，找到确切的答案则相对而言更轻松。</p>
+<p>我已经使用过这个费曼技巧有数百次，确信它能应付各种各样的学习情境。然而，由于学习情境各有特点，它需要灵活变通，似乎显得难以入门，所以，我将尝试举些不同的例子。</p>
+<h5 id="1-对付你完全摸不着头脑的概念"><a href="#1-对付你完全摸不着头脑的概念" class="headerlink" title="1.对付你完全摸不着头脑的概念"></a>1.对付你完全摸不着头脑的概念</h5><p>对此，我仍坚持使用费曼技巧，但翻开课本，找到解释这个概念的章节。我先浏览一遍作者的解释，然后仔细地摹仿它，并也试着用自己的思维详述和阐明它。如此一来，当你不能用自己的话写下任何解释时，“引导式”费曼技巧很有用处。这里有个<a href="http://www.scotthyoung.com/mit/photogrammetry.pdf" target="_blank" rel="external">例子</a>，展示我如何理解摄影测量学。</p>
+<h5 id="2-对付各种过程"><a href="#2-对付各种过程" class="headerlink" title="2.对付各种过程"></a>2.对付各种过程</h5><p>你也能通过费曼技巧去了解一个你需要用到的过程。审视所有的步骤，不光解释每一步在干什么，还要清楚它是怎么执行的。我常这样理解数学的证明过程、化学的方程式、与生物学的糖酵解过程。这里有个<a href="http://www.scotthyoung.com/mit/grid-accel.pdf" target="_blank" rel="external">例子</a>，展示我如何想到怎么实现网格加速。</p>
+<h5 id="3-对付各种公式"><a href="#3-对付各种公式" class="headerlink" title="3.对付各种公式"></a>3.对付各种公式</h5><p>公式，应该被理解，而不只是死记硬背。因此，当你看到一个公式，却无法理解它的运作机理时，试着用费曼技巧分而化之。这里有个<a href="http://www.scotthyoung.com/mit/fourier.pdf" target="_blank" rel="external">例子</a>，展示我如何理解傅里叶分析方程。</p>
+<h5 id="4-对付需要记忆的内容"><a href="#4-对付需要记忆的内容" class="headerlink" title="4.对付需要记忆的内容"></a>4.对付需要记忆的内容</h5><p>费曼技巧，也可以帮你自查是否掌握非技术类学科那些博大精深的知识概念。对于某个主题，如果你能顺利应用费曼技巧，而无需参考原始材料（讲义、课本等），就证明你已经理解和记住它。。这里有个<a href="http://www.scotthyoung.com/mit/predatory-pricing.pdf" target="_blank" rel="external">例子</a>，展示我如何回忆起经济学中的掠夺性定价概念。</p>
+<h4 id="形成更深刻的直觉（Deeper-Intuition）"><a href="#形成更深刻的直觉（Deeper-Intuition）" class="headerlink" title="形成更深刻的直觉（Deeper Intuition）"></a>形成更深刻的直觉（Deeper Intuition）</h4><p>结合做习题，费曼技巧能帮你剥开知识理解的浅层表皮。但它也能帮你钻研下去，走得更远，不只是浅层的理解，而是形成深刻的知识直觉。直观地理解一个想法，并非易事。它看似有些许神秘，但这不是它的本相。一个想法的多数直觉，可作以下归类。</p>
+<h5 id="1-类比、可视化、简化"><a href="#1-类比、可视化、简化" class="headerlink" title="1.类比、可视化、简化"></a>1.类比、可视化、简化</h5><p>类比：你理解一个想法，是通过确认它与某个更易理解的想法之间的重要相似点；可视化：抽象概念也常成为有用的直觉，只要我们能在脑海为它们构筑画面，即使这个画面只是一个更大更多样化想法的不完全表达；简化：一位著名的科学家曾说过，如果你不能给你的祖母解释一样东西，说明你还没有完全理解它。简化是一门艺术，它加强了基础概念与复杂想法之间的思维联系。</p>
+<p>你可以用费曼技巧去激发这些直觉。对于某个想法，一旦你有了大致的理解，下一步就是深入分析，看能不能用以上三种直觉来阐释它。期间，就算是借用已有的意象喻义，也是情有可原的。例如，把复数放到二维空间里理解，很难称得上是新颖的，但它能让你很好地可视化这个概念，让概念在脑海中构图成型。DNA复制，被想象成拉开一条单向拉链，这也不是一个完美的类比，但只要你心里清楚其中的异同，它会变得有用。</p>
+<h5 id="2-学得更快的策略"><a href="#2-学得更快的策略" class="headerlink" title="2.学得更快的策略"></a>2.学得更快的策略</h5><p>在这篇文章里，我描述了学习的三个阶段：知识面、练习、与自省。但这可能让你误解，错以为它们总在不同的时期被各自执行，从不重叠或反复。实际上，随着不断地深入理解知识，你可能会周而复始地经历这些阶段。你刚开始读一个章节，只能有个大概的肤浅印象，但做过练习题和建立了直觉以后，你再回过来重新阅读，又会有更深刻的理解，即温故而知新。</p>
+<h5 id="3-钻研吧，即便你不是学生"><a href="#3-钻研吧，即便你不是学生" class="headerlink" title="3.钻研吧，即便你不是学生"></a>3.钻研吧，即便你不是学生</h5><p>这个过程不只是适用于学生，也同样有助于学习复杂技能或积累某话题的专业知识。学习像编程或设计的技能，大多数人遵循前两个阶段。他们阅读一本相关的基础书籍，然后在一个项目里历练。然而，你能运用费曼技巧更进一步，更好地锁定与清晰表述你的深刻见解。积累某话题的专业知识，亦同此理；唯一的差别是，你在建立知识面以前，需要搜集一些学习材料，包括相关的研究文章、书籍等。无论如何，只要你弄清楚了想掌握的知识领域，你就钻研下去，深入学习它。</p>
+<p><a href="http://calnewport.com/blog/2012/10/26/mastering-linear-algebra-in-10-days-astounding-experiments-in-ultra-learning/" target="_blank" rel="external">原文来自</a> <a href="http://calnewport.com/" target="_blank" rel="external">CAL NEWPORT</a></p>
 
       
     </div>
@@ -383,9 +393,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/centos/" rel="tag">#centos</a>
+            <a href="/tags/method/" rel="tag">#method</a>
           
-            <a href="/tags/ssh/" rel="tag">#ssh</a>
+            <a href="/tags/learn/" rel="tag">#learn</a>
           
         </div>
       
@@ -394,17 +404,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/12/29/php-time/" rel="next" title="PHP关于时间的问题，今天、昨天、前天、最近7天，最近30天">
-                <i class="fa fa-chevron-left"></i> PHP关于时间的问题，今天、昨天、前天、最近7天，最近30天
+              <a href="/2016/03/20/assembly/" rel="next" title="MAC OS X系统下编写汇编 assembly language">
+                <i class="fa fa-chevron-left"></i> MAC OS X系统下编写汇编 assembly language
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/01/13/mysql-mysqldump/" rel="prev" title="MYSQL数据库备份操作">
-                MYSQL数据库备份操作 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -456,8 +462,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/01/09/cenos-ssh/"
-           data-title="ssh连接缓慢解决方法" data-url="http://benvim.github.io/2016/01/09/cenos-ssh/">
+      <div class="ds-thread" data-thread-key="2016/03/21/method-learn/"
+           data-title="如何更快的学习" data-url="http://benvim.github.io/2016/03/21/method-learn/">
       </div>
     
   </div>
@@ -600,7 +606,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#钻研（The-Drilldown-Method-使用你学得更快"><span class="nav-number">1.</span> <span class="nav-text">钻研（The Drilldown Method):使用你学得更快</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第一阶段：-知识面覆盖"><span class="nav-number">2.</span> <span class="nav-text">第一阶段： 知识面覆盖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二阶段：练习"><span class="nav-number">3.</span> <span class="nav-text">第二阶段：练习</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三阶段：自省"><span class="nav-number"></span> <span class="nav-text">第三阶段：自省</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#费曼技巧（The-Feynman-Technique）"><span class="nav-number"></span> <span class="nav-text">费曼技巧（The Feynman Technique）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#费曼技巧很简单："><span class="nav-number">1.</span> <span class="nav-text">费曼技巧很简单：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-对付你完全摸不着头脑的概念"><span class="nav-number">1.1.</span> <span class="nav-text">1.对付你完全摸不着头脑的概念</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-对付各种过程"><span class="nav-number">1.2.</span> <span class="nav-text">2.对付各种过程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-对付各种公式"><span class="nav-number">1.3.</span> <span class="nav-text">3.对付各种公式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-对付需要记忆的内容"><span class="nav-number">1.4.</span> <span class="nav-text">4.对付需要记忆的内容</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#形成更深刻的直觉（Deeper-Intuition）"><span class="nav-number">2.</span> <span class="nav-text">形成更深刻的直觉（Deeper Intuition）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-类比、可视化、简化"><span class="nav-number">2.1.</span> <span class="nav-text">1.类比、可视化、简化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-学得更快的策略"><span class="nav-number">2.2.</span> <span class="nav-text">2.学得更快的策略</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-钻研吧，即便你不是学生"><span class="nav-number">2.3.</span> <span class="nav-text">3.钻研吧，即便你不是学生</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

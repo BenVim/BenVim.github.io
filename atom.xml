@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://benvim.github.io/"/>
-  <updated>2016-03-20T12:58:34.000Z</updated>
+  <updated>2016-03-21T01:32:31.000Z</updated>
   <id>http://benvim.github.io/</id>
   
   <author>
@@ -14,6 +14,62 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何更快的学习</title>
+    <link href="http://benvim.github.io/2016/03/21/method-learn/"/>
+    <id>http://benvim.github.io/2016/03/21/method-learn/</id>
+    <published>2016-03-21T01:20:23.000Z</published>
+    <updated>2016-03-21T01:32:31.000Z</updated>
+    
+    <content type="html">&lt;h4 id=&quot;钻研（The-Drilldown-Method-使用你学得更快&quot;&gt;&lt;a href=&quot;#钻研（The-Drilldown-Method-使用你学得更快&quot; class=&quot;headerlink&quot; title=&quot;钻研（The Drilldown Method):使用你学得更快&quot;&gt;&lt;/a&gt;钻研（The Drilldown Method):使用你学得更快&lt;/h4&gt;&lt;p&gt;经年累月，我完善了一个方法，可以加速逐层增进理解的过程。这个方法至今已被我用于各科目的课题，包括数学、生物学、物理学、经济学与工程学。只需些许修改，它对掌握实用技能也效果很好，比如编程、设计或语言。这个方法的基本结构是：知识面、练习、自省。我将解释每个阶段，让你了解如何尽可能有效率地执行它们，同时给出详细的例子，展示我是怎么应用在实际课程的。&lt;/p&gt;
+&lt;h4 id=&quot;第一阶段：-知识面覆盖&quot;&gt;&lt;a href=&quot;#第一阶段：-知识面覆盖&quot; class=&quot;headerlink&quot; title=&quot;第一阶段： 知识面覆盖&quot;&gt;&lt;/a&gt;第一阶段： 知识面覆盖&lt;/h4&gt;&lt;p&gt;你不可能组织一场进攻，如果你连一张地形图都没有。因此，深入研习的第一步，就是对你需要学习的内容有个大致印象。若在课堂上，这意味着你要看讲义或读课本；若是自学，你可能要多读几本同主题的书，相互考证。&lt;/p&gt;
+&lt;p&gt;学生们常犯的一个错误，就是认为这个阶段是最重要的。从很多方面来讲，这个阶段却是效率最低的，因为你每单位时间的投入只换来了最少量的知识回报。我常常加速完成这个阶段，很有好处，这样，我就可以投入更多时间到后面两个阶段。&lt;/p&gt;
+&lt;p&gt;如果你在看课程讲座的视频，最好是调到1.5x或2x倍速快进。这很容易做到，只要你下载好视频，然后使用播放器（如VLC）的“调速”功能。我用这法子两天内看完了一学期的课程视频。如果你在读一本书，我建议你不要花时间去高亮文本。这样只会让你的知识理解停留在低层次，而从长远来看，也使学习效率低下。更好的方法是，阅读时只偶尔做做笔记，或在读过每个主要章节后写一段落的总结。&lt;/p&gt;
+&lt;p&gt;这里有个&lt;a href=&quot;http://www.scotthyoung.com/mit/machine-vision-notes.pdf&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;例子&lt;/a&gt;，是我上机器视觉这门课时的笔记。&lt;/p&gt;
+&lt;h4 id=&quot;第二阶段：练习&quot;&gt;&lt;a href=&quot;#第二阶段：练习&quot; class=&quot;headerlink&quot; title=&quot;第二阶段：练习&quot;&gt;&lt;/a&gt;第二阶段：练习&lt;/h4&gt;&lt;p&gt;做练习题，能极大地促进你的知识理解。但是，如果你不小心，可能会落入两个效率陷阱：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;没有获得即时的反馈：研究表明，如果你想更好地学习，你需要即时的反馈。因此，做题时最好是答案在手，天下我有，每做完一题就对答案，自我审查。没有反馈或反馈迟来的练习，只会严重牵制学习效率；&lt;/li&gt;
+&lt;li&gt;题海战术：正如有人以为学习是始于教室终于教室，一些学生也认为大多数的知识理解产自练习题。是的，你总能通过题海战术最终搭起知识框架，但过程缓慢、效率低下。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;练习题，应该能凸显你需要建立更好直觉的知识领域。一些技巧，比如我将会谈到的费曼技巧（the Feynman technique），对此则相当有效。对于非技术类学科，它更多的是要求你掌握概念而不是解决问题，所以，你常常只需要完成最少量的习题。对这些科目，你最好花更多的时间在第三阶段，形成学科的洞察力。&lt;/p&gt;
+&lt;h3 id=&quot;第三阶段：自省&quot;&gt;&lt;a href=&quot;#第三阶段：自省&quot; class=&quot;headerlink&quot; title=&quot;第三阶段：自省&quot;&gt;&lt;/a&gt;第三阶段：自省&lt;/h3&gt;&lt;p&gt;知识面覆盖，与做练习题，是为了让你知道你还有什么不懂。这并不像听上去那么容易，毕竟知之为知之，不知为不知，难矣。你以为你都懂了，其实不是，所以老犯错；或者，你对某综合性学科心里没底，但又看不确切还有哪里不懂。&lt;/p&gt;
+&lt;p&gt;接下来的技巧，我称之为“费曼技巧”，将帮助你查漏补缺，在求知路上走得更远。当你能准确识别出你不懂的知识点时，这个技巧助你填补知识的缺口，尤其是那些最难以填补的巨大缺口。这个技巧还能两用。即使你真的理解了某个想法，它也能让你关联更多的想法，于是，你可以继续钻研，深化理解。&lt;/p&gt;
+&lt;h3 id=&quot;费曼技巧（The-Feynman-Technique）&quot;&gt;&lt;a href=&quot;#费曼技巧（The-Feynman-Technique）&quot; class=&quot;headerlink&quot; title=&quot;费曼技巧（The Feynman Technique）&quot;&gt;&lt;/a&gt;费曼技巧（The Feynman Technique）&lt;/h3&gt;&lt;p&gt;这个技巧的灵感，源于诺贝尔物理奖获得者，理查德·费曼（Richard Feynman）。在他的自传里，他提到曾纠结于某篇艰深的研究论文。他的办法是，仔细审阅这篇论文的辅助材料（supporting material），直到他掌握了相关的知识基础、足以理解其中的艰深想法为止。&lt;/p&gt;
+&lt;p&gt;费曼技巧，亦同此理。对付一个知识枝节繁杂如发丝、富有内涵的想法，应该分而化之，切成小知识块，再逐个对付，你最终能填补所有的知识缺口，否则，这些缺口将阻挠你理解这个想法。对此，&lt;a href=&quot;https://www.youtube.com/watch?v=FrNqSLPaZLc&amp;amp;feature=youtu.be&amp;amp;t=1m17s&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;请看这个简短的教程视频&lt;/a&gt;。&lt;/p&gt;
+&lt;h4 id=&quot;费曼技巧很简单：&quot;&gt;&lt;a href=&quot;#费曼技巧很简单：&quot; class=&quot;headerlink&quot; title=&quot;费曼技巧很简单：&quot;&gt;&lt;/a&gt;费曼技巧很简单：&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;拿张白纸；&lt;/li&gt;
+&lt;li&gt;在白纸顶部写上你想理解的某想法或某过程 &lt;/li&gt;
+&lt;li&gt;用你自己的话解释它，就像你在教给别人这个想法。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;最要紧的是，对一个想法分而化之，虽然可能重复解释某些已经弄懂的知识点。&lt;/em&gt; 但你最终会到达一个临界点，无法再解释清楚。那里正是你需要填补的知识缺口。为了填补这个缺口，你可以查课本、问老师、或到互联网搜寻答案。通常来说，一旦你精准地定义了你的不解或误解，找到确切的答案则相对而言更轻松。&lt;/p&gt;
+&lt;p&gt;我已经使用过这个费曼技巧有数百次，确信它能应付各种各样的学习情境。然而，由于学习情境各有特点，它需要灵活变通，似乎显得难以入门，所以，我将尝试举些不同的例子。&lt;/p&gt;
+&lt;h5 id=&quot;1-对付你完全摸不着头脑的概念&quot;&gt;&lt;a href=&quot;#1-对付你完全摸不着头脑的概念&quot; class=&quot;headerlink&quot; title=&quot;1.对付你完全摸不着头脑的概念&quot;&gt;&lt;/a&gt;1.对付你完全摸不着头脑的概念&lt;/h5&gt;&lt;p&gt;对此，我仍坚持使用费曼技巧，但翻开课本，找到解释这个概念的章节。我先浏览一遍作者的解释，然后仔细地摹仿它，并也试着用自己的思维详述和阐明它。如此一来，当你不能用自己的话写下任何解释时，“引导式”费曼技巧很有用处。这里有个&lt;a href=&quot;http://www.scotthyoung.com/mit/photogrammetry.pdf&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;例子&lt;/a&gt;，展示我如何理解摄影测量学。&lt;/p&gt;
+&lt;h5 id=&quot;2-对付各种过程&quot;&gt;&lt;a href=&quot;#2-对付各种过程&quot; class=&quot;headerlink&quot; title=&quot;2.对付各种过程&quot;&gt;&lt;/a&gt;2.对付各种过程&lt;/h5&gt;&lt;p&gt;你也能通过费曼技巧去了解一个你需要用到的过程。审视所有的步骤，不光解释每一步在干什么，还要清楚它是怎么执行的。我常这样理解数学的证明过程、化学的方程式、与生物学的糖酵解过程。这里有个&lt;a href=&quot;http://www.scotthyoung.com/mit/grid-accel.pdf&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;例子&lt;/a&gt;，展示我如何想到怎么实现网格加速。&lt;/p&gt;
+&lt;h5 id=&quot;3-对付各种公式&quot;&gt;&lt;a href=&quot;#3-对付各种公式&quot; class=&quot;headerlink&quot; title=&quot;3.对付各种公式&quot;&gt;&lt;/a&gt;3.对付各种公式&lt;/h5&gt;&lt;p&gt;公式，应该被理解，而不只是死记硬背。因此，当你看到一个公式，却无法理解它的运作机理时，试着用费曼技巧分而化之。这里有个&lt;a href=&quot;http://www.scotthyoung.com/mit/fourier.pdf&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;例子&lt;/a&gt;，展示我如何理解傅里叶分析方程。&lt;/p&gt;
+&lt;h5 id=&quot;4-对付需要记忆的内容&quot;&gt;&lt;a href=&quot;#4-对付需要记忆的内容&quot; class=&quot;headerlink&quot; title=&quot;4.对付需要记忆的内容&quot;&gt;&lt;/a&gt;4.对付需要记忆的内容&lt;/h5&gt;&lt;p&gt;费曼技巧，也可以帮你自查是否掌握非技术类学科那些博大精深的知识概念。对于某个主题，如果你能顺利应用费曼技巧，而无需参考原始材料（讲义、课本等），就证明你已经理解和记住它。。这里有个&lt;a href=&quot;http://www.scotthyoung.com/mit/predatory-pricing.pdf&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;例子&lt;/a&gt;，展示我如何回忆起经济学中的掠夺性定价概念。&lt;/p&gt;
+&lt;h4 id=&quot;形成更深刻的直觉（Deeper-Intuition）&quot;&gt;&lt;a href=&quot;#形成更深刻的直觉（Deeper-Intuition）&quot; class=&quot;headerlink&quot; title=&quot;形成更深刻的直觉（Deeper Intuition）&quot;&gt;&lt;/a&gt;形成更深刻的直觉（Deeper Intuition）&lt;/h4&gt;&lt;p&gt;结合做习题，费曼技巧能帮你剥开知识理解的浅层表皮。但它也能帮你钻研下去，走得更远，不只是浅层的理解，而是形成深刻的知识直觉。直观地理解一个想法，并非易事。它看似有些许神秘，但这不是它的本相。一个想法的多数直觉，可作以下归类。&lt;/p&gt;
+&lt;h5 id=&quot;1-类比、可视化、简化&quot;&gt;&lt;a href=&quot;#1-类比、可视化、简化&quot; class=&quot;headerlink&quot; title=&quot;1.类比、可视化、简化&quot;&gt;&lt;/a&gt;1.类比、可视化、简化&lt;/h5&gt;&lt;p&gt;类比：你理解一个想法，是通过确认它与某个更易理解的想法之间的重要相似点；可视化：抽象概念也常成为有用的直觉，只要我们能在脑海为它们构筑画面，即使这个画面只是一个更大更多样化想法的不完全表达；简化：一位著名的科学家曾说过，如果你不能给你的祖母解释一样东西，说明你还没有完全理解它。简化是一门艺术，它加强了基础概念与复杂想法之间的思维联系。&lt;/p&gt;
+&lt;p&gt;你可以用费曼技巧去激发这些直觉。对于某个想法，一旦你有了大致的理解，下一步就是深入分析，看能不能用以上三种直觉来阐释它。期间，就算是借用已有的意象喻义，也是情有可原的。例如，把复数放到二维空间里理解，很难称得上是新颖的，但它能让你很好地可视化这个概念，让概念在脑海中构图成型。DNA复制，被想象成拉开一条单向拉链，这也不是一个完美的类比，但只要你心里清楚其中的异同，它会变得有用。&lt;/p&gt;
+&lt;h5 id=&quot;2-学得更快的策略&quot;&gt;&lt;a href=&quot;#2-学得更快的策略&quot; class=&quot;headerlink&quot; title=&quot;2.学得更快的策略&quot;&gt;&lt;/a&gt;2.学得更快的策略&lt;/h5&gt;&lt;p&gt;在这篇文章里，我描述了学习的三个阶段：知识面、练习、与自省。但这可能让你误解，错以为它们总在不同的时期被各自执行，从不重叠或反复。实际上，随着不断地深入理解知识，你可能会周而复始地经历这些阶段。你刚开始读一个章节，只能有个大概的肤浅印象，但做过练习题和建立了直觉以后，你再回过来重新阅读，又会有更深刻的理解，即温故而知新。&lt;/p&gt;
+&lt;h5 id=&quot;3-钻研吧，即便你不是学生&quot;&gt;&lt;a href=&quot;#3-钻研吧，即便你不是学生&quot; class=&quot;headerlink&quot; title=&quot;3.钻研吧，即便你不是学生&quot;&gt;&lt;/a&gt;3.钻研吧，即便你不是学生&lt;/h5&gt;&lt;p&gt;这个过程不只是适用于学生，也同样有助于学习复杂技能或积累某话题的专业知识。学习像编程或设计的技能，大多数人遵循前两个阶段。他们阅读一本相关的基础书籍，然后在一个项目里历练。然而，你能运用费曼技巧更进一步，更好地锁定与清晰表述你的深刻见解。积累某话题的专业知识，亦同此理；唯一的差别是，你在建立知识面以前，需要搜集一些学习材料，包括相关的研究文章、书籍等。无论如何，只要你弄清楚了想掌握的知识领域，你就钻研下去，深入学习它。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://calnewport.com/blog/2012/10/26/mastering-linear-algebra-in-10-days-astounding-experiments-in-ultra-learning/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;原文来自&lt;/a&gt; &lt;a href=&quot;http://calnewport.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;CAL NEWPORT&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;钻研（The-Drilldown-Method-使用你学得更快&quot;&gt;&lt;a href=&quot;#钻研（The-Drilldown-Method-使用你学得更快&quot; class=&quot;headerlink&quot; title=&quot;钻研（The Drilldown Method):使用你学得
+    
+    </summary>
+    
+      <category term="method" scheme="http://benvim.github.io/categories/method/"/>
+    
+    
+      <category term="method" scheme="http://benvim.github.io/tags/method/"/>
+    
+      <category term="learn" scheme="http://benvim.github.io/tags/learn/"/>
+    
+  </entry>
   
   <entry>
     <title>MAC OS X系统下编写汇编 assembly language</title>
