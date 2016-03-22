@@ -273,6 +273,158 @@
             
               
                 
+                <a class="post-title-link" href="/2016/03/21/math-LinearAlgebra/" itemprop="url">
+                  矩阵与方程组
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-21T19:23:32+08:00" content="2016-03-21">
+              2016-03-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/math/" itemprop="url" rel="index">
+                    <span itemprop="name">math</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/21/math-LinearAlgebra/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/21/math-LinearAlgebra/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+          
+
+          
+          
+             <span id="/2016/03/21/math-LinearAlgebra/" class="leancloud_visitors" data-flag-title="矩阵与方程组">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>矩阵与方程组</p>
+<p>求解线性方程组或许是数学问题中最重要的问题，超过75%的科学研究和工程应用中的数学问题，在某个阶段都涉及求解线性方程组。利用新的数学方法，通常可将较为复杂的问题化为线性方程组。线性方程组广泛应用于商业、经济学、社会学、生态学、人口统计学、遗传学、电子学、工程学以及物理学等领域。</p>
+<h2 id="1-1线性方程组"><a href="#1-1线性方程组" class="headerlink" title="1.1线性方程组"></a>1.1线性方程组</h2><h4 id="方程组"><a href="#方程组" class="headerlink" title="方程组"></a>方程组</h4><p>$$    a_1x_1+a_2x_2+ \cdots + a_nx_n = b $$<br>以上的方程为含有n个未知量的线性方程，其中 $a_1$, $a_2$, $a_3$,…,$a_n$和 $b$ 为实数，$x_1$, $x_2$, … , $x_n$ 称为变量。含有 $m$ 个方程和 $n$ 个未知量的线性方程组定义为</p>
+<p>$$<br> \left{<br> \begin{matrix}<br>   a_{11}x<em>1 + a</em>{12}x<em>2 + \cdots + a</em>{1n}x<em>n = b1 \<br>   a</em>{21}x<em>1 + a</em>{22}x<em>2 + \cdots + a</em>{2n}x<em>n = b2 \<br>   \cdots \<br>   a</em>{m1}x<em>1 + a</em>{m2}x<em>2 + \cdots + a</em>{mn}x_n = bm<br>  \end{matrix}<br>  \right} \tag{1}<br>$$</p>
+<p>其中 $a<em>{ij}$ 及 $b</em>{i}$ 均为实数。（1）称为 $ m \times n $ 的线性方程组。下面几个线性方程组的例子：</p>
+<p>$$<br>\left{<br>\begin{array}{c}<br>x_1 + 2x_2 = 5 \<br>2x_1 +3x_2 = 8<br>\end{array}<br>\right. \tag{a}<br>$$</p>
+<p>$$<br>\left{<br>\begin{array}{c}<br>x_1 - x_2 + x_3 = 2 \<br>2x_1 + x_2 - x_3 = 4<br>\end{array}<br>\right. \tag{b}<br>$$</p>
+<p>$$<br>\left{<br>\begin{align}<br>x_1 + x_2 = 2 \<br>x_1 + x_2 = 1 \<br>x_1 = 4<br>\end{align}<br>\right. \tag{c}<br>$$</p>
+<p>方程组(a)称为 $ 2\times2 $ 的方程组，(b)称为 $ 2\times3 $的方程组，(c)称为 $ 3\times2 $的方程组。</p>
+<blockquote>
+<p>定义：若两空个含有相同变量的方程组具有相同的解集，则称它们是等价的</p>
+</blockquote>
+<h4 id="严格三角形"><a href="#严格三角形" class="headerlink" title="严格三角形"></a>严格三角形</h4><blockquote>
+<p>定义：若方程组中，第 k 个方程的前 k-1个变量的系数均为零，且 $x_k(k=1, \cdots, n)$ 的系数不为零，则称该方程组为严格三角形的(strict triangular form)</p>
+</blockquote>
+<p>严格三角形(strict triangular form)的形式如下：</p>
+<p>$$<br>\begin{align}<br>3x_1 + 2x_2 + x_3 = 1 \<br>x_2 + x_3 = 2 \<br>2x_3 = 4 \<br>\end{align} \tag {e}<br>$$</p>
+<p>方程组(e)为严格三角形，因为第二个方程中的系数分别为 0, 1, -1 且第三个方程中的系数分别为 0, 0 , 2 由于该方程组为严格三角形的，因此容易求解。采用回代法(back substitution).</p>
+<h4 id="系数矩阵-coefficient-matrix"><a href="#系数矩阵-coefficient-matrix" class="headerlink" title="系数矩阵(coefficient matrix)"></a>系数矩阵(coefficient matrix)</h4><p>如下方程组<br>$$<br>\left.<br>\begin{align}<br>x_1 + 2x_2 + x_3 = 3 \<br>3x_1 - x_2 - 3x_3 = -1 \<br>2x_1 + 3x_2 + x_3 = 4<br>\end{align}<br>\right. \tag{c}<br>$$<br>可以把方程组同一个以 $x_i$ 的系数为元的 $3\times3$ 的数字阵列联系起来。<br>$$<br>\left.<br>\begin{bmatrix}<br>1 &amp; 2 &amp; 1  \<br>3 &amp; -1 &amp; -3  \<br>2 &amp; 3 &amp; 1<br>\end{bmatrix}<br>\right. \tag{M}<br>$$</p>
+<p>称这个矩阵为方程组的 <strong>系数矩阵(coeffficient matrix)</strong>。简单的说，矩阵(matrix)就是一个矩形的数字阵列。一个m行和n列的矩阵称为 $ m \times n$矩阵，如果矩阵的行数和列数相等，即$m=n$，则称该矩阵为 <strong>方阵</strong> </p>
+<h4 id="增广矩阵-augmented-matrix"><a href="#增广矩阵-augmented-matrix" class="headerlink" title="增广矩阵(augmented matrix)"></a>增广矩阵(augmented matrix)</h4><p>如何在这个矩阵(M)的右侧添加一列方程组的右端项，可得到一个新的矩阵<br>$$<br>\left[<br>\begin{array}{@{}ccc|c@{}}<br>1 &amp; 2 &amp; 1 &amp; 3 \<br>3 &amp; -1 &amp; -3 &amp; -1 \<br>2 &amp; 3 &amp; 1 &amp; 4<br>\end{array}<br>\right] \tag{M’}<br>$$<br>称这个矩阵为方程组的 <strong>增广矩阵(augmented matrix)</strong>，一般的，当一个 $ m \times r$ 的矩阵B采用上述方法附加到一个 $m \times n$ 的矩阵A上时，相应的增广矩阵记为 $(A\mid B)$</p>
+<h4 id="解方程的方法主要有是高斯消元法的三步"><a href="#解方程的方法主要有是高斯消元法的三步" class="headerlink" title="解方程的方法主要有是高斯消元法的三步"></a>解方程的方法主要有是高斯消元法的三步</h4><p>初等行运算</p>
+<ul>
+<li>交换两行</li>
+<li>以非零实数乘以某行</li>
+<li>将某行替换为它与其它行的倍数的和</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/03/21/method-learn/" itemprop="url">
                   如何更快的学习
                 </a>
@@ -1335,158 +1487,11 @@ int c = a+b;
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/13/mysql-mysqldump/" itemprop="url">
-                  MYSQL数据库备份操作
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-13T15:29:14+08:00" content="2016-01-13">
-              2016-01-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">mysql</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/01/13/mysql-mysqldump/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/13/mysql-mysqldump/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-          
-
-          
-          
-             <span id="/2016/01/13/mysql-mysqldump/" class="leancloud_visitors" data-flag-title="MYSQL数据库备份操作">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>用PHP语言进行MYSQL数据库备份操作。技术上需要的函数 <em>mysqldump</em> 方法，该方法是 <em>MYSQL</em> 的程序，所以需要指明该程序的地址，另外需要PHP语言的 <em>exec</em>去执行该方法。</p>
-<pre><code>    public function export(){
-    $cfg_dbhost = C(&quot;DB_HOST&quot;);
-    $cfg_dbuser = C(&quot;DB_USER&quot;);
-    $cfg_dbpwd  = C(&quot;DB_PWD&quot;);
-    $cfg_dbname = C(&quot;DB_NAME&quot;);
-
-    $cfg_dbname = &quot;cpk&quot;;
-    $filename=date(&quot;Y-m-d_H-i-s&quot;).&quot;-&quot;.$cfg_dbname.&quot;.sql&quot;; 
-    // 所保存的文件名 
-    header(&quot;Content-disposition:filename=&quot;.$filename); 
-    header(&quot;Content-type:application/octetstream&quot;); 
-    header(&quot;Pragma:no-cache&quot;); 
-    header(&quot;Expires:0&quot;); 
-
-    $tmpFile = $_SERVER[&apos;DOCUMENT_ROOT&apos;].$this-&gt;path.$filename;// 获取当前页面文件路径，SQL文件就导出到此文件夹内 
-    exec($this-&gt;mysqlDumpPath.&quot;mysqldump -u$cfg_dbuser -p$cfg_dbpwd -h$cfg_dbhost  $cfg_dbname &gt; &quot;.$tmpFile); 
-    $file = fopen($tmpFile, &quot;r&quot;); // 打开文件 
-    $info = fread($file,filesize($tmpFile));
-    $this-&gt;ajaxReturn(&quot;0&quot;, &quot;备份完成&quot;,&quot;$filename&quot;);
-    fclose($file);
-}
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1527,7 +1532,7 @@ int c = a+b;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-count">21</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1535,7 +1540,7 @@ int c = a+b;
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1544,7 +1549,7 @@ int c = a+b;
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

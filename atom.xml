@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://benvim.github.io/"/>
-  <updated>2016-03-21T01:32:31.000Z</updated>
+  <updated>2016-03-22T01:08:53.000Z</updated>
   <id>http://benvim.github.io/</id>
   
   <author>
@@ -14,6 +14,56 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>矩阵与方程组</title>
+    <link href="http://benvim.github.io/2016/03/21/math-LinearAlgebra/"/>
+    <id>http://benvim.github.io/2016/03/21/math-LinearAlgebra/</id>
+    <published>2016-03-21T11:23:32.000Z</published>
+    <updated>2016-03-22T01:08:53.000Z</updated>
+    
+    <content type="html">&lt;p&gt;矩阵与方程组&lt;/p&gt;
+&lt;p&gt;求解线性方程组或许是数学问题中最重要的问题，超过75%的科学研究和工程应用中的数学问题，在某个阶段都涉及求解线性方程组。利用新的数学方法，通常可将较为复杂的问题化为线性方程组。线性方程组广泛应用于商业、经济学、社会学、生态学、人口统计学、遗传学、电子学、工程学以及物理学等领域。&lt;/p&gt;
+&lt;h2 id=&quot;1-1线性方程组&quot;&gt;&lt;a href=&quot;#1-1线性方程组&quot; class=&quot;headerlink&quot; title=&quot;1.1线性方程组&quot;&gt;&lt;/a&gt;1.1线性方程组&lt;/h2&gt;&lt;h4 id=&quot;方程组&quot;&gt;&lt;a href=&quot;#方程组&quot; class=&quot;headerlink&quot; title=&quot;方程组&quot;&gt;&lt;/a&gt;方程组&lt;/h4&gt;&lt;p&gt;$$    a_1x_1+a_2x_2+ \cdots + a_nx_n = b $$&lt;br&gt;以上的方程为含有n个未知量的线性方程，其中 $a_1$, $a_2$, $a_3$,…,$a_n$和 $b$ 为实数，$x_1$, $x_2$, … , $x_n$ 称为变量。含有 $m$ 个方程和 $n$ 个未知量的线性方程组定义为&lt;/p&gt;
+&lt;p&gt;$$&lt;br&gt; \left{&lt;br&gt; \begin{matrix}&lt;br&gt;   a_{11}x&lt;em&gt;1 + a&lt;/em&gt;{12}x&lt;em&gt;2 + \cdots + a&lt;/em&gt;{1n}x&lt;em&gt;n = b1 \&lt;br&gt;   a&lt;/em&gt;{21}x&lt;em&gt;1 + a&lt;/em&gt;{22}x&lt;em&gt;2 + \cdots + a&lt;/em&gt;{2n}x&lt;em&gt;n = b2 \&lt;br&gt;   \cdots \&lt;br&gt;   a&lt;/em&gt;{m1}x&lt;em&gt;1 + a&lt;/em&gt;{m2}x&lt;em&gt;2 + \cdots + a&lt;/em&gt;{mn}x_n = bm&lt;br&gt;  \end{matrix}&lt;br&gt;  \right} \tag{1}&lt;br&gt;$$&lt;/p&gt;
+&lt;p&gt;其中 $a&lt;em&gt;{ij}$ 及 $b&lt;/em&gt;{i}$ 均为实数。（1）称为 $ m \times n $ 的线性方程组。下面几个线性方程组的例子：&lt;/p&gt;
+&lt;p&gt;$$&lt;br&gt;\left{&lt;br&gt;\begin{array}{c}&lt;br&gt;x_1 + 2x_2 = 5 \&lt;br&gt;2x_1 +3x_2 = 8&lt;br&gt;\end{array}&lt;br&gt;\right. \tag{a}&lt;br&gt;$$&lt;/p&gt;
+&lt;p&gt;$$&lt;br&gt;\left{&lt;br&gt;\begin{array}{c}&lt;br&gt;x_1 - x_2 + x_3 = 2 \&lt;br&gt;2x_1 + x_2 - x_3 = 4&lt;br&gt;\end{array}&lt;br&gt;\right. \tag{b}&lt;br&gt;$$&lt;/p&gt;
+&lt;p&gt;$$&lt;br&gt;\left{&lt;br&gt;\begin{align}&lt;br&gt;x_1 + x_2 = 2 \&lt;br&gt;x_1 + x_2 = 1 \&lt;br&gt;x_1 = 4&lt;br&gt;\end{align}&lt;br&gt;\right. \tag{c}&lt;br&gt;$$&lt;/p&gt;
+&lt;p&gt;方程组(a)称为 $ 2\times2 $ 的方程组，(b)称为 $ 2\times3 $的方程组，(c)称为 $ 3\times2 $的方程组。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;定义：若两空个含有相同变量的方程组具有相同的解集，则称它们是等价的&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&quot;严格三角形&quot;&gt;&lt;a href=&quot;#严格三角形&quot; class=&quot;headerlink&quot; title=&quot;严格三角形&quot;&gt;&lt;/a&gt;严格三角形&lt;/h4&gt;&lt;blockquote&gt;
+&lt;p&gt;定义：若方程组中，第 k 个方程的前 k-1个变量的系数均为零，且 $x_k(k=1, \cdots, n)$ 的系数不为零，则称该方程组为严格三角形的(strict triangular form)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;严格三角形(strict triangular form)的形式如下：&lt;/p&gt;
+&lt;p&gt;$$&lt;br&gt;\begin{align}&lt;br&gt;3x_1 + 2x_2 + x_3 = 1 \&lt;br&gt;x_2 + x_3 = 2 \&lt;br&gt;2x_3 = 4 \&lt;br&gt;\end{align} \tag {e}&lt;br&gt;$$&lt;/p&gt;
+&lt;p&gt;方程组(e)为严格三角形，因为第二个方程中的系数分别为 0, 1, -1 且第三个方程中的系数分别为 0, 0 , 2 由于该方程组为严格三角形的，因此容易求解。采用回代法(back substitution).&lt;/p&gt;
+&lt;h4 id=&quot;系数矩阵-coefficient-matrix&quot;&gt;&lt;a href=&quot;#系数矩阵-coefficient-matrix&quot; class=&quot;headerlink&quot; title=&quot;系数矩阵(coefficient matrix)&quot;&gt;&lt;/a&gt;系数矩阵(coefficient matrix)&lt;/h4&gt;&lt;p&gt;如下方程组&lt;br&gt;$$&lt;br&gt;\left.&lt;br&gt;\begin{align}&lt;br&gt;x_1 + 2x_2 + x_3 = 3 \&lt;br&gt;3x_1 - x_2 - 3x_3 = -1 \&lt;br&gt;2x_1 + 3x_2 + x_3 = 4&lt;br&gt;\end{align}&lt;br&gt;\right. \tag{c}&lt;br&gt;$$&lt;br&gt;可以把方程组同一个以 $x_i$ 的系数为元的 $3\times3$ 的数字阵列联系起来。&lt;br&gt;$$&lt;br&gt;\left.&lt;br&gt;\begin{bmatrix}&lt;br&gt;1 &amp;amp; 2 &amp;amp; 1  \&lt;br&gt;3 &amp;amp; -1 &amp;amp; -3  \&lt;br&gt;2 &amp;amp; 3 &amp;amp; 1&lt;br&gt;\end{bmatrix}&lt;br&gt;\right. \tag{M}&lt;br&gt;$$&lt;/p&gt;
+&lt;p&gt;称这个矩阵为方程组的 &lt;strong&gt;系数矩阵(coeffficient matrix)&lt;/strong&gt;。简单的说，矩阵(matrix)就是一个矩形的数字阵列。一个m行和n列的矩阵称为 $ m \times n$矩阵，如果矩阵的行数和列数相等，即$m=n$，则称该矩阵为 &lt;strong&gt;方阵&lt;/strong&gt; &lt;/p&gt;
+&lt;h4 id=&quot;增广矩阵-augmented-matrix&quot;&gt;&lt;a href=&quot;#增广矩阵-augmented-matrix&quot; class=&quot;headerlink&quot; title=&quot;增广矩阵(augmented matrix)&quot;&gt;&lt;/a&gt;增广矩阵(augmented matrix)&lt;/h4&gt;&lt;p&gt;如何在这个矩阵(M)的右侧添加一列方程组的右端项，可得到一个新的矩阵&lt;br&gt;$$&lt;br&gt;\left[&lt;br&gt;\begin{array}{@{}ccc|c@{}}&lt;br&gt;1 &amp;amp; 2 &amp;amp; 1 &amp;amp; 3 \&lt;br&gt;3 &amp;amp; -1 &amp;amp; -3 &amp;amp; -1 \&lt;br&gt;2 &amp;amp; 3 &amp;amp; 1 &amp;amp; 4&lt;br&gt;\end{array}&lt;br&gt;\right] \tag{M’}&lt;br&gt;$$&lt;br&gt;称这个矩阵为方程组的 &lt;strong&gt;增广矩阵(augmented matrix)&lt;/strong&gt;，一般的，当一个 $ m \times r$ 的矩阵B采用上述方法附加到一个 $m \times n$ 的矩阵A上时，相应的增广矩阵记为 $(A\mid B)$&lt;/p&gt;
+&lt;h4 id=&quot;解方程的方法主要有是高斯消元法的三步&quot;&gt;&lt;a href=&quot;#解方程的方法主要有是高斯消元法的三步&quot; class=&quot;headerlink&quot; title=&quot;解方程的方法主要有是高斯消元法的三步&quot;&gt;&lt;/a&gt;解方程的方法主要有是高斯消元法的三步&lt;/h4&gt;&lt;p&gt;初等行运算&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;交换两行&lt;/li&gt;
+&lt;li&gt;以非零实数乘以某行&lt;/li&gt;
+&lt;li&gt;将某行替换为它与其它行的倍数的和&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;矩阵与方程组&lt;/p&gt;
+&lt;p&gt;求解线性方程组或许是数学问题中最重要的问题，超过75%的科学研究和工程应用中的数学问题，在某个阶段都涉及求解线性方程组。利用新的数学方法，通常可将较为复杂的问题化为线性方程组。线性方程组广泛应用于商业、经济学、社会学、生态学、人口统计学、遗传学、
+    
+    </summary>
+    
+      <category term="math" scheme="http://benvim.github.io/categories/math/"/>
+    
+    
+      <category term="math" scheme="http://benvim.github.io/tags/math/"/>
+    
+  </entry>
   
   <entry>
     <title>如何更快的学习</title>
@@ -879,60 +929,6 @@ mysql&amp;gt; select * form `test_db`
     
     
       <category term="wc" scheme="http://benvim.github.io/tags/wc/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>PHP语言获取客户端IP地址的方法</title>
-    <link href="http://benvim.github.io/2015/03/20/php-ip/"/>
-    <id>http://benvim.github.io/2015/03/20/php-ip/</id>
-    <published>2015-03-20T13:00:53.000Z</published>
-    <updated>2016-03-20T16:04:38.000Z</updated>
-    
-    <content type="html">&lt;p&gt;PHP语言获取客户端IP地址的方法&lt;/p&gt;
-&lt;h3 id=&quot;第一种方法&quot;&gt;&lt;a href=&quot;#第一种方法&quot; class=&quot;headerlink&quot; title=&quot;第一种方法&quot;&gt;&lt;/a&gt;第一种方法&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;function getIPAderss(){
-    global $ip; 
-    if (getenv(&amp;quot;HTTP_CLIENT_IP&amp;quot;)) 
-        $ip = getenv(&amp;quot;HTTP_CLIENT_IP&amp;quot;); 
-    else if(getenv(&amp;quot;HTTP_X_FORWARDED_FOR&amp;quot;)) 
-        $ip = getenv(&amp;quot;HTTP_X_FORWARDED_FOR&amp;quot;); 
-    else if(getenv(&amp;quot;REMOTE_ADDR&amp;quot;)) 
-        $ip = getenv(&amp;quot;REMOTE_ADDR&amp;quot;); 
-    else 
-        $ip = &amp;quot;Unknow&amp;quot;; 
-    return $ip;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;第二种方法&quot;&gt;&lt;a href=&quot;#第二种方法&quot; class=&quot;headerlink&quot; title=&quot;第二种方法&quot;&gt;&lt;/a&gt;第二种方法&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;static function getIP(){
-$ip=false; 
-if(!empty($_SERVER[&amp;apos;HTTP_CLIENT_IP&amp;apos;])){ 
-    $ip=$_SERVER[&amp;apos;HTTP_CLIENT_IP&amp;apos;]; 
-}
-if(!empty($_SERVER[&amp;apos;HTTP_X_FORWARDED_FOR&amp;apos;])){ 
-    $ips=explode (&amp;apos;, &amp;apos;, $_SERVER[&amp;apos;HTTP_X_FORWARDED_FOR&amp;apos;]); 
-    if($ip){ array_unshift($ips, $ip); $ip=FALSE; }
-    for ($i=0; $i &amp;lt; count($ips); $i++){
-        if(!eregi (&amp;apos;^(10│172.16│192.168).&amp;apos;, $ips[$i])){
-            $ip=$ips[$i];
-            break;
-        }
-    }
-}
-return ($ip ? $ip : $_SERVER[&amp;apos;REMOTE_ADDR&amp;apos;]);
-}
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;PHP语言获取客户端IP地址的方法&lt;/p&gt;
-&lt;h3 id=&quot;第一种方法&quot;&gt;&lt;a href=&quot;#第一种方法&quot; class=&quot;headerlink&quot; title=&quot;第一种方法&quot;&gt;&lt;/a&gt;第一种方法&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;function getIPAderss(){
- 
-    
-    </summary>
-    
-      <category term="php" scheme="http://benvim.github.io/categories/php/"/>
-    
-    
-      <category term="php" scheme="http://benvim.github.io/tags/php/"/>
     
   </entry>
   

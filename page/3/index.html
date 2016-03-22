@@ -62,7 +62,7 @@
 <meta name="description" content="如若初遇，不如不遇">
 <meta property="og:type" content="website">
 <meta property="og:title" content="一纸墨迹">
-<meta property="og:url" content="http://benvim.github.io/categories/php/index.html">
+<meta property="og:url" content="http://benvim.github.io/page/3/index.html">
 <meta property="og:site_name" content="一纸墨迹">
 <meta property="og:description" content="如若初遇，不如不遇">
 <meta name="twitter:card" content="summary">
@@ -85,7 +85,7 @@
   };
 </script>
 
-  <title> 分类: php | 一纸墨迹 </title>
+  <title> 一纸墨迹 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -121,7 +121,9 @@
   
   
 
-  <div class="container one-collumn   ">
+  <div class="container one-collumn  
+   page-home 
+ ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -248,152 +250,159 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
+  <section id="posts" class="posts-expand">
+    
+      
 
-  <section id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        php
-        <small>分类</small>
-      </h2>
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/03/20/php-ip/" itemprop="url">
+                  PHP语言获取客户端IP地址的方法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-03-20T21:00:53+08:00" content="2015-03-20">
+              2015-03-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/03/20/php-ip/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/03/20/php-ip/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+          
+
+          
+          
+             <span id="/2015/03/20/php-ip/" class="leancloud_visitors" data-flag-title="PHP语言获取客户端IP地址的方法">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>PHP语言获取客户端IP地址的方法</p>
+<h3 id="第一种方法"><a href="#第一种方法" class="headerlink" title="第一种方法"></a>第一种方法</h3><pre><code>function getIPAderss(){
+    global $ip; 
+    if (getenv(&quot;HTTP_CLIENT_IP&quot;)) 
+        $ip = getenv(&quot;HTTP_CLIENT_IP&quot;); 
+    else if(getenv(&quot;HTTP_X_FORWARDED_FOR&quot;)) 
+        $ip = getenv(&quot;HTTP_X_FORWARDED_FOR&quot;); 
+    else if(getenv(&quot;REMOTE_ADDR&quot;)) 
+        $ip = getenv(&quot;REMOTE_ADDR&quot;); 
+    else 
+        $ip = &quot;Unknow&quot;; 
+    return $ip;
+}
+</code></pre><h3 id="第二种方法"><a href="#第二种方法" class="headerlink" title="第二种方法"></a>第二种方法</h3><pre><code>static function getIP(){
+$ip=false; 
+if(!empty($_SERVER[&apos;HTTP_CLIENT_IP&apos;])){ 
+    $ip=$_SERVER[&apos;HTTP_CLIENT_IP&apos;]; 
+}
+if(!empty($_SERVER[&apos;HTTP_X_FORWARDED_FOR&apos;])){ 
+    $ips=explode (&apos;, &apos;, $_SERVER[&apos;HTTP_X_FORWARDED_FOR&apos;]); 
+    if($ip){ array_unshift($ips, $ip); $ip=FALSE; }
+    for ($i=0; $i &lt; count($ips); $i++){
+        if(!eregi (&apos;^(10│172.16│192.168).&apos;, $ips[$i])){
+            $ip=$ips[$i];
+            break;
+        }
+    }
+}
+return ($ip ? $ip : $_SERVER[&apos;REMOTE_ADDR&apos;]);
+}
+</code></pre>
+          
+        
+      
     </div>
 
-    
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2015/12/29/php-time/" itemprop="url">
-              
-                <span itemprop="name">PHP关于时间的问题，今天、昨天、前天、最近7天，最近30天</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-12-29T10:20:34+08:00"
-              content="2015-12-29" >
-          12-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2015/12/10/php-reg/" itemprop="url">
-              
-                <span itemprop="name">正则表达式替换图片格式</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-12-10T14:12:00+08:00"
-              content="2015-12-10" >
-          12-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
       
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2015/11/28/php-numberformat/" itemprop="url">
-              
-                <span itemprop="name">财务数值表示法</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-11-28T14:19:00+08:00"
-              content="2015-11-28" >
-          11-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
       
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2015/11/17/php-appSecret/" itemprop="url">
-              
-                <span itemprop="name">生成appkey和appSecret</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-11-17T20:54:01+08:00"
-              content="2015-11-17" >
-          11-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
+        <div class="post-eof"></div>
       
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2015/03/20/php-ip/" itemprop="url">
-              
-                <span itemprop="name">PHP语言获取客户端IP地址的方法</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-03-20T21:00:53+08:00"
-              content="2015-03-20" >
-          03-20
-        </time>
-      </div>
-
-    </header>
+    </footer>
   </article>
 
 
@@ -401,6 +410,9 @@
   </section>
 
   
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
 
 
 
