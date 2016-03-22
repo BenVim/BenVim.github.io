@@ -30,8 +30,6 @@
   <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
 
 
-
-
   <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
 
 
@@ -42,11 +40,6 @@
 
 
   <meta name="keywords" content="math," />
-
-
-
-
-
   <link rel="alternate" href="/atom.xml" title="一纸墨迹" type="application/atom+xml" />
 
 
@@ -61,20 +54,23 @@
 
 <meta name="description" content="矩阵与方程组
 求解线性方程组或许是数学问题中最重要的问题，超过75%的科学研究和工程应用中的数学问题，在某个阶段都涉及求解线性方程组。利用新的数学方法，通常可将较为复杂的问题化为线性方程组。线性方程组广泛应用于商业、经济学、社会学、生态学、人口统计学、遗传学、电子学、工程学以及物理学等领域。
-1.1线性方程组方程组$$    a_1x_1+a_2x_2+ \cdots + a_nx_n = b $">
+1.1线性方程组方程组$$a_1x_1+a_2x_2+ \cdots + a_nx_n = b$$
+以上的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="矩阵与方程组">
 <meta property="og:url" content="http://benvim.github.io/2016/03/21/math-LinearAlgebra/index.html">
 <meta property="og:site_name" content="一纸墨迹">
 <meta property="og:description" content="矩阵与方程组
 求解线性方程组或许是数学问题中最重要的问题，超过75%的科学研究和工程应用中的数学问题，在某个阶段都涉及求解线性方程组。利用新的数学方法，通常可将较为复杂的问题化为线性方程组。线性方程组广泛应用于商业、经济学、社会学、生态学、人口统计学、遗传学、电子学、工程学以及物理学等领域。
-1.1线性方程组方程组$$    a_1x_1+a_2x_2+ \cdots + a_nx_n = b $">
-<meta property="og:updated_time" content="2016-03-22T01:08:53.000Z">
+1.1线性方程组方程组$$a_1x_1+a_2x_2+ \cdots + a_nx_n = b$$
+以上的">
+<meta property="og:updated_time" content="2016-03-22T01:11:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="矩阵与方程组">
 <meta name="twitter:description" content="矩阵与方程组
 求解线性方程组或许是数学问题中最重要的问题，超过75%的科学研究和工程应用中的数学问题，在某个阶段都涉及求解线性方程组。利用新的数学方法，通常可将较为复杂的问题化为线性方程组。线性方程组广泛应用于商业、经济学、社会学、生态学、人口统计学、遗传学、电子学、工程学以及物理学等领域。
-1.1线性方程组方程组$$    a_1x_1+a_2x_2+ \cdots + a_nx_n = b $">
+1.1线性方程组方程组$$a_1x_1+a_2x_2+ \cdots + a_nx_n = b$$
+以上的">
 
 
 
@@ -353,10 +349,16 @@
       
 
       
-        <p>矩阵与方程组</p>
+        <p>矩阵11与方程组</p>
 <p>求解线性方程组或许是数学问题中最重要的问题，超过75%的科学研究和工程应用中的数学问题，在某个阶段都涉及求解线性方程组。利用新的数学方法，通常可将较为复杂的问题化为线性方程组。线性方程组广泛应用于商业、经济学、社会学、生态学、人口统计学、遗传学、电子学、工程学以及物理学等领域。</p>
-<h2 id="1-1线性方程组"><a href="#1-1线性方程组" class="headerlink" title="1.1线性方程组"></a>1.1线性方程组</h2><h4 id="方程组"><a href="#方程组" class="headerlink" title="方程组"></a>方程组</h4><p>$$    a_1x_1+a_2x_2+ \cdots + a_nx_n = b $$<br>以上的方程为含有n个未知量的线性方程，其中 $a_1$, $a_2$, $a_3$,…,$a_n$和 $b$ 为实数，$x_1$, $x_2$, … , $x_n$ 称为变量。含有 $m$ 个方程和 $n$ 个未知量的线性方程组定义为</p>
-<p>$$<br> \left{<br> \begin{matrix}<br>   a_{11}x<em>1 + a</em>{12}x<em>2 + \cdots + a</em>{1n}x<em>n = b1 \<br>   a</em>{21}x<em>1 + a</em>{22}x<em>2 + \cdots + a</em>{2n}x<em>n = b2 \<br>   \cdots \<br>   a</em>{m1}x<em>1 + a</em>{m2}x<em>2 + \cdots + a</em>{mn}x_n = bm<br>  \end{matrix}<br>  \right} \tag{1}<br>$$</p>
+<h2 id="1-1线性方程组"><a href="#1-1线性方程组" class="headerlink" title="1.1线性方程组"></a>1.1线性方程组</h2><h4 id="方程组"><a href="#方程组" class="headerlink" title="方程组"></a>方程组</h4>
+<p>$$ \begin{array}{c|lcr} n & \text{Left} & \text{Center} & \text{Right} \\ \hline 1 & 0.24 & 1 & 125 \\ 2 & -1 & 189 & -8 \\ 3 & -20 & 2000 & 1+10i \\ \end{array} $$</p>
+<p>
+$$ \left\{\begin{matrix} a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = b1 \\   a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n = b2 \\   \cdots \\   a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = b_m  \end{matrix} \right\} $$</p>
+
+
+<p>以上的方程为含有n个未知量的线性方程，其中 $a_1$, $a_2$, $a_3$,…,$a_n$和 $b$ 为实数，$x_1$, $x_2$, … , $x_n$ 称为变量。含有 $m$ 个方程和 $n$ 个未知量的线性方程组定义为</p>
+
 <p>其中 $a<em>{ij}$ 及 $b</em>{i}$ 均为实数。（1）称为 $ m \times n $ 的线性方程组。下面几个线性方程组的例子：</p>
 <p>$$<br>\left{<br>\begin{array}{c}<br>x_1 + 2x_2 = 5 \<br>2x_1 +3x_2 = 8<br>\end{array}<br>\right. \tag{a}<br>$$</p>
 <p>$$<br>\left{<br>\begin{array}{c}<br>x_1 - x_2 + x_3 = 2 \<br>2x_1 + x_2 - x_3 = 4<br>\end{array}<br>\right. \tag{b}<br>$$</p>
@@ -369,7 +371,7 @@
 <p>定义：若方程组中，第 k 个方程的前 k-1个变量的系数均为零，且 $x_k(k=1, \cdots, n)$ 的系数不为零，则称该方程组为严格三角形的(strict triangular form)</p>
 </blockquote>
 <p>严格三角形(strict triangular form)的形式如下：</p>
-<p>$$<br>\begin{align}<br>3x_1 + 2x_2 + x_3 = 1 \<br>x_2 + x_3 = 2 \<br>2x_3 = 4 \<br>\end{align} \tag {e}<br>$$</p>
+<p>$$\begin{align} 3x_1 + 2x_2 + x_3 = 1 \\ x_2 + x_3 = 2 \\ 2x_3 = 4 \end{align} \tag {e}$$</p>
 <p>方程组(e)为严格三角形，因为第二个方程中的系数分别为 0, 1, -1 且第三个方程中的系数分别为 0, 0 , 2 由于该方程组为严格三角形的，因此容易求解。采用回代法(back substitution).</p>
 <h4 id="系数矩阵-coefficient-matrix"><a href="#系数矩阵-coefficient-matrix" class="headerlink" title="系数矩阵(coefficient matrix)"></a>系数矩阵(coefficient matrix)</h4><p>如下方程组<br>$$<br>\left.<br>\begin{align}<br>x_1 + 2x_2 + x_3 = 3 \<br>3x_1 - x_2 - 3x_3 = -1 \<br>2x_1 + 3x_2 + x_3 = 4<br>\end{align}<br>\right. \tag{c}<br>$$<br>可以把方程组同一个以 $x_i$ 的系数为元的 $3\times3$ 的数字阵列联系起来。<br>$$<br>\left.<br>\begin{bmatrix}<br>1 &amp; 2 &amp; 1  \<br>3 &amp; -1 &amp; -3  \<br>2 &amp; 3 &amp; 1<br>\end{bmatrix}<br>\right. \tag{M}<br>$$</p>
 <p>称这个矩阵为方程组的 <strong>系数矩阵(coeffficient matrix)</strong>。简单的说，矩阵(matrix)就是一个矩形的数字阵列。一个m行和n列的矩阵称为 $ m \times n$矩阵，如果矩阵的行数和列数相等，即$m=n$，则称该矩阵为 <strong>方阵</strong> </p>
@@ -910,9 +912,8 @@
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
       tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ]
+
       }
     });
   </script>
@@ -927,8 +928,8 @@
   </script>
 
   
-    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/MathJax.js"></script>
-    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/config/TeX-AMS-MML_HTMLorMML.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
   
 
 

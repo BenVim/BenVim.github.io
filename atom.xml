@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://benvim.github.io/"/>
-  <updated>2016-03-22T01:08:53.000Z</updated>
+  <updated>2016-03-22T01:11:41.000Z</updated>
   <id>http://benvim.github.io/</id>
   
   <author>
@@ -20,11 +20,12 @@
     <link href="http://benvim.github.io/2016/03/21/math-LinearAlgebra/"/>
     <id>http://benvim.github.io/2016/03/21/math-LinearAlgebra/</id>
     <published>2016-03-21T11:23:32.000Z</published>
-    <updated>2016-03-22T01:08:53.000Z</updated>
+    <updated>2016-03-22T01:11:41.000Z</updated>
     
     <content type="html">&lt;p&gt;矩阵与方程组&lt;/p&gt;
 &lt;p&gt;求解线性方程组或许是数学问题中最重要的问题，超过75%的科学研究和工程应用中的数学问题，在某个阶段都涉及求解线性方程组。利用新的数学方法，通常可将较为复杂的问题化为线性方程组。线性方程组广泛应用于商业、经济学、社会学、生态学、人口统计学、遗传学、电子学、工程学以及物理学等领域。&lt;/p&gt;
-&lt;h2 id=&quot;1-1线性方程组&quot;&gt;&lt;a href=&quot;#1-1线性方程组&quot; class=&quot;headerlink&quot; title=&quot;1.1线性方程组&quot;&gt;&lt;/a&gt;1.1线性方程组&lt;/h2&gt;&lt;h4 id=&quot;方程组&quot;&gt;&lt;a href=&quot;#方程组&quot; class=&quot;headerlink&quot; title=&quot;方程组&quot;&gt;&lt;/a&gt;方程组&lt;/h4&gt;&lt;p&gt;$$    a_1x_1+a_2x_2+ \cdots + a_nx_n = b $$&lt;br&gt;以上的方程为含有n个未知量的线性方程，其中 $a_1$, $a_2$, $a_3$,…,$a_n$和 $b$ 为实数，$x_1$, $x_2$, … , $x_n$ 称为变量。含有 $m$ 个方程和 $n$ 个未知量的线性方程组定义为&lt;/p&gt;
+&lt;h2 id=&quot;1-1线性方程组&quot;&gt;&lt;a href=&quot;#1-1线性方程组&quot; class=&quot;headerlink&quot; title=&quot;1.1线性方程组&quot;&gt;&lt;/a&gt;1.1线性方程组&lt;/h2&gt;&lt;h4 id=&quot;方程组&quot;&gt;&lt;a href=&quot;#方程组&quot; class=&quot;headerlink&quot; title=&quot;方程组&quot;&gt;&lt;/a&gt;方程组&lt;/h4&gt;&lt;p&gt;$$&lt;br&gt;a_1x_1+a_2x_2+ \cdots + a_nx_n = b&lt;br&gt;$$&lt;/p&gt;
+&lt;p&gt;以上的方程为含有n个未知量的线性方程，其中 $a_1$, $a_2$, $a_3$,…,$a_n$和 $b$ 为实数，$x_1$, $x_2$, … , $x_n$ 称为变量。含有 $m$ 个方程和 $n$ 个未知量的线性方程组定义为&lt;/p&gt;
 &lt;p&gt;$$&lt;br&gt; \left{&lt;br&gt; \begin{matrix}&lt;br&gt;   a_{11}x&lt;em&gt;1 + a&lt;/em&gt;{12}x&lt;em&gt;2 + \cdots + a&lt;/em&gt;{1n}x&lt;em&gt;n = b1 \&lt;br&gt;   a&lt;/em&gt;{21}x&lt;em&gt;1 + a&lt;/em&gt;{22}x&lt;em&gt;2 + \cdots + a&lt;/em&gt;{2n}x&lt;em&gt;n = b2 \&lt;br&gt;   \cdots \&lt;br&gt;   a&lt;/em&gt;{m1}x&lt;em&gt;1 + a&lt;/em&gt;{m2}x&lt;em&gt;2 + \cdots + a&lt;/em&gt;{mn}x_n = bm&lt;br&gt;  \end{matrix}&lt;br&gt;  \right} \tag{1}&lt;br&gt;$$&lt;/p&gt;
 &lt;p&gt;其中 $a&lt;em&gt;{ij}$ 及 $b&lt;/em&gt;{i}$ 均为实数。（1）称为 $ m \times n $ 的线性方程组。下面几个线性方程组的例子：&lt;/p&gt;
 &lt;p&gt;$$&lt;br&gt;\left{&lt;br&gt;\begin{array}{c}&lt;br&gt;x_1 + 2x_2 = 5 \&lt;br&gt;2x_1 +3x_2 = 8&lt;br&gt;\end{array}&lt;br&gt;\right. \tag{a}&lt;br&gt;$$&lt;/p&gt;
