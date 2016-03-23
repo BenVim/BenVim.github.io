@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="ben, smoilbig" />
+  <meta name="keywords" content="php,cdn,验证码," />
 
 
 
@@ -59,15 +59,19 @@
 
 
 
-<meta name="description" content="如若初遇，不如不遇">
-<meta property="og:type" content="website">
-<meta property="og:title" content="一纸墨迹">
-<meta property="og:url" content="http://benvim.github.io/tags/wc/index.html">
+<meta name="description" content="网站为了提高各地的访问速度，都会使用CDN以增加缓存结点，来提高用户打开网站的速度，但是缓存节点会造成验证码偶然错误的情况。由于问题隐蔽性不容易被发现，在本地测试和未使用CDN的情况下是正常的。使用CDN后也不会立即出现，只是部分用户出现异常，所以很难发现。
+1.问题现像今天网站突然所有需要验证码的地方都提示验证码错误无法操作。开始以为是centos服务器的session不能写入了，查看了sess">
+<meta property="og:type" content="article">
+<meta property="og:title" content="添加CND后的验证码错误问题及其解决方案">
+<meta property="og:url" content="http://benvim.github.io/2016/03/22/php-cdn/index.html">
 <meta property="og:site_name" content="一纸墨迹">
-<meta property="og:description" content="如若初遇，不如不遇">
+<meta property="og:description" content="网站为了提高各地的访问速度，都会使用CDN以增加缓存结点，来提高用户打开网站的速度，但是缓存节点会造成验证码偶然错误的情况。由于问题隐蔽性不容易被发现，在本地测试和未使用CDN的情况下是正常的。使用CDN后也不会立即出现，只是部分用户出现异常，所以很难发现。
+1.问题现像今天网站突然所有需要验证码的地方都提示验证码错误无法操作。开始以为是centos服务器的session不能写入了，查看了sess">
+<meta property="og:updated_time" content="2016-03-22T13:23:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一纸墨迹">
-<meta name="twitter:description" content="如若初遇，不如不遇">
+<meta name="twitter:title" content="添加CND后的验证码错误问题及其解决方案">
+<meta name="twitter:description" content="网站为了提高各地的访问速度，都会使用CDN以增加缓存结点，来提高用户打开网站的速度，但是缓存节点会造成验证码偶然错误的情况。由于问题隐蔽性不容易被发现，在本地测试和未使用CDN的情况下是正常的。使用CDN后也不会立即出现，只是部分用户出现异常，所以很难发现。
+1.问题现像今天网站突然所有需要验证码的地方都提示验证码错误无法操作。开始以为是centos服务器的session不能写入了，查看了sess">
 
 
 
@@ -85,7 +89,7 @@
   };
 </script>
 
-  <title> 标签: wc | 一纸墨迹 </title>
+  <title> 添加CND后的验证码错误问题及其解决方案 | 一纸墨迹 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -121,7 +125,7 @@
   
   
 
-  <div class="container one-collumn   ">
+  <div class="container one-collumn  page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -249,53 +253,212 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        wc
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                添加CND后的验证码错误问题及其解决方案
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-22T20:15:00+08:00" content="2016-03-22">
+              2016-03-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/22/php-cdn/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/22/php-cdn/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+          
+
+          
+          
+             <span id="/2016/03/22/php-cdn/" class="leancloud_visitors" data-flag-title="添加CND后的验证码错误问题及其解决方案">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <p>网站为了提高各地的访问速度，都会使用CDN以增加缓存结点，来提高用户打开网站的速度，但是缓存节点会造成验证码偶然错误的情况。由于问题隐蔽性不容易被发现，在本地测试和未使用CDN的情况下是正常的。使用CDN后也不会立即出现，只是部分用户出现异常，所以很难发现。</p>
+<h5 id="1-问题现像"><a href="#1-问题现像" class="headerlink" title="1.问题现像"></a>1.问题现像</h5><p>今天网站突然所有需要验证码的地方都提示验证码错误无法操作。开始以为是centos服务器的session不能写入了，查看了session目录，权限正常，能正常写入session。重启服务器，问题依然存在。</p>
+<h5 id="2-排查问题"><a href="#2-排查问题" class="headerlink" title="2.排查问题"></a>2.排查问题</h5><p>发现每次验证码请求一次，在服务端的session却被写了2次或3次。修改session写入代码。<code>$_SERVER[&#39;HTTP_X_FORWARDED_FOR&#39;]</code> 获取用户的IP地址。</p>
+<pre><code>session(&apos;captcha&apos;.$_SERVER[&apos;HTTP_X_RORWARDED_FOR&apos;], md5($code));
+</code></pre><p>查看session文件写入内容如下：</p>
+<pre><code>captcha122.228.74.137|s:32:&quot;d465f14a648b3d0a1faa6f447e526c60&quot;;captcha183.155.217.251|s:32:&quot;e069ea4c9c233d36ff9c7f329bc08ff1&quot;;
+</code></pre><p>一次刷新请求，有多个IP请求并生成session，本地的ip:183.115.217.251.另外的IP则应该是CDN缓存服务器的IP地址。所以这是造成验证码不一致的根本原因。</p>
+<h5 id="3-解决办法"><a href="#3-解决办法" class="headerlink" title="3.解决办法"></a>3.解决办法</h5><p>给验证码生成的部分写入session位置增加IP地址的has值。如下所示：</p>
+<pre><code>session(&apos;captcha&apos;.md5($_SERVER[&apos;HTTP_X_FORWARDED_FOR&apos;]), md5($code));
+</code></pre><p>验证部分，取出写入的session. 其中<code>getIPAderss()</code>方法是获取本地IP的方法，这样取出同一个验证码，保证服务端的session验证码记录和填写的验证码一致。</p>
+<pre><code>if(session(&apos;captcha&apos;.md5(getIPAderss())) != md5($captcha)){
+    ....
+}
+</code></pre><p>了解问题产生的根本原因后，解决办法还是比较容易的。</p>
 
-      <h1 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2015/10/02/codeTech-wc/" itemprop="url">
-              
-                <span itemprop="name">使用命令行wc命令统计代码行数</span>
-              
-            </a>
-        
-      </h1>
+      
+    </div>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-10-02T12:12:32+08:00"
-              content="2015-10-02" >
-          10-02
-        </time>
-      </div>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/php/" rel="tag">#php</a>
+          
+            <a href="/tags/cdn/" rel="tag">#cdn</a>
+          
+            <a href="/tags/验证码/" rel="tag">#验证码</a>
+          
+        </div>
+      
 
-    </header>
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/21/math-LinearAlgebra/" rel="next" title="矩阵与方程组">
+                <i class="fa fa-chevron-left"></i> 矩阵与方程组
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/23/js-call-apply-bind/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
 
 
           </div>
           
 
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/03/22/php-cdn/"
+           data-title="添加CND后的验证码错误问题及其解决方案" data-url="http://benvim.github.io/2016/03/22/php-cdn/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -315,8 +478,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar.jpg"
@@ -416,6 +588,23 @@
       </section>
 
       
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-问题现像"><span class="nav-number">1.</span> <span class="nav-text">1.问题现像</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-排查问题"><span class="nav-number">2.</span> <span class="nav-text">2.排查问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-解决办法"><span class="nav-number">3.</span> <span class="nav-text">3.解决办法</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
 
     </div>
   </aside>
@@ -511,6 +700,167 @@
 
 
   
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.scheme !== 'Pisces' && (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always')) {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
 
   
 

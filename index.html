@@ -273,6 +273,266 @@
             
               
                 
+                <a class="post-title-link" href="/2016/03/23/js-call-apply-bind/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-23T12:32:41+08:00" content="2016-03-23">
+              2016-03-23
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/23/js-call-apply-bind/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/23/js-call-apply-bind/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+          
+
+          
+          
+             <span id="/2016/03/23/js-call-apply-bind/" class="leancloud_visitors" data-flag-title="">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>JS的call()方法、apply()与 bind()方法详解</p>
+<p>call是函数的函数。用来改变函数作用域的。<br>110.jpg<br>通过fun()的方法调用，他的作用域是全局的，我可以通过call改变fun的作用域。让他的this对应到obj上</p>
+<p>因为本身在fun定义和外面的全局域里都没有定义a<br>就差不多给OBJ增加了FUN方法?<br>不是,obj还是没有fun这个方法<br>在调用fun的时候，把this变成了obj，所以那句console.log(this.a); 你可以理解成console.log(obj.a); </p>
+<p>112.jpg<br>这个就是它的用途了</p>
+<p>方法的this对象是什么其实是看你有没有在对象上调用方法。</p>
+<p>如果在obj.fun()上调用就是那个obj，如果把obj.fun赋值给一个变量，因为没有用.去调用，所以他的this指向了window</p>
+<p>比如你把一个对象的fun作为回调传到另外一个方法里去，它的this对象就会丢失，变成了window</p>
+<p>所以这个时候就需要把obj对象也一并传到另外一个方法里通过fun.call(obj)去调用，确保他的作用域还是那个obj</p>
+<p>call和apply其实非常像，只是在传入参数时有差别。</p>
+<p>113.jpg</p>
+<p>call是像我们常规调用参数那样，一个一个的传入进去<br>而apply就是把参数变成一个数组传进去</p>
+<p>114.jpg</p>
+<p>bind的区别是这样的，也可以改变作用域，但是他会返回一个新的函数<br>但是你也可以在bind的时候强制使用指定的参数，在调用的时候它就会用bind指定的那个参数了。</p>
+<p>如果你只是fun.bind(this)的话，那返回的那个newFun不管你怎么调用，它的作用域都是bind传进去的第一个参数</p>
+<p>相当是干涉了参数的值,如果在bind不传入任何的参数，调用还是会用传入的参数</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/22/php-cdn/" itemprop="url">
+                  添加CND后的验证码错误问题及其解决方案
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-22T20:15:00+08:00" content="2016-03-22">
+              2016-03-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/22/php-cdn/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/22/php-cdn/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+          
+
+          
+          
+             <span id="/2016/03/22/php-cdn/" class="leancloud_visitors" data-flag-title="添加CND后的验证码错误问题及其解决方案">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>网站为了提高各地的访问速度，都会使用CDN以增加缓存结点，来提高用户打开网站的速度，但是缓存节点会造成验证码偶然错误的情况。由于问题隐蔽性不容易被发现，在本地测试和未使用CDN的情况下是正常的。使用CDN后也不会立即出现，只是部分用户出现异常，所以很难发现。</p>
+<h5 id="1-问题现像"><a href="#1-问题现像" class="headerlink" title="1.问题现像"></a>1.问题现像</h5><p>今天网站突然所有需要验证码的地方都提示验证码错误无法操作。开始以为是centos服务器的session不能写入了，查看了session目录，权限正常，能正常写入session。重启服务器，问题依然存在。</p>
+<h5 id="2-排查问题"><a href="#2-排查问题" class="headerlink" title="2.排查问题"></a>2.排查问题</h5><p>发现每次验证码请求一次，在服务端的session却被写了2次或3次。修改session写入代码。<code>$_SERVER[&#39;HTTP_X_FORWARDED_FOR&#39;]</code> 获取用户的IP地址。</p>
+<pre><code>session(&apos;captcha&apos;.$_SERVER[&apos;HTTP_X_RORWARDED_FOR&apos;], md5($code));
+</code></pre><p>查看session文件写入内容如下：</p>
+<pre><code>captcha122.228.74.137|s:32:&quot;d465f14a648b3d0a1faa6f447e526c60&quot;;captcha183.155.217.251|s:32:&quot;e069ea4c9c233d36ff9c7f329bc08ff1&quot;;
+</code></pre><p>一次刷新请求，有多个IP请求并生成session，本地的ip:183.115.217.251.另外的IP则应该是CDN缓存服务器的IP地址。所以这是造成验证码不一致的根本原因。</p>
+<h5 id="3-解决办法"><a href="#3-解决办法" class="headerlink" title="3.解决办法"></a>3.解决办法</h5><p>给验证码生成的部分写入session位置增加IP地址的has值。如下所示：</p>
+<pre><code>session(&apos;captcha&apos;.md5($_SERVER[&apos;HTTP_X_FORWARDED_FOR&apos;]), md5($code));
+</code></pre><p>验证部分，取出写入的session. 其中<code>getIPAderss()</code>方法是获取本地IP的方法，这样取出同一个验证码，保证服务端的session验证码记录和填写的验证码一致。</p>
+<pre><code>if(session(&apos;captcha&apos;.md5(getIPAderss())) != md5($captcha)){
+    ....
+}
+</code></pre><p>了解问题产生的根本原因后，解决办法还是比较容易的。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/03/21/math-LinearAlgebra/" itemprop="url">
                   矩阵与方程组
                 </a>
@@ -355,26 +615,17 @@
           
             <p>矩阵与方程组</p>
 <p>求解线性方程组或许是数学问题中最重要的问题，超过75%的科学研究和工程应用中的数学问题，在某个阶段都涉及求解线性方程组。利用新的数学方法，通常可将较为复杂的问题化为线性方程组。线性方程组广泛应用于商业、经济学、社会学、生态学、人口统计学、遗传学、电子学、工程学以及物理学等领域。</p>
-<h2 id="1-1线性方程组"><a href="#1-1线性方程组" class="headerlink" title="1.1线性方程组"></a>1.1线性方程组</h2><h4 id="方程组"><a href="#方程组" class="headerlink" title="方程组"></a>方程组</h4><p>$$<br>a_1x_1+a_2x_2+ \cdots + a_nx_n = b<br>$$</p>
-<p>以上的方程为含有n个未知量的线性方程，其中 $a_1, a_2, a_3,…,a_n $ 和b为实数，$x_1, x_2, … , x_n$ 称为变量。含有 m 个方程和 n 个未知量的线性方程组定义为</p>
-<p>$$\left{<br> \begin{matrix}<br>   a_{11}x<em>1 + a</em>{12}x<em>2 + \cdots + a</em>{1n}x<em>n = b1 \<br>   a</em>{21}x<em>1 + a</em>{22}x<em>2 + \cdots + a</em>{2n}x<em>n = b2 \<br>   \cdots \<br>   a</em>{m1}x<em>1 + a</em>{m2}x<em>2 + \cdots + a</em>{mn}x_n = bm<br>  \end{matrix}<br>  \right} \tag{1}$$</p>
-<p>其中 $a<em>{ij}$ 及 $b</em>{i}$ 均为实数。（1）称为 $ m \times n $ 的线性方程组。下面几个线性方程组的例子：</p>
+<h2 id="1-1线性方程组"><a href="#1-1线性方程组" class="headerlink" title="1.1线性方程组"></a>1.1线性方程组</h2><h4 id="方程组"><a href="#方程组" class="headerlink" title="方程组"></a>方程组</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$$	</span><br><span class="line">a_1x_1+a_2x_2+ \cdots + a_nx_n = b</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+<p>以上的方程为含有n个未知量的线性方程，其中 <figure class="highlight plain"><figcaption><span>a_2, a_3,...,a_n $ ```和b为实数，```$x_1, x_2, ... , x_n$``` 称为变量。含有 m 个方程和 n 个未知量的线性方程组定义为</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>$$\left{\begin{matrix}a_{11}x<em>1+a</em>{12}x<em>2+\cdots+a</em>{1n}x<em>n=b1\a</em>{21}x<em>1+a</em>{22}x<em>2+\cdots+a</em>{2n}x<em>n=b2\\cdots\a</em>{m1}x<em>1+a</em>{m2}x<em>2+\cdots+a</em>{mn}x_n=b_m\end{matrix}\right\}\tag{1}$$<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">其中 ```$a_&#123;ij&#125;$``` 及 ```$b_&#123;i&#125;$``` 均为实数。（1）称为 ```$ m \times n $``` 的线性方程组。下面几个线性方程组的例子：</span><br></pre></td></tr></table></figure></p>
 <p>$$<br>\left{<br>\begin{array}{c}<br>x_1 + 2x_2 = 5 \<br>2x_1 +3x_2 = 8<br>\end{array}<br>\right. \tag{a}<br>$$</p>
 <p>$$<br>\left{<br>\begin{array}{c}<br>x_1 - x_2 + x_3 = 2 \<br>2x_1 + x_2 - x_3 = 4<br>\end{array}<br>\right. \tag{b}<br>$$</p>
-<p>$$<br>\left{<br>\begin{align}<br>x_1 + x_2 = 2 \<br>x_1 + x_2 = 1 \<br>x_1 = 4<br>\end{align}<br>\right. \tag{c}<br>$$</p>
-<p>方程组(a)称为 $ 2\times2 $ 的方程组，(b)称为 $ 2\times3 $的方程组，(c)称为 $ 3\times2 $的方程组。</p>
-<blockquote>
-<p>定义：若两空个含有相同变量的方程组具有相同的解集，则称它们是等价的</p>
-</blockquote>
-<h4 id="严格三角形"><a href="#严格三角形" class="headerlink" title="严格三角形"></a>严格三角形</h4><blockquote>
-<p>定义：若方程组中，第 k 个方程的前 k-1个变量的系数均为零，且 $x_k(k=1, \cdots, n)$ 的系数不为零，则称该方程组为严格三角形的(strict triangular form)</p>
-</blockquote>
-<p>严格三角形(strict triangular form)的形式如下：</p>
-<p>$$<br>\begin{align}<br>3x_1 + 2x_2 + x_3 = 1 \<br>x_2 + x_3 = 2 \<br>2x_3 = 4 \<br>\end{align} \tag {e}<br>$$</p>
-<p>方程组(e)为严格三角形，因为第二个方程中的系数分别为 0, 1, -1 且第三个方程中的系数分别为 0, 0 , 2 由于该方程组为严格三角形的，因此容易求解。采用回代法(back substitution).</p>
-<h4 id="系数矩阵-coefficient-matrix"><a href="#系数矩阵-coefficient-matrix" class="headerlink" title="系数矩阵(coefficient matrix)"></a>系数矩阵(coefficient matrix)</h4><p>如下方程组<br>$$<br>\left.<br>\begin{align}<br>x_1 + 2x_2 + x_3 = 3 \<br>3x_1 - x_2 - 3x_3 = -1 \<br>2x_1 + 3x_2 + x_3 = 4<br>\end{align}<br>\right. \tag{c}<br>$$<br>可以把方程组同一个以 $x_i$ 的系数为元的 $3\times3$ 的数字阵列联系起来。<br>$$<br>\left.<br>\begin{bmatrix}<br>1 &amp; 2 &amp; 1  \<br>3 &amp; -1 &amp; -3  \<br>2 &amp; 3 &amp; 1<br>\end{bmatrix}<br>\right. \tag{M}<br>$$</p>
-<p>称这个矩阵为方程组的 <strong>系数矩阵(coeffficient matrix)</strong>。简单的说，矩阵(matrix)就是一个矩形的数字阵列。一个m行和n列的矩阵称为 $ m \times n$矩阵，如果矩阵的行数和列数相等，即$m=n$，则称该矩阵为 <strong>方阵</strong> </p>
-<h4 id="增广矩阵-augmented-matrix"><a href="#增广矩阵-augmented-matrix" class="headerlink" title="增广矩阵(augmented matrix)"></a>增广矩阵(augmented matrix)</h4><p>如何在这个矩阵(M)的右侧添加一列方程组的右端项，可得到一个新的矩阵<br>$$<br>\left[<br>\begin{array}{@{}ccc|c@{}}<br>1 &amp; 2 &amp; 1 &amp; 3 \<br>3 &amp; -1 &amp; -3 &amp; -1 \<br>2 &amp; 3 &amp; 1 &amp; 4<br>\end{array}<br>\right] \tag{M’}<br>$$<br>称这个矩阵为方程组的 <strong>增广矩阵(augmented matrix)</strong>，一般的，当一个 $ m \times r$ 的矩阵B采用上述方法附加到一个 $m \times n$ 的矩阵A上时，相应的增广矩阵记为 $(A\mid B)$</p>
+<p>$$<br>\left{<br>\begin{align}<br>x_1 + x_2 = 2 \<br>x_1 + x_2 = 1 \<br>x_1 = 4<br>\end{align}<br>\right. \tag{c}<br>$$<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">方程组(a)称为 ```$ 2\times2 $``` 的方程组，(b)称为 ```$ 2\times3 $``` 的方程组，(c)称为 ```$ 3\times2 $``` 的方程组。</span><br><span class="line"></span><br><span class="line">&gt;定义：若两空个含有相同变量的方程组具有相同的解集，则称它们是等价的</span><br><span class="line"></span><br><span class="line">#### 严格三角形</span><br><span class="line">&gt;定义：若方程组中，第 k 个方程的前 k-1个变量的系数均为零，且 $x_k(k=1, \cdots, n)$ 的系数不为零，则称该方程组为严格三角形的(strict triangular form)</span><br><span class="line"></span><br><span class="line">严格三角形(strict triangular form)的形式如下：</span><br></pre></td></tr></table></figure></p>
+<p>$$<br>\begin{align}<br>3x_1 + 2x_2 + x_3 = 1 \<br>x_2 + x_3 = 2 \<br>2x_3 = 4 \<br>\end{align} \tag {e}<br>$$<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">方程组(e)为严格三角形，因为第二个方程中的系数分别为 0, 1, -1 且第三个方程中的系数分别为 0, 0 , 2 由于该方程组为严格三角形的，因此容易求解。采用回代法(back substitution).</span><br><span class="line"></span><br><span class="line">#### 系数矩阵(coefficient matrix)</span><br><span class="line">如下方程组</span><br></pre></td></tr></table></figure></p>
+<p>$$<br>\left.<br>\begin{align}<br>x_1 + 2x_2 + x_3 = 3 \<br>3x_1 - x_2 - 3x_3 = -1 \<br>2x_1 + 3x_2 + x_3 = 4<br>\end{align}<br>\right. \tag{c}<br>$$<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">可以把方程组同一个以 ```$x_i$``` 的系数为元的 ```$3\times3$``` 的数字阵列联系起来。</span><br></pre></td></tr></table></figure></p>
+<p>$$<br>\left.<br>\begin{bmatrix}<br>1 &amp; 2 &amp; 1  \<br>3 &amp; -1 &amp; -3  \<br>2 &amp; 3 &amp; 1<br>\end{bmatrix}<br>\right. \tag{M}<br>$$<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">称这个矩阵为方程组的 **系数矩阵(coeffficient matrix)**。简单的说，矩阵(matrix)就是一个矩形的数字阵列。一个m行和n列的矩阵称为 ```$ m \times n$``` 矩阵，如果矩阵的行数和列数相等，即$m=n$，则称该矩阵为 **方阵** </span><br><span class="line"></span><br><span class="line">#### 增广矩阵(augmented matrix)</span><br><span class="line">如何在这个矩阵(M)的右侧添加一列方程组的右端项，可得到一个新的矩阵</span><br></pre></td></tr></table></figure></p>
+<p>$$<br>\left[<br>\begin{array}{@{}ccc|c@{}}<br>1 &amp; 2 &amp; 1 &amp; 3 \<br>3 &amp; -1 &amp; -3 &amp; -1 \<br>2 &amp; 3 &amp; 1 &amp; 4<br>\end{array}<br>\right] \tag{M’}<br>$$<br>```</p>
+<p>称这个矩阵为方程组的 <strong>增广矩阵(augmented matrix)</strong>，一般的，当一个 <code>$ m \times r$</code> 的矩阵B采用上述方法附加到一个 <code>$m \times n$</code> 的矩阵A上时，相应的增广矩阵记为 $(A\mid B)$</p>
 <h4 id="解方程的方法主要有是高斯消元法的三步"><a href="#解方程的方法主要有是高斯消元法的三步" class="headerlink" title="解方程的方法主要有是高斯消元法的三步"></a>解方程的方法主要有是高斯消元法的三步</h4><p>初等行运算</p>
 <ul>
 <li>交换两行</li>
@@ -1241,244 +1492,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/07/十年/" itemprop="url">
-                  十年
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-07T20:51:39+08:00" content="2016-03-07">
-              2016-03-07
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/07/十年/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/07/十年/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-          
-
-          
-          
-             <span id="/2016/03/07/十年/" class="leancloud_visitors" data-flag-title="十年">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>昨日之事已在风中冷却，明天的回忆会不会被忘却？我想在这黑暗的城市上空飞行，看看灯火里别人的故事是否也如此的彷徨？</p>
-<p>千家灯火万家难。望着他人的幸福，徒生向往；注目他人的难处，油然怜悯。他们时而欢笑，时而落泪。因为小事而倍感幸福，因为小事而万分感伤。</p>
-<p>那些绽放如花的笑容，那些泪洒如雨的忧伤，都随着时间的流逝或被遗忘，或被掩藏。万物皆无法摆脱时间的摆弄。时间是一个随意的雕刻家，雕塑着一幕幕的喜怒哀乐。</p>
-<p>一幕无人视，繁华一曲谁人听。半生浮萍，一世漂泊，肝肠寸断，所为几何？</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/07/test/" itemprop="url">
-                  开始码字生活
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-07T13:59:30+08:00" content="2016-03-07">
-              2016-03-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/随记/" itemprop="url" rel="index">
-                    <span itemprop="name">随记</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/07/test/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/07/test/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-          
-
-          
-          
-             <span id="/2016/03/07/test/" class="leancloud_visitors" data-flag-title="开始码字生活">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>用VIM写文章不晓得会是一种什么样的体验</p>
-<p>发现个最大的问题就是输入法的切换问题，因为每次切换成VIM的正常模式，都要切换输入法，这是个很麻烦的操作，或许有更方法的操作我不晓得。</p>
-<p>$$ \begin{array}{c|lcr} n &amp; \text{Left} &amp; \text{Center} &amp; \text{Right} \ \hline 1 &amp; 0.24 &amp; 1 &amp; 125 \ 2 &amp; -1 &amp; 189 &amp; -8 \ 3 &amp; -20 &amp; 2000 &amp; 1+10i \ \end{array} $$</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1524,7 +1537,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-count">23</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1541,7 +1554,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1766,8 +1779,7 @@
   </script>
 
   
-    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/MathJax.js"></script>
-    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/config/TeX-AMS-MML_HTMLorMML.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 

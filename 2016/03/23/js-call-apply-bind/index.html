@@ -59,15 +59,22 @@
 
 
 
-<meta name="description" content="如若初遇，不如不遇">
-<meta property="og:type" content="website">
+<meta name="description" content="JS的call()方法、apply()与 bind()方法详解
+call是函数的函数。用来改变函数作用域的。110.jpg通过fun()的方法调用，他的作用域是全局的，我可以通过call改变fun的作用域。让他的this对应到obj上
+因为本身在fun定义和外面的全局域里都没有定义a就差不多给OBJ增加了FUN方法?不是,obj还是没有fun这个方法在调用fun的时候，把this变成了obj，所以">
+<meta property="og:type" content="article">
 <meta property="og:title" content="一纸墨迹">
-<meta property="og:url" content="http://benvim.github.io/tags/wc/index.html">
+<meta property="og:url" content="http://benvim.github.io/2016/03/23/js-call-apply-bind/index.html">
 <meta property="og:site_name" content="一纸墨迹">
-<meta property="og:description" content="如若初遇，不如不遇">
+<meta property="og:description" content="JS的call()方法、apply()与 bind()方法详解
+call是函数的函数。用来改变函数作用域的。110.jpg通过fun()的方法调用，他的作用域是全局的，我可以通过call改变fun的作用域。让他的this对应到obj上
+因为本身在fun定义和外面的全局域里都没有定义a就差不多给OBJ增加了FUN方法?不是,obj还是没有fun这个方法在调用fun的时候，把this变成了obj，所以">
+<meta property="og:updated_time" content="2016-03-23T04:32:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一纸墨迹">
-<meta name="twitter:description" content="如若初遇，不如不遇">
+<meta name="twitter:description" content="JS的call()方法、apply()与 bind()方法详解
+call是函数的函数。用来改变函数作用域的。110.jpg通过fun()的方法调用，他的作用域是全局的，我可以通过call改变fun的作用域。让他的this对应到obj上
+因为本身在fun定义和外面的全局域里都没有定义a就差不多给OBJ增加了FUN方法?不是,obj还是没有fun这个方法在调用fun的时候，把this变成了obj，所以">
 
 
 
@@ -85,7 +92,7 @@
   };
 </script>
 
-  <title> 标签: wc | 一纸墨迹 </title>
+  <title>  | 一纸墨迹 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -121,7 +128,7 @@
   
   
 
-  <div class="container one-collumn   ">
+  <div class="container one-collumn  page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -249,46 +256,162 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        wc
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-23T12:32:41+08:00" content="2016-03-23">
+              2016-03-23
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/23/js-call-apply-bind/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/23/js-call-apply-bind/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+          
+
+          
+          
+             <span id="/2016/03/23/js-call-apply-bind/" class="leancloud_visitors" data-flag-title="">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <p>JS的call()方法、apply()与 bind()方法详解</p>
+<p>call是函数的函数。用来改变函数作用域的。<br>110.jpg<br>通过fun()的方法调用，他的作用域是全局的，我可以通过call改变fun的作用域。让他的this对应到obj上</p>
+<p>因为本身在fun定义和外面的全局域里都没有定义a<br>就差不多给OBJ增加了FUN方法?<br>不是,obj还是没有fun这个方法<br>在调用fun的时候，把this变成了obj，所以那句console.log(this.a); 你可以理解成console.log(obj.a); </p>
+<p>112.jpg<br>这个就是它的用途了</p>
+<p>方法的this对象是什么其实是看你有没有在对象上调用方法。</p>
+<p>如果在obj.fun()上调用就是那个obj，如果把obj.fun赋值给一个变量，因为没有用.去调用，所以他的this指向了window</p>
+<p>比如你把一个对象的fun作为回调传到另外一个方法里去，它的this对象就会丢失，变成了window</p>
+<p>所以这个时候就需要把obj对象也一并传到另外一个方法里通过fun.call(obj)去调用，确保他的作用域还是那个obj</p>
+<p>call和apply其实非常像，只是在传入参数时有差别。</p>
+<p>113.jpg</p>
+<p>call是像我们常规调用参数那样，一个一个的传入进去<br>而apply就是把参数变成一个数组传进去</p>
+<p>114.jpg</p>
+<p>bind的区别是这样的，也可以改变作用域，但是他会返回一个新的函数<br>但是你也可以在bind的时候强制使用指定的参数，在调用的时候它就会用bind指定的那个参数了。</p>
+<p>如果你只是fun.bind(this)的话，那返回的那个newFun不管你怎么调用，它的作用域都是bind传进去的第一个参数</p>
+<p>相当是干涉了参数的值,如果在bind不传入任何的参数，调用还是会用传入的参数</p>
 
-      <h1 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2015/10/02/codeTech-wc/" itemprop="url">
-              
-                <span itemprop="name">使用命令行wc命令统计代码行数</span>
-              
-            </a>
-        
-      </h1>
+      
+    </div>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-10-02T12:12:32+08:00"
-              content="2015-10-02" >
-          10-02
-        </time>
-      </div>
+    <footer class="post-footer">
+      
 
-    </header>
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/22/php-cdn/" rel="next" title="添加CND后的验证码错误问题及其解决方案">
+                <i class="fa fa-chevron-left"></i> 添加CND后的验证码错误问题及其解决方案
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -296,6 +419,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/03/23/js-call-apply-bind/"
+           data-title="" data-url="http://benvim.github.io/2016/03/23/js-call-apply-bind/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -315,8 +446,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar.jpg"
@@ -416,6 +556,23 @@
       </section>
 
       
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
 
     </div>
   </aside>
@@ -511,6 +668,167 @@
 
 
   
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.scheme !== 'Pisces' && (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always')) {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
 
   
 
