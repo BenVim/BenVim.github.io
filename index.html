@@ -274,7 +274,7 @@
               
                 
                 <a class="post-title-link" href="/2016/03/23/js-call-apply-bind/" itemprop="url">
-                  未命名
+                  JS的call()方法、apply()与 bind()方法详解
                 </a>
               
             
@@ -287,11 +287,30 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-23T12:32:41+08:00" content="2016-03-23">
+            <time itemprop="dateCreated" datetime="2016-03-23T14:34:22+08:00" content="2016-03-23">
               2016-03-23
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -311,7 +330,7 @@
 
           
           
-             <span id="/2016/03/23/js-call-apply-bind/" class="leancloud_visitors" data-flag-title="">
+             <span id="/2016/03/23/js-call-apply-bind/" class="leancloud_visitors" data-flag-title="JS的call()方法、apply()与 bind()方法详解">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -334,21 +353,15 @@
       
         
           
-            <p>JS的call()方法、apply()与 bind()方法详解</p>
-<p>call是函数的函数。用来改变函数作用域的。<br>110.jpg<br>通过fun()的方法调用，他的作用域是全局的，我可以通过call改变fun的作用域。让他的this对应到obj上</p>
-<p>因为本身在fun定义和外面的全局域里都没有定义a<br>就差不多给OBJ增加了FUN方法?<br>不是,obj还是没有fun这个方法<br>在调用fun的时候，把this变成了obj，所以那句console.log(this.a); 你可以理解成console.log(obj.a); </p>
-<p>112.jpg<br>这个就是它的用途了</p>
-<p>方法的this对象是什么其实是看你有没有在对象上调用方法。</p>
-<p>如果在obj.fun()上调用就是那个obj，如果把obj.fun赋值给一个变量，因为没有用.去调用，所以他的this指向了window</p>
-<p>比如你把一个对象的fun作为回调传到另外一个方法里去，它的this对象就会丢失，变成了window</p>
-<p>所以这个时候就需要把obj对象也一并传到另外一个方法里通过fun.call(obj)去调用，确保他的作用域还是那个obj</p>
-<p>call和apply其实非常像，只是在传入参数时有差别。</p>
-<p>113.jpg</p>
-<p>call是像我们常规调用参数那样，一个一个的传入进去<br>而apply就是把参数变成一个数组传进去</p>
-<p>114.jpg</p>
-<p>bind的区别是这样的，也可以改变作用域，但是他会返回一个新的函数<br>但是你也可以在bind的时候强制使用指定的参数，在调用的时候它就会用bind指定的那个参数了。</p>
-<p>如果你只是fun.bind(this)的话，那返回的那个newFun不管你怎么调用，它的作用域都是bind传进去的第一个参数</p>
-<p>相当是干涉了参数的值,如果在bind不传入任何的参数，调用还是会用传入的参数</p>
+            <h3 id="1-call是函数的函数，用来改变函数作用域的。"><a href="#1-call是函数的函数，用来改变函数作用域的。" class="headerlink" title="1.call是函数的函数，用来改变函数作用域的。"></a>1.call是函数的函数，用来改变函数作用域的。</h3><p><img src="/uploads/110.jpg" alt="call是函数的函数"></p>
+<p>通过fun()的方法调用，他的作用域是全局的，我可以通过call改变fun的作用域。让他的this对应到obj上，因为本身在fun()定义和外面的全局域里都没有定义变量 a 。是不是感觉像是给obj增加了fun()方法？其实不是的，obj还是没有fun这个方法，在调用fun的时候，把this变成了obj，所以那句<code>console.log(this.a)</code>你可以理解成<code>console.log(obj.a);</code>。 </p>
+<h3 id="2-为什么要用call方法，或者说call方法的使用动机是什么？"><a href="#2-为什么要用call方法，或者说call方法的使用动机是什么？" class="headerlink" title="2.为什么要用call方法，或者说call方法的使用动机是什么？"></a>2.为什么要用call方法，或者说call方法的使用动机是什么？</h3><p><img src="/uploads/112.jpg" alt="call是函数的函数"></p>
+<p>看上图的输出，这个就是它的用途了，方法的this对象是什么其实是看你有没有在对象上调用方法。如果在 <code>obj.fun()</code>上调用就是那个obj，如果把<code>obj.fun</code>赋值给一个变量，因为没有用。去调用，所以他的this指向了window，比如你把一个对象的fun作为回调传到另外一个方法里去，它的this对象就会丢失，变成了指向window的对象，就失去了原本回调的意义。 <strong>所以这个时候就需要把obj对象也一并传到另外一个方法里通过fun.call(obj)去调用，确保他的作用域还是那个obj</strong></p>
+<h3 id="3-call和apply方法的区别"><a href="#3-call和apply方法的区别" class="headerlink" title="3.call和apply方法的区别"></a>3.call和apply方法的区别</h3><p>call和apply其实非常像，只是在传入 <strong>参数时有差别</strong>。</p>
+<p><img src="/uploads/113.jpg" alt="call是函数的函数"></p>
+<p>call是像我们常规调用参数那样，一个一个的传入进去，而apply就是把参数变成一个数组传进去，仅此而已。</p>
+<h3 id="4-bind方法的区别"><a href="#4-bind方法的区别" class="headerlink" title="4.bind方法的区别"></a>4.bind方法的区别</h3><p><img src="/uploads/114.jpg" alt="call是函数的函数"></p>
+<p>bind的区别是这样的，也可以改变作用域，但是他会返回一个新的函数，但是你也可以在bind的时候强制使用指定的参数，在调用的时候它就会用bind指定的那个参数了。如果你只是<code>fun.bind(this)</code>的话，那返回的那个newFun不管你怎么调用，它的作用域都是bind传进去的第一个参数，相当是干涉了参数的值，如果在bind不传入任何的参数，调用还是会用传入的参数。</p>
 
           
         
@@ -488,150 +501,6 @@
     ....
 }
 </code></pre><p>了解问题产生的根本原因后，解决办法还是比较容易的。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/21/math-LinearAlgebra/" itemprop="url">
-                  矩阵与方程组
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-21T19:23:32+08:00" content="2016-03-21">
-              2016-03-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/math/" itemprop="url" rel="index">
-                    <span itemprop="name">math</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/21/math-LinearAlgebra/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/21/math-LinearAlgebra/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-          
-
-          
-          
-             <span id="/2016/03/21/math-LinearAlgebra/" class="leancloud_visitors" data-flag-title="矩阵与方程组">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>矩阵与方程组</p>
-<p>求解线性方程组或许是数学问题中最重要的问题，超过75%的科学研究和工程应用中的数学问题，在某个阶段都涉及求解线性方程组。利用新的数学方法，通常可将较为复杂的问题化为线性方程组。线性方程组广泛应用于商业、经济学、社会学、生态学、人口统计学、遗传学、电子学、工程学以及物理学等领域。</p>
-<h2 id="1-1线性方程组"><a href="#1-1线性方程组" class="headerlink" title="1.1线性方程组"></a>1.1线性方程组</h2><h4 id="方程组"><a href="#方程组" class="headerlink" title="方程组"></a>方程组</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$$	</span><br><span class="line">a_1x_1+a_2x_2+ \cdots + a_nx_n = b</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
-<p>以上的方程为含有n个未知量的线性方程，其中 <figure class="highlight plain"><figcaption><span>a_2, a_3,...,a_n $ ```和b为实数，```$x_1, x_2, ... , x_n$``` 称为变量。含有 m 个方程和 n 个未知量的线性方程组定义为</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
-<p>$$\left{\begin{matrix}a_{11}x<em>1+a</em>{12}x<em>2+\cdots+a</em>{1n}x<em>n=b1\a</em>{21}x<em>1+a</em>{22}x<em>2+\cdots+a</em>{2n}x<em>n=b2\\cdots\a</em>{m1}x<em>1+a</em>{m2}x<em>2+\cdots+a</em>{mn}x_n=b_m\end{matrix}\right\}\tag{1}$$<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">其中 ```$a_&#123;ij&#125;$``` 及 ```$b_&#123;i&#125;$``` 均为实数。（1）称为 ```$ m \times n $``` 的线性方程组。下面几个线性方程组的例子：</span><br></pre></td></tr></table></figure></p>
-<p>$$<br>\left{<br>\begin{array}{c}<br>x_1 + 2x_2 = 5 \<br>2x_1 +3x_2 = 8<br>\end{array}<br>\right. \tag{a}<br>$$</p>
-<p>$$<br>\left{<br>\begin{array}{c}<br>x_1 - x_2 + x_3 = 2 \<br>2x_1 + x_2 - x_3 = 4<br>\end{array}<br>\right. \tag{b}<br>$$</p>
-<p>$$<br>\left{<br>\begin{align}<br>x_1 + x_2 = 2 \<br>x_1 + x_2 = 1 \<br>x_1 = 4<br>\end{align}<br>\right. \tag{c}<br>$$<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">方程组(a)称为 ```$ 2\times2 $``` 的方程组，(b)称为 ```$ 2\times3 $``` 的方程组，(c)称为 ```$ 3\times2 $``` 的方程组。</span><br><span class="line"></span><br><span class="line">&gt;定义：若两空个含有相同变量的方程组具有相同的解集，则称它们是等价的</span><br><span class="line"></span><br><span class="line">#### 严格三角形</span><br><span class="line">&gt;定义：若方程组中，第 k 个方程的前 k-1个变量的系数均为零，且 $x_k(k=1, \cdots, n)$ 的系数不为零，则称该方程组为严格三角形的(strict triangular form)</span><br><span class="line"></span><br><span class="line">严格三角形(strict triangular form)的形式如下：</span><br></pre></td></tr></table></figure></p>
-<p>$$<br>\begin{align}<br>3x_1 + 2x_2 + x_3 = 1 \<br>x_2 + x_3 = 2 \<br>2x_3 = 4 \<br>\end{align} \tag {e}<br>$$<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">方程组(e)为严格三角形，因为第二个方程中的系数分别为 0, 1, -1 且第三个方程中的系数分别为 0, 0 , 2 由于该方程组为严格三角形的，因此容易求解。采用回代法(back substitution).</span><br><span class="line"></span><br><span class="line">#### 系数矩阵(coefficient matrix)</span><br><span class="line">如下方程组</span><br></pre></td></tr></table></figure></p>
-<p>$$<br>\left.<br>\begin{align}<br>x_1 + 2x_2 + x_3 = 3 \<br>3x_1 - x_2 - 3x_3 = -1 \<br>2x_1 + 3x_2 + x_3 = 4<br>\end{align}<br>\right. \tag{c}<br>$$<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">可以把方程组同一个以 ```$x_i$``` 的系数为元的 ```$3\times3$``` 的数字阵列联系起来。</span><br></pre></td></tr></table></figure></p>
-<p>$$<br>\left.<br>\begin{bmatrix}<br>1 &amp; 2 &amp; 1  \<br>3 &amp; -1 &amp; -3  \<br>2 &amp; 3 &amp; 1<br>\end{bmatrix}<br>\right. \tag{M}<br>$$<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">称这个矩阵为方程组的 **系数矩阵(coeffficient matrix)**。简单的说，矩阵(matrix)就是一个矩形的数字阵列。一个m行和n列的矩阵称为 ```$ m \times n$``` 矩阵，如果矩阵的行数和列数相等，即$m=n$，则称该矩阵为 **方阵** </span><br><span class="line"></span><br><span class="line">#### 增广矩阵(augmented matrix)</span><br><span class="line">如何在这个矩阵(M)的右侧添加一列方程组的右端项，可得到一个新的矩阵</span><br></pre></td></tr></table></figure></p>
-<p>$$<br>\left[<br>\begin{array}{@{}ccc|c@{}}<br>1 &amp; 2 &amp; 1 &amp; 3 \<br>3 &amp; -1 &amp; -3 &amp; -1 \<br>2 &amp; 3 &amp; 1 &amp; 4<br>\end{array}<br>\right] \tag{M’}<br>$$<br>```</p>
-<p>称这个矩阵为方程组的 <strong>增广矩阵(augmented matrix)</strong>，一般的，当一个 <code>$ m \times r$</code> 的矩阵B采用上述方法附加到一个 <code>$m \times n$</code> 的矩阵A上时，相应的增广矩阵记为 $(A\mid B)$</p>
-<h4 id="解方程的方法主要有是高斯消元法的三步"><a href="#解方程的方法主要有是高斯消元法的三步" class="headerlink" title="解方程的方法主要有是高斯消元法的三步"></a>解方程的方法主要有是高斯消元法的三步</h4><p>初等行运算</p>
-<ul>
-<li>交换两行</li>
-<li>以非零实数乘以某行</li>
-<li>将某行替换为它与其它行的倍数的和</li>
-</ul>
 
           
         
@@ -1492,6 +1361,116 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/07/十年/" itemprop="url">
+                  十年
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-07T20:51:39+08:00" content="2016-03-07">
+              2016-03-07
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/07/十年/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/07/十年/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+          
+
+          
+          
+             <span id="/2016/03/07/十年/" class="leancloud_visitors" data-flag-title="十年">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>昨日之事已在风中冷却，明天的回忆会不会被忘却？我想在这黑暗的城市上空飞行，看看灯火里别人的故事是否也如此的彷徨？</p>
+<p>千家灯火万家难。望着他人的幸福，徒生向往；注目他人的难处，油然怜悯。他们时而欢笑，时而落泪。因为小事而倍感幸福，因为小事而万分感伤。</p>
+<p>那些绽放如花的笑容，那些泪洒如雨的忧伤，都随着时间的流逝或被遗忘，或被掩藏。万物皆无法摆脱时间的摆弄。时间是一个随意的雕刻家，雕塑着一幕幕的喜怒哀乐。</p>
+<p>一幕无人视，繁华一曲谁人听。半生浮萍，一世漂泊，肝肠寸断，所为几何？</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -1537,7 +1516,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-count">22</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1545,7 +1524,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1554,7 +1533,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

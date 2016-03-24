@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="ben, smoilbig" />
+  <meta name="keywords" content="js," />
 
 
 
@@ -59,22 +59,24 @@
 
 
 
-<meta name="description" content="JS的call()方法、apply()与 bind()方法详解
-call是函数的函数。用来改变函数作用域的。110.jpg通过fun()的方法调用，他的作用域是全局的，我可以通过call改变fun的作用域。让他的this对应到obj上
-因为本身在fun定义和外面的全局域里都没有定义a就差不多给OBJ增加了FUN方法?不是,obj还是没有fun这个方法在调用fun的时候，把this变成了obj，所以">
+<meta name="description" content="1.call是函数的函数，用来改变函数作用域的。
+通过fun()的方法调用，他的作用域是全局的，我可以通过call改变fun的作用域。让他的this对应到obj上，因为本身在fun()定义和外面的全局域里都没有定义变量 a 。是不是感觉像是给obj增加了fun()方法？其实不是的，obj还是没有fun这个方法，在调用fun的时候，把this变成了obj，所以那句console.log(this.a">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一纸墨迹">
+<meta property="og:title" content="JS的call()方法、apply()与 bind()方法详解">
 <meta property="og:url" content="http://benvim.github.io/2016/03/23/js-call-apply-bind/index.html">
 <meta property="og:site_name" content="一纸墨迹">
-<meta property="og:description" content="JS的call()方法、apply()与 bind()方法详解
-call是函数的函数。用来改变函数作用域的。110.jpg通过fun()的方法调用，他的作用域是全局的，我可以通过call改变fun的作用域。让他的this对应到obj上
-因为本身在fun定义和外面的全局域里都没有定义a就差不多给OBJ增加了FUN方法?不是,obj还是没有fun这个方法在调用fun的时候，把this变成了obj，所以">
-<meta property="og:updated_time" content="2016-03-23T04:32:41.000Z">
+<meta property="og:description" content="1.call是函数的函数，用来改变函数作用域的。
+通过fun()的方法调用，他的作用域是全局的，我可以通过call改变fun的作用域。让他的this对应到obj上，因为本身在fun()定义和外面的全局域里都没有定义变量 a 。是不是感觉像是给obj增加了fun()方法？其实不是的，obj还是没有fun这个方法，在调用fun的时候，把this变成了obj，所以那句console.log(this.a">
+<meta property="og:image" content="http://benvim.github.io/uploads/110.jpg">
+<meta property="og:image" content="http://benvim.github.io/uploads/112.jpg">
+<meta property="og:image" content="http://benvim.github.io/uploads/113.jpg">
+<meta property="og:image" content="http://benvim.github.io/uploads/114.jpg">
+<meta property="og:updated_time" content="2016-03-24T00:43:03.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一纸墨迹">
-<meta name="twitter:description" content="JS的call()方法、apply()与 bind()方法详解
-call是函数的函数。用来改变函数作用域的。110.jpg通过fun()的方法调用，他的作用域是全局的，我可以通过call改变fun的作用域。让他的this对应到obj上
-因为本身在fun定义和外面的全局域里都没有定义a就差不多给OBJ增加了FUN方法?不是,obj还是没有fun这个方法在调用fun的时候，把this变成了obj，所以">
+<meta name="twitter:title" content="JS的call()方法、apply()与 bind()方法详解">
+<meta name="twitter:description" content="1.call是函数的函数，用来改变函数作用域的。
+通过fun()的方法调用，他的作用域是全局的，我可以通过call改变fun的作用域。让他的this对应到obj上，因为本身在fun()定义和外面的全局域里都没有定义变量 a 。是不是感觉像是给obj增加了fun()方法？其实不是的，obj还是没有fun这个方法，在调用fun的时候，把this变成了obj，所以那句console.log(this.a">
+<meta name="twitter:image" content="http://benvim.github.io/uploads/110.jpg">
 
 
 
@@ -92,7 +94,7 @@ call是函数的函数。用来改变函数作用域的。110.jpg通过fun()的�
   };
 </script>
 
-  <title>  | 一纸墨迹 </title>
+  <title> JS的call()方法、apply()与 bind()方法详解 | 一纸墨迹 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -277,7 +279,7 @@ call是函数的函数。用来改变函数作用域的。110.jpg通过fun()的�
             
             
               
-                
+                JS的call()方法、apply()与 bind()方法详解
               
             
           </h1>
@@ -289,11 +291,30 @@ call是函数的函数。用来改变函数作用域的。110.jpg通过fun()的�
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-23T12:32:41+08:00" content="2016-03-23">
+            <time itemprop="dateCreated" datetime="2016-03-23T14:34:22+08:00" content="2016-03-23">
               2016-03-23
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -313,7 +334,7 @@ call是函数的函数。用来改变函数作用域的。110.jpg通过fun()的�
 
           
           
-             <span id="/2016/03/23/js-call-apply-bind/" class="leancloud_visitors" data-flag-title="">
+             <span id="/2016/03/23/js-call-apply-bind/" class="leancloud_visitors" data-flag-title="JS的call()方法、apply()与 bind()方法详解">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -334,21 +355,15 @@ call是函数的函数。用来改变函数作用域的。110.jpg通过fun()的�
       
 
       
-        <p>JS的call()方法、apply()与 bind()方法详解</p>
-<p>call是函数的函数。用来改变函数作用域的。<br>110.jpg<br>通过fun()的方法调用，他的作用域是全局的，我可以通过call改变fun的作用域。让他的this对应到obj上</p>
-<p>因为本身在fun定义和外面的全局域里都没有定义a<br>就差不多给OBJ增加了FUN方法?<br>不是,obj还是没有fun这个方法<br>在调用fun的时候，把this变成了obj，所以那句console.log(this.a); 你可以理解成console.log(obj.a); </p>
-<p>112.jpg<br>这个就是它的用途了</p>
-<p>方法的this对象是什么其实是看你有没有在对象上调用方法。</p>
-<p>如果在obj.fun()上调用就是那个obj，如果把obj.fun赋值给一个变量，因为没有用.去调用，所以他的this指向了window</p>
-<p>比如你把一个对象的fun作为回调传到另外一个方法里去，它的this对象就会丢失，变成了window</p>
-<p>所以这个时候就需要把obj对象也一并传到另外一个方法里通过fun.call(obj)去调用，确保他的作用域还是那个obj</p>
-<p>call和apply其实非常像，只是在传入参数时有差别。</p>
-<p>113.jpg</p>
-<p>call是像我们常规调用参数那样，一个一个的传入进去<br>而apply就是把参数变成一个数组传进去</p>
-<p>114.jpg</p>
-<p>bind的区别是这样的，也可以改变作用域，但是他会返回一个新的函数<br>但是你也可以在bind的时候强制使用指定的参数，在调用的时候它就会用bind指定的那个参数了。</p>
-<p>如果你只是fun.bind(this)的话，那返回的那个newFun不管你怎么调用，它的作用域都是bind传进去的第一个参数</p>
-<p>相当是干涉了参数的值,如果在bind不传入任何的参数，调用还是会用传入的参数</p>
+        <h3 id="1-call是函数的函数，用来改变函数作用域的。"><a href="#1-call是函数的函数，用来改变函数作用域的。" class="headerlink" title="1.call是函数的函数，用来改变函数作用域的。"></a>1.call是函数的函数，用来改变函数作用域的。</h3><p><img src="/uploads/110.jpg" alt="call是函数的函数"></p>
+<p>通过fun()的方法调用，他的作用域是全局的，我可以通过call改变fun的作用域。让他的this对应到obj上，因为本身在fun()定义和外面的全局域里都没有定义变量 a 。是不是感觉像是给obj增加了fun()方法？其实不是的，obj还是没有fun这个方法，在调用fun的时候，把this变成了obj，所以那句<code>console.log(this.a)</code>你可以理解成<code>console.log(obj.a);</code>。 </p>
+<h3 id="2-为什么要用call方法，或者说call方法的使用动机是什么？"><a href="#2-为什么要用call方法，或者说call方法的使用动机是什么？" class="headerlink" title="2.为什么要用call方法，或者说call方法的使用动机是什么？"></a>2.为什么要用call方法，或者说call方法的使用动机是什么？</h3><p><img src="/uploads/112.jpg" alt="call是函数的函数"></p>
+<p>看上图的输出，这个就是它的用途了，方法的this对象是什么其实是看你有没有在对象上调用方法。如果在 <code>obj.fun()</code>上调用就是那个obj，如果把<code>obj.fun</code>赋值给一个变量，因为没有用。去调用，所以他的this指向了window，比如你把一个对象的fun作为回调传到另外一个方法里去，它的this对象就会丢失，变成了指向window的对象，就失去了原本回调的意义。 <strong>所以这个时候就需要把obj对象也一并传到另外一个方法里通过fun.call(obj)去调用，确保他的作用域还是那个obj</strong></p>
+<h3 id="3-call和apply方法的区别"><a href="#3-call和apply方法的区别" class="headerlink" title="3.call和apply方法的区别"></a>3.call和apply方法的区别</h3><p>call和apply其实非常像，只是在传入 <strong>参数时有差别</strong>。</p>
+<p><img src="/uploads/113.jpg" alt="call是函数的函数"></p>
+<p>call是像我们常规调用参数那样，一个一个的传入进去，而apply就是把参数变成一个数组传进去，仅此而已。</p>
+<h3 id="4-bind方法的区别"><a href="#4-bind方法的区别" class="headerlink" title="4.bind方法的区别"></a>4.bind方法的区别</h3><p><img src="/uploads/114.jpg" alt="call是函数的函数"></p>
+<p>bind的区别是这样的，也可以改变作用域，但是他会返回一个新的函数，但是你也可以在bind的时候强制使用指定的参数，在调用的时候它就会用bind指定的那个参数了。如果你只是<code>fun.bind(this)</code>的话，那返回的那个newFun不管你怎么调用，它的作用域都是bind传进去的第一个参数，相当是干涉了参数的值，如果在bind不传入任何的参数，调用还是会用传入的参数。</p>
 
       
     </div>
@@ -360,6 +375,12 @@ call是函数的函数。用来改变函数作用域的。110.jpg通过fun()的�
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js/" rel="tag">#js</a>
+          
+        </div>
       
 
       
@@ -417,12 +438,15 @@ call是函数的函数。用来改变函数作用域的。110.jpg通过fun()的�
           </div>
           
 
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
 
           
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2016/03/23/js-call-apply-bind/"
-           data-title="" data-url="http://benvim.github.io/2016/03/23/js-call-apply-bind/">
+           data-title="JS的call()方法、apply()与 bind()方法详解" data-url="http://benvim.github.io/2016/03/23/js-call-apply-bind/">
       </div>
     
   </div>
@@ -467,7 +491,7 @@ call是函数的函数。用来改变函数作用域的。110.jpg通过fun()的�
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-count">22</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -475,7 +499,7 @@ call是函数的函数。用来改变函数作用域的。110.jpg通过fun()的�
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -484,7 +508,7 @@ call是函数的函数。用来改变函数作用域的。110.jpg通过fun()的�
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -565,7 +589,7 @@ call是函数的函数。用来改变函数作用域的。110.jpg通过fun()的�
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-call是函数的函数，用来改变函数作用域的。"><span class="nav-number">1.</span> <span class="nav-text">1.call是函数的函数，用来改变函数作用域的。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-为什么要用call方法，或者说call方法的使用动机是什么？"><span class="nav-number">2.</span> <span class="nav-text">2.为什么要用call方法，或者说call方法的使用动机是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-call和apply方法的区别"><span class="nav-number">3.</span> <span class="nav-text">3.call和apply方法的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-bind方法的区别"><span class="nav-number">4.</span> <span class="nav-text">4.bind方法的区别</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

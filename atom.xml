@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://benvim.github.io/"/>
-  <updated>2016-03-23T04:32:41.000Z</updated>
+  <updated>2016-03-24T00:43:03.000Z</updated>
   <id>http://benvim.github.io/</id>
   
   <author>
@@ -16,37 +16,33 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
+    <title>JS的call()方法、apply()与 bind()方法详解</title>
     <link href="http://benvim.github.io/2016/03/23/js-call-apply-bind/"/>
     <id>http://benvim.github.io/2016/03/23/js-call-apply-bind/</id>
-    <published>2016-03-23T04:32:41.000Z</published>
-    <updated>2016-03-23T04:32:41.000Z</updated>
+    <published>2016-03-23T06:34:22.000Z</published>
+    <updated>2016-03-24T00:43:03.000Z</updated>
     
-    <content type="html">&lt;p&gt;JS的call()方法、apply()与 bind()方法详解&lt;/p&gt;
-&lt;p&gt;call是函数的函数。用来改变函数作用域的。&lt;br&gt;110.jpg&lt;br&gt;通过fun()的方法调用，他的作用域是全局的，我可以通过call改变fun的作用域。让他的this对应到obj上&lt;/p&gt;
-&lt;p&gt;因为本身在fun定义和外面的全局域里都没有定义a&lt;br&gt;就差不多给OBJ增加了FUN方法?&lt;br&gt;不是,obj还是没有fun这个方法&lt;br&gt;在调用fun的时候，把this变成了obj，所以那句console.log(this.a); 你可以理解成console.log(obj.a); &lt;/p&gt;
-&lt;p&gt;112.jpg&lt;br&gt;这个就是它的用途了&lt;/p&gt;
-&lt;p&gt;方法的this对象是什么其实是看你有没有在对象上调用方法。&lt;/p&gt;
-&lt;p&gt;如果在obj.fun()上调用就是那个obj，如果把obj.fun赋值给一个变量，因为没有用.去调用，所以他的this指向了window&lt;/p&gt;
-&lt;p&gt;比如你把一个对象的fun作为回调传到另外一个方法里去，它的this对象就会丢失，变成了window&lt;/p&gt;
-&lt;p&gt;所以这个时候就需要把obj对象也一并传到另外一个方法里通过fun.call(obj)去调用，确保他的作用域还是那个obj&lt;/p&gt;
-&lt;p&gt;call和apply其实非常像，只是在传入参数时有差别。&lt;/p&gt;
-&lt;p&gt;113.jpg&lt;/p&gt;
-&lt;p&gt;call是像我们常规调用参数那样，一个一个的传入进去&lt;br&gt;而apply就是把参数变成一个数组传进去&lt;/p&gt;
-&lt;p&gt;114.jpg&lt;/p&gt;
-&lt;p&gt;bind的区别是这样的，也可以改变作用域，但是他会返回一个新的函数&lt;br&gt;但是你也可以在bind的时候强制使用指定的参数，在调用的时候它就会用bind指定的那个参数了。&lt;/p&gt;
-&lt;p&gt;如果你只是fun.bind(this)的话，那返回的那个newFun不管你怎么调用，它的作用域都是bind传进去的第一个参数&lt;/p&gt;
-&lt;p&gt;相当是干涉了参数的值,如果在bind不传入任何的参数，调用还是会用传入的参数&lt;/p&gt;
+    <content type="html">&lt;h3 id=&quot;1-call是函数的函数，用来改变函数作用域的。&quot;&gt;&lt;a href=&quot;#1-call是函数的函数，用来改变函数作用域的。&quot; class=&quot;headerlink&quot; title=&quot;1.call是函数的函数，用来改变函数作用域的。&quot;&gt;&lt;/a&gt;1.call是函数的函数，用来改变函数作用域的。&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;/uploads/110.jpg&quot; alt=&quot;call是函数的函数&quot;&gt;&lt;/p&gt;
+&lt;p&gt;通过fun()的方法调用，他的作用域是全局的，我可以通过call改变fun的作用域。让他的this对应到obj上，因为本身在fun()定义和外面的全局域里都没有定义变量 a 。是不是感觉像是给obj增加了fun()方法？其实不是的，obj还是没有fun这个方法，在调用fun的时候，把this变成了obj，所以那句&lt;code&gt;console.log(this.a)&lt;/code&gt;你可以理解成&lt;code&gt;console.log(obj.a);&lt;/code&gt;。 &lt;/p&gt;
+&lt;h3 id=&quot;2-为什么要用call方法，或者说call方法的使用动机是什么？&quot;&gt;&lt;a href=&quot;#2-为什么要用call方法，或者说call方法的使用动机是什么？&quot; class=&quot;headerlink&quot; title=&quot;2.为什么要用call方法，或者说call方法的使用动机是什么？&quot;&gt;&lt;/a&gt;2.为什么要用call方法，或者说call方法的使用动机是什么？&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;/uploads/112.jpg&quot; alt=&quot;call是函数的函数&quot;&gt;&lt;/p&gt;
+&lt;p&gt;看上图的输出，这个就是它的用途了，方法的this对象是什么其实是看你有没有在对象上调用方法。如果在 &lt;code&gt;obj.fun()&lt;/code&gt;上调用就是那个obj，如果把&lt;code&gt;obj.fun&lt;/code&gt;赋值给一个变量，因为没有用。去调用，所以他的this指向了window，比如你把一个对象的fun作为回调传到另外一个方法里去，它的this对象就会丢失，变成了指向window的对象，就失去了原本回调的意义。 &lt;strong&gt;所以这个时候就需要把obj对象也一并传到另外一个方法里通过fun.call(obj)去调用，确保他的作用域还是那个obj&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&quot;3-call和apply方法的区别&quot;&gt;&lt;a href=&quot;#3-call和apply方法的区别&quot; class=&quot;headerlink&quot; title=&quot;3.call和apply方法的区别&quot;&gt;&lt;/a&gt;3.call和apply方法的区别&lt;/h3&gt;&lt;p&gt;call和apply其实非常像，只是在传入 &lt;strong&gt;参数时有差别&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/uploads/113.jpg&quot; alt=&quot;call是函数的函数&quot;&gt;&lt;/p&gt;
+&lt;p&gt;call是像我们常规调用参数那样，一个一个的传入进去，而apply就是把参数变成一个数组传进去，仅此而已。&lt;/p&gt;
+&lt;h3 id=&quot;4-bind方法的区别&quot;&gt;&lt;a href=&quot;#4-bind方法的区别&quot; class=&quot;headerlink&quot; title=&quot;4.bind方法的区别&quot;&gt;&lt;/a&gt;4.bind方法的区别&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;/uploads/114.jpg&quot; alt=&quot;call是函数的函数&quot;&gt;&lt;/p&gt;
+&lt;p&gt;bind的区别是这样的，也可以改变作用域，但是他会返回一个新的函数，但是你也可以在bind的时候强制使用指定的参数，在调用的时候它就会用bind指定的那个参数了。如果你只是&lt;code&gt;fun.bind(this)&lt;/code&gt;的话，那返回的那个newFun不管你怎么调用，它的作用域都是bind传进去的第一个参数，相当是干涉了参数的值，如果在bind不传入任何的参数，调用还是会用传入的参数。&lt;/p&gt;
 </content>
     
     <summary type="html">
     
-      &lt;p&gt;JS的call()方法、apply()与 bind()方法详解&lt;/p&gt;
-&lt;p&gt;call是函数的函数。用来改变函数作用域的。&lt;br&gt;110.jpg&lt;br&gt;通过fun()的方法调用，他的作用域是全局的，我可以通过call改变fun的作用域。让他的this对应到obj上&lt;/p&gt;
-
+      &lt;h3 id=&quot;1-call是函数的函数，用来改变函数作用域的。&quot;&gt;&lt;a href=&quot;#1-call是函数的函数，用来改变函数作用域的。&quot; class=&quot;headerlink&quot; title=&quot;1.call是函数的函数，用来改变函数作用域的。&quot;&gt;&lt;/a&gt;1.call是函数的函数，用
     
     </summary>
     
+      <category term="js" scheme="http://benvim.github.io/categories/js/"/>
+    
+    
+      <category term="js" scheme="http://benvim.github.io/tags/js/"/>
     
   </entry>
   
@@ -88,48 +84,6 @@
       <category term="cdn" scheme="http://benvim.github.io/tags/cdn/"/>
     
       <category term="验证码" scheme="http://benvim.github.io/tags/%E9%AA%8C%E8%AF%81%E7%A0%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>矩阵与方程组</title>
-    <link href="http://benvim.github.io/2016/03/21/math-LinearAlgebra/"/>
-    <id>http://benvim.github.io/2016/03/21/math-LinearAlgebra/</id>
-    <published>2016-03-21T11:23:32.000Z</published>
-    <updated>2016-03-23T15:17:58.000Z</updated>
-    
-    <content type="html">&lt;p&gt;矩阵与方程组&lt;/p&gt;
-&lt;p&gt;求解线性方程组或许是数学问题中最重要的问题，超过75%的科学研究和工程应用中的数学问题，在某个阶段都涉及求解线性方程组。利用新的数学方法，通常可将较为复杂的问题化为线性方程组。线性方程组广泛应用于商业、经济学、社会学、生态学、人口统计学、遗传学、电子学、工程学以及物理学等领域。&lt;/p&gt;
-&lt;h2 id=&quot;1-1线性方程组&quot;&gt;&lt;a href=&quot;#1-1线性方程组&quot; class=&quot;headerlink&quot; title=&quot;1.1线性方程组&quot;&gt;&lt;/a&gt;1.1线性方程组&lt;/h2&gt;&lt;h4 id=&quot;方程组&quot;&gt;&lt;a href=&quot;#方程组&quot; class=&quot;headerlink&quot; title=&quot;方程组&quot;&gt;&lt;/a&gt;方程组&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$$	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;a_1x_1+a_2x_2+ \cdots + a_nx_n = b&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$$&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;以上的方程为含有n个未知量的线性方程，其中 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;figcaption&gt;&lt;span&gt;a_2, a_3,...,a_n $ ```和b为实数，```$x_1, x_2, ... , x_n$``` 称为变量。含有 m 个方程和 n 个未知量的线性方程组定义为&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;$$\left{\begin{matrix}a_{11}x&lt;em&gt;1+a&lt;/em&gt;{12}x&lt;em&gt;2+\cdots+a&lt;/em&gt;{1n}x&lt;em&gt;n=b1\a&lt;/em&gt;{21}x&lt;em&gt;1+a&lt;/em&gt;{22}x&lt;em&gt;2+\cdots+a&lt;/em&gt;{2n}x&lt;em&gt;n=b2\\cdots\a&lt;/em&gt;{m1}x&lt;em&gt;1+a&lt;/em&gt;{m2}x&lt;em&gt;2+\cdots+a&lt;/em&gt;{mn}x_n=b_m\end{matrix}\right\}\tag{1}$$&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;其中 ```$a_&amp;#123;ij&amp;#125;$``` 及 ```$b_&amp;#123;i&amp;#125;$``` 均为实数。（1）称为 ```$ m \times n $``` 的线性方程组。下面几个线性方程组的例子：&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;$$&lt;br&gt;\left{&lt;br&gt;\begin{array}{c}&lt;br&gt;x_1 + 2x_2 = 5 \&lt;br&gt;2x_1 +3x_2 = 8&lt;br&gt;\end{array}&lt;br&gt;\right. \tag{a}&lt;br&gt;$$&lt;/p&gt;
-&lt;p&gt;$$&lt;br&gt;\left{&lt;br&gt;\begin{array}{c}&lt;br&gt;x_1 - x_2 + x_3 = 2 \&lt;br&gt;2x_1 + x_2 - x_3 = 4&lt;br&gt;\end{array}&lt;br&gt;\right. \tag{b}&lt;br&gt;$$&lt;/p&gt;
-&lt;p&gt;$$&lt;br&gt;\left{&lt;br&gt;\begin{align}&lt;br&gt;x_1 + x_2 = 2 \&lt;br&gt;x_1 + x_2 = 1 \&lt;br&gt;x_1 = 4&lt;br&gt;\end{align}&lt;br&gt;\right. \tag{c}&lt;br&gt;$$&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;方程组(a)称为 ```$ 2\times2 $``` 的方程组，(b)称为 ```$ 2\times3 $``` 的方程组，(c)称为 ```$ 3\times2 $``` 的方程组。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;gt;定义：若两空个含有相同变量的方程组具有相同的解集，则称它们是等价的&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#### 严格三角形&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;gt;定义：若方程组中，第 k 个方程的前 k-1个变量的系数均为零，且 $x_k(k=1, \cdots, n)$ 的系数不为零，则称该方程组为严格三角形的(strict triangular form)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;严格三角形(strict triangular form)的形式如下：&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;$$&lt;br&gt;\begin{align}&lt;br&gt;3x_1 + 2x_2 + x_3 = 1 \&lt;br&gt;x_2 + x_3 = 2 \&lt;br&gt;2x_3 = 4 \&lt;br&gt;\end{align} \tag {e}&lt;br&gt;$$&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;方程组(e)为严格三角形，因为第二个方程中的系数分别为 0, 1, -1 且第三个方程中的系数分别为 0, 0 , 2 由于该方程组为严格三角形的，因此容易求解。采用回代法(back substitution).&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#### 系数矩阵(coefficient matrix)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;如下方程组&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;$$&lt;br&gt;\left.&lt;br&gt;\begin{align}&lt;br&gt;x_1 + 2x_2 + x_3 = 3 \&lt;br&gt;3x_1 - x_2 - 3x_3 = -1 \&lt;br&gt;2x_1 + 3x_2 + x_3 = 4&lt;br&gt;\end{align}&lt;br&gt;\right. \tag{c}&lt;br&gt;$$&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;可以把方程组同一个以 ```$x_i$``` 的系数为元的 ```$3\times3$``` 的数字阵列联系起来。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;$$&lt;br&gt;\left.&lt;br&gt;\begin{bmatrix}&lt;br&gt;1 &amp;amp; 2 &amp;amp; 1  \&lt;br&gt;3 &amp;amp; -1 &amp;amp; -3  \&lt;br&gt;2 &amp;amp; 3 &amp;amp; 1&lt;br&gt;\end{bmatrix}&lt;br&gt;\right. \tag{M}&lt;br&gt;$$&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;称这个矩阵为方程组的 **系数矩阵(coeffficient matrix)**。简单的说，矩阵(matrix)就是一个矩形的数字阵列。一个m行和n列的矩阵称为 ```$ m \times n$``` 矩阵，如果矩阵的行数和列数相等，即$m=n$，则称该矩阵为 **方阵** &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#### 增广矩阵(augmented matrix)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;如何在这个矩阵(M)的右侧添加一列方程组的右端项，可得到一个新的矩阵&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;$$&lt;br&gt;\left[&lt;br&gt;\begin{array}{@{}ccc|c@{}}&lt;br&gt;1 &amp;amp; 2 &amp;amp; 1 &amp;amp; 3 \&lt;br&gt;3 &amp;amp; -1 &amp;amp; -3 &amp;amp; -1 \&lt;br&gt;2 &amp;amp; 3 &amp;amp; 1 &amp;amp; 4&lt;br&gt;\end{array}&lt;br&gt;\right] \tag{M’}&lt;br&gt;$$&lt;br&gt;```&lt;/p&gt;
-&lt;p&gt;称这个矩阵为方程组的 &lt;strong&gt;增广矩阵(augmented matrix)&lt;/strong&gt;，一般的，当一个 &lt;code&gt;$ m \times r$&lt;/code&gt; 的矩阵B采用上述方法附加到一个 &lt;code&gt;$m \times n$&lt;/code&gt; 的矩阵A上时，相应的增广矩阵记为 $(A\mid B)$&lt;/p&gt;
-&lt;h4 id=&quot;解方程的方法主要有是高斯消元法的三步&quot;&gt;&lt;a href=&quot;#解方程的方法主要有是高斯消元法的三步&quot; class=&quot;headerlink&quot; title=&quot;解方程的方法主要有是高斯消元法的三步&quot;&gt;&lt;/a&gt;解方程的方法主要有是高斯消元法的三步&lt;/h4&gt;&lt;p&gt;初等行运算&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;交换两行&lt;/li&gt;
-&lt;li&gt;以非零实数乘以某行&lt;/li&gt;
-&lt;li&gt;将某行替换为它与其它行的倍数的和&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;矩阵与方程组&lt;/p&gt;
-&lt;p&gt;求解线性方程组或许是数学问题中最重要的问题，超过75%的科学研究和工程应用中的数学问题，在某个阶段都涉及求解线性方程组。利用新的数学方法，通常可将较为复杂的问题化为线性方程组。线性方程组广泛应用于商业、经济学、社会学、生态学、人口统计学、遗传学、
-    
-    </summary>
-    
-      <category term="math" scheme="http://benvim.github.io/categories/math/"/>
-    
-    
-      <category term="math" scheme="http://benvim.github.io/tags/math/"/>
     
   </entry>
   
@@ -846,6 +800,112 @@ function createNoncestr( $length = 32 )
       <category term="php" scheme="http://benvim.github.io/tags/php/"/>
     
       <category term="appSecret" scheme="http://benvim.github.io/tags/appSecret/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mysql事务处理原理与实例详解</title>
+    <link href="http://benvim.github.io/2015/11/12/db-mysql-transaction/"/>
+    <id>http://benvim.github.io/2015/11/12/db-mysql-transaction/</id>
+    <published>2015-11-12T12:12:20.000Z</published>
+    <updated>2016-03-20T13:39:54.000Z</updated>
+    
+    <content type="html">&lt;p&gt;首先先了解一下MySQL的存储引擎：&lt;br&gt;1.MyISAM：查询性能较高,用于只读程序提高性能&lt;br&gt;2.InnoDB：支持ACID事务、行级锁、并发&lt;br&gt;3.Berkeley DB: 支持事务。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;一个事务是一个连续的一组数据库操作，就好像它是一个单一的工作单元执行。简单的说就是一个事务中，每个单独的操作都成功了，那么才算成功，否则，有任务何一个操作失败，那么整个事务将失败，并执行回滚。注：MYSQL中只有InnoDB和BDB(Berkeley DB)类型的数据表才能支持事务处理。其它类型不支持。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&quot;一、事务的四个特性，简称ACID&quot;&gt;&lt;a href=&quot;#一、事务的四个特性，简称ACID&quot; class=&quot;headerlink&quot; title=&quot;一、事务的四个特性，简称ACID.&quot;&gt;&lt;/a&gt;一、事务的四个特性，简称ACID.&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;原子性：确保工作单元 内的所有操作都成功完成， 否则事务将被中止在故障点，和以前的操作将回滚到以前的状态。&lt;/li&gt;
+&lt;li&gt;一致性：确保数据库正确的改变状态后，最后成功提交事务。&lt;/li&gt;
+&lt;li&gt;隔离性：使事务操作彼此独立和透明&lt;/li&gt;
+&lt;li&gt;持久性：确保提交的事务的结果或效果仍然存在，换言之：提交失败，回滚后保持原来的状态。问题和故障仍然存在。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;二、MYSQL的事务处理主要有两种方法&quot;&gt;&lt;a href=&quot;#二、MYSQL的事务处理主要有两种方法&quot; class=&quot;headerlink&quot; title=&quot;二、MYSQL的事务处理主要有两种方法&quot;&gt;&lt;/a&gt;二、MYSQL的事务处理主要有两种方法&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;用begin,rollback, commit来实现&lt;ul&gt;
+&lt;li&gt;begin:开始一个事务&lt;/li&gt;
+&lt;li&gt;rollback:事务回滚&lt;/li&gt;
+&lt;li&gt;commit:事务确认&lt;br&gt;在事务开始(begin)与事务确认（commit）之间的会形成大量的事务，当成功完成一个事务后，发出commit命令，使所有参与表的更改才会生效。发生故障时，应发出一个rollback回滚命令，返回事务中引用的每个表到以前的状态。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;直接用set来改变mysql的自动提交模式&lt;br&gt; MYSQL默认是自动提交的，也就是你提交一个QUERY，它就直接执行。我们可以通过set autocommit设置来实现事务处理。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;如下设置说明：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;set autocommit = 0 #禁止自动提交
+set autocommit = 1 #开启自动提交
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;但注意当你用set autocommit=0的时候，你以后的所有的sql都将做为事务处理，直到你用commit确认或rollback结束，注意当你结束这个事务的同时也开启了新的事务，用第一种方法只将当前做为事务。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;mysql&amp;gt; use test
+Database changed
+mysql&amp;gt; 
+
+mysql&amp;gt; CREATE TABLE `test_db`(
+    -&amp;gt; id int(8),
+    -&amp;gt; name varchar(50)
+    -&amp;gt; ) ENGINE=&amp;quot;InnoDB&amp;quot;;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql&amp;gt; begin;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&amp;gt; insert into `test_db` (`id`,`name`) value(1, &amp;apos;name_1&amp;apos;);
+Query OK, 1 row affected (0.00 sec)
+
+mysql&amp;gt; insert into `test_db` (`id`,`name`) value(2, &amp;apos;name_2&amp;apos;);
+Query OK, 1 row affected (0.00 sec)
+
+mysql&amp;gt; insert into `test_db` (`id`,`name`) value(3, &amp;apos;name_3&amp;apos;);
+Query OK, 1 row affected (0.00 sec)
+
+commit;
+
+mysql&amp;gt; select * from test_db;
++------+--------+
+| id   | name   |
++------+--------+
+|    1 | name_1 |
+|    2 | name_2 |
+|    3 | name_3 |
++------+--------+
+3 rows in set (0.00 sec)
+
+mysql&amp;gt; begin;#开始事务
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&amp;gt; insert into `test_db` (`id`,`name`) value(4, &amp;apos;name_4&amp;apos;);#插入记录
+Query OK, 1 row affected (0.00 sec)
+
+mysql&amp;gt; insert into `test_db` (`id`,`name`) value(5, &amp;apos;name_5&amp;apos;);#插入记录
+Query OK, 1 row affected (0.01 sec)
+
+mysql&amp;gt; rollback; #回滚
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&amp;gt; select * form `test_db`
++------+--------+
+| id   | name   |
++------+--------+
+|    1 | name_1 |
+|    2 | name_2 |
+|    3 | name_3 |
++------+--------+
+3 rows in set (0.00 sec) #没有增加记录
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;其实不管成功与否，只要没有commit之前，执行了rollback就恢复begin之前的状态。&lt;/p&gt;
+&lt;p&gt;[TOC]&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;首先先了解一下MySQL的存储引擎：&lt;br&gt;1.MyISAM：查询性能较高,用于只读程序提高性能&lt;br&gt;2.InnoDB：支持ACID事务、行级锁、并发&lt;br&gt;3.Berkeley DB: 支持事务。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;一个事务是一个连续的一组数据库操
+    
+    </summary>
+    
+      <category term="mysql" scheme="http://benvim.github.io/categories/mysql/"/>
+    
+    
+      <category term="php" scheme="http://benvim.github.io/tags/php/"/>
+    
+      <category term="mysql" scheme="http://benvim.github.io/tags/mysql/"/>
     
   </entry>
   
