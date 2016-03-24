@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://benvim.github.io/"/>
-  <updated>2016-03-24T00:43:03.000Z</updated>
+  <updated>2016-03-24T01:05:28.000Z</updated>
   <id>http://benvim.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://benvim.github.io/2016/03/23/js-call-apply-bind/"/>
     <id>http://benvim.github.io/2016/03/23/js-call-apply-bind/</id>
     <published>2016-03-23T06:34:22.000Z</published>
-    <updated>2016-03-24T00:43:03.000Z</updated>
+    <updated>2016-03-24T01:05:28.000Z</updated>
     
     <content type="html">&lt;h3 id=&quot;1-call是函数的函数，用来改变函数作用域的。&quot;&gt;&lt;a href=&quot;#1-call是函数的函数，用来改变函数作用域的。&quot; class=&quot;headerlink&quot; title=&quot;1.call是函数的函数，用来改变函数作用域的。&quot;&gt;&lt;/a&gt;1.call是函数的函数，用来改变函数作用域的。&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;/uploads/110.jpg&quot; alt=&quot;call是函数的函数&quot;&gt;&lt;/p&gt;
 &lt;p&gt;通过fun()的方法调用，他的作用域是全局的，我可以通过call改变fun的作用域。让他的this对应到obj上，因为本身在fun()定义和外面的全局域里都没有定义变量 a 。是不是感觉像是给obj增加了fun()方法？其实不是的，obj还是没有fun这个方法，在调用fun的时候，把this变成了obj，所以那句&lt;code&gt;console.log(this.a)&lt;/code&gt;你可以理解成&lt;code&gt;console.log(obj.a);&lt;/code&gt;。 &lt;/p&gt;
@@ -31,6 +31,7 @@
 &lt;p&gt;call是像我们常规调用参数那样，一个一个的传入进去，而apply就是把参数变成一个数组传进去，仅此而已。&lt;/p&gt;
 &lt;h3 id=&quot;4-bind方法的区别&quot;&gt;&lt;a href=&quot;#4-bind方法的区别&quot; class=&quot;headerlink&quot; title=&quot;4.bind方法的区别&quot;&gt;&lt;/a&gt;4.bind方法的区别&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;/uploads/114.jpg&quot; alt=&quot;call是函数的函数&quot;&gt;&lt;/p&gt;
 &lt;p&gt;bind的区别是这样的，也可以改变作用域，但是他会返回一个新的函数，但是你也可以在bind的时候强制使用指定的参数，在调用的时候它就会用bind指定的那个参数了。如果你只是&lt;code&gt;fun.bind(this)&lt;/code&gt;的话，那返回的那个newFun不管你怎么调用，它的作用域都是bind传进去的第一个参数，相当是干涉了参数的值，如果在bind不传入任何的参数，调用还是会用传入的参数。&lt;/p&gt;
+&lt;p&gt;参考文献:&lt;a href=&quot;http://bonsaiden.github.io/JavaScript-Garden/zh/#object.prototype&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;javascript高级特性&lt;/a&gt; &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;javascript新的版本&lt;/a&gt; &lt;a href=&quot;http://javascript.ruanyifeng.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;JavaScript 标准参考教程&lt;/a&gt;&lt;/p&gt;
 </content>
     
     <summary type="html">
