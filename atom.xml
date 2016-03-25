@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://benvim.github.io/"/>
-  <updated>2016-03-24T01:05:28.000Z</updated>
+  <updated>2016-03-25T15:06:15.000Z</updated>
   <id>http://benvim.github.io/</id>
   
   <author>
@@ -14,6 +14,131 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JS 实现上下滚动文字</title>
+    <link href="http://benvim.github.io/2016/03/25/js-scroll-text/"/>
+    <id>http://benvim.github.io/2016/03/25/js-scroll-text/</id>
+    <published>2016-03-25T14:45:23.000Z</published>
+    <updated>2016-03-25T15:06:15.000Z</updated>
+    
+    <content type="html">&lt;p&gt;网站实现JS上下滚动文本。这种东西经常会要，所以写个小组件用用，轻量级的。js原生和jquery混搭实现，jquery实在太方便了。&lt;/p&gt;
+&lt;h3 id=&quot;一、组件初始化&quot;&gt;&lt;a href=&quot;#一、组件初始化&quot; class=&quot;headerlink&quot; title=&quot;一、组件初始化&quot;&gt;&lt;/a&gt;一、组件初始化&lt;/h3&gt;&lt;p&gt;初始化组件的参数说明&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;rollObj.init = function(_containerName, _showNum, _timeInterval, _listHeight, _animateSpeed);
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;_containerName 容器的ID&lt;/li&gt;
+&lt;li&gt;_showNum 显示几行&lt;/li&gt;
+&lt;li&gt;_timeInterval 每次移动的触发时间（单位毫秒）&lt;/li&gt;
+&lt;li&gt;_listHeight 每li的高度，也可理解为每次移动的高度。&lt;/li&gt;
+&lt;li&gt;_animateSpeed 动画执行的速度&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;二、html的结构说明&quot;&gt;&lt;a href=&quot;#二、html的结构说明&quot; class=&quot;headerlink&quot; title=&quot;二、html的结构说明&quot;&gt;&lt;/a&gt;二、html的结构说明&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;div class=&amp;quot;notice_task&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;lt;ul class=&amp;quot;notice_task_container&amp;quot; id=&amp;quot;notice_task_container_id&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;lt;li&amp;gt;&amp;lt;a class=&amp;quot;&amp;quot; href=&amp;quot;#&amp;quot; title=&amp;quot;&amp;#123;$notic.title&amp;#125;&amp;quot; target=&amp;quot;_blank&amp;quot;&amp;gt;&amp;#123;$notic.title&amp;#125;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;lt;li&amp;gt;&amp;lt;a class=&amp;quot;&amp;quot; href=&amp;quot;#&amp;quot; title=&amp;quot;&amp;#123;$notic.title&amp;#125;&amp;quot; target=&amp;quot;_blank&amp;quot;&amp;gt;&amp;#123;$notic.title&amp;#125;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;lt;li&amp;gt;&amp;lt;a class=&amp;quot;&amp;quot; href=&amp;quot;#&amp;quot; title=&amp;quot;&amp;#123;$notic.title&amp;#125;&amp;quot; target=&amp;quot;_blank&amp;quot;&amp;gt;&amp;#123;$notic.title&amp;#125;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;lt;/ul&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;em&gt;notice_task&lt;/em&gt; 为最外层容器，css样式要设置为&lt;figure class=&quot;highlight plain&quot;&gt;&lt;figcaption&gt;&lt;span&gt;relative;``` 其子元素 *notice_task_container* 的css样式也要设置为 ```position:relative;``` 这样才可以控制 *notice_task_container_id*容器的top属性使其移动。&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;### 三、JS代码使用&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;使用也很简单，```rollTextControl.createObj();``` 创建组件，初始化基本参数即可。使用```$(function()&amp;#123;&amp;#125;```包裹起来是保证页面加载完成后再调用该部分代码。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$(function(){
+    var notic = rollTextControl.createObj();
+   notic.init(&amp;quot;notice_task_container_id&amp;quot;, 3, 3000, -40, 1000);
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;这样就可以了。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;### 四、组件源代码&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;有空再优化和整理，暂且这样吧。代码比较简，看看就明白了。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;var rollTextControl = {&lt;br&gt;　　　　createObj: function(){&lt;br&gt;            var rollObj = {};&lt;br&gt;            var containerName = null; //列表的容器。用于删除，和创建子对象&lt;br&gt;            var showNum = 1; //显示的数量&lt;br&gt;            var timeInterval = 1000;//间隔1秒操作一次。&lt;br&gt;            var rollData = null;//列表数据&lt;br&gt;            var dataLen = 0;&lt;br&gt;            var listHeight = -32;&lt;br&gt;            var indexID = 0;&lt;br&gt;            var animateSpeed = 1000;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    rollObj.init = function(_containerName, _showNum, _timeInterval, _listHeight, _animateSpeed){
+        containerName   =  _containerName;
+        showNum         = _showNum;
+        timeInterval    = _timeInterval;
+        animateSpeed    = _animateSpeed;
+        listHeight      = _listHeight;
+        onGetData();
+    }
+
+    function onGetData(){
+        var element = document.getElementById(containerName);
+        rollData = [];
+        if(element){
+            while(element.hasChildNodes()) {
+                var obj = element.removeChild(element.firstChild).cloneNode(true);
+                if(obj){
+                    var str = obj.tagName;
+                    if(str)str=str.toLocaleLowerCase();
+                    if(str==&amp;quot;li&amp;quot;) rollData.push(obj); 
+                }   
+            }
+        }
+        if(rollData!=null) startGo();
+    }
+
+    function startGo(){
+        dataLen = rollData.length;
+        for (var i = 0; i &amp;lt; showNum; i++) {
+            var data = rollData[i];
+            if(data) createView(data);
+        }
+        indexID = showNum-1;
+        if(dataLen&amp;gt;showNum) timer();
+    }
+
+    function timer(){
+        setInterval(rollUpdate, timeInterval);
+    }
+
+    function rollUpdate(argument) {
+        getNextData();
+        var element = document.getElementById(containerName);
+        if(element.hasChildNodes()){
+            firstChild = element.firstChild;
+            $(&amp;quot;#&amp;quot;+containerName).animate({&amp;apos;top&amp;apos;:listHeight}, animateSpeed,animateComplete);    
+        }
+    }
+
+    function animateComplete(){
+        //动画完成后，删除最顶上的内容，并重设置容器坐标。
+        var firstChild = null;
+        var element = document.getElementById(containerName);
+        if(element.hasChildNodes() &amp;amp;&amp;amp; element.children.length&amp;gt;showNum){
+            firstChild = element.firstChild;
+            if(firstChild)
+                element.removeChild(element.firstChild);    
+        }else{
+            //console.log(&amp;quot;faild&amp;quot; + element.children.length);
+        }
+
+        $(&amp;quot;#&amp;quot;+containerName).css({&amp;apos;top&amp;apos;:0});
+    }
+
+    function createView(data){
+        $(&amp;quot;#&amp;quot;+containerName).append(data);
+    }
+
+    function getNextData(){
+        if(indexID &amp;lt; dataLen){
+            indexID++;
+        }else{
+            indexID = 0;
+        }
+        var data  = rollData[indexID];
+        if(data) createView(data);
+    }
+    return rollObj;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;};&lt;/p&gt;
+&lt;p&gt;$(function(){&lt;br&gt;    var roll = rollTextControl.createObj();&lt;br&gt;    roll.init(“employListContainer”, 6, 2000, -32, 1000);&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;var notic = rollTextControl.createObj();
+notic.init(&amp;quot;notice_task_container_id&amp;quot;, 3, 3000, -40, 1000);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;});&lt;/p&gt;
+&lt;p&gt;```&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;网站实现JS上下滚动文本。这种东西经常会要，所以写个小组件用用，轻量级的。js原生和jquery混搭实现，jquery实在太方便了。&lt;/p&gt;
+&lt;h3 id=&quot;一、组件初始化&quot;&gt;&lt;a href=&quot;#一、组件初始化&quot; class=&quot;headerlink&quot; title=&quot;一、组件
+    
+    </summary>
+    
+      <category term="js" scheme="http://benvim.github.io/categories/js/"/>
+    
+    
+      <category term="js" scheme="http://benvim.github.io/tags/js/"/>
+    
+  </entry>
   
   <entry>
     <title>JS的call()方法、apply()与 bind()方法详解</title>
@@ -801,112 +926,6 @@ function createNoncestr( $length = 32 )
       <category term="php" scheme="http://benvim.github.io/tags/php/"/>
     
       <category term="appSecret" scheme="http://benvim.github.io/tags/appSecret/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>mysql事务处理原理与实例详解</title>
-    <link href="http://benvim.github.io/2015/11/12/db-mysql-transaction/"/>
-    <id>http://benvim.github.io/2015/11/12/db-mysql-transaction/</id>
-    <published>2015-11-12T12:12:20.000Z</published>
-    <updated>2016-03-20T13:39:54.000Z</updated>
-    
-    <content type="html">&lt;p&gt;首先先了解一下MySQL的存储引擎：&lt;br&gt;1.MyISAM：查询性能较高,用于只读程序提高性能&lt;br&gt;2.InnoDB：支持ACID事务、行级锁、并发&lt;br&gt;3.Berkeley DB: 支持事务。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;一个事务是一个连续的一组数据库操作，就好像它是一个单一的工作单元执行。简单的说就是一个事务中，每个单独的操作都成功了，那么才算成功，否则，有任务何一个操作失败，那么整个事务将失败，并执行回滚。注：MYSQL中只有InnoDB和BDB(Berkeley DB)类型的数据表才能支持事务处理。其它类型不支持。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h4 id=&quot;一、事务的四个特性，简称ACID&quot;&gt;&lt;a href=&quot;#一、事务的四个特性，简称ACID&quot; class=&quot;headerlink&quot; title=&quot;一、事务的四个特性，简称ACID.&quot;&gt;&lt;/a&gt;一、事务的四个特性，简称ACID.&lt;/h4&gt;&lt;ul&gt;
-&lt;li&gt;原子性：确保工作单元 内的所有操作都成功完成， 否则事务将被中止在故障点，和以前的操作将回滚到以前的状态。&lt;/li&gt;
-&lt;li&gt;一致性：确保数据库正确的改变状态后，最后成功提交事务。&lt;/li&gt;
-&lt;li&gt;隔离性：使事务操作彼此独立和透明&lt;/li&gt;
-&lt;li&gt;持久性：确保提交的事务的结果或效果仍然存在，换言之：提交失败，回滚后保持原来的状态。问题和故障仍然存在。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&quot;二、MYSQL的事务处理主要有两种方法&quot;&gt;&lt;a href=&quot;#二、MYSQL的事务处理主要有两种方法&quot; class=&quot;headerlink&quot; title=&quot;二、MYSQL的事务处理主要有两种方法&quot;&gt;&lt;/a&gt;二、MYSQL的事务处理主要有两种方法&lt;/h4&gt;&lt;ol&gt;
-&lt;li&gt;用begin,rollback, commit来实现&lt;ul&gt;
-&lt;li&gt;begin:开始一个事务&lt;/li&gt;
-&lt;li&gt;rollback:事务回滚&lt;/li&gt;
-&lt;li&gt;commit:事务确认&lt;br&gt;在事务开始(begin)与事务确认（commit）之间的会形成大量的事务，当成功完成一个事务后，发出commit命令，使所有参与表的更改才会生效。发生故障时，应发出一个rollback回滚命令，返回事务中引用的每个表到以前的状态。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;直接用set来改变mysql的自动提交模式&lt;br&gt; MYSQL默认是自动提交的，也就是你提交一个QUERY，它就直接执行。我们可以通过set autocommit设置来实现事务处理。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;如下设置说明：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;set autocommit = 0 #禁止自动提交
-set autocommit = 1 #开启自动提交
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;但注意当你用set autocommit=0的时候，你以后的所有的sql都将做为事务处理，直到你用commit确认或rollback结束，注意当你结束这个事务的同时也开启了新的事务，用第一种方法只将当前做为事务。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;mysql&amp;gt; use test
-Database changed
-mysql&amp;gt; 
-
-mysql&amp;gt; CREATE TABLE `test_db`(
-    -&amp;gt; id int(8),
-    -&amp;gt; name varchar(50)
-    -&amp;gt; ) ENGINE=&amp;quot;InnoDB&amp;quot;;
-Query OK, 0 rows affected (0.01 sec)
-
-mysql&amp;gt; begin;
-Query OK, 0 rows affected (0.00 sec)
-
-mysql&amp;gt; insert into `test_db` (`id`,`name`) value(1, &amp;apos;name_1&amp;apos;);
-Query OK, 1 row affected (0.00 sec)
-
-mysql&amp;gt; insert into `test_db` (`id`,`name`) value(2, &amp;apos;name_2&amp;apos;);
-Query OK, 1 row affected (0.00 sec)
-
-mysql&amp;gt; insert into `test_db` (`id`,`name`) value(3, &amp;apos;name_3&amp;apos;);
-Query OK, 1 row affected (0.00 sec)
-
-commit;
-
-mysql&amp;gt; select * from test_db;
-+------+--------+
-| id   | name   |
-+------+--------+
-|    1 | name_1 |
-|    2 | name_2 |
-|    3 | name_3 |
-+------+--------+
-3 rows in set (0.00 sec)
-
-mysql&amp;gt; begin;#开始事务
-Query OK, 0 rows affected (0.00 sec)
-
-mysql&amp;gt; insert into `test_db` (`id`,`name`) value(4, &amp;apos;name_4&amp;apos;);#插入记录
-Query OK, 1 row affected (0.00 sec)
-
-mysql&amp;gt; insert into `test_db` (`id`,`name`) value(5, &amp;apos;name_5&amp;apos;);#插入记录
-Query OK, 1 row affected (0.01 sec)
-
-mysql&amp;gt; rollback; #回滚
-Query OK, 0 rows affected (0.00 sec)
-
-mysql&amp;gt; select * form `test_db`
-+------+--------+
-| id   | name   |
-+------+--------+
-|    1 | name_1 |
-|    2 | name_2 |
-|    3 | name_3 |
-+------+--------+
-3 rows in set (0.00 sec) #没有增加记录
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;其实不管成功与否，只要没有commit之前，执行了rollback就恢复begin之前的状态。&lt;/p&gt;
-&lt;p&gt;[TOC]&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;首先先了解一下MySQL的存储引擎：&lt;br&gt;1.MyISAM：查询性能较高,用于只读程序提高性能&lt;br&gt;2.InnoDB：支持ACID事务、行级锁、并发&lt;br&gt;3.Berkeley DB: 支持事务。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;一个事务是一个连续的一组数据库操
-    
-    </summary>
-    
-      <category term="mysql" scheme="http://benvim.github.io/categories/mysql/"/>
-    
-    
-      <category term="php" scheme="http://benvim.github.io/tags/php/"/>
-    
-      <category term="mysql" scheme="http://benvim.github.io/tags/mysql/"/>
     
   </entry>
   
