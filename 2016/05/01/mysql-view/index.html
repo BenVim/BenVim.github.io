@@ -1,0 +1,1223 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="msyql," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="一纸墨迹" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="数据库的索引、视图、存储过程、触发器的功能及其使用情景
+数据库的索引
+数据库的存储过程
+数据库的视图
+数据库的触发器
+
+还有什么？等知道了再来补充
+数据库的索引什么是数据的索引索引是与表或视图关联的磁盘上结构，可以加快从表或视图中检索行的速度。索引包含由表或视图中的一列或多列生成的键。这些键存储在一个结构（B 树）中，使 SQL Server 可以快速有效地查找与键值关联的行
+表和视图可以包含以下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql的视图、存储过程、触发器的功能及其使用情景">
+<meta property="og:url" content="http://benvim.github.io/2016/05/01/mysql-view/index.html">
+<meta property="og:site_name" content="一纸墨迹">
+<meta property="og:description" content="数据库的索引、视图、存储过程、触发器的功能及其使用情景
+数据库的索引
+数据库的存储过程
+数据库的视图
+数据库的触发器
+
+还有什么？等知道了再来补充
+数据库的索引什么是数据的索引索引是与表或视图关联的磁盘上结构，可以加快从表或视图中检索行的速度。索引包含由表或视图中的一列或多列生成的键。这些键存储在一个结构（B 树）中，使 SQL Server 可以快速有效地查找与键值关联的行
+表和视图可以包含以下">
+<meta property="og:updated_time" content="2016-05-01T14:30:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mysql的视图、存储过程、触发器的功能及其使用情景">
+<meta name="twitter:description" content="数据库的索引、视图、存储过程、触发器的功能及其使用情景
+数据库的索引
+数据库的存储过程
+数据库的视图
+数据库的触发器
+
+还有什么？等知道了再来补充
+数据库的索引什么是数据的索引索引是与表或视图关联的磁盘上结构，可以加快从表或视图中检索行的速度。索引包含由表或视图中的一列或多列生成的键。这些键存储在一个结构（B 树）中，使 SQL Server 可以快速有效地查找与键值关联的行
+表和视图可以包含以下">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: "post",
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Mysql的视图、存储过程、触发器的功能及其使用情景 | 一纸墨迹 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-66613208-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?26def29a51a3037b921d17c2537e72b2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+
+  <div class="container one-collumn  page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">一纸墨迹</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Quick notes</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'wXeRGP2Vrze7R3LnHEp_','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Mysql的视图、存储过程、触发器的功能及其使用情景
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-01T21:01:12+08:00" content="2016-05-01">
+              2016-05-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/01/mysql-view/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/01/mysql-view/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+          
+
+          
+          
+             <span id="/2016/05/01/mysql-view/" class="leancloud_visitors" data-flag-title="Mysql的视图、存储过程、触发器的功能及其使用情景">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="数据库的索引、视图、存储过程、触发器的功能及其使用情景"><a href="#数据库的索引、视图、存储过程、触发器的功能及其使用情景" class="headerlink" title="数据库的索引、视图、存储过程、触发器的功能及其使用情景"></a>数据库的索引、视图、存储过程、触发器的功能及其使用情景</h1><ul>
+<li>数据库的索引</li>
+<li>数据库的存储过程</li>
+<li>数据库的视图</li>
+<li>数据库的触发器</li>
+</ul>
+<p>还有什么？等知道了再来补充</p>
+<h2 id="数据库的索引"><a href="#数据库的索引" class="headerlink" title="数据库的索引"></a>数据库的索引</h2><h3 id="什么是数据的索引"><a href="#什么是数据的索引" class="headerlink" title="什么是数据的索引"></a>什么是数据的索引</h3><p>索引是与表或视图关联的磁盘上结构，可以加快从表或视图中检索行的速度。索引包含由表或视图中的一列或多列生成的键。这些键存储在一个结构（B 树）中，使 SQL Server 可以快速有效地查找与键值关联的行</p>
+<h4 id="表和视图可以包含以下类型的索引"><a href="#表和视图可以包含以下类型的索引" class="headerlink" title="表和视图可以包含以下类型的索引"></a>表和视图可以包含以下类型的索引</h4><ul>
+<li>聚集<ul>
+<li>聚集索引根据数据行的键值在表或视图中排序和存储这些数据行。索引定义中包含聚集索引列。每个表只能有一个聚集索引，因为数据行本身只能按一个顺序排序。</li>
+<li>只有当表包含聚集索引时，表中的数据行才按排序顺序存储。如果表具有聚集索引，则该表称为聚集表。如果表没有聚集索引，则其数据行存储在一个称为堆的无序结构中。</li>
+</ul>
+</li>
+<li>非聚集<ul>
+<li>非聚集索引具有独立于数据行的结构。非聚集索引包含非聚集索引键值，并且每个键值项都有指向包含该键值的数据行的指针。</li>
+<li>从非聚集索引中的索引行指向数据行的指针称为行定位器。行定位器的结构取决于数据页是存储在堆中还是聚集表中。对于堆，行定位器是指向行的指针。对于聚集表，行定位器是聚集索引键。</li>
+<li>您可以向非聚集索引的叶级添加非键列以跳过现有的索引键限制（900 字节和 16 键列），并执行完整范围内的索引查询。</li>
+</ul>
+</li>
+</ul>
+<p>聚集索引和非聚集索引都可以是唯一的。这意味着任何两行都不能有相同的索引键值。另外，索引也可以不是唯一的，即多行可以共享同一键值。</p>
+<blockquote>
+<p>每当修改了表数据后，都会自动维护表或视图的索引。</p>
+</blockquote>
+<h4 id="索引和约束"><a href="#索引和约束" class="headerlink" title="索引和约束"></a>索引和约束</h4><p>对表列定义了 PRIMARY KEY 约束和 UNIQUE 约束时，会自动创建索引。例如，如果创建了表并将一个特定列标识为主键，则 数据库引擎自动对该列创建 PRIMARY KEY 约束和索引。有关详细信息，请参阅创建索引（数据库引擎）。</p>
+<h3 id="索引的作用"><a href="#索引的作用" class="headerlink" title="索引的作用"></a>索引的作用</h3><p>与书中的索引一样，数据库中的索引使您可以快速找到表或索引视图中的特定信息。索引包含从表或视图中一个或多个列生成的键，以及映射到指定数据的存储位置的指针。通过创建设计良好的索引以支持查询，可以显著提高数据库查询和应用程序的性能。索引可以减少为返回查询结果集而必须读取的数据量。索引还可以强制表中的行具有唯一性，从而确保表数据的数据完整性。</p>
+<p>设计良好的索引可以减少磁盘 I/O 操作，并且消耗的系统资源也较少，从而可以提高查询性能。对于包含 SELECT、UPDATE、DELETE 或 MERGE 语句的各种查询，索引会很有用。例如，在 AdventureWorks 数据库中执行的查询 SELECT Title, HireDate FROM HumanResources.Employee WHERE EmployeeID = 250。执行此查询时，查询优化器评估可用于检索数据的每个方法，然后选择最有效的方法。可能采用的方法包括扫描表和扫描一个或多个索引（如果有）。</p>
+<p>扫描表时，查询优化器读取表中的所有行，并提取满足查询条件的行。扫描表会有许多磁盘 I/O 操作，并占用大量资源。但是，如果查询的结果集是占表中较高百分比的行，扫描表会是最为有效的方法。</p>
+<p>查询优化器使用索引时，搜索索引键列，查找到查询所需行的存储位置，然后从该位置提取匹配行。通常，搜索索引比搜索表要快很多，因为索引与表不同，一般每行包含的列非常少，且行遵循排序顺序。</p>
+<p>查询优化器在执行查询时通常会选择最有效的方法。但如果没有索引，则查询优化器必须扫描表。您的任务是设计并创建最适合您的环境的索引，以便查询优化器可以从多个有效的索引中选择。SQL Server 提供的数据库引擎优化顾问可以帮助分析数据库环境并选择适当的索引。</p>
+<h3 id="怎么创建合适的索引"><a href="#怎么创建合适的索引" class="headerlink" title="怎么创建合适的索引"></a>怎么创建合适的索引</h3><p>索引其实关键目的是为了加快检索速度而建立的，所以，怎么用索引是数据库系统本身的事情，作为数据库设计或使用者，设计并创建好索引然后体验加上索引后的查询变快的感觉就行了。</p>
+<p>索引设计不佳和缺少索引是提高数据库和应用程序性能的主要障碍。 <strong>设计高效的索引对于获得良好的数据库和应用程序性能极为重要</strong>。为数据库及其工作负荷选择正确的索引是一项需要在查询速度与更新所需开销之间取得平衡的复杂任务。如果索引较窄，或者说索引关键字中只有很少的几列，则需要的磁盘空间和维护开销都较少。而另一方面，宽索引可覆盖更多的查询。您可能需要试验若干不同的设计，才能找到最有效的索引。可以添加、修改和删除索引而不影响数据库架构或应用程序设计。因此，应试验多个不同的索引而无需犹豫。</p>
+<p>SQL Server 中的查询优化器可在大多数情况下可靠地选择最高效的索引。总体索引设计策略应为查询优化器提供可供选择的多个索引，并依赖查询优化器做出正确的决定。这在多种情况下可减少分析时间并获得良好的性能。若要查看查询优化器对特定查询使用的索引，请在 SQL Server Management Studio 中的“查询”菜单上选择“包括实际的执行计划”。</p>
+<p>不要总是将索引的使用等同于良好的性能，或者将良好的性能等同于索引的高效使用。如果只要使用索引就能获得最佳性能，那查询优化器的工作就简单了。但事实上，不正确的索引选择并不能获得最佳性能。因此，查询优化器的任务是只在索引或索引组合能提高性能时才选择它，而在索引检索有碍性能时则避免使用它。</p>
+<h4 id="建议的索引设计策略包括以下任务："><a href="#建议的索引设计策略包括以下任务：" class="headerlink" title="建议的索引设计策略包括以下任务："></a>建议的索引设计策略包括以下任务：</h4><ol>
+<li>了解数据库本身的特征。例如，它是频繁修改数据的联机事务处理 (OLTP) 数据库，还是主要包含只读数据的决策支持系统 (DSS) 或数据仓库 (OLAP) 数据库？</li>
+<li>了解最常用的查询的特征。例如，了解到最常用的查询联接两个或多个表将有助于决定要使用的最佳索引类型。</li>
+<li>了解查询中使用的列的特征。例如，某个索引对于含有整数数据类型同时还是唯一的或非空的列是理想索引。筛选索引适用于具有定义完善的数据子集的列。</li>
+<li>确定哪些索引选项可在创建或维护索引时提高性能。例如，对现有某个大型表创建聚集索引将会受益于 ONLINE 索引选项。ONLINE 选项允许在创建索引或重新生成索引时继续对基础数据执行并发活动。</li>
+<li>确定索引的最佳存储位置。非聚集索引可以与基础表存储在同一个文件组中，也可以存储在不同的文件组中。索引的存储位置可通过提高磁盘 I/O 性能来提高查询性能。例如，将非聚集索引存储在表文件组所在磁盘以外的某个磁盘上的一个文件组中可以提高性能，因为可以同时读取多个磁盘。</li>
+</ol>
+<blockquote>
+<p>或者，聚集索引和非聚集索引也可以使用跨越多个文件组的分区方案。在维护整个集合的完整性时，使用分区可以快速而有效地访问或管理数据子集，从而使大型表或索引更易于管理。有关详细信息，请参阅已分区表和已分区索引。在考虑分区时，应确定是否应对齐索引，即，是按实质上与表相同的方式进行分区，还是单独分区。</p>
+</blockquote>
+<h3 id="设计索引"><a href="#设计索引" class="headerlink" title="设计索引"></a>设计索引</h3><p>索引设计是一项关键任务。索引设计包括确定要使用的列，选择索引类型（例如聚集或非聚集），选择适当的索引选项，以及确定文件组或分区方案布置。</p>
+<h3 id="确定最佳的创建方法。按照以下方法创建索引"><a href="#确定最佳的创建方法。按照以下方法创建索引" class="headerlink" title="确定最佳的创建方法。按照以下方法创建索引"></a>确定最佳的创建方法。按照以下方法创建索引</h3><ol>
+<li><p>使用 CREATE TABLE 或 ALTER TABLE 对列定义 PRIMARY KEY 或 UNIQUE 约束<br>SQL Server 数据库引擎自动创建唯一索引来强制 PRIMARY KEY 或 UNIQUE 约束的唯一性要求。默认情况下，创建的唯一聚集索引可以强制 PRIMARY KEY 约束，除非表中已存在聚集索引或指定了唯一的非聚集索引。默认情况下，创建的唯一非聚集索引可以强制 UNIQUE 约束，除非已明确指定唯一的聚集索引且表中不存在聚集索引。<br>还可以指定索引选项和索引位置、文件组或分区方案。<br>创建为 PRIMARY KEY 或 UNIQUE 约束的一部分的索引将自动给定与约束名称相同的名称。</p>
+</li>
+<li><p>使用 CREATE INDEX 语句或 SQL Server Management Studio 对象资源管理器中的“新建索引”对话框创建独立于约束的索引<br>必须指定索引的名称、表以及应用该索引的列。还可以指定索引选项和索引位置、文件组或分区方案。默认情况下，如果未指定聚集或唯一选项，将创建非聚集的非唯一索引。若要创建筛选索引，请使用可选的 WHERE 子句。</p>
+</li>
+</ol>
+<h3 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h3><p>要考虑的一个重要因素是对空表还是对包含数据的表创建索引。对空表创建索引在创建索引时不会对性能产生任何影响，而向表中添加数据时，会对性能产生影响。  </p>
+<p>对大型表创建索引时应仔细计划，这样才不会影响数据库性能。对大型表创建索引的首选方法是先创建聚集索引，然后创建任何非聚集索引。在对现有表创建索引时，请考虑将 ONLINE 选项设置为 ON。该选项设置为 ON 时，将不持有长期表锁以继续对基础表的查询或更新。</p>
+<blockquote>
+<p>资源来自百度</p>
+</blockquote>
+<h2 id="数据库的触发器"><a href="#数据库的触发器" class="headerlink" title="数据库的触发器"></a>数据库的触发器</h2><p>触发器的定义就是说某个条件成立的时候，你触发器里面所定义的语句就会被自动的执行。因此触发器不需要人为的去调用，也不能调用。</p>
+<p>然后，触发器的触发条件其实在你定义的时候就已经设定好的了。这里面需要说明一下，触发器可以分为语句级触发器和行级触发器。详细的介绍可以参考网上的资料，简单的说就是语句级的触发器可以在某些语句执行前或执行后被触发。而行级触发器则是在定义的了触发的表中的行数据改变时就会被触发一次。</p>
+<h3 id="具体举例："><a href="#具体举例：" class="headerlink" title="具体举例："></a>具体举例：</h3><ol>
+<li><p>在一个表中定义的语句级的触发器，当这个表被删除时，程序就会自动执行触发器里面定义的操作过程。这个就是删除表的操作就是触发器执行的条件了。</p>
+</li>
+<li><p>在一个表中定义了行级的触发器，那当这个表中一行数据发生变化的时候，比如删除了一行记录，那触发器也会被自动执行了。</p>
+</li>
+</ol>
+<h3 id="触发器简介"><a href="#触发器简介" class="headerlink" title="触发器简介"></a>触发器简介</h3><p>触发器是一种特殊类型的过程。与普通过程不同的是，过程需要用户显式地调用才执行，而触发器则是当某些事件发生时，由Oracle自动执行。</p>
+<h3 id="触发器主要由如下几个部分组成"><a href="#触发器主要由如下几个部分组成" class="headerlink" title="触发器主要由如下几个部分组成"></a>触发器主要由如下几个部分组成</h3><ul>
+<li>触发事件：</li>
+<li>触发条件：</li>
+<li>触发对象：</li>
+<li>触发操作：</li>
+</ul>
+<h3 id="编写触发器时，需要注意以下几点"><a href="#编写触发器时，需要注意以下几点" class="headerlink" title="编写触发器时，需要注意以下几点"></a>编写触发器时，需要注意以下几点</h3><ul>
+<li>触发器不接受参数。  </li>
+<li>一个表上最多可以有12个触发器，但同一时间、同一事件、同一类型的触发器只能有一个。还需要注意，各个触发器之间不能有矛盾。  </li>
+<li>在一个表上的触发器越多，对在该表上的DML操作性能影响就越大。  </li>
+<li>触发器最大为32KB。如果确实需要，可以先建立过程，然后在触发器中用CALL语句调用。</li>
+<li>在DML触发器中只能使用DML语句（select，insert，update，delete）。</li>
+<li>在系统触发器中只能包含DDL语句（create，alter,drop）。</li>
+<li>触发器中不能包含事务控制语句（commit，rollback，savepoint）。因为触发器是触发语句的一部门，触发语句被提交或回退时，触发器也就被提交或回退了。</li>
+<li>在触发器主体中调用的任何过程、函数都不能使用事务控制语句。</li>
+<li>在触发器主体中不能声明任何long和blob变量。新值new、旧值old也不能指向表中的任何long和blog列</li>
+<li>不同类型的触发器（如DML触发器、INSTEAD OF触发器、系统触发器）的语法格式和作用都有较大区别。</li>
+</ul>
+<h2 id="数据库的存储过程"><a href="#数据库的存储过程" class="headerlink" title="数据库的存储过程"></a>数据库的存储过程</h2><p>存储过程（Stored Procedure）是一组为了完成特定功能的SQL 语句集，经编译后存储在数据库。中用户通过指定存储过程的名字并给出参数（如果该存储过程带有参数）来执行它。   </p>
+<h3 id="在SQL-Server-的系列版本中存储过程分为两类："><a href="#在SQL-Server-的系列版本中存储过程分为两类：" class="headerlink" title="在SQL Server 的系列版本中存储过程分为两类："></a>在SQL Server 的系列版本中存储过程分为两类：</h3><ul>
+<li>系统提供的存储过程</li>
+<li>用户自定义存储过程。</li>
+</ul>
+<ol>
+<li><p>系统过程主要存储在master 数据库中并以sp_为前缀，并且系统存储过程主要是从系统表中获取信息，从而为系统管理员管理SQL Server 提供支持。通过系统存储过程，MS SQL Server 中的许多管理性或信息性的活动（如了解数据库对象、数据库信息）都可以被顺利有效地完成。尽管这些系统存储过程被放在master 数据库中，但是仍可以在其它数据库中对其进行调用，在调用时不必在存储过程名前加上数据库名。而且当创建一个新数据库时，一些系统存储过程会在新数据库中被自动创建。</p>
+</li>
+<li><p>用户自定义存储过程是由用户创建并能完成某一特定功能（如查询用户所需数据信息）的存储过程。</p>
+</li>
+</ol>
+<h3 id="存储过程在数据库中的作用是什么"><a href="#存储过程在数据库中的作用是什么" class="headerlink" title="存储过程在数据库中的作用是什么"></a>存储过程在数据库中的作用是什么</h3><p>第一：存储过程因为SQL语句已经预编绎过了，因此运行的速度比较快。<br>第二：存储过程可以接受参数、输出参数、返回单个或多个结果集以及返回值。可以向程序返回错误原因。<br>第三：存储过程运行比较稳定，不会有太多的错误。只要一次成功，以后都会按这个程序运行。<br>第四：存储过程主要是在服务器上运行，减少对客户机的压力。<br>第五：存储过程可以包含程序流、逻辑以及对数据库的查询。同时可以实体封装和隐藏了数据逻辑。<br>第六：存储过程可以在单个存储过程中执行一系列 SQL 语句。<br>第七：存储过程可以从自己的存储过程内引用其它存储过程，这可以简化一系列复杂语句。  </p>
+<p>其实存储过程还可以控制权限，比如一个表不直接允许用户直接访问，但要求允许用户访问和修改其中一个或多个字段，那就可以通过一个存储过程来实现并允许该用户使用该存储过程。 </p>
+<p>还有，如果多条SQL语句执行过程中，过程环节返回了数据作为后面环节的输入数据，如果直接通过SQL语句执行，势必导致大量的数据通过网络返回到客户机，并在客户机运算；如果封装在存储过程中，则将运算放在服务器进行，不但减少了客户机的压力，同时也减少了网络流量，提高了执行的效率。</p>
+<blockquote>
+<p>来自百度  </p>
+<ol>
+<li>的确的看你的需求了，处理比复杂的逻辑或多表的连接查询你最好用存储过程，这样可以提高你的服务器性能。<br>2、视图本身是一张虚拟表，处理表与表关系不太复杂操作时也可以用了。<br>3、触发器一般用在多表间级联操作更新或删除一个表中某个字段，那么相关其他表也一同更新或删除呀！</li>
+</ol>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/msyql/" rel="tag">#msyql</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/30/php-standard/" rel="next" title="PHP 编码规范">
+                <i class="fa fa-chevron-left"></i> PHP 编码规范
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/02/js-encodeURL/" rel="prev" title="JS获取url参数及url编码、解码">
+                JS获取url参数及url编码、解码 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/01/mysql-view/"
+           data-title="Mysql的视图、存储过程、触发器的功能及其使用情景" data-url="http://benvim.github.io/2016/05/01/mysql-view/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="Ben" />
+          <p class="site-author-name" itemprop="name">Ben</p>
+          <p class="site-description motion-element" itemprop="description">如若初遇，不如不遇</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+          
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/benvim" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> github
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/smoilbig" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> twitter
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/1645535155" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> weibo
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/ben-ben-5-46" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> zhihu
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">Links</p>
+            
+              <span class="links-of-author-item">
+                <a href="http://mybruce.github.io/" target="_blank">bruce</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库的索引、视图、存储过程、触发器的功能及其使用情景"><span class="nav-number">1.</span> <span class="nav-text">数据库的索引、视图、存储过程、触发器的功能及其使用情景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库的索引"><span class="nav-number">1.1.</span> <span class="nav-text">数据库的索引</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是数据的索引"><span class="nav-number">1.1.1.</span> <span class="nav-text">什么是数据的索引</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#表和视图可以包含以下类型的索引"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">表和视图可以包含以下类型的索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#索引和约束"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">索引和约束</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#索引的作用"><span class="nav-number">1.1.2.</span> <span class="nav-text">索引的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#怎么创建合适的索引"><span class="nav-number">1.1.3.</span> <span class="nav-text">怎么创建合适的索引</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#建议的索引设计策略包括以下任务："><span class="nav-number">1.1.3.1.</span> <span class="nav-text">建议的索引设计策略包括以下任务：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设计索引"><span class="nav-number">1.1.4.</span> <span class="nav-text">设计索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#确定最佳的创建方法。按照以下方法创建索引"><span class="nav-number">1.1.5.</span> <span class="nav-text">确定最佳的创建方法。按照以下方法创建索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建索引"><span class="nav-number">1.1.6.</span> <span class="nav-text">创建索引</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库的触发器"><span class="nav-number">1.2.</span> <span class="nav-text">数据库的触发器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#具体举例："><span class="nav-number">1.2.1.</span> <span class="nav-text">具体举例：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#触发器简介"><span class="nav-number">1.2.2.</span> <span class="nav-text">触发器简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#触发器主要由如下几个部分组成"><span class="nav-number">1.2.3.</span> <span class="nav-text">触发器主要由如下几个部分组成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编写触发器时，需要注意以下几点"><span class="nav-number">1.2.4.</span> <span class="nav-text">编写触发器时，需要注意以下几点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库的存储过程"><span class="nav-number">1.3.</span> <span class="nav-text">数据库的存储过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在SQL-Server-的系列版本中存储过程分为两类："><span class="nav-number">1.3.1.</span> <span class="nav-text">在SQL Server 的系列版本中存储过程分为两类：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储过程在数据库中的作用是什么"><span class="nav-number">1.3.2.</span> <span class="nav-text">存储过程在数据库中的作用是什么</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy;  2013 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ben</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+<span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span>
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.scheme !== 'Pisces' && (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always')) {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"benvim"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("2gXt2y0sWniH8YsMN64aa0Kb-gzGzoHsz", "YIabhtVoaW6Q503QPxygRHrf");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+
+  
+  <!-- custom analytics part create by xiamo -->
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("2gXt2y0sWniH8YsMN64aa0Kb-gzGzoHsz", "YIabhtVoaW6Q503QPxygRHrf");</script>
+<script>
+function showTime(Counter) {
+    var query = new AV.Query(Counter);
+    $(".leancloud_visitors").each(function() {
+        var url = $(this).attr("id").trim();
+        query.equalTo("url", url);
+        query.find({
+            success: function(results) {
+                if (results.length == 0) {
+                    var content = $(document.getElementById(url)).text();
+                    var arr = content.split(":");
+                    content = arr[0]+ ":" + 0;
+                    $(document.getElementById(url)).text(content);
+                    return;
+                }
+                for (var i = 0; i < results.length; i++) {
+                    var object = results[i];
+                    var content = $(document.getElementById(url)).text();
+                    var arr = content.split(":");
+                    content = arr[0]+ ":" + object.get('time');
+                    $(document.getElementById(url)).text(content);
+                }
+            },
+            error: function(object, error) {
+                console.log("Error: " + error.code + " " + error.message);
+            }
+        });
+
+    });
+}
+
+function addCount(Counter) {
+    var Counter = AV.Object.extend("Counter");
+    url = $(".leancloud_visitors").attr('id').trim();
+    title = $(".leancloud_visitors").attr('data-flag-title').trim();
+    var query = new AV.Query(Counter);
+    query.equalTo("url", url);
+    query.find({
+        success: function(results) {
+            if (results.length > 0) {
+                var counter = results[0];
+                counter.fetchWhenSave(true);
+                counter.increment("time");
+                counter.save(null, {
+                    success: function(counter) {
+                        var content = $(document.getElementById(url)).text();
+                        var arr = content.split(":");
+                        content = arr[0]+" : "+counter.get('time');
+                        $(document.getElementById(url)).text(content);
+                    },
+                    error: function(counter, error) {
+                        console.log('Failed to save Visitor num, with error message: ' + error.message);
+                    }
+                });
+            } else {
+                var newcounter = new Counter();
+                newcounter.set("title", title);
+                newcounter.set("url", url);
+                newcounter.set("time", 1);
+                newcounter.save(null, {
+                    success: function(newcounter) {
+                        console.log("newcounter.get('time')="+newcounter.get('time'));
+                        var content = $(document.getElementById(url)).text();
+                        var arr = content.split(":");
+                        content = arr[0]+" : "+newcounter.get('time');
+                        $(document.getElementById(url)).text(content);
+                    },
+                    error: function(newcounter, error) {
+                        console.log('Failed to create');
+                    }
+                });
+            }
+        },
+        error: function(error) {
+            console.log('Error:' + error.code + " " + error.message);
+        }
+    });
+}
+$(function() {
+    var Counter = AV.Object.extend("Counter");
+    if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+    } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+    }
+}); 
+</script>
+  
+  
+</body>
+</html>

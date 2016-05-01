@@ -273,8 +273,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/03/25/js-scroll-text/" itemprop="url">
-                  JS 实现上下滚动文字
+                <a class="post-title-link" href="/2016/05/02/js-encodeURL/" itemprop="url">
+                  JS获取url参数及url编码、解码
                 </a>
               
             
@@ -287,8 +287,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-25T22:45:23+08:00" content="2016-03-25">
-              2016-03-25
+            <time itemprop="dateCreated" datetime="2016-05-02T23:52:12+08:00" content="2016-05-02">
+              2016-05-02
             </time>
           </span>
 
@@ -317,8 +317,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/25/js-scroll-text/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/25/js-scroll-text/" itemprop="commentsCount"></span>
+                <a href="/2016/05/02/js-encodeURL/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/02/js-encodeURL/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -330,7 +330,7 @@
 
           
           
-             <span id="/2016/03/25/js-scroll-text/" class="leancloud_visitors" data-flag-title="JS 实现上下滚动文字">
+             <span id="/2016/05/02/js-encodeURL/" class="leancloud_visitors" data-flag-title="JS获取url参数及url编码、解码">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -353,23 +353,29 @@
       
         
           
-            <p>网站实现JS上下滚动文本。这种东西经常会要，所以写个小组件用用，轻量级的。js原生和jquery混搭实现，jquery实在太方便了。</p>
-<h3 id="一、组件初始化"><a href="#一、组件初始化" class="headerlink" title="一、组件初始化"></a>一、组件初始化</h3><p>初始化组件的参数说明</p>
-<pre><code>rollObj.init = function(_containerName, _showNum, _timeInterval, _listHeight, _animateSpeed);
-</code></pre><ul>
-<li>_containerName 容器的ID</li>
-<li>_showNum 显示几行</li>
-<li>_timeInterval 每次移动的触发时间（单位毫秒）</li>
-<li>_listHeight 每li的高度，也可理解为每次移动的高度。</li>
-<li>_animateSpeed 动画执行的速度</li>
+            <p>完整的URL由这几个部分构成：scheme://host:port/path?query#fragment ，各部分的取法如下：</p>
+<ul>
+<li>window.location.href：获取完整url的方法：,即scheme://host:port/path?query#fragment</li>
+<li>window.location.protocol：获取rul协议scheme</li>
+<li>window.location.host：获取host</li>
+<li>window.location.port：获取端口号</li>
+<li>window.location.pathname：获取url路径</li>
+<li>window.location.search：获取参数query部分，注意此处返回的是?query</li>
+<li>window.location.hash：获取锚点，#fragment</li>
 </ul>
-<h3 id="二、html的结构说明"><a href="#二、html的结构说明" class="headerlink" title="二、html的结构说明"></a>二、html的结构说明</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;notice_task&quot;&gt;</span><br><span class="line">	&lt;ul class=&quot;notice_task_container&quot; id=&quot;notice_task_container_id&quot;&gt;</span><br><span class="line">		&lt;li&gt;&lt;a class=&quot;&quot; href=&quot;#&quot; title=&quot;&#123;$notic.title&#125;&quot; target=&quot;_blank&quot;&gt;&#123;$notic.title&#125;&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">		&lt;li&gt;&lt;a class=&quot;&quot; href=&quot;#&quot; title=&quot;&#123;$notic.title&#125;&quot; target=&quot;_blank&quot;&gt;&#123;$notic.title&#125;&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">		&lt;li&gt;&lt;a class=&quot;&quot; href=&quot;#&quot; title=&quot;&#123;$notic.title&#125;&quot; target=&quot;_blank&quot;&gt;&#123;$notic.title&#125;&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">	&lt;/ul&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<p><em>notice_task</em> 为最外层容器，css样式要设置为 <em>position: relative;</em> 其子元素 <em>notice_task_container</em> 的css样式也要设置为 <em>position:relative;</em> 这样才可以控制 <em>notice_task_container_id</em>容器的top属性使其移动。</p>
-<h3 id="三、JS代码使用"><a href="#三、JS代码使用" class="headerlink" title="三、JS代码使用"></a>三、JS代码使用</h3><p>使用也很简单，<em>rollTextControl.createObj();</em> 创建组件，初始化基本参数即可。使用 $(function(){} 包裹起来是保证页面加载完成后再调用该部分代码。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$(function()&#123;</span><br><span class="line">	var notic = rollTextControl.createObj();</span><br><span class="line">   notic.init(&quot;notice_task_container_id&quot;, 3, 3000, -40, 1000);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>这样就可以了。</p>
-<h3 id="四、组件源代码"><a href="#四、组件源代码" class="headerlink" title="四、组件源代码"></a>四、组件源代码</h3><p>有空再优化和整理，暂且这样吧。代码比较简，看看就明白了。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line">var rollTextControl = &#123;</span><br><span class="line">　　　　createObj: function()&#123;</span><br><span class="line">            var rollObj = &#123;&#125;;</span><br><span class="line">            var containerName = null; //列表的容器。用于删除，和创建子对象</span><br><span class="line">            var showNum = 1; //显示的数量</span><br><span class="line">            var timeInterval = 1000;//间隔1秒操作一次。</span><br><span class="line">            var rollData = null;//列表数据</span><br><span class="line">            var dataLen = 0;</span><br><span class="line">            var listHeight = -32;</span><br><span class="line">            var indexID = 0;</span><br><span class="line">            var animateSpeed = 1000;</span><br><span class="line"></span><br><span class="line">            rollObj.init = function(_containerName, _showNum, _timeInterval, _listHeight, _animateSpeed)&#123;</span><br><span class="line">                containerName   =  _containerName;</span><br><span class="line">                showNum         = _showNum;</span><br><span class="line">                timeInterval    = _timeInterval;</span><br><span class="line">                animateSpeed    = _animateSpeed;</span><br><span class="line">                listHeight      = _listHeight;</span><br><span class="line">                onGetData();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            function onGetData()&#123;</span><br><span class="line">                var element = document.getElementById(containerName);</span><br><span class="line">                rollData = [];</span><br><span class="line">                if(element)&#123;</span><br><span class="line">                    while(element.hasChildNodes()) &#123;</span><br><span class="line">                        var obj = element.removeChild(element.firstChild).cloneNode(true);</span><br><span class="line">                        if(obj)&#123;</span><br><span class="line">                            var str = obj.tagName;</span><br><span class="line">                            if(str)str=str.toLocaleLowerCase();</span><br><span class="line">                            if(str==&quot;li&quot;) rollData.push(obj); </span><br><span class="line">                        &#125;   </span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                if(rollData!=null) startGo();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            function startGo()&#123;</span><br><span class="line">                dataLen = rollData.length;</span><br><span class="line">                for (var i = 0; i &lt; showNum; i++) &#123;</span><br><span class="line">                    var data = rollData[i];</span><br><span class="line">                    if(data) createView(data);</span><br><span class="line">                &#125;</span><br><span class="line">                indexID = showNum-1;</span><br><span class="line">                if(dataLen&gt;showNum) timer();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            function timer()&#123;</span><br><span class="line">                setInterval(rollUpdate, timeInterval);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            function rollUpdate(argument) &#123;</span><br><span class="line">                getNextData();</span><br><span class="line">                var element = document.getElementById(containerName);</span><br><span class="line">                if(element.hasChildNodes())&#123;</span><br><span class="line">                    firstChild = element.firstChild;</span><br><span class="line">                    $(&quot;#&quot;+containerName).animate(&#123;&apos;top&apos;:listHeight&#125;, animateSpeed,animateComplete);    </span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            function animateComplete()&#123;</span><br><span class="line">                //动画完成后，删除最顶上的内容，并重设置容器坐标。</span><br><span class="line">                var firstChild = null;</span><br><span class="line">                var element = document.getElementById(containerName);</span><br><span class="line">                if(element.hasChildNodes() &amp;&amp; element.children.length&gt;showNum)&#123;</span><br><span class="line">                    firstChild = element.firstChild;</span><br><span class="line">                    if(firstChild)</span><br><span class="line">                        element.removeChild(element.firstChild);    </span><br><span class="line">                &#125;else&#123;</span><br><span class="line">                    //console.log(&quot;faild&quot; + element.children.length);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                $(&quot;#&quot;+containerName).css(&#123;&apos;top&apos;:0&#125;);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            function createView(data)&#123;</span><br><span class="line">                $(&quot;#&quot;+containerName).append(data);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            function getNextData()&#123;</span><br><span class="line">                if(indexID &lt; dataLen)&#123;</span><br><span class="line">                    indexID++;</span><br><span class="line">                &#125;else&#123;</span><br><span class="line">                    indexID = 0;</span><br><span class="line">                &#125;</span><br><span class="line">                var data  = rollData[indexID];</span><br><span class="line">                if(data) createView(data);</span><br><span class="line">            &#125;</span><br><span class="line">            return rollObj;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">$(function()&#123;</span><br><span class="line">    var roll = rollTextControl.createObj();</span><br><span class="line">    roll.init(&quot;employListContainer&quot;, 6, 2000, -32, 1000);</span><br><span class="line"></span><br><span class="line">    var notic = rollTextControl.createObj();</span><br><span class="line">    notic.init(&quot;notice_task_container_id&quot;, 3, 3000, -40, 1000);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>在js中可以使用escape(), encodeURL(), encodeURIComponent()，三种方法都有一些不会被编码的符号：</p>
+<ul>
+<li>escape()：@ * / +</li>
+<li>encodeURL()：! @ # $&amp; * ( ) = : / ; ? + ‘</li>
+<li>encodeURIComponent()：! * ( ) ‘</li>
+</ul>
+<p>在java端可以使用URLDecoder.decode(“中文”, “UTF-8”);来进行解码</p>
+<p>但是由于使用request.getParameter() 来获取参数时已经对编码进行了一次解码，所以一般情况下只要在js中使用:</p>
+<pre><code>encodeURIComponent（&quot;中文&quot;）;
+</code></pre><p>在java端直接使用request.getParameter（）来获取即可返回中文。</p>
+<p>如果你想在java端使用URLDecoder.decode(“中文”, “UTF-8”);来解码也可以在js中进行二次编码，即：</p>
+<pre><code>encodeURIComponent(encodeURIComponent(&quot;中文&quot;));
+</code></pre><p>如果不进行二次编码的话，在java端通过decode方法取的会是乱码。</p>
 
           
         
@@ -415,8 +421,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/03/23/js-call-apply-bind/" itemprop="url">
-                  JS的call()方法、apply()与 bind()方法详解
+                <a class="post-title-link" href="/2016/05/01/mysql-view/" itemprop="url">
+                  Mysql的视图、存储过程、触发器的功能及其使用情景
                 </a>
               
             
@@ -429,8 +435,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-23T14:34:22+08:00" content="2016-03-23">
-              2016-03-23
+            <time itemprop="dateCreated" datetime="2016-05-01T21:01:12+08:00" content="2016-05-01">
+              2016-05-01
             </time>
           </span>
 
@@ -443,8 +449,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/js/" itemprop="url" rel="index">
-                    <span itemprop="name">js</span>
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
                   </a>
                 </span>
 
@@ -459,8 +465,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/23/js-call-apply-bind/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/23/js-call-apply-bind/" itemprop="commentsCount"></span>
+                <a href="/2016/05/01/mysql-view/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/01/mysql-view/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -472,7 +478,7 @@
 
           
           
-             <span id="/2016/03/23/js-call-apply-bind/" class="leancloud_visitors" data-flag-title="JS的call()方法、apply()与 bind()方法详解">
+             <span id="/2016/05/01/mysql-view/" class="leancloud_visitors" data-flag-title="Mysql的视图、存储过程、触发器的功能及其使用情景">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -495,16 +501,110 @@
       
         
           
-            <h3 id="1-call是函数的函数，用来改变函数作用域的。"><a href="#1-call是函数的函数，用来改变函数作用域的。" class="headerlink" title="1.call是函数的函数，用来改变函数作用域的。"></a>1.call是函数的函数，用来改变函数作用域的。</h3><p><img src="/uploads/110.jpg" alt="call是函数的函数"></p>
-<p>通过fun()的方法调用，他的作用域是全局的，我可以通过call改变fun的作用域。让他的this对应到obj上，因为本身在fun()定义和外面的全局域里都没有定义变量 a 。是不是感觉像是给obj增加了fun()方法？其实不是的，obj还是没有fun这个方法，在调用fun的时候，把this变成了obj，所以那句<code>console.log(this.a)</code>你可以理解成<code>console.log(obj.a);</code>。 </p>
-<h3 id="2-为什么要用call方法，或者说call方法的使用动机是什么？"><a href="#2-为什么要用call方法，或者说call方法的使用动机是什么？" class="headerlink" title="2.为什么要用call方法，或者说call方法的使用动机是什么？"></a>2.为什么要用call方法，或者说call方法的使用动机是什么？</h3><p><img src="/uploads/112.jpg" alt="call是函数的函数"></p>
-<p>看上图的输出，这个就是它的用途了，方法的this对象是什么其实是看你有没有在对象上调用方法。如果在 <code>obj.fun()</code>上调用就是那个obj，如果把<code>obj.fun</code>赋值给一个变量，因为没有用。去调用，所以他的this指向了window，比如你把一个对象的fun作为回调传到另外一个方法里去，它的this对象就会丢失，变成了指向window的对象，就失去了原本回调的意义。 <strong>所以这个时候就需要把obj对象也一并传到另外一个方法里通过fun.call(obj)去调用，确保他的作用域还是那个obj</strong></p>
-<h3 id="3-call和apply方法的区别"><a href="#3-call和apply方法的区别" class="headerlink" title="3.call和apply方法的区别"></a>3.call和apply方法的区别</h3><p>call和apply其实非常像，只是在传入 <strong>参数时有差别</strong>。</p>
-<p><img src="/uploads/113.jpg" alt="call是函数的函数"></p>
-<p>call是像我们常规调用参数那样，一个一个的传入进去，而apply就是把参数变成一个数组传进去，仅此而已。</p>
-<h3 id="4-bind方法的区别"><a href="#4-bind方法的区别" class="headerlink" title="4.bind方法的区别"></a>4.bind方法的区别</h3><p><img src="/uploads/114.jpg" alt="call是函数的函数"></p>
-<p>bind的区别是这样的，也可以改变作用域，但是他会返回一个新的函数，但是你也可以在bind的时候强制使用指定的参数，在调用的时候它就会用bind指定的那个参数了。如果你只是<code>fun.bind(this)</code>的话，那返回的那个newFun不管你怎么调用，它的作用域都是bind传进去的第一个参数，相当是干涉了参数的值，如果在bind不传入任何的参数，调用还是会用传入的参数。</p>
-<p>参考文献:<a href="http://bonsaiden.github.io/JavaScript-Garden/zh/#object.prototype" target="_blank" rel="external">javascript高级特性</a> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" target="_blank" rel="external">javascript新的版本</a> <a href="http://javascript.ruanyifeng.com/" target="_blank" rel="external">JavaScript 标准参考教程</a></p>
+            <h1 id="数据库的索引、视图、存储过程、触发器的功能及其使用情景"><a href="#数据库的索引、视图、存储过程、触发器的功能及其使用情景" class="headerlink" title="数据库的索引、视图、存储过程、触发器的功能及其使用情景"></a>数据库的索引、视图、存储过程、触发器的功能及其使用情景</h1><ul>
+<li>数据库的索引</li>
+<li>数据库的存储过程</li>
+<li>数据库的视图</li>
+<li>数据库的触发器</li>
+</ul>
+<p>还有什么？等知道了再来补充</p>
+<h2 id="数据库的索引"><a href="#数据库的索引" class="headerlink" title="数据库的索引"></a>数据库的索引</h2><h3 id="什么是数据的索引"><a href="#什么是数据的索引" class="headerlink" title="什么是数据的索引"></a>什么是数据的索引</h3><p>索引是与表或视图关联的磁盘上结构，可以加快从表或视图中检索行的速度。索引包含由表或视图中的一列或多列生成的键。这些键存储在一个结构（B 树）中，使 SQL Server 可以快速有效地查找与键值关联的行</p>
+<h4 id="表和视图可以包含以下类型的索引"><a href="#表和视图可以包含以下类型的索引" class="headerlink" title="表和视图可以包含以下类型的索引"></a>表和视图可以包含以下类型的索引</h4><ul>
+<li>聚集<ul>
+<li>聚集索引根据数据行的键值在表或视图中排序和存储这些数据行。索引定义中包含聚集索引列。每个表只能有一个聚集索引，因为数据行本身只能按一个顺序排序。</li>
+<li>只有当表包含聚集索引时，表中的数据行才按排序顺序存储。如果表具有聚集索引，则该表称为聚集表。如果表没有聚集索引，则其数据行存储在一个称为堆的无序结构中。</li>
+</ul>
+</li>
+<li>非聚集<ul>
+<li>非聚集索引具有独立于数据行的结构。非聚集索引包含非聚集索引键值，并且每个键值项都有指向包含该键值的数据行的指针。</li>
+<li>从非聚集索引中的索引行指向数据行的指针称为行定位器。行定位器的结构取决于数据页是存储在堆中还是聚集表中。对于堆，行定位器是指向行的指针。对于聚集表，行定位器是聚集索引键。</li>
+<li>您可以向非聚集索引的叶级添加非键列以跳过现有的索引键限制（900 字节和 16 键列），并执行完整范围内的索引查询。</li>
+</ul>
+</li>
+</ul>
+<p>聚集索引和非聚集索引都可以是唯一的。这意味着任何两行都不能有相同的索引键值。另外，索引也可以不是唯一的，即多行可以共享同一键值。</p>
+<blockquote>
+<p>每当修改了表数据后，都会自动维护表或视图的索引。</p>
+</blockquote>
+<h4 id="索引和约束"><a href="#索引和约束" class="headerlink" title="索引和约束"></a>索引和约束</h4><p>对表列定义了 PRIMARY KEY 约束和 UNIQUE 约束时，会自动创建索引。例如，如果创建了表并将一个特定列标识为主键，则 数据库引擎自动对该列创建 PRIMARY KEY 约束和索引。有关详细信息，请参阅创建索引（数据库引擎）。</p>
+<h3 id="索引的作用"><a href="#索引的作用" class="headerlink" title="索引的作用"></a>索引的作用</h3><p>与书中的索引一样，数据库中的索引使您可以快速找到表或索引视图中的特定信息。索引包含从表或视图中一个或多个列生成的键，以及映射到指定数据的存储位置的指针。通过创建设计良好的索引以支持查询，可以显著提高数据库查询和应用程序的性能。索引可以减少为返回查询结果集而必须读取的数据量。索引还可以强制表中的行具有唯一性，从而确保表数据的数据完整性。</p>
+<p>设计良好的索引可以减少磁盘 I/O 操作，并且消耗的系统资源也较少，从而可以提高查询性能。对于包含 SELECT、UPDATE、DELETE 或 MERGE 语句的各种查询，索引会很有用。例如，在 AdventureWorks 数据库中执行的查询 SELECT Title, HireDate FROM HumanResources.Employee WHERE EmployeeID = 250。执行此查询时，查询优化器评估可用于检索数据的每个方法，然后选择最有效的方法。可能采用的方法包括扫描表和扫描一个或多个索引（如果有）。</p>
+<p>扫描表时，查询优化器读取表中的所有行，并提取满足查询条件的行。扫描表会有许多磁盘 I/O 操作，并占用大量资源。但是，如果查询的结果集是占表中较高百分比的行，扫描表会是最为有效的方法。</p>
+<p>查询优化器使用索引时，搜索索引键列，查找到查询所需行的存储位置，然后从该位置提取匹配行。通常，搜索索引比搜索表要快很多，因为索引与表不同，一般每行包含的列非常少，且行遵循排序顺序。</p>
+<p>查询优化器在执行查询时通常会选择最有效的方法。但如果没有索引，则查询优化器必须扫描表。您的任务是设计并创建最适合您的环境的索引，以便查询优化器可以从多个有效的索引中选择。SQL Server 提供的数据库引擎优化顾问可以帮助分析数据库环境并选择适当的索引。</p>
+<h3 id="怎么创建合适的索引"><a href="#怎么创建合适的索引" class="headerlink" title="怎么创建合适的索引"></a>怎么创建合适的索引</h3><p>索引其实关键目的是为了加快检索速度而建立的，所以，怎么用索引是数据库系统本身的事情，作为数据库设计或使用者，设计并创建好索引然后体验加上索引后的查询变快的感觉就行了。</p>
+<p>索引设计不佳和缺少索引是提高数据库和应用程序性能的主要障碍。 <strong>设计高效的索引对于获得良好的数据库和应用程序性能极为重要</strong>。为数据库及其工作负荷选择正确的索引是一项需要在查询速度与更新所需开销之间取得平衡的复杂任务。如果索引较窄，或者说索引关键字中只有很少的几列，则需要的磁盘空间和维护开销都较少。而另一方面，宽索引可覆盖更多的查询。您可能需要试验若干不同的设计，才能找到最有效的索引。可以添加、修改和删除索引而不影响数据库架构或应用程序设计。因此，应试验多个不同的索引而无需犹豫。</p>
+<p>SQL Server 中的查询优化器可在大多数情况下可靠地选择最高效的索引。总体索引设计策略应为查询优化器提供可供选择的多个索引，并依赖查询优化器做出正确的决定。这在多种情况下可减少分析时间并获得良好的性能。若要查看查询优化器对特定查询使用的索引，请在 SQL Server Management Studio 中的“查询”菜单上选择“包括实际的执行计划”。</p>
+<p>不要总是将索引的使用等同于良好的性能，或者将良好的性能等同于索引的高效使用。如果只要使用索引就能获得最佳性能，那查询优化器的工作就简单了。但事实上，不正确的索引选择并不能获得最佳性能。因此，查询优化器的任务是只在索引或索引组合能提高性能时才选择它，而在索引检索有碍性能时则避免使用它。</p>
+<h4 id="建议的索引设计策略包括以下任务："><a href="#建议的索引设计策略包括以下任务：" class="headerlink" title="建议的索引设计策略包括以下任务："></a>建议的索引设计策略包括以下任务：</h4><ol>
+<li>了解数据库本身的特征。例如，它是频繁修改数据的联机事务处理 (OLTP) 数据库，还是主要包含只读数据的决策支持系统 (DSS) 或数据仓库 (OLAP) 数据库？</li>
+<li>了解最常用的查询的特征。例如，了解到最常用的查询联接两个或多个表将有助于决定要使用的最佳索引类型。</li>
+<li>了解查询中使用的列的特征。例如，某个索引对于含有整数数据类型同时还是唯一的或非空的列是理想索引。筛选索引适用于具有定义完善的数据子集的列。</li>
+<li>确定哪些索引选项可在创建或维护索引时提高性能。例如，对现有某个大型表创建聚集索引将会受益于 ONLINE 索引选项。ONLINE 选项允许在创建索引或重新生成索引时继续对基础数据执行并发活动。</li>
+<li>确定索引的最佳存储位置。非聚集索引可以与基础表存储在同一个文件组中，也可以存储在不同的文件组中。索引的存储位置可通过提高磁盘 I/O 性能来提高查询性能。例如，将非聚集索引存储在表文件组所在磁盘以外的某个磁盘上的一个文件组中可以提高性能，因为可以同时读取多个磁盘。</li>
+</ol>
+<blockquote>
+<p>或者，聚集索引和非聚集索引也可以使用跨越多个文件组的分区方案。在维护整个集合的完整性时，使用分区可以快速而有效地访问或管理数据子集，从而使大型表或索引更易于管理。有关详细信息，请参阅已分区表和已分区索引。在考虑分区时，应确定是否应对齐索引，即，是按实质上与表相同的方式进行分区，还是单独分区。</p>
+</blockquote>
+<h3 id="设计索引"><a href="#设计索引" class="headerlink" title="设计索引"></a>设计索引</h3><p>索引设计是一项关键任务。索引设计包括确定要使用的列，选择索引类型（例如聚集或非聚集），选择适当的索引选项，以及确定文件组或分区方案布置。</p>
+<h3 id="确定最佳的创建方法。按照以下方法创建索引"><a href="#确定最佳的创建方法。按照以下方法创建索引" class="headerlink" title="确定最佳的创建方法。按照以下方法创建索引"></a>确定最佳的创建方法。按照以下方法创建索引</h3><ol>
+<li><p>使用 CREATE TABLE 或 ALTER TABLE 对列定义 PRIMARY KEY 或 UNIQUE 约束<br>SQL Server 数据库引擎自动创建唯一索引来强制 PRIMARY KEY 或 UNIQUE 约束的唯一性要求。默认情况下，创建的唯一聚集索引可以强制 PRIMARY KEY 约束，除非表中已存在聚集索引或指定了唯一的非聚集索引。默认情况下，创建的唯一非聚集索引可以强制 UNIQUE 约束，除非已明确指定唯一的聚集索引且表中不存在聚集索引。<br>还可以指定索引选项和索引位置、文件组或分区方案。<br>创建为 PRIMARY KEY 或 UNIQUE 约束的一部分的索引将自动给定与约束名称相同的名称。</p>
+</li>
+<li><p>使用 CREATE INDEX 语句或 SQL Server Management Studio 对象资源管理器中的“新建索引”对话框创建独立于约束的索引<br>必须指定索引的名称、表以及应用该索引的列。还可以指定索引选项和索引位置、文件组或分区方案。默认情况下，如果未指定聚集或唯一选项，将创建非聚集的非唯一索引。若要创建筛选索引，请使用可选的 WHERE 子句。</p>
+</li>
+</ol>
+<h3 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h3><p>要考虑的一个重要因素是对空表还是对包含数据的表创建索引。对空表创建索引在创建索引时不会对性能产生任何影响，而向表中添加数据时，会对性能产生影响。  </p>
+<p>对大型表创建索引时应仔细计划，这样才不会影响数据库性能。对大型表创建索引的首选方法是先创建聚集索引，然后创建任何非聚集索引。在对现有表创建索引时，请考虑将 ONLINE 选项设置为 ON。该选项设置为 ON 时，将不持有长期表锁以继续对基础表的查询或更新。</p>
+<blockquote>
+<p>资源来自百度</p>
+</blockquote>
+<h2 id="数据库的触发器"><a href="#数据库的触发器" class="headerlink" title="数据库的触发器"></a>数据库的触发器</h2><p>触发器的定义就是说某个条件成立的时候，你触发器里面所定义的语句就会被自动的执行。因此触发器不需要人为的去调用，也不能调用。</p>
+<p>然后，触发器的触发条件其实在你定义的时候就已经设定好的了。这里面需要说明一下，触发器可以分为语句级触发器和行级触发器。详细的介绍可以参考网上的资料，简单的说就是语句级的触发器可以在某些语句执行前或执行后被触发。而行级触发器则是在定义的了触发的表中的行数据改变时就会被触发一次。</p>
+<h3 id="具体举例："><a href="#具体举例：" class="headerlink" title="具体举例："></a>具体举例：</h3><ol>
+<li><p>在一个表中定义的语句级的触发器，当这个表被删除时，程序就会自动执行触发器里面定义的操作过程。这个就是删除表的操作就是触发器执行的条件了。</p>
+</li>
+<li><p>在一个表中定义了行级的触发器，那当这个表中一行数据发生变化的时候，比如删除了一行记录，那触发器也会被自动执行了。</p>
+</li>
+</ol>
+<h3 id="触发器简介"><a href="#触发器简介" class="headerlink" title="触发器简介"></a>触发器简介</h3><p>触发器是一种特殊类型的过程。与普通过程不同的是，过程需要用户显式地调用才执行，而触发器则是当某些事件发生时，由Oracle自动执行。</p>
+<h3 id="触发器主要由如下几个部分组成"><a href="#触发器主要由如下几个部分组成" class="headerlink" title="触发器主要由如下几个部分组成"></a>触发器主要由如下几个部分组成</h3><ul>
+<li>触发事件：</li>
+<li>触发条件：</li>
+<li>触发对象：</li>
+<li>触发操作：</li>
+</ul>
+<h3 id="编写触发器时，需要注意以下几点"><a href="#编写触发器时，需要注意以下几点" class="headerlink" title="编写触发器时，需要注意以下几点"></a>编写触发器时，需要注意以下几点</h3><ul>
+<li>触发器不接受参数。  </li>
+<li>一个表上最多可以有12个触发器，但同一时间、同一事件、同一类型的触发器只能有一个。还需要注意，各个触发器之间不能有矛盾。  </li>
+<li>在一个表上的触发器越多，对在该表上的DML操作性能影响就越大。  </li>
+<li>触发器最大为32KB。如果确实需要，可以先建立过程，然后在触发器中用CALL语句调用。</li>
+<li>在DML触发器中只能使用DML语句（select，insert，update，delete）。</li>
+<li>在系统触发器中只能包含DDL语句（create，alter,drop）。</li>
+<li>触发器中不能包含事务控制语句（commit，rollback，savepoint）。因为触发器是触发语句的一部门，触发语句被提交或回退时，触发器也就被提交或回退了。</li>
+<li>在触发器主体中调用的任何过程、函数都不能使用事务控制语句。</li>
+<li>在触发器主体中不能声明任何long和blob变量。新值new、旧值old也不能指向表中的任何long和blog列</li>
+<li>不同类型的触发器（如DML触发器、INSTEAD OF触发器、系统触发器）的语法格式和作用都有较大区别。</li>
+</ul>
+<h2 id="数据库的存储过程"><a href="#数据库的存储过程" class="headerlink" title="数据库的存储过程"></a>数据库的存储过程</h2><p>存储过程（Stored Procedure）是一组为了完成特定功能的SQL 语句集，经编译后存储在数据库。中用户通过指定存储过程的名字并给出参数（如果该存储过程带有参数）来执行它。   </p>
+<h3 id="在SQL-Server-的系列版本中存储过程分为两类："><a href="#在SQL-Server-的系列版本中存储过程分为两类：" class="headerlink" title="在SQL Server 的系列版本中存储过程分为两类："></a>在SQL Server 的系列版本中存储过程分为两类：</h3><ul>
+<li>系统提供的存储过程</li>
+<li>用户自定义存储过程。</li>
+</ul>
+<ol>
+<li><p>系统过程主要存储在master 数据库中并以sp_为前缀，并且系统存储过程主要是从系统表中获取信息，从而为系统管理员管理SQL Server 提供支持。通过系统存储过程，MS SQL Server 中的许多管理性或信息性的活动（如了解数据库对象、数据库信息）都可以被顺利有效地完成。尽管这些系统存储过程被放在master 数据库中，但是仍可以在其它数据库中对其进行调用，在调用时不必在存储过程名前加上数据库名。而且当创建一个新数据库时，一些系统存储过程会在新数据库中被自动创建。</p>
+</li>
+<li><p>用户自定义存储过程是由用户创建并能完成某一特定功能（如查询用户所需数据信息）的存储过程。</p>
+</li>
+</ol>
+<h3 id="存储过程在数据库中的作用是什么"><a href="#存储过程在数据库中的作用是什么" class="headerlink" title="存储过程在数据库中的作用是什么"></a>存储过程在数据库中的作用是什么</h3><p>第一：存储过程因为SQL语句已经预编绎过了，因此运行的速度比较快。<br>第二：存储过程可以接受参数、输出参数、返回单个或多个结果集以及返回值。可以向程序返回错误原因。<br>第三：存储过程运行比较稳定，不会有太多的错误。只要一次成功，以后都会按这个程序运行。<br>第四：存储过程主要是在服务器上运行，减少对客户机的压力。<br>第五：存储过程可以包含程序流、逻辑以及对数据库的查询。同时可以实体封装和隐藏了数据逻辑。<br>第六：存储过程可以在单个存储过程中执行一系列 SQL 语句。<br>第七：存储过程可以从自己的存储过程内引用其它存储过程，这可以简化一系列复杂语句。  </p>
+<p>其实存储过程还可以控制权限，比如一个表不直接允许用户直接访问，但要求允许用户访问和修改其中一个或多个字段，那就可以通过一个存储过程来实现并允许该用户使用该存储过程。 </p>
+<p>还有，如果多条SQL语句执行过程中，过程环节返回了数据作为后面环节的输入数据，如果直接通过SQL语句执行，势必导致大量的数据通过网络返回到客户机，并在客户机运算；如果封装在存储过程中，则将运算放在服务器进行，不但减少了客户机的压力，同时也减少了网络流量，提高了执行的效率。</p>
+<blockquote>
+<p>来自百度  </p>
+<ol>
+<li>的确的看你的需求了，处理比复杂的逻辑或多表的连接查询你最好用存储过程，这样可以提高你的服务器性能。<br>2、视图本身是一张虚拟表，处理表与表关系不太复杂操作时也可以用了。<br>3、触发器一般用在多表间级联操作更新或删除一个表中某个字段，那么相关其他表也一同更新或删除呀！</li>
+</ol>
+</blockquote>
 
           
         
@@ -550,8 +650,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/03/22/php-cdn/" itemprop="url">
-                  添加CND后的验证码错误问题及其解决方案
+                <a class="post-title-link" href="/2016/04/30/php-standard/" itemprop="url">
+                  PHP 编码规范
                 </a>
               
             
@@ -564,8 +664,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-22T20:15:00+08:00" content="2016-03-22">
-              2016-03-22
+            <time itemprop="dateCreated" datetime="2016-04-30T10:12:12+08:00" content="2016-04-30">
+              2016-04-30
             </time>
           </span>
 
@@ -594,8 +694,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/22/php-cdn/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/22/php-cdn/" itemprop="commentsCount"></span>
+                <a href="/2016/04/30/php-standard/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/30/php-standard/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -607,7 +707,7 @@
 
           
           
-             <span id="/2016/03/22/php-cdn/" class="leancloud_visitors" data-flag-title="添加CND后的验证码错误问题及其解决方案">
+             <span id="/2016/04/30/php-standard/" class="leancloud_visitors" data-flag-title="PHP 编码规范">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -630,178 +730,79 @@
       
         
           
-            <p>网站为了提高各地的访问速度，都会使用CDN以增加缓存结点，来提高用户打开网站的速度，但是缓存节点会造成验证码偶然错误的情况。由于问题隐蔽性不容易被发现，在本地测试和未使用CDN的情况下是正常的。使用CDN后也不会立即出现，只是部分用户出现异常，所以很难发现。</p>
-<h5 id="1-问题现像"><a href="#1-问题现像" class="headerlink" title="1.问题现像"></a>1.问题现像</h5><p>今天网站突然所有需要验证码的地方都提示验证码错误无法操作。开始以为是centos服务器的session不能写入了，查看了session目录，权限正常，能正常写入session。重启服务器，问题依然存在。</p>
-<h5 id="2-排查问题"><a href="#2-排查问题" class="headerlink" title="2.排查问题"></a>2.排查问题</h5><p>发现每次验证码请求一次，在服务端的session却被写了2次或3次。修改session写入代码。<code>$_SERVER[&#39;HTTP_X_FORWARDED_FOR&#39;]</code> 获取用户的IP地址。</p>
-<pre><code>session(&apos;captcha&apos;.$_SERVER[&apos;HTTP_X_RORWARDED_FOR&apos;], md5($code));
-</code></pre><p>查看session文件写入内容如下：</p>
-<pre><code>captcha122.228.74.137|s:32:&quot;d465f14a648b3d0a1faa6f447e526c60&quot;;captcha183.155.217.251|s:32:&quot;e069ea4c9c233d36ff9c7f329bc08ff1&quot;;
-</code></pre><p>一次刷新请求，有多个IP请求并生成session，本地的ip:183.115.217.251.另外的IP则应该是CDN缓存服务器的IP地址。所以这是造成验证码不一致的根本原因。</p>
-<h5 id="3-解决办法"><a href="#3-解决办法" class="headerlink" title="3.解决办法"></a>3.解决办法</h5><p>给验证码生成的部分写入session位置增加IP地址的has值。如下所示：</p>
-<pre><code>session(&apos;captcha&apos;.md5($_SERVER[&apos;HTTP_X_FORWARDED_FOR&apos;]), md5($code));
-</code></pre><p>验证部分，取出写入的session. 其中<code>getIPAderss()</code>方法是获取本地IP的方法，这样取出同一个验证码，保证服务端的session验证码记录和填写的验证码一致。</p>
-<pre><code>if(session(&apos;captcha&apos;.md5(getIPAderss())) != md5($captcha)){
-    ....
-}
-</code></pre><p>了解问题产生的根本原因后，解决办法还是比较容易的。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/21/method-learn/" itemprop="url">
-                  如何更快的学习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-21T09:20:23+08:00" content="2016-03-21">
-              2016-03-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/method/" itemprop="url" rel="index">
-                    <span itemprop="name">method</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/21/method-learn/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/21/method-learn/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-          
-
-          
-          
-             <span id="/2016/03/21/method-learn/" class="leancloud_visitors" data-flag-title="如何更快的学习">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="钻研（The-Drilldown-Method-使用你学得更快"><a href="#钻研（The-Drilldown-Method-使用你学得更快" class="headerlink" title="钻研（The Drilldown Method):使用你学得更快"></a>钻研（The Drilldown Method):使用你学得更快</h4><p>经年累月，我完善了一个方法，可以加速逐层增进理解的过程。这个方法至今已被我用于各科目的课题，包括数学、生物学、物理学、经济学与工程学。只需些许修改，它对掌握实用技能也效果很好，比如编程、设计或语言。这个方法的基本结构是：知识面、练习、自省。我将解释每个阶段，让你了解如何尽可能有效率地执行它们，同时给出详细的例子，展示我是怎么应用在实际课程的。</p>
-<h4 id="第一阶段：-知识面覆盖"><a href="#第一阶段：-知识面覆盖" class="headerlink" title="第一阶段： 知识面覆盖"></a>第一阶段： 知识面覆盖</h4><p>你不可能组织一场进攻，如果你连一张地形图都没有。因此，深入研习的第一步，就是对你需要学习的内容有个大致印象。若在课堂上，这意味着你要看讲义或读课本；若是自学，你可能要多读几本同主题的书，相互考证。</p>
-<p>学生们常犯的一个错误，就是认为这个阶段是最重要的。从很多方面来讲，这个阶段却是效率最低的，因为你每单位时间的投入只换来了最少量的知识回报。我常常加速完成这个阶段，很有好处，这样，我就可以投入更多时间到后面两个阶段。</p>
-<p>如果你在看课程讲座的视频，最好是调到1.5x或2x倍速快进。这很容易做到，只要你下载好视频，然后使用播放器（如VLC）的“调速”功能。我用这法子两天内看完了一学期的课程视频。如果你在读一本书，我建议你不要花时间去高亮文本。这样只会让你的知识理解停留在低层次，而从长远来看，也使学习效率低下。更好的方法是，阅读时只偶尔做做笔记，或在读过每个主要章节后写一段落的总结。</p>
-<p>这里有个<a href="http://www.scotthyoung.com/mit/machine-vision-notes.pdf" target="_blank" rel="external">例子</a>，是我上机器视觉这门课时的笔记。</p>
-<h4 id="第二阶段：练习"><a href="#第二阶段：练习" class="headerlink" title="第二阶段：练习"></a>第二阶段：练习</h4><p>做练习题，能极大地促进你的知识理解。但是，如果你不小心，可能会落入两个效率陷阱：</p>
+            <h1 id="PHP-编码规范"><a href="#PHP-编码规范" class="headerlink" title="PHP 编码规范"></a>PHP 编码规范</h1><p>当一个软件项目尝试着遵守公共一致的标准时，可以使参与项目的开发人员更容易了解项目中的代码、弄清程序的状况。使新的参与者可以很快的适应环境，防止部分参与者出于节省时间的需要，自创一套风格并养成终生的习惯，导致其它人在阅读时浪费过多的时间和精力。而且在一致的环境下，也可以减少编码出错的机会。缺陷是由于每个人的标准不同，所以需要一段时间来适应和改变自己的编码风格，暂时性的降底了工作效率。从使项目长远健康的发展以及后期更高的团队工作效率来考虑暂时的工作效率降低是值得的，也是必须要经过的一个过程。标准不是项目成功的关键，但可以帮助我们在团队协作中有更高的效率并且更加顺利的完成既定的任务。</p>
 <ul>
-<li>没有获得即时的反馈：研究表明，如果你想更好地学习，你需要即时的反馈。因此，做题时最好是答案在手，天下我有，每做完一题就对答案，自我审查。没有反馈或反馈迟来的练习，只会严重牵制学习效率；</li>
-<li>题海战术：正如有人以为学习是始于教室终于教室，一些学生也认为大多数的知识理解产自练习题。是的，你总能通过题海战术最终搭起知识框架，但过程缓慢、效率低下。</li>
+<li>程序员可以了解任何代码，弄清程序的状况</li>
+<li>新人可以很快的适应环境</li>
+<li>防止新接触PHP的人出于节省时间的需要，自创一套风格并养成终生的习惯</li>
+<li>防止新接触PHP的人一次次的犯同样的错误</li>
+<li>在一致的环境下，人们可以减少犯错的机会</li>
+<li>程序员们有了一致的敌人</li>
 </ul>
-<p>练习题，应该能凸显你需要建立更好直觉的知识领域。一些技巧，比如我将会谈到的费曼技巧（the Feynman technique），对此则相当有效。对于非技术类学科，它更多的是要求你掌握概念而不是解决问题，所以，你常常只需要完成最少量的习题。对这些科目，你最好花更多的时间在第三阶段，形成学科的洞察力。</p>
-<h3 id="第三阶段：自省"><a href="#第三阶段：自省" class="headerlink" title="第三阶段：自省"></a>第三阶段：自省</h3><p>知识面覆盖，与做练习题，是为了让你知道你还有什么不懂。这并不像听上去那么容易，毕竟知之为知之，不知为不知，难矣。你以为你都懂了，其实不是，所以老犯错；或者，你对某综合性学科心里没底，但又看不确切还有哪里不懂。</p>
-<p>接下来的技巧，我称之为“费曼技巧”，将帮助你查漏补缺，在求知路上走得更远。当你能准确识别出你不懂的知识点时，这个技巧助你填补知识的缺口，尤其是那些最难以填补的巨大缺口。这个技巧还能两用。即使你真的理解了某个想法，它也能让你关联更多的想法，于是，你可以继续钻研，深化理解。</p>
-<h3 id="费曼技巧（The-Feynman-Technique）"><a href="#费曼技巧（The-Feynman-Technique）" class="headerlink" title="费曼技巧（The Feynman Technique）"></a>费曼技巧（The Feynman Technique）</h3><p>这个技巧的灵感，源于诺贝尔物理奖获得者，理查德·费曼（Richard Feynman）。在他的自传里，他提到曾纠结于某篇艰深的研究论文。他的办法是，仔细审阅这篇论文的辅助材料（supporting material），直到他掌握了相关的知识基础、足以理解其中的艰深想法为止。</p>
-<p>费曼技巧，亦同此理。对付一个知识枝节繁杂如发丝、富有内涵的想法，应该分而化之，切成小知识块，再逐个对付，你最终能填补所有的知识缺口，否则，这些缺口将阻挠你理解这个想法。对此，<a href="https://www.youtube.com/watch?v=FrNqSLPaZLc&amp;feature=youtu.be&amp;t=1m17s" target="_blank" rel="external">请看这个简短的教程视频</a>。</p>
-<h4 id="费曼技巧很简单："><a href="#费曼技巧很简单：" class="headerlink" title="费曼技巧很简单："></a>费曼技巧很简单：</h4><ul>
-<li>拿张白纸；</li>
-<li>在白纸顶部写上你想理解的某想法或某过程 </li>
-<li>用你自己的话解释它，就像你在教给别人这个想法。</li>
+<p>请详细阅读以下规范，并严格遵守。</p>
+<h2 id="约定"><a href="#约定" class="headerlink" title="约定"></a>约定</h2><h3 id="文件编码"><a href="#文件编码" class="headerlink" title="文件编码"></a>文件编码</h3><p>所有文件，默认都用UTF-8编码，注释为中文。</p>
+<p>其他涉及具体程序的代码，请调整您的编辑器文件编码为<strong>UTF-8</strong>，并<strong>关闭UTF-8 BOM</strong>的功能。请不要使用windows自带的记事本编辑项目文件。</p>
+<h2 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h2><h3 id="文件命名"><a href="#文件命名" class="headerlink" title="文件命名"></a>文件命名</h3><p>文件名与类名保持一致，区分大小写。</p>
+<h3 id="类命名"><a href="#类命名" class="headerlink" title="类命名"></a>类命名</h3><p>使用骆驼法则<br>首字母大写<br>专有名词保持其默认大小写规范。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class UserController &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>接口类命名</p>
+<p>使用 目录名称 + “_” + 骆驼法则的形式实现(首字母小写)<br>object/user/User_getUser.php</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class User_getUser &#123;&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="函数命名"><a href="#函数命名" class="headerlink" title="函数命名"></a>函数命名</h3><p>骆驼法则的形式实现，首字母小写,专有名词保持其默认大小写规范。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function getUser() &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function userAddslashes($value, $force = 0) &#123;</span><br><span class="line">	return $value = is_array($value) ? true : false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="方法命名"><a href="#方法命名" class="headerlink" title="方法命名"></a>方法命名</h3><p>使用骆驼法则，首字母小写, 接口对外提供的方法请声明为 public，其他接口本内部身使用的方法请全部声明为 private 。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public function stripvTag($s) &#123;</span><br><span class="line">	$vtagRegexp = $this-&gt;getVtagRegexp();</span><br><span class="line">	return true;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private function getVtagRegexp() &#123;</span><br><span class="line">	return &apos;something&apos;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="变量命名"><a href="#变量命名" class="headerlink" title="变量命名"></a>变量命名</h3><p>使用骆驼法则，首字母小写。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$callbackFunctions;</span><br></pre></td></tr></table></figure>
+<h3 id="常量命名"><a href="#常量命名" class="headerlink" title="常量命名"></a>常量命名</h3><p>所有字母大写，单词之间用下划线分割。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">define(&apos;MAGIC_QUOTES_GPC&apos;, get_magic_quotes_gpc());</span><br></pre></td></tr></table></figure>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>注释是开源项目的重点，请务必重视。</p>
+<h3 id="头部注释"><a href="#头部注释" class="headerlink" title="头部注释"></a>头部注释</h3><p>头部注释主要用来阐述此文件的版权，协议，作者，版本。对于核心开发组，请按照下列形式书写(你可以把它设置为代码模板)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">/*</span><br><span class="line">	More &amp; Original PHP Framwork</span><br><span class="line">	Copyright (c) 2009 - 2010 Chuangpingke Inc.</span><br><span class="line">	</span><br><span class="line">	$Id$</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+<p>其中author为作者的名称，请自己命名。version定义为$Id$是为了匹配svn的关键字，设置此文件的svn:keywords属性为id，每次提交以后,$Id$就会被替换为具体的版本信息，比如:</p>
+<pre><code>$Id: User_getUser.php 52 2010-03-31 08:24:35Z kimi $。
+</code></pre><h3 id="引用文件和定义常量注释"><a href="#引用文件和定义常量注释" class="headerlink" title="引用文件和定义常量注释"></a>引用文件和定义常量注释</h3><p>文件的引用和常量的定义一般都放置在文件的开头部分。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/** 定义GPC变量 **/</span><br><span class="line">define(&apos;MAGIC_QUOTES_GPC&apos;, get_magic_quotes_gpc());</span><br></pre></td></tr></table></figure>
+<p>多行注释，使用如下形式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 定义数据库缓存存储方式</span><br><span class="line"> * true表示...</span><br><span class="line"> * false表示...</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">define(&apos;PHP_DB_FILECACHE&apos;, true);</span><br><span class="line">define(&apos;PHP_DB_DBCACHE&apos;, false);</span><br></pre></td></tr></table></figure>
+<h3 id="类-接口-注释"><a href="#类-接口-注释" class="headerlink" title="类(接口)注释"></a>类(接口)注释</h3><p>一个类(接口)在声明的时候必须声明其作用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 包含获取数据支持方法的类</span><br><span class="line"> */</span><br><span class="line">class UserController &#123;</span><br><span class="line">	//....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="函数-方法-接口-注释"><a href="#函数-方法-接口-注释" class="headerlink" title="函数(方法,接口)注释"></a>函数(方法,接口)注释</h3><p>函数(方法,接口)的声明注释参考phpdoc规范。注意，如果是无返回函数，必须指明@return void，请尽量在函数参数表中使用已知类型。如果函数中抛出异常则必须指明@throws &lt;异常类型&gt;。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">* 获取GPC变量。对于type为integer的变量强制转化为数字型</span><br><span class="line">* @param string $key - 权限表达式</span><br><span class="line">* @param string $type - integer 数字类型；string 字符串类型；array 数组类型</span><br><span class="line">* @param string $var - R $REQUEST变量；G $GET变量；P $POST变量；C $COOKIE变量</span><br><span class="line">* @return string</span><br><span class="line">*/</span><br><span class="line">function UserGetGPC($key, $type = &apos;integer&apos;, $var = &apos;R&apos;) &#123;</span><br></pre></td></tr></table></figure>
+<h3 id="程序行间注释"><a href="#程序行间注释" class="headerlink" title="程序行间注释"></a>程序行间注释</h3><p>行间注释采用双斜线注释法，反斜杠与描述之间，应该保留一个空格</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 禁止对全局变量注入</span><br><span class="line">if (isset($_REQUEST[&apos;GLOBALS&apos;]) OR isset($_FILES[&apos;GLOBALS&apos;])) &#123;</span><br><span class="line">	exit(&apos;Request tainting attempted.&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="书写规则"><a href="#书写规则" class="headerlink" title="书写规则"></a>书写规则</h2><h3 id="缩进"><a href="#缩进" class="headerlink" title="缩进"></a>缩进</h3><p>详细的代码缩进会在后面提到，这里需要注意的是，PHP项目中的代码缩进使用每个缩进的单位约定是一个TAB(4个空白字符宽度)，需每个参与项目的开发人员在编辑器(UltraEdit、EditPlus、Zend Studio等)中进行强制设定，以防在编写代码时遗忘而造成格式上的不规范。</p>
+<p>本缩进规范适用于PHP、Javascript中的函数、类、逻辑结构、循环等。</p>
+<h3 id="UNIX编码规范"><a href="#UNIX编码规范" class="headerlink" title="UNIX编码规范"></a>UNIX编码规范</h3><p>如果你正在编写一个php文件，那么根据UNIX的C语言编码规范，必须留出最后一个空行。比如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">// this is a test file</span><br><span class="line">echo &apos;hello&apos;;</span><br><span class="line">// &lt;---这行留空</span><br></pre></td></tr></table></figure>
+<p>而且，如果此文件为纯php文件(没有嵌套HTML)，请不要用<strong>?&gt;</strong>符号结尾，保持最后一行留空即可。</p>
+<h3 id="大括号-、if和switch"><a href="#大括号-、if和switch" class="headerlink" title="大括号{}、if和switch"></a>大括号{}、if和switch</h3><ul>
+<li>首括号与关键词同行，尾括号与关键字同列；</li>
+<li>if结构中，else和elseif与前后两个大括号同行，左右各一个空格。另外，即便if后只有一行语句，仍然需要加入大括号，以保证结构清晰；</li>
+<li>switch结构中，通常当一个case块处理后，将跳过之后的case块处理，因此大多数情况下需要添加break。break的位置视程序逻辑，与case同在一行，或新起一行均可，但同一switch体中，break的位置格式应当保持一致。<br>以下是符合上述规范的例子：</li>
 </ul>
-<p><em>最要紧的是，对一个想法分而化之，虽然可能重复解释某些已经弄懂的知识点。</em> 但你最终会到达一个临界点，无法再解释清楚。那里正是你需要填补的知识缺口。为了填补这个缺口，你可以查课本、问老师、或到互联网搜寻答案。通常来说，一旦你精准地定义了你的不解或误解，找到确切的答案则相对而言更轻松。</p>
-<p>我已经使用过这个费曼技巧有数百次，确信它能应付各种各样的学习情境。然而，由于学习情境各有特点，它需要灵活变通，似乎显得难以入门，所以，我将尝试举些不同的例子。</p>
-<h5 id="1-对付你完全摸不着头脑的概念"><a href="#1-对付你完全摸不着头脑的概念" class="headerlink" title="1.对付你完全摸不着头脑的概念"></a>1.对付你完全摸不着头脑的概念</h5><p>对此，我仍坚持使用费曼技巧，但翻开课本，找到解释这个概念的章节。我先浏览一遍作者的解释，然后仔细地摹仿它，并也试着用自己的思维详述和阐明它。如此一来，当你不能用自己的话写下任何解释时，“引导式”费曼技巧很有用处。这里有个<a href="http://www.scotthyoung.com/mit/photogrammetry.pdf" target="_blank" rel="external">例子</a>，展示我如何理解摄影测量学。</p>
-<h5 id="2-对付各种过程"><a href="#2-对付各种过程" class="headerlink" title="2.对付各种过程"></a>2.对付各种过程</h5><p>你也能通过费曼技巧去了解一个你需要用到的过程。审视所有的步骤，不光解释每一步在干什么，还要清楚它是怎么执行的。我常这样理解数学的证明过程、化学的方程式、与生物学的糖酵解过程。这里有个<a href="http://www.scotthyoung.com/mit/grid-accel.pdf" target="_blank" rel="external">例子</a>，展示我如何想到怎么实现网格加速。</p>
-<h5 id="3-对付各种公式"><a href="#3-对付各种公式" class="headerlink" title="3.对付各种公式"></a>3.对付各种公式</h5><p>公式，应该被理解，而不只是死记硬背。因此，当你看到一个公式，却无法理解它的运作机理时，试着用费曼技巧分而化之。这里有个<a href="http://www.scotthyoung.com/mit/fourier.pdf" target="_blank" rel="external">例子</a>，展示我如何理解傅里叶分析方程。</p>
-<h5 id="4-对付需要记忆的内容"><a href="#4-对付需要记忆的内容" class="headerlink" title="4.对付需要记忆的内容"></a>4.对付需要记忆的内容</h5><p>费曼技巧，也可以帮你自查是否掌握非技术类学科那些博大精深的知识概念。对于某个主题，如果你能顺利应用费曼技巧，而无需参考原始材料（讲义、课本等），就证明你已经理解和记住它。。这里有个<a href="http://www.scotthyoung.com/mit/predatory-pricing.pdf" target="_blank" rel="external">例子</a>，展示我如何回忆起经济学中的掠夺性定价概念。</p>
-<h4 id="形成更深刻的直觉（Deeper-Intuition）"><a href="#形成更深刻的直觉（Deeper-Intuition）" class="headerlink" title="形成更深刻的直觉（Deeper Intuition）"></a>形成更深刻的直觉（Deeper Intuition）</h4><p>结合做习题，费曼技巧能帮你剥开知识理解的浅层表皮。但它也能帮你钻研下去，走得更远，不只是浅层的理解，而是形成深刻的知识直觉。直观地理解一个想法，并非易事。它看似有些许神秘，但这不是它的本相。一个想法的多数直觉，可作以下归类。</p>
-<h5 id="1-类比、可视化、简化"><a href="#1-类比、可视化、简化" class="headerlink" title="1.类比、可视化、简化"></a>1.类比、可视化、简化</h5><p>类比：你理解一个想法，是通过确认它与某个更易理解的想法之间的重要相似点；可视化：抽象概念也常成为有用的直觉，只要我们能在脑海为它们构筑画面，即使这个画面只是一个更大更多样化想法的不完全表达；简化：一位著名的科学家曾说过，如果你不能给你的祖母解释一样东西，说明你还没有完全理解它。简化是一门艺术，它加强了基础概念与复杂想法之间的思维联系。</p>
-<p>你可以用费曼技巧去激发这些直觉。对于某个想法，一旦你有了大致的理解，下一步就是深入分析，看能不能用以上三种直觉来阐释它。期间，就算是借用已有的意象喻义，也是情有可原的。例如，把复数放到二维空间里理解，很难称得上是新颖的，但它能让你很好地可视化这个概念，让概念在脑海中构图成型。DNA复制，被想象成拉开一条单向拉链，这也不是一个完美的类比，但只要你心里清楚其中的异同，它会变得有用。</p>
-<h5 id="2-学得更快的策略"><a href="#2-学得更快的策略" class="headerlink" title="2.学得更快的策略"></a>2.学得更快的策略</h5><p>在这篇文章里，我描述了学习的三个阶段：知识面、练习、与自省。但这可能让你误解，错以为它们总在不同的时期被各自执行，从不重叠或反复。实际上，随着不断地深入理解知识，你可能会周而复始地经历这些阶段。你刚开始读一个章节，只能有个大概的肤浅印象，但做过练习题和建立了直觉以后，你再回过来重新阅读，又会有更深刻的理解，即温故而知新。</p>
-<h5 id="3-钻研吧，即便你不是学生"><a href="#3-钻研吧，即便你不是学生" class="headerlink" title="3.钻研吧，即便你不是学生"></a>3.钻研吧，即便你不是学生</h5><p>这个过程不只是适用于学生，也同样有助于学习复杂技能或积累某话题的专业知识。学习像编程或设计的技能，大多数人遵循前两个阶段。他们阅读一本相关的基础书籍，然后在一个项目里历练。然而，你能运用费曼技巧更进一步，更好地锁定与清晰表述你的深刻见解。积累某话题的专业知识，亦同此理；唯一的差别是，你在建立知识面以前，需要搜集一些学习材料，包括相关的研究文章、书籍等。无论如何，只要你弄清楚了想掌握的知识领域，你就钻研下去，深入学习它。</p>
-<p><a href="http://calnewport.com/blog/2012/10/26/mastering-linear-algebra-in-10-days-astounding-experiments-in-ultra-learning/" target="_blank" rel="external">原文来自</a> <a href="http://calnewport.com/" target="_blank" rel="external">CAL NEWPORT</a></p>
-
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">if ($condition) &#123;</span><br><span class="line">	switch ($var) &#123;</span><br><span class="line">		case 1: 	echo &apos;var is 1&apos;; break;</span><br><span class="line">		case 2: 	echo &apos;var is 2&apos;; break;</span><br><span class="line">		default: 	echo &apos;var is neither 1 or 2&apos;; break;</span><br><span class="line">	&#125;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">	switch ($str) &#123;</span><br><span class="line">		case &apos;abc&apos;:</span><br><span class="line">			$result = &apos;abc&apos;;</span><br><span class="line">			break;</span><br><span class="line">		default:</span><br><span class="line">			$result = &apos;unknown&apos;;</span><br><span class="line">			break;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="运算符、小括号、空格、关键词"><a href="#运算符、小括号、空格、关键词" class="headerlink" title="运算符、小括号、空格、关键词"></a>运算符、小括号、空格、关键词</h3><ul>
+<li>每个运算符与两边参与运算的值或表达式中间要有一个空格；</li>
+<li>左括号“(” 应和函数关键词紧贴在一起，除此以外应当使用空格将“(”同前面内容分开；</li>
+<li>右括号“)”除后面是“)”以外，其他一律用空格隔开它们；</li>
+<li>除字符串中特意需要，一般情况下，在程序以及HTML中不出现两个连续的空格；</li>
+<li>任何情况下，PHP程序中不能出现空白的带有TAB或空格的行，即：这类空白行应当不包含任何TAB或空格。同时，任何程序行尾也不能出现多余的TAB或空格。多数编辑器具有自动去除行尾空格的功能，如果习惯养成不好，可临时使用它，避免多余空格产生；</li>
+<li>每段较大的程序体，上、下应当加入空白行，两个程序块之间只使用1个空行，禁止使用多行；</li>
+<li>程序块划分尽量合理，过大或者过小的分割都会影响他人对代码的阅读和理解。一般可以以较大函数定义、逻辑结构、功能结构来进行划分。少于15行的程序块，可不加上下空白行；</li>
+<li>说明或显示部分中，内容如含有中文、数字、英文单词混杂，应当在数字或者英文单词的前后加入空格。</li>
+</ul>
+<p>根据上述原则，以下举例说明正确的书写格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$result = (($a + 1) * 3 / 2 + $num)) . ’Test’;</span><br><span class="line">$condition ? func1($var) : func2($var); </span><br><span class="line">$condition ? $long_statement</span><br><span class="line">	: $another_long_statement;</span><br><span class="line">if ($flag) &#123;</span><br><span class="line">	// Statements(more than 15 lines)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="函数定义"><a href="#函数定义" class="headerlink" title="函数定义"></a>函数定义</h3><ul>
+<li>参数的名字和变量的命名规范一致；</li>
+<li>函数定义中的左小括号，与函数名紧挨，中间无需空格；</li>
+<li>开始的左大括号与函数定义为同一行，中间加一个空格，不要另起一行；</li>
+<li>具有默认值的参数应该位于参数列表的后面；</li>
+<li>函数调用与定义的时候参数与参数之间加入一个空格；</li>
+<li>必须仔细检查并切实杜绝函数起始缩进位置与结束缩进位置不同的现象。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function userGetGPC($k, $type = &apos;ini&apos;, $var = &apos;R&apos;) &#123;</span><br><span class="line">	if ($flag) &#123;</span><br><span class="line">		// Statement</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           
         
       
@@ -846,8 +847,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/03/20/assembly/" itemprop="url">
-                  MAC OS X系统下编写汇编 assembly language
+                <a class="post-title-link" href="/2016/04/27/centos-rsync/" itemprop="url">
+                  rsync快速删除海量文件
                 </a>
               
             
@@ -860,8 +861,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-20T20:44:53+08:00" content="2016-03-20">
-              2016-03-20
+            <time itemprop="dateCreated" datetime="2016-04-27T09:23:30+08:00" content="2016-04-27">
+              2016-04-27
             </time>
           </span>
 
@@ -874,8 +875,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/assembly/" itemprop="url" rel="index">
-                    <span itemprop="name">assembly</span>
+                  <a href="/categories/oop/" itemprop="url" rel="index">
+                    <span itemprop="name">oop</span>
                   </a>
                 </span>
 
@@ -890,8 +891,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/20/assembly/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/20/assembly/" itemprop="commentsCount"></span>
+                <a href="/2016/04/27/centos-rsync/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/27/centos-rsync/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -903,7 +904,7 @@
 
           
           
-             <span id="/2016/03/20/assembly/" class="leancloud_visitors" data-flag-title="MAC OS X系统下编写汇编 assembly language">
+             <span id="/2016/04/27/centos-rsync/" class="leancloud_visitors" data-flag-title="rsync快速删除海量文件">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -926,10 +927,22 @@
       
         
           
-            <p>汇编语言（assembly language)：介于机器语言与C语言之间的一种低级语言。书写风格分为windows/dos常用的intel风格和UNIX的AT&amp;T风格。</p>
-<p>mac 下的汇编代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">_syscall:               # declaring a kernel call function </span><br><span class="line">    int      $0x80      # make the system call </span><br><span class="line">    ret                 # return to the caller  </span><br><span class="line">_print_info_s:          # entry point for linker </span><br><span class="line">    pushl    $len       # message length</span><br><span class="line">    pushl    $msg       # message to write</span><br><span class="line">    pushl    $0x1       # file descriptor value </span><br><span class="line">    movl     $0x4, %eax # system call number (sys_write) </span><br><span class="line">    call     _syscall   # call the kernel </span><br><span class="line">    addl     $12, %esp  # clean the stack</span><br><span class="line">    ret</span><br></pre></td></tr></table></figure>
-<p>参数传递:linux主要是靠寄存器，而 BSD 主要靠堆栈。<br>在Xcode里如果需要使用 Intel 风格的代码，请将扩展名改成 .nasm，如果是 AT&amp;T ，那么.s 即可。要在 C 代码里调用汇编写的函数，请在汇编里用 global (.globl) 导出符号</p>
+            <h1 id="rsync快速删除海量文件"><a href="#rsync快速删除海量文件" class="headerlink" title="rsync快速删除海量文件"></a>rsync快速删除海量文件</h1><p>由于业务侧使用时，一些脚本文件写的不够严谨，造成/var/spool/postfix/maildrop/目录经常被用户通知邮件文件堆满。而通过rm  -rf * 删除时，会提示-bash: /bin/rm: Argument list too long 。通过ls |xargs rm -rf 进行删除时也耗时较长，这里可以通过rsync进行删除。</p>
+<p>一、rsync删除文件<br>针对上面的问题，我们可以通过以下方法清空该目录：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">先创建一个空目录</span><br><span class="line"># mkdir /tmp/empty/</span><br><span class="line">清空目标目录</span><br><span class="line"># rsync --delete-before -avH --progress --stats /tmp/empty/ /var/spool/postfix/maildrop</span><br></pre></td></tr></table></figure>
+<p>选项说明：</p>
+<ul>
+<li>-delete-before 接收者在传输之前进行删除操作<br>– -progress 在传输时显示传输过程</li>
+<li>-a 归档模式，表示以递归方式传输文件，并保持所有文件属性</li>
+<li>-H 保持硬连接的文件</li>
+<li>-v 详细输出模式<br>– -stats 给出某些文件的传输状态</li>
+</ul>
+<p>不过在使用上面的命令进行清理时，存在一个问题，清空后，目标目录的权限会和源目录的权限一样。如：/tmp/empty是root：root，而maildrop之前是postfix：postdrop ，执行之后也会maildrop目录的权限也会变成root：root 。由于-a权限是-rlptogD几个参数的集合，所以可以将og（owner:group）两个参数去掉。清空时自动保持之前的目录权限，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsync  --delete -rlptD /tmp/empty/ /var/spool/postfix/maildrop/</span><br></pre></td></tr></table></figure>
+<p>二、rsync与rm 删除速度比较<br>便于说明问题，我在一台主机上创建5万个空文件后再分别用rsync和rm 进行清理，以下是测试结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@www data1]# mkdir -p /tmp/empty/</span><br><span class="line">[root@www data1]# mkdir 361way;seq 1 50000 | xargs -I&#123;&#125; touch 361way/file_&#123;&#125;</span><br><span class="line">[root@www data1]# time rsync  --delete -rlptD /tmp/empty/ /data1/361way/</span><br><span class="line">real    0m0.149s</span><br><span class="line">user    0m0.018s</span><br><span class="line">sys     0m0.091s</span><br><span class="line">[root@www data1]# seq 1 50000 | xargs -I&#123;&#125; touch 361way/file_&#123;&#125;</span><br><span class="line">[root@www data1]# time rm -rf 361way/*</span><br><span class="line">real    0m0.831s</span><br><span class="line">user    0m0.366s</span><br><span class="line">sys     0m0.464s</span><br></pre></td></tr></table></figure>
+<p>对比结果已经比较能说明问题了吧。</p>
+<h3 id="为什么rsync这么快呢？"><a href="#为什么rsync这么快呢？" class="headerlink" title="为什么rsync这么快呢？"></a>为什么rsync这么快呢？</h3><p>rm删除内容时，将目录的每一个条目逐个删除(unlink)，需要循环重复操作很多次；rsync删除内容时，建立好新的空目录，替换掉老目录，基本没开销。想要深层次的区分两个命令在调用系统函数时的区别，可以使用SystemTap工具进行分析（由于本人也不懂该工具的使用，所以这里就不献丑了）。</p>
 
           
         
@@ -975,8 +988,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/03/19/fo/" itemprop="url">
-                  冥冥天籁之音涤荡你我的心灵，红尘中还有谁能及？
+                <a class="post-title-link" href="/2016/04/26/shell-rename/" itemprop="url">
+                  shell 批量重命名文件名
                 </a>
               
             
@@ -989,134 +1002,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-19T14:02:42+08:00" content="2016-03-19">
-              2016-03-19
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/碎碎念/" itemprop="url" rel="index">
-                    <span itemprop="name">碎碎念</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/19/fo/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/19/fo/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-          
-
-          
-          
-             <span id="/2016/03/19/fo/" class="leancloud_visitors" data-flag-title="冥冥天籁之音涤荡你我的心灵，红尘中还有谁能及？">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>　　如若我是来还债的，<br>　　那就尽量多还一些，<br>　　宁人负我，我不负人。<br>　　如若我是来报恩的，<br>　　那就尽量多报一些，<br>　　今生为人实属不易，<br>　　我要把人性发挥到极致。<br>　　<br>　　每当遭遇困境、<br>　　面对挫折、<br>　　感觉不被理解、<br>　　内心不能够平静时，<br>　　告诉自己：<br>　　今生已经是最后一生，<br>　　我将永远告别这个<br>　　娑婆世界，<br>　　没有什么值得长久计较。<br>　　虽一时之间<br>　　偶尔会有抵触与抱怨，<br>　　但我会很快<br>　　提醒自己保持正念觉知。<br>　　<br>　　人生再长，<br>　　不过百年，<br>　　这一生的岁月<br>　　只是我在这个空间的<br>　　一场梦幻。<br>　　不论如何活着，<br>　　快乐着或是痛苦着，<br>　　其实都是最有意义的一生，<br>　　值得自豪的一生，<br>　　值得珍惜的一生。<br>　　<br>　　今生。<br>　　将是我在娑婆世界的<br>　　最后一生，<br>　　这真是一件天大喜事。<br>　　当慧命在红尘历尽<br>　　劫难之后，<br>　　我终于可以回归<br>　　万有的源头。<br>　　那么，<br>　　还有什么值得抱怨、<br>　　唠叨、遗憾、<br>　　痛悔、嗔恨的呢？<br>　　<br>　　如果还有，<br>　　就是忘记了<br>　　“最后”这两个字，<br>　　或者是对“最后”<br>　　这两个字认识不够、<br>　　信心不够。<br>　　时时牢记着：<br>　　今生，<br>　　是我在红尘的最后一生！<br>　　再来时，我必脚踏莲花，<br>　　乘愿而来。来时凡夫，<br>　　回时必己超凡入圣！<br>　　人身难得今已得，<br>　　佛法难闻今已闻，<br>　　今生不借此身渡，<br>　　更待何生渡此身</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/12/shell-Oprate/" itemprop="url">
-                  shell命令的操作及命令的搜索
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-12T08:50:07+08:00" content="2016-03-12">
-              2016-03-12
+            <time itemprop="dateCreated" datetime="2016-04-26T10:10:29+08:00" content="2016-04-26">
+              2016-04-26
             </time>
           </span>
 
@@ -1145,8 +1032,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/12/shell-Oprate/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/12/shell-Oprate/" itemprop="commentsCount"></span>
+                <a href="/2016/04/26/shell-rename/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/26/shell-rename/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1158,7 +1045,7 @@
 
           
           
-             <span id="/2016/03/12/shell-Oprate/" class="leancloud_visitors" data-flag-title="shell命令的操作及命令的搜索">
+             <span id="/2016/04/26/shell-rename/" class="leancloud_visitors" data-flag-title="shell 批量重命名文件名">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1181,20 +1068,11 @@
       
         
           
-            <p>经常会使用shell对文件进行一些操作。但是命令行的操作不熟悉也是特别影响效率的，如何快速度的返回上一次目录，如何编辑当前命令行的内容对于提高效率是非常有帮助的。<br>你是否经常连续按“backSpace”键来删除当前的命令，是否为了返回上次目录而不断的“cd”,而又或者不断的按方向键去修改其中写错的某个单词…..这些土鳖的方向必须抛弃。</p>
-<h3 id="回到上一次操作的目录"><a href="#回到上一次操作的目录" class="headerlink" title="回到上一次操作的目录"></a>回到上一次操作的目录</h3><pre><code>cd -
-</code></pre><h3 id="历史命令快捷键"><a href="#历史命令快捷键" class="headerlink" title="历史命令快捷键"></a>历史命令快捷键</h3><pre><code>[Ctrl+r], [Ctrl+p], [Ctrl+n]
-</code></pre><p>[Ctrl+r] 是搜索历史命令的，当使用这个组合键后，会出现个输入框，你每按一个字符都会自动从历史命令中匹配出相关结果，选择你要的按回车即可,该命令可以快速定位到你之前使用的任何命令，比如cd过哪个很长的目录。</p>
-<p>[Ctrl+p]和[Ctrl+n]主要功能是翻阅历史命令，上一条和下一条。此命令一般在最近使用过的命令比较方便。</p>
-<h3 id="命令行内快速操作键"><a href="#命令行内快速操作键" class="headerlink" title="命令行内快速操作键"></a>命令行内快速操作键</h3><ol>
-<li><p>移动操作快捷键<br>Ctrl + f– 向右移动一个字符，当然多数人用→<br>Ctrl + b– 向左移动一个字符， 多数人用←<br>ESC + f– 向右移动一个单词，MAC下建议用ALT + →<br>ESC + b– 向左移动一个单词，MAC下建议用ALT + ←<br>Ctrl + a– 跳到行首<br>Ctrl + e– 跳到行尾</p>
-</li>
-<li><p>删除操作快捷键<br>Ctrl + d– 向右删除一个字符<br>Ctrl + h– 向左删除一个字符<br>Ctrl + u– 删除当前位置字符至行首（输入密码错误的时候多用下这个）<br>Ctrl + k– 删除当前位置字符至行尾<br>Ctrl + w– 删除从光标到当前单词开头</p>
-</li>
-<li><p>其他操作快捷键<br>Ctrl + y– 插入最近删除的单词<br>Ctrl + c– 终止操作<br>Ctrl + d– 当前操作转到后台<br>Ctrl + l– 清屏 （有时候为了好看）</p>
-</li>
-</ol>
-<p>使用了这些快捷后，立马感觉神清气爽~。over.</p>
+            <p>这里是列出了所有文件信息，并打印出一个需要执行的shell脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -al | grep &quot;^-&quot; | awk &apos;&#123;a=toupper(substr($9,1,1));b=substr($9,2);print(&quot;git mv &quot;$9&quot; &quot;a&quot;&quot;b);&#125;&apos;</span><br></pre></td></tr></table></figure>
+<p>输出结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">git mv ActiveAskController.class.php ActiveAskController.class.php</span><br><span class="line">git mv AdController.class.php AdController.class.php</span><br><span class="line">git mv AdboardController.class.php AdboardController.class.php</span><br><span class="line">git mv AdminController.class.php AdminController.class.php</span><br><span class="line">git mv AdminLogController.class.php AdminLogController.class.php</span><br><span class="line">git mv AdminRoleController.class.php AdminRoleController.class.php</span><br><span class="line">git mv AnalyseGeneralController.class.php AnalyseGeneralController.class.php</span><br><span class="line">git mv AnalyseUserController.class.php AnalyseUserController.class.php</span><br><span class="line">git mv ApplyController.class.php ApplyController.class.php</span><br><span class="line">git mv ArticleCateController.class.php ArticleCateController.class.php</span><br></pre></td></tr></table></figure>
+<p>把文件名第一个字母改成大写。使用mv命令。</p>
 
           
         
@@ -1240,8 +1118,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/03/10/Human/" itemprop="url">
-                  AlphaGo VS Human
+                <a class="post-title-link" href="/2016/04/25/mysql-unixtim/" itemprop="url">
+                  mysql按年度、季度、月度、周、日SQL统计查询mysql
                 </a>
               
             
@@ -1254,8 +1132,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-10T08:19:34+08:00" content="2016-03-10">
-              2016-03-10
+            <time itemprop="dateCreated" datetime="2016-04-25T20:12:12+08:00" content="2016-04-25">
+              2016-04-25
             </time>
           </span>
 
@@ -1268,8 +1146,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/闲聊/" itemprop="url" rel="index">
-                    <span itemprop="name">闲聊</span>
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
                   </a>
                 </span>
 
@@ -1284,8 +1162,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/10/Human/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/10/Human/" itemprop="commentsCount"></span>
+                <a href="/2016/04/25/mysql-unixtim/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/25/mysql-unixtim/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1297,7 +1175,7 @@
 
           
           
-             <span id="/2016/03/10/Human/" class="leancloud_visitors" data-flag-title="AlphaGo VS Human">
+             <span id="/2016/04/25/mysql-unixtim/" class="leancloud_visitors" data-flag-title="mysql按年度、季度、月度、周、日SQL统计查询mysql">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1320,57 +1198,29 @@
       
         
           
-            <p>3月9日可能会成为写入人类史册的一天，一场世界上最会下围棋的人与人工智能的超级对弈，被全人类通过网络直播共同围观。谷歌董事长斯密特说，“输赢都是人类的胜利”。他这么说是因为李世石要迎战的不单是个机器人，而是这个世界上最聪明的霸道总裁和科学狂人们。</p>
-<p>AlphaGo机器人最厉害的地方，他不是一个机械的编码程序，他有一个“监督预判机制”，每走一步，他会考虑这种走法是不是更有前途，这是一种类似“想象力”的能力。这种思维模式，几乎和人类的直觉类似，使得他前所未有地更加像人类。</p>
-<p><img src="uploads/12.jpg" alt="AlphaGo vs Human"></p>
+            <p>mysql没有提供unix时间戳的专门处理函数，所以，如果遇到时间分组，而你用的又是整型unix时间戳，则只有转化为mysql的其他日期类型！FROM_UNIXTIM()将unix时间戳转为datetime等日期型，然后再查询即可。</p>
+<h3 id="年度查询"><a href="#年度查询" class="headerlink" title="年度查询"></a>年度查询</h3><p>查询本年度的数据,如下所示，<figure class="highlight plain"><figcaption><span>该sql函数是返回当前日期。其中BlogCreateTime字段是unix时间戳格式。所以使用 **FROM_UNIXTIME** 函数进行格式转换</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>SELECT *<br>FROM blog_article<br>WHERE year( FROM_UNIXTIME(BlogCreateTime)) = year( curdate())<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 查询季度数据	</span><br><span class="line"></span><br><span class="line">查询季度要用到季度函数 **quarter()** ，把unix时间戳转换成日期格式，并用quarter()函数取出季度时间，进行筛选结果。</span><br></pre></td></tr></table></figure></p>
+<p>SELECT ArticleId, quarter( FROM_UNIXTIME( <code>BlogCreateTime</code> ) )<br>FROM <code>blog_article</code><br>其他的同前面部分：查询 本季度的数据<br>SELECT *<br>FROM blog_article<br>WHERE quarter( FROM_UNIXTIME( BlogCreateTime ) ) = quarter( curdate( ))<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 查询月度数据</span><br><span class="line"></span><br><span class="line">和前面季度查询差不多，只不过把quarter()函数换成month()函数。</span><br></pre></td></tr></table></figure></p>
+<p>本月统计(MySQL)<br>select * from booking where month(booking_time) =<br>month(curdate()) and year(booking_time) = year(curdate())</p>
+<p>本周统计(MySQL)<br>select * from spf_booking where month(booking_time) =<br>month(curdate()) and week(booking_time) = week(curdate())</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 时间段</span><br><span class="line"></span><br><span class="line">时间段查询，几个SQL函数需要了解一下</span><br><span class="line"></span><br><span class="line">- TO_DAYS(date) :给定一个日期date, 返回一个天数 (从年份0开始的天数 )。</span><br><span class="line">- INTERVAL : 有两种类型的interval:一种为“年份-月份”，即保存年份和月份(YYYY-MM);一种为“天-时间”(DD HH:MM:SS)，用来保存天数、小时、分钟和秒。</span><br><span class="line"> </span><br><span class="line">SQL日期函数</span><br><span class="line"></span><br><span class="line">- NOW()	返回当前的日期和时间</span><br><span class="line">- CURDATE()	返回当前的日期</span><br><span class="line">- CURTIME()	返回当前的时间</span><br><span class="line">- DATE()	提取日期或日期/时间表达式的日期部分</span><br><span class="line">- EXTRACT()	返回日期/时间按的单独部分</span><br><span class="line">- DATE_ADD()	给日期添加指定的时间间隔</span><br><span class="line">- DATE_SUB()	从日期减去指定的时间间隔</span><br><span class="line">- DATEDIFF()	返回两个日期之间的天数</span><br><span class="line">- DATE_FORMAT()	用不同的格式显示日期/时间</span><br></pre></td></tr></table></figure>
+<p>N天内记录<br>WHERE TO_DAYS(NOW()) - TO_DAYS(时间字段) &lt;= N</p>
+<p>当天的记录<br>where date(时间字段)=date(now())<br>或<br>where to_days(时间字段) = to_days(now());</p>
+<p>查询一周：<br>select * from table　 where DATE_SUB(CURDATE(), INTERVAL 7 DAY) &lt;= date(column_time);</p>
+<p>查询一个月：<br>select * from table where DATE_SUB(CURDATE(), INTERVAL INTERVAL 1 MONTH) &lt;= date(column_time);</p>
+<p>查询’06-03’到’07-08’这个时间段内所有过生日的会员：<br>　 Select * From user Where<br>DATE_FORMAT(birthday,’%m-%d’) &gt;= ‘06-03’ and DATE_FORMAT(birthday,’%m-%d’)</p>
+<p>&lt;= ‘07-08’;</p>
+<p>统计一季度数据，表时间字段为：savetime<br>group by concat(date_format(savetime, ‘%Y ‘),FLOOR((date_format(savetime, ‘%m ‘)+2)/3))</p>
+<p>或</p>
+<p>select YEAR(savetime)<em>10+((MONTH(savetime)-1) DIV 3) +1,count(</em>)<br>from yourTable<br>group by YEAR(savetime)*10+((MONTH(savetime)-1) DIV 3) +1;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 分组查询</span><br></pre></td></tr></table></figure>
+<p>1、年度分组<br>SELECT count(ArticleId), date_format(FROM_UNIXTIME( <code>BlogCreateTime</code>),’%y%m’) sdate FROM <code>blog_article</code> group by sdate</p>
+<p>2、月度分组<br>SELECT count(id), date_format(FROM_UNIXTIME(<code>reg_time</code>),’%y%m’) sdate FROM <code>gxr_user</code> group by sdate</p>
+<p>3、先按年度分组，再按月度分组<br>SELECT count(id), date_format(FROM_UNIXTIME(<code>reg_time</code>),’%y%m%d’) sdate FROM <code>gxr_user</code> group by sdate desc limit 7</p>
+<p>4、按年月分组<br>SELECT count(id), date_format(FROM_UNIXTIME(<code>reg_time</code>),’%y%m%d’) sdate FROM <code>gxr_user</code> group by sdate desc limit 30</p>
+<p>```</p>
 
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-picture " itemscope itemtype="http://schema.org/Article">
-
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <a href="/2016/03/08/東京日和/"><div class="group-picture"><div class="group-picture-container"><div class="group-picture-row"><div class="group-picture-column" style="width: 100%;"><img src="/uploads/p2260354451.jpg" alt="东京日和"></div></div><div class="group-picture-row"><div class="group-picture-column" style="width: 33.333333333333336%;"><img src="/uploads/p2260498779.jpg" alt="东京日和"></div><div class="group-picture-column" style="width: 33.333333333333336%;"><img src="/uploads/p2260498780.jpg" alt="东京日和"></div><div class="group-picture-column" style="width: 33.333333333333336%;"><img src="/uploads/p2322111491.jpg" alt="东京日和"></div></div></div></div>
-</a>
           
         
       
@@ -1415,8 +1265,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/03/07/言轻语长/" itemprop="url">
-                  言轻语长
+                <a class="post-title-link" href="/2016/04/25/centos-logs/" itemprop="url">
+                  服务器httpd服务的日志
                 </a>
               
             
@@ -1429,19 +1279,38 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-07T20:53:50+08:00" content="2016-03-07">
-              2016-03-07
+            <time itemprop="dateCreated" datetime="2016-04-25T20:12:12+08:00" content="2016-04-25">
+              2016-04-25
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/07/言轻语长/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/07/言轻语长/" itemprop="commentsCount"></span>
+                <a href="/2016/04/25/centos-logs/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/25/centos-logs/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1453,7 +1322,7 @@
 
           
           
-             <span id="/2016/03/07/言轻语长/" class="leancloud_visitors" data-flag-title="言轻语长">
+             <span id="/2016/04/25/centos-logs/" class="leancloud_visitors" data-flag-title="服务器httpd服务的日志">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1476,10 +1345,449 @@
       
         
           
-            <p>当意识再次醒来时，过去如同山崩之流，倾泻而来，将萌芽的光线拖入无尽的黑暗之中。挣脱之后，恍如昨日，一线之隔，南为乾坤，北为虚无。</p>
-<p>一把岁月，无尽悲伤，聚散离合皆付风中。不曾相遇，何曾相识；不曾相识，何曾相知；未曾相知，遑论感伤。如若初遇，不如不遇。于世之最大谎言在于问心无愧。</p>
-<p>风来雨去，日落月升，蓦然回首时物是人非。虚度彩练当空，徘徊庭树遍绿，长叹夕阳沉暮。不言问心无愧，只许一纸墨迹。</p>
-<p>言轻轻待摆渡，语长长候倾听。</p>
+            <h3 id="服务器日志很重要，可以查看分析服务情况，centos默认路径是-var-logs-httpd"><a href="#服务器日志很重要，可以查看分析服务情况，centos默认路径是-var-logs-httpd" class="headerlink" title="服务器日志很重要，可以查看分析服务情况，centos默认路径是 /var/logs/httpd/."></a>服务器日志很重要，可以查看分析服务情况，centos默认路径是 /var/logs/httpd/.</h3><ul>
+<li>按天截断日志</li>
+<li>日志参数说明</li>
+<li>日志解析</li>
+<li>数据分析</li>
+</ul>
+<h3 id="使用vim打开httpd服务的配置httpd-conf查看里面的内容。找到如CustomLog"><a href="#使用vim打开httpd服务的配置httpd-conf查看里面的内容。找到如CustomLog" class="headerlink" title="使用vim打开httpd服务的配置httpd.conf查看里面的内容。找到如CustomLog"></a>使用vim打开httpd服务的配置httpd.conf查看里面的内容。找到如CustomLog</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CustomLog &quot;logs/access.log&quot; common</span><br><span class="line">ErrorLog &quot;logs/error.log&quot;</span><br></pre></td></tr></table></figure>
+<h4 id="日志显示最后100行"><a href="#日志显示最后100行" class="headerlink" title="日志显示最后100行"></a>日志显示最后100行</h4><p><code>tail -100f log_file.log</code></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/25/git-list/" itemprop="url">
+                  Git 基本操作
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-25T20:12:12+08:00" content="2016-04-25">
+              2016-04-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/25/git-list/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/25/git-list/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+          
+
+          
+          
+             <span id="/2016/04/25/git-list/" class="leancloud_visitors" data-flag-title="Git 基本操作">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Git-的基本操作"><a href="#Git-的基本操作" class="headerlink" title="Git 的基本操作"></a>Git 的基本操作</h1><h2 id="Git-提交重置"><a href="#Git-提交重置" class="headerlink" title="Git 提交重置"></a>Git 提交重置</h2><ul>
+<li>git reset –hard HEAD</li>
+</ul>
+<p>git解决冲突与merge<br><a href="http://blog.csdn.net/lincyang/article/details/45269491" target="_blank" rel="external">http://blog.csdn.net/lincyang/article/details/45269491</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;th width=&quot;60&quot;&gt;参考价格&lt;a  href=&quot;javascript:void();&quot; title=&quot;三级分类的参考价格（其他不用填）&quot; class=&quot;help_icon&quot; /&gt;&lt;/th&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="Git-命令操作"><a href="#Git-命令操作" class="headerlink" title="Git 命令操作"></a>Git 命令操作</h1><h4 id="git-rev-list-HEAD-wc-l-查看提交了多少次。"><a href="#git-rev-list-HEAD-wc-l-查看提交了多少次。" class="headerlink" title="git rev-list HEAD | wc -l 查看提交了多少次。"></a>git rev-list HEAD | wc -l 查看提交了多少次。</h4><h4 id="git-log-–graph-图形化查看GIT-LOG日志。"><a href="#git-log-–graph-图形化查看GIT-LOG日志。" class="headerlink" title="git log –graph 图形化查看GIT LOG日志。"></a>git log –graph 图形化查看GIT LOG日志。</h4><h4 id="git-log-–graph-–oneline"><a href="#git-log-–graph-–oneline" class="headerlink" title="git log –graph –oneline"></a>git log –graph –oneline</h4><h4 id="git-log-3-–oneline-显示3条日志"><a href="#git-log-3-–oneline-显示3条日志" class="headerlink" title="git log -3 –oneline 显示3条日志"></a>git log -3 –oneline 显示3条日志</h4><h4 id="git-log-3-显示3条日志的不同表示形式。"><a href="#git-log-3-显示3条日志的不同表示形式。" class="headerlink" title="git log -3 显示3条日志的不同表示形式。"></a>git log -3 显示3条日志的不同表示形式。</h4><h4 id="git-log-p-显示修改内容"><a href="#git-log-p-显示修改内容" class="headerlink" title="git log -p 显示修改内容"></a>git log -p 显示修改内容</h4><h4 id="git-log-–stat-或-git-log-–stat-–oneline-显示每次变更概要"><a href="#git-log-–stat-或-git-log-–stat-–oneline-显示每次变更概要" class="headerlink" title="git log –stat 或 git log –stat –oneline 显示每次变更概要"></a>git log –stat 或 git log –stat –oneline 显示每次变更概要</h4><h4 id="log定制输出"><a href="#log定制输出" class="headerlink" title="log定制输出"></a>log定制输出</h4><pre><code>git log --pretty=raw -1
+git log --pretty=fuller -1 #显示作者和提交者。
+git log --pretty=oneline -1 #提供最精简的日志输出
+git show D --stat 显示里程碑及其提交。
+</code></pre><h4 id="文件追溯：git-blame"><a href="#文件追溯：git-blame" class="headerlink" title="文件追溯：git blame"></a>文件追溯：git blame</h4><pre><code>git blame README
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">➜  chuangpinke git:(develop) ✗ git log --stat</span><br><span class="line">848056fc (BenVim 2016-04-23 16:15:25 +0800 1) &lt;U+FEFF&gt;ALTER TABLE `gxr_items_cate` ADD `icon` VARCHAR(50) NOT NULL COMMENT &apos;文</span><br><span class="line">字图标 标识&apos; AFTER `deep`;O</span><br><span class="line">2f536062 (BenVim 2016-04-22 14:09:00 +0800 2) ALTER TABLE `gxr_items_cate` ADD `icon_type` VARCHAR(50) NOT NULL DEFAULT &apos;fa&apos; COMMENT &apos;文字图标类型&apos; AFTER `deep`;</span><br><span class="line">6fc821c9 (BenVim 2016-04-23 16:10:22 +0800 3)</span><br><span class="line">6fc821c9 (BenVim 2016-04-23 16:10:22 +0800 4) ### 修改文件日志</span><br><span class="line">6fc821c9 (BenVim 2016-04-23 16:10:22 +0800 5)</span><br><span class="line">(END)</span><br></pre></td></tr></table></figure>
+<h2 id="Git学习—改变历史"><a href="#Git学习—改变历史" class="headerlink" title="Git学习—改变历史"></a>Git学习—改变历史</h2><h4 id="一、悔棋"><a href="#一、悔棋" class="headerlink" title="一、悔棋"></a>一、悔棋</h4><pre><code>git commit --amend 修改提交注释。
+</code></pre><h4 id="二、多步悔棋"><a href="#二、多步悔棋" class="headerlink" title="二、多步悔棋"></a>二、多步悔棋</h4><p>回到之前2步前，把这两次提交合并为一个。或者是再修改后提交</p>
+<pre><code>git reset --soft HEAD^^ #
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/21/shell-find/" itemprop="url">
+                  shell命令 删除当前目录下的所有SVN目录
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-21T23:22:11+08:00" content="2016-04-21">
+              2016-04-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/shell/" itemprop="url" rel="index">
+                    <span itemprop="name">shell</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/21/shell-find/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/21/shell-find/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+          
+
+          
+          
+             <span id="/2016/04/21/shell-find/" class="leancloud_visitors" data-flag-title="shell命令 删除当前目录下的所有SVN目录">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>删除所有.svn目录 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -type d -iname &quot;.svn&quot; -exec rm -rf &#123;&#125; \;</span><br></pre></td></tr></table></figure>
+<h3 id="find-命令"><a href="#find-命令" class="headerlink" title="find 命令"></a>find 命令</h3><p>这个命令是find的基本用法，可以分两部分:</p>
+<p><code>find . -type d -iname &quot;.svn&quot;</code>和 <code>-exec rm -rf {} \;</code></p>
+<ul>
+<li>“.”在当前目录下查找。</li>
+<li>“-type” 查找文件夹。</li>
+<li>“.svn” 文件夹名称。</li>
+<li>“-exec” 找到后执行命令。</li>
+<li>“rm -rf {}”命令就是删除文件。</li>
+<li>“\;”这是格式要求的，没有具体含义。</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/20/centos-du/" itemprop="url">
+                  CentOS下du查看计算目录大小的命令
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-20T11:02:32+08:00" content="2016-04-20">
+              2016-04-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/centos/" itemprop="url" rel="index">
+                    <span itemprop="name">centos</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/20/centos-du/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/20/centos-du/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+          
+
+          
+          
+             <span id="/2016/04/20/centos-du/" class="leancloud_visitors" data-flag-title="CentOS下du查看计算目录大小的命令">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在对linux服务器远程操作的时候，经常需要了解服务器的磁盘状态</p>
+<h3 id="查看整个硬盘的概况可以使用-df命令"><a href="#查看整个硬盘的概况可以使用-df命令" class="headerlink" title="查看整个硬盘的概况可以使用 df命令"></a>查看整个硬盘的概况可以使用 <strong>df</strong>命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#查看整个硬盘的使用状况，硬盘空间</span><br><span class="line">[root@hskj ~]# df -hv</span><br><span class="line">文件系统              容量  已用 可用 已用% 挂载点</span><br><span class="line">/dev/sda3             9.7G  744M  8.5G   8% /</span><br><span class="line">/dev/sda6             199G  142G   48G  76% /usr</span><br><span class="line">/dev/sda2              48G  309M   45G   1% /home</span><br><span class="line">/dev/sda1              99M   12M   83M  12% /boot</span><br><span class="line">tmpfs                 2.0G     0  2.0G   0% /dev/shm</span><br></pre></td></tr></table></figure>
+<h3 id="查看某个目录的大小"><a href="#查看某个目录的大小" class="headerlink" title="查看某个目录的大小"></a>查看某个目录的大小</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost local]# du -hs weike</span><br><span class="line">3.3G    wieki</span><br><span class="line"></span><br><span class="line">[root@localhost local]# du -hs /usr/local/mysql/data/fdlfh</span><br><span class="line">42G     /usr/local/mysql/data/fdlfh</span><br></pre></td></tr></table></figure>
+<h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍:"></a>介绍:</h4><p>du命令用于显示指定文件(夹)在磁盘中所占的空间信息。假如指定的文件参数实际上是一个目录，就要计算该目录下的所有文件。假如 没有提供文件参数，执行du命令，显示当前目录内的文件占用空间信息。</p>
+<h4 id="语法"><a href="#语法" class="headerlink" title="语法:"></a>语法:</h4><p>du [-abcDhHklmsSx] [-L &lt;符号连接&gt;] [–block-size] [–exclude=&lt;目录或文件&gt;] [–max-depth=&lt;目录层数&gt;] [目录或文件]</p>
+<h4 id="选项介绍"><a href="#选项介绍" class="headerlink" title="选项介绍:"></a>选项介绍:</h4><ul>
+<li>-a: 显示目录中个别文件的大小;</li>
+<li>-b: 显示目录或文件大小时，以byte为单位;</li>
+<li>-c: 除了显示个别目录或文件的大小外，同时也显示所有目录或文件的总和;</li>
+<li>-D: 显示指定符号连接的源文件大小;</li>
+<li>-h: 以K，M，G为单位，提高信息的可读性;</li>
+<li>-H: 与-h参数相同，但是K，M，G是以1000为换算单位;</li>
+<li>-k: 以1024 bytes为单位;</li>
+<li>-l: 重复计算硬链接文件;</li>
+<li>-L&lt;符号连接&gt;: 显示选项中所指定符号链接(软链接)的源文件大小;</li>
+<li>-m: 以1MB为单位;</li>
+<li>-s: 显示总计大小;</li>
+<li>-S: 显示个别目录的大小时，并不含其子目录的大小;</li>
+<li>-x: 以一开始处理时的文件系统为准，若遇上其它不同的文件系统目录则略过;</li>
+<li>–exclude=&lt;目录或文件&gt;: 略过指定的目录或文件;</li>
+<li>–max-depth=&lt;目录层数&gt;: 超过指定层数的目录后，予以忽略;</li>
+</ul>
+<h4 id="执行范例"><a href="#执行范例" class="headerlink" title="执行范例:"></a>执行范例:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PhpstormProjects$ du -hs chuangpinke</span><br><span class="line">371M	chuangpinke</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>扩展阅读:<br>相信长时间用linux的人一定遇到过整理磁盘的问题(由于磁盘空间将满)。想知道哪些文件夹的内容过大，删除一些大且无用文件。这时du命令会非常有用。 <font color="red">在你用户目录下输入</font>：</p>
+<pre><code>du –max-depth=1 -h
+</code></pre><p>查看哪些文件夹的内容过大，然后进入那些文件夹，再不断的du –max-depth=1 -h，筛选出你要删除的文件,然后rm … , 大功告成!</p>
+</blockquote>
+<h3 id="Linux下查看目录大小的命令是du，从man中找到几个常用的参数就可以轻松的统计某个文件夹的容量"><a href="#Linux下查看目录大小的命令是du，从man中找到几个常用的参数就可以轻松的统计某个文件夹的容量" class="headerlink" title="Linux下查看目录大小的命令是du，从man中找到几个常用的参数就可以轻松的统计某个文件夹的容量."></a>Linux下查看目录大小的命令是du，从man中找到几个常用的参数就可以轻松的统计某个文件夹的容量.</h3><p>1.统计出目录的总大小，并以比较合适的单位表示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-h, –human-readable</span><br><span class="line">print sizes in human readable format (e.g., 1K 234M 2G)</span><br><span class="line"></span><br><span class="line">-s, –summarize</span><br><span class="line">display only a total for each argument</span><br><span class="line"></span><br><span class="line">[blinux@localhost test]$ du -hs /boot</span><br><span class="line">5.7M    /boot</span><br></pre></td></tr></table></figure>
+<p>2.当然了，你还可以让结果以单位b、k、m来表示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[blinux@localhost test]$ du -bs /boot</span><br><span class="line">5746310 /boot</span><br><span class="line">[blinux@localhost test]$ du -ks /boot</span><br><span class="line">5772    /boot</span><br><span class="line">[blinux@localhost test]$ du -ms /boot</span><br><span class="line">6       /boot</span><br></pre></td></tr></table></figure>
+<p>3.显示目录的总大小及目录树中各文件夹的大小，并以较好的单位表示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[blinux@localhost test]$ du -h /boot</span><br><span class="line">308K    /boot/grub</span><br><span class="line">5.7M    /boot</span><br></pre></td></tr></table></figure>
 
           
         
@@ -1508,7 +1816,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1549,7 +1857,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-count">40</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1557,7 +1865,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1566,7 +1874,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">37</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

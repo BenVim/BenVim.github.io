@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://benvim.github.io/"/>
-  <updated>2016-03-25T15:09:53.000Z</updated>
+  <updated>2016-05-01T17:22:59.000Z</updated>
   <id>http://benvim.github.io/</id>
   
   <author>
@@ -16,11 +16,778 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>JS获取url参数及url编码、解码</title>
+    <link href="http://benvim.github.io/2016/05/02/js-encodeURL/"/>
+    <id>http://benvim.github.io/2016/05/02/js-encodeURL/</id>
+    <published>2016-05-02T15:52:12.000Z</published>
+    <updated>2016-05-01T17:22:59.000Z</updated>
+    
+    <content type="html">&lt;p&gt;完整的URL由这几个部分构成：scheme://host:port/path?query#fragment ，各部分的取法如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;window.location.href：获取完整url的方法：,即scheme://host:port/path?query#fragment&lt;/li&gt;
+&lt;li&gt;window.location.protocol：获取rul协议scheme&lt;/li&gt;
+&lt;li&gt;window.location.host：获取host&lt;/li&gt;
+&lt;li&gt;window.location.port：获取端口号&lt;/li&gt;
+&lt;li&gt;window.location.pathname：获取url路径&lt;/li&gt;
+&lt;li&gt;window.location.search：获取参数query部分，注意此处返回的是?query&lt;/li&gt;
+&lt;li&gt;window.location.hash：获取锚点，#fragment&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在js中可以使用escape(), encodeURL(), encodeURIComponent()，三种方法都有一些不会被编码的符号：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;escape()：@ * / +&lt;/li&gt;
+&lt;li&gt;encodeURL()：! @ # $&amp;amp; * ( ) = : / ; ? + ‘&lt;/li&gt;
+&lt;li&gt;encodeURIComponent()：! * ( ) ‘&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在java端可以使用URLDecoder.decode(“中文”, “UTF-8”);来进行解码&lt;/p&gt;
+&lt;p&gt;但是由于使用request.getParameter() 来获取参数时已经对编码进行了一次解码，所以一般情况下只要在js中使用:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;encodeURIComponent（&amp;quot;中文&amp;quot;）;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在java端直接使用request.getParameter（）来获取即可返回中文。&lt;/p&gt;
+&lt;p&gt;如果你想在java端使用URLDecoder.decode(“中文”, “UTF-8”);来解码也可以在js中进行二次编码，即：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;encodeURIComponent(encodeURIComponent(&amp;quot;中文&amp;quot;));
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果不进行二次编码的话，在java端通过decode方法取的会是乱码。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;完整的URL由这几个部分构成：scheme://host:port/path?query#fragment ，各部分的取法如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;window.location.href：获取完整url的方法：,即scheme://host:port/path?q
+    
+    </summary>
+    
+      <category term="js" scheme="http://benvim.github.io/categories/js/"/>
+    
+    
+      <category term="encodeURI" scheme="http://benvim.github.io/tags/encodeURI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mysql的视图、存储过程、触发器的功能及其使用情景</title>
+    <link href="http://benvim.github.io/2016/05/01/mysql-view/"/>
+    <id>http://benvim.github.io/2016/05/01/mysql-view/</id>
+    <published>2016-05-01T13:01:12.000Z</published>
+    <updated>2016-05-01T14:30:48.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;数据库的索引、视图、存储过程、触发器的功能及其使用情景&quot;&gt;&lt;a href=&quot;#数据库的索引、视图、存储过程、触发器的功能及其使用情景&quot; class=&quot;headerlink&quot; title=&quot;数据库的索引、视图、存储过程、触发器的功能及其使用情景&quot;&gt;&lt;/a&gt;数据库的索引、视图、存储过程、触发器的功能及其使用情景&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;数据库的索引&lt;/li&gt;
+&lt;li&gt;数据库的存储过程&lt;/li&gt;
+&lt;li&gt;数据库的视图&lt;/li&gt;
+&lt;li&gt;数据库的触发器&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;还有什么？等知道了再来补充&lt;/p&gt;
+&lt;h2 id=&quot;数据库的索引&quot;&gt;&lt;a href=&quot;#数据库的索引&quot; class=&quot;headerlink&quot; title=&quot;数据库的索引&quot;&gt;&lt;/a&gt;数据库的索引&lt;/h2&gt;&lt;h3 id=&quot;什么是数据的索引&quot;&gt;&lt;a href=&quot;#什么是数据的索引&quot; class=&quot;headerlink&quot; title=&quot;什么是数据的索引&quot;&gt;&lt;/a&gt;什么是数据的索引&lt;/h3&gt;&lt;p&gt;索引是与表或视图关联的磁盘上结构，可以加快从表或视图中检索行的速度。索引包含由表或视图中的一列或多列生成的键。这些键存储在一个结构（B 树）中，使 SQL Server 可以快速有效地查找与键值关联的行&lt;/p&gt;
+&lt;h4 id=&quot;表和视图可以包含以下类型的索引&quot;&gt;&lt;a href=&quot;#表和视图可以包含以下类型的索引&quot; class=&quot;headerlink&quot; title=&quot;表和视图可以包含以下类型的索引&quot;&gt;&lt;/a&gt;表和视图可以包含以下类型的索引&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;聚集&lt;ul&gt;
+&lt;li&gt;聚集索引根据数据行的键值在表或视图中排序和存储这些数据行。索引定义中包含聚集索引列。每个表只能有一个聚集索引，因为数据行本身只能按一个顺序排序。&lt;/li&gt;
+&lt;li&gt;只有当表包含聚集索引时，表中的数据行才按排序顺序存储。如果表具有聚集索引，则该表称为聚集表。如果表没有聚集索引，则其数据行存储在一个称为堆的无序结构中。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;非聚集&lt;ul&gt;
+&lt;li&gt;非聚集索引具有独立于数据行的结构。非聚集索引包含非聚集索引键值，并且每个键值项都有指向包含该键值的数据行的指针。&lt;/li&gt;
+&lt;li&gt;从非聚集索引中的索引行指向数据行的指针称为行定位器。行定位器的结构取决于数据页是存储在堆中还是聚集表中。对于堆，行定位器是指向行的指针。对于聚集表，行定位器是聚集索引键。&lt;/li&gt;
+&lt;li&gt;您可以向非聚集索引的叶级添加非键列以跳过现有的索引键限制（900 字节和 16 键列），并执行完整范围内的索引查询。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;聚集索引和非聚集索引都可以是唯一的。这意味着任何两行都不能有相同的索引键值。另外，索引也可以不是唯一的，即多行可以共享同一键值。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;每当修改了表数据后，都会自动维护表或视图的索引。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&quot;索引和约束&quot;&gt;&lt;a href=&quot;#索引和约束&quot; class=&quot;headerlink&quot; title=&quot;索引和约束&quot;&gt;&lt;/a&gt;索引和约束&lt;/h4&gt;&lt;p&gt;对表列定义了 PRIMARY KEY 约束和 UNIQUE 约束时，会自动创建索引。例如，如果创建了表并将一个特定列标识为主键，则 数据库引擎自动对该列创建 PRIMARY KEY 约束和索引。有关详细信息，请参阅创建索引（数据库引擎）。&lt;/p&gt;
+&lt;h3 id=&quot;索引的作用&quot;&gt;&lt;a href=&quot;#索引的作用&quot; class=&quot;headerlink&quot; title=&quot;索引的作用&quot;&gt;&lt;/a&gt;索引的作用&lt;/h3&gt;&lt;p&gt;与书中的索引一样，数据库中的索引使您可以快速找到表或索引视图中的特定信息。索引包含从表或视图中一个或多个列生成的键，以及映射到指定数据的存储位置的指针。通过创建设计良好的索引以支持查询，可以显著提高数据库查询和应用程序的性能。索引可以减少为返回查询结果集而必须读取的数据量。索引还可以强制表中的行具有唯一性，从而确保表数据的数据完整性。&lt;/p&gt;
+&lt;p&gt;设计良好的索引可以减少磁盘 I/O 操作，并且消耗的系统资源也较少，从而可以提高查询性能。对于包含 SELECT、UPDATE、DELETE 或 MERGE 语句的各种查询，索引会很有用。例如，在 AdventureWorks 数据库中执行的查询 SELECT Title, HireDate FROM HumanResources.Employee WHERE EmployeeID = 250。执行此查询时，查询优化器评估可用于检索数据的每个方法，然后选择最有效的方法。可能采用的方法包括扫描表和扫描一个或多个索引（如果有）。&lt;/p&gt;
+&lt;p&gt;扫描表时，查询优化器读取表中的所有行，并提取满足查询条件的行。扫描表会有许多磁盘 I/O 操作，并占用大量资源。但是，如果查询的结果集是占表中较高百分比的行，扫描表会是最为有效的方法。&lt;/p&gt;
+&lt;p&gt;查询优化器使用索引时，搜索索引键列，查找到查询所需行的存储位置，然后从该位置提取匹配行。通常，搜索索引比搜索表要快很多，因为索引与表不同，一般每行包含的列非常少，且行遵循排序顺序。&lt;/p&gt;
+&lt;p&gt;查询优化器在执行查询时通常会选择最有效的方法。但如果没有索引，则查询优化器必须扫描表。您的任务是设计并创建最适合您的环境的索引，以便查询优化器可以从多个有效的索引中选择。SQL Server 提供的数据库引擎优化顾问可以帮助分析数据库环境并选择适当的索引。&lt;/p&gt;
+&lt;h3 id=&quot;怎么创建合适的索引&quot;&gt;&lt;a href=&quot;#怎么创建合适的索引&quot; class=&quot;headerlink&quot; title=&quot;怎么创建合适的索引&quot;&gt;&lt;/a&gt;怎么创建合适的索引&lt;/h3&gt;&lt;p&gt;索引其实关键目的是为了加快检索速度而建立的，所以，怎么用索引是数据库系统本身的事情，作为数据库设计或使用者，设计并创建好索引然后体验加上索引后的查询变快的感觉就行了。&lt;/p&gt;
+&lt;p&gt;索引设计不佳和缺少索引是提高数据库和应用程序性能的主要障碍。 &lt;strong&gt;设计高效的索引对于获得良好的数据库和应用程序性能极为重要&lt;/strong&gt;。为数据库及其工作负荷选择正确的索引是一项需要在查询速度与更新所需开销之间取得平衡的复杂任务。如果索引较窄，或者说索引关键字中只有很少的几列，则需要的磁盘空间和维护开销都较少。而另一方面，宽索引可覆盖更多的查询。您可能需要试验若干不同的设计，才能找到最有效的索引。可以添加、修改和删除索引而不影响数据库架构或应用程序设计。因此，应试验多个不同的索引而无需犹豫。&lt;/p&gt;
+&lt;p&gt;SQL Server 中的查询优化器可在大多数情况下可靠地选择最高效的索引。总体索引设计策略应为查询优化器提供可供选择的多个索引，并依赖查询优化器做出正确的决定。这在多种情况下可减少分析时间并获得良好的性能。若要查看查询优化器对特定查询使用的索引，请在 SQL Server Management Studio 中的“查询”菜单上选择“包括实际的执行计划”。&lt;/p&gt;
+&lt;p&gt;不要总是将索引的使用等同于良好的性能，或者将良好的性能等同于索引的高效使用。如果只要使用索引就能获得最佳性能，那查询优化器的工作就简单了。但事实上，不正确的索引选择并不能获得最佳性能。因此，查询优化器的任务是只在索引或索引组合能提高性能时才选择它，而在索引检索有碍性能时则避免使用它。&lt;/p&gt;
+&lt;h4 id=&quot;建议的索引设计策略包括以下任务：&quot;&gt;&lt;a href=&quot;#建议的索引设计策略包括以下任务：&quot; class=&quot;headerlink&quot; title=&quot;建议的索引设计策略包括以下任务：&quot;&gt;&lt;/a&gt;建议的索引设计策略包括以下任务：&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;了解数据库本身的特征。例如，它是频繁修改数据的联机事务处理 (OLTP) 数据库，还是主要包含只读数据的决策支持系统 (DSS) 或数据仓库 (OLAP) 数据库？&lt;/li&gt;
+&lt;li&gt;了解最常用的查询的特征。例如，了解到最常用的查询联接两个或多个表将有助于决定要使用的最佳索引类型。&lt;/li&gt;
+&lt;li&gt;了解查询中使用的列的特征。例如，某个索引对于含有整数数据类型同时还是唯一的或非空的列是理想索引。筛选索引适用于具有定义完善的数据子集的列。&lt;/li&gt;
+&lt;li&gt;确定哪些索引选项可在创建或维护索引时提高性能。例如，对现有某个大型表创建聚集索引将会受益于 ONLINE 索引选项。ONLINE 选项允许在创建索引或重新生成索引时继续对基础数据执行并发活动。&lt;/li&gt;
+&lt;li&gt;确定索引的最佳存储位置。非聚集索引可以与基础表存储在同一个文件组中，也可以存储在不同的文件组中。索引的存储位置可通过提高磁盘 I/O 性能来提高查询性能。例如，将非聚集索引存储在表文件组所在磁盘以外的某个磁盘上的一个文件组中可以提高性能，因为可以同时读取多个磁盘。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;或者，聚集索引和非聚集索引也可以使用跨越多个文件组的分区方案。在维护整个集合的完整性时，使用分区可以快速而有效地访问或管理数据子集，从而使大型表或索引更易于管理。有关详细信息，请参阅已分区表和已分区索引。在考虑分区时，应确定是否应对齐索引，即，是按实质上与表相同的方式进行分区，还是单独分区。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;设计索引&quot;&gt;&lt;a href=&quot;#设计索引&quot; class=&quot;headerlink&quot; title=&quot;设计索引&quot;&gt;&lt;/a&gt;设计索引&lt;/h3&gt;&lt;p&gt;索引设计是一项关键任务。索引设计包括确定要使用的列，选择索引类型（例如聚集或非聚集），选择适当的索引选项，以及确定文件组或分区方案布置。&lt;/p&gt;
+&lt;h3 id=&quot;确定最佳的创建方法。按照以下方法创建索引&quot;&gt;&lt;a href=&quot;#确定最佳的创建方法。按照以下方法创建索引&quot; class=&quot;headerlink&quot; title=&quot;确定最佳的创建方法。按照以下方法创建索引&quot;&gt;&lt;/a&gt;确定最佳的创建方法。按照以下方法创建索引&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;使用 CREATE TABLE 或 ALTER TABLE 对列定义 PRIMARY KEY 或 UNIQUE 约束&lt;br&gt;SQL Server 数据库引擎自动创建唯一索引来强制 PRIMARY KEY 或 UNIQUE 约束的唯一性要求。默认情况下，创建的唯一聚集索引可以强制 PRIMARY KEY 约束，除非表中已存在聚集索引或指定了唯一的非聚集索引。默认情况下，创建的唯一非聚集索引可以强制 UNIQUE 约束，除非已明确指定唯一的聚集索引且表中不存在聚集索引。&lt;br&gt;还可以指定索引选项和索引位置、文件组或分区方案。&lt;br&gt;创建为 PRIMARY KEY 或 UNIQUE 约束的一部分的索引将自动给定与约束名称相同的名称。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;使用 CREATE INDEX 语句或 SQL Server Management Studio 对象资源管理器中的“新建索引”对话框创建独立于约束的索引&lt;br&gt;必须指定索引的名称、表以及应用该索引的列。还可以指定索引选项和索引位置、文件组或分区方案。默认情况下，如果未指定聚集或唯一选项，将创建非聚集的非唯一索引。若要创建筛选索引，请使用可选的 WHERE 子句。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;创建索引&quot;&gt;&lt;a href=&quot;#创建索引&quot; class=&quot;headerlink&quot; title=&quot;创建索引&quot;&gt;&lt;/a&gt;创建索引&lt;/h3&gt;&lt;p&gt;要考虑的一个重要因素是对空表还是对包含数据的表创建索引。对空表创建索引在创建索引时不会对性能产生任何影响，而向表中添加数据时，会对性能产生影响。  &lt;/p&gt;
+&lt;p&gt;对大型表创建索引时应仔细计划，这样才不会影响数据库性能。对大型表创建索引的首选方法是先创建聚集索引，然后创建任何非聚集索引。在对现有表创建索引时，请考虑将 ONLINE 选项设置为 ON。该选项设置为 ON 时，将不持有长期表锁以继续对基础表的查询或更新。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;资源来自百度&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;数据库的触发器&quot;&gt;&lt;a href=&quot;#数据库的触发器&quot; class=&quot;headerlink&quot; title=&quot;数据库的触发器&quot;&gt;&lt;/a&gt;数据库的触发器&lt;/h2&gt;&lt;p&gt;触发器的定义就是说某个条件成立的时候，你触发器里面所定义的语句就会被自动的执行。因此触发器不需要人为的去调用，也不能调用。&lt;/p&gt;
+&lt;p&gt;然后，触发器的触发条件其实在你定义的时候就已经设定好的了。这里面需要说明一下，触发器可以分为语句级触发器和行级触发器。详细的介绍可以参考网上的资料，简单的说就是语句级的触发器可以在某些语句执行前或执行后被触发。而行级触发器则是在定义的了触发的表中的行数据改变时就会被触发一次。&lt;/p&gt;
+&lt;h3 id=&quot;具体举例：&quot;&gt;&lt;a href=&quot;#具体举例：&quot; class=&quot;headerlink&quot; title=&quot;具体举例：&quot;&gt;&lt;/a&gt;具体举例：&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;在一个表中定义的语句级的触发器，当这个表被删除时，程序就会自动执行触发器里面定义的操作过程。这个就是删除表的操作就是触发器执行的条件了。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;在一个表中定义了行级的触发器，那当这个表中一行数据发生变化的时候，比如删除了一行记录，那触发器也会被自动执行了。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;触发器简介&quot;&gt;&lt;a href=&quot;#触发器简介&quot; class=&quot;headerlink&quot; title=&quot;触发器简介&quot;&gt;&lt;/a&gt;触发器简介&lt;/h3&gt;&lt;p&gt;触发器是一种特殊类型的过程。与普通过程不同的是，过程需要用户显式地调用才执行，而触发器则是当某些事件发生时，由Oracle自动执行。&lt;/p&gt;
+&lt;h3 id=&quot;触发器主要由如下几个部分组成&quot;&gt;&lt;a href=&quot;#触发器主要由如下几个部分组成&quot; class=&quot;headerlink&quot; title=&quot;触发器主要由如下几个部分组成&quot;&gt;&lt;/a&gt;触发器主要由如下几个部分组成&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;触发事件：&lt;/li&gt;
+&lt;li&gt;触发条件：&lt;/li&gt;
+&lt;li&gt;触发对象：&lt;/li&gt;
+&lt;li&gt;触发操作：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;编写触发器时，需要注意以下几点&quot;&gt;&lt;a href=&quot;#编写触发器时，需要注意以下几点&quot; class=&quot;headerlink&quot; title=&quot;编写触发器时，需要注意以下几点&quot;&gt;&lt;/a&gt;编写触发器时，需要注意以下几点&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;触发器不接受参数。  &lt;/li&gt;
+&lt;li&gt;一个表上最多可以有12个触发器，但同一时间、同一事件、同一类型的触发器只能有一个。还需要注意，各个触发器之间不能有矛盾。  &lt;/li&gt;
+&lt;li&gt;在一个表上的触发器越多，对在该表上的DML操作性能影响就越大。  &lt;/li&gt;
+&lt;li&gt;触发器最大为32KB。如果确实需要，可以先建立过程，然后在触发器中用CALL语句调用。&lt;/li&gt;
+&lt;li&gt;在DML触发器中只能使用DML语句（select，insert，update，delete）。&lt;/li&gt;
+&lt;li&gt;在系统触发器中只能包含DDL语句（create，alter,drop）。&lt;/li&gt;
+&lt;li&gt;触发器中不能包含事务控制语句（commit，rollback，savepoint）。因为触发器是触发语句的一部门，触发语句被提交或回退时，触发器也就被提交或回退了。&lt;/li&gt;
+&lt;li&gt;在触发器主体中调用的任何过程、函数都不能使用事务控制语句。&lt;/li&gt;
+&lt;li&gt;在触发器主体中不能声明任何long和blob变量。新值new、旧值old也不能指向表中的任何long和blog列&lt;/li&gt;
+&lt;li&gt;不同类型的触发器（如DML触发器、INSTEAD OF触发器、系统触发器）的语法格式和作用都有较大区别。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;数据库的存储过程&quot;&gt;&lt;a href=&quot;#数据库的存储过程&quot; class=&quot;headerlink&quot; title=&quot;数据库的存储过程&quot;&gt;&lt;/a&gt;数据库的存储过程&lt;/h2&gt;&lt;p&gt;存储过程（Stored Procedure）是一组为了完成特定功能的SQL 语句集，经编译后存储在数据库。中用户通过指定存储过程的名字并给出参数（如果该存储过程带有参数）来执行它。   &lt;/p&gt;
+&lt;h3 id=&quot;在SQL-Server-的系列版本中存储过程分为两类：&quot;&gt;&lt;a href=&quot;#在SQL-Server-的系列版本中存储过程分为两类：&quot; class=&quot;headerlink&quot; title=&quot;在SQL Server 的系列版本中存储过程分为两类：&quot;&gt;&lt;/a&gt;在SQL Server 的系列版本中存储过程分为两类：&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;系统提供的存储过程&lt;/li&gt;
+&lt;li&gt;用户自定义存储过程。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;系统过程主要存储在master 数据库中并以sp_为前缀，并且系统存储过程主要是从系统表中获取信息，从而为系统管理员管理SQL Server 提供支持。通过系统存储过程，MS SQL Server 中的许多管理性或信息性的活动（如了解数据库对象、数据库信息）都可以被顺利有效地完成。尽管这些系统存储过程被放在master 数据库中，但是仍可以在其它数据库中对其进行调用，在调用时不必在存储过程名前加上数据库名。而且当创建一个新数据库时，一些系统存储过程会在新数据库中被自动创建。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;用户自定义存储过程是由用户创建并能完成某一特定功能（如查询用户所需数据信息）的存储过程。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;存储过程在数据库中的作用是什么&quot;&gt;&lt;a href=&quot;#存储过程在数据库中的作用是什么&quot; class=&quot;headerlink&quot; title=&quot;存储过程在数据库中的作用是什么&quot;&gt;&lt;/a&gt;存储过程在数据库中的作用是什么&lt;/h3&gt;&lt;p&gt;第一：存储过程因为SQL语句已经预编绎过了，因此运行的速度比较快。&lt;br&gt;第二：存储过程可以接受参数、输出参数、返回单个或多个结果集以及返回值。可以向程序返回错误原因。&lt;br&gt;第三：存储过程运行比较稳定，不会有太多的错误。只要一次成功，以后都会按这个程序运行。&lt;br&gt;第四：存储过程主要是在服务器上运行，减少对客户机的压力。&lt;br&gt;第五：存储过程可以包含程序流、逻辑以及对数据库的查询。同时可以实体封装和隐藏了数据逻辑。&lt;br&gt;第六：存储过程可以在单个存储过程中执行一系列 SQL 语句。&lt;br&gt;第七：存储过程可以从自己的存储过程内引用其它存储过程，这可以简化一系列复杂语句。  &lt;/p&gt;
+&lt;p&gt;其实存储过程还可以控制权限，比如一个表不直接允许用户直接访问，但要求允许用户访问和修改其中一个或多个字段，那就可以通过一个存储过程来实现并允许该用户使用该存储过程。 &lt;/p&gt;
+&lt;p&gt;还有，如果多条SQL语句执行过程中，过程环节返回了数据作为后面环节的输入数据，如果直接通过SQL语句执行，势必导致大量的数据通过网络返回到客户机，并在客户机运算；如果封装在存储过程中，则将运算放在服务器进行，不但减少了客户机的压力，同时也减少了网络流量，提高了执行的效率。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;来自百度  &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;的确的看你的需求了，处理比复杂的逻辑或多表的连接查询你最好用存储过程，这样可以提高你的服务器性能。&lt;br&gt;2、视图本身是一张虚拟表，处理表与表关系不太复杂操作时也可以用了。&lt;br&gt;3、触发器一般用在多表间级联操作更新或删除一个表中某个字段，那么相关其他表也一同更新或删除呀！&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;数据库的索引、视图、存储过程、触发器的功能及其使用情景&quot;&gt;&lt;a href=&quot;#数据库的索引、视图、存储过程、触发器的功能及其使用情景&quot; class=&quot;headerlink&quot; title=&quot;数据库的索引、视图、存储过程、触发器的功能及其使用情景&quot;&gt;&lt;/a&gt;数据库的索
+    
+    </summary>
+    
+      <category term="mysql" scheme="http://benvim.github.io/categories/mysql/"/>
+    
+    
+      <category term="msyql" scheme="http://benvim.github.io/tags/msyql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PHP 编码规范</title>
+    <link href="http://benvim.github.io/2016/04/30/php-standard/"/>
+    <id>http://benvim.github.io/2016/04/30/php-standard/</id>
+    <published>2016-04-30T02:12:12.000Z</published>
+    <updated>2016-05-01T13:00:10.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;PHP-编码规范&quot;&gt;&lt;a href=&quot;#PHP-编码规范&quot; class=&quot;headerlink&quot; title=&quot;PHP 编码规范&quot;&gt;&lt;/a&gt;PHP 编码规范&lt;/h1&gt;&lt;p&gt;当一个软件项目尝试着遵守公共一致的标准时，可以使参与项目的开发人员更容易了解项目中的代码、弄清程序的状况。使新的参与者可以很快的适应环境，防止部分参与者出于节省时间的需要，自创一套风格并养成终生的习惯，导致其它人在阅读时浪费过多的时间和精力。而且在一致的环境下，也可以减少编码出错的机会。缺陷是由于每个人的标准不同，所以需要一段时间来适应和改变自己的编码风格，暂时性的降底了工作效率。从使项目长远健康的发展以及后期更高的团队工作效率来考虑暂时的工作效率降低是值得的，也是必须要经过的一个过程。标准不是项目成功的关键，但可以帮助我们在团队协作中有更高的效率并且更加顺利的完成既定的任务。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;程序员可以了解任何代码，弄清程序的状况&lt;/li&gt;
+&lt;li&gt;新人可以很快的适应环境&lt;/li&gt;
+&lt;li&gt;防止新接触PHP的人出于节省时间的需要，自创一套风格并养成终生的习惯&lt;/li&gt;
+&lt;li&gt;防止新接触PHP的人一次次的犯同样的错误&lt;/li&gt;
+&lt;li&gt;在一致的环境下，人们可以减少犯错的机会&lt;/li&gt;
+&lt;li&gt;程序员们有了一致的敌人&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;请详细阅读以下规范，并严格遵守。&lt;/p&gt;
+&lt;h2 id=&quot;约定&quot;&gt;&lt;a href=&quot;#约定&quot; class=&quot;headerlink&quot; title=&quot;约定&quot;&gt;&lt;/a&gt;约定&lt;/h2&gt;&lt;h3 id=&quot;文件编码&quot;&gt;&lt;a href=&quot;#文件编码&quot; class=&quot;headerlink&quot; title=&quot;文件编码&quot;&gt;&lt;/a&gt;文件编码&lt;/h3&gt;&lt;p&gt;所有文件，默认都用UTF-8编码，注释为中文。&lt;/p&gt;
+&lt;p&gt;其他涉及具体程序的代码，请调整您的编辑器文件编码为&lt;strong&gt;UTF-8&lt;/strong&gt;，并&lt;strong&gt;关闭UTF-8 BOM&lt;/strong&gt;的功能。请不要使用windows自带的记事本编辑项目文件。&lt;/p&gt;
+&lt;h2 id=&quot;命名&quot;&gt;&lt;a href=&quot;#命名&quot; class=&quot;headerlink&quot; title=&quot;命名&quot;&gt;&lt;/a&gt;命名&lt;/h2&gt;&lt;h3 id=&quot;文件命名&quot;&gt;&lt;a href=&quot;#文件命名&quot; class=&quot;headerlink&quot; title=&quot;文件命名&quot;&gt;&lt;/a&gt;文件命名&lt;/h3&gt;&lt;p&gt;文件名与类名保持一致，区分大小写。&lt;/p&gt;
+&lt;h3 id=&quot;类命名&quot;&gt;&lt;a href=&quot;#类命名&quot; class=&quot;headerlink&quot; title=&quot;类命名&quot;&gt;&lt;/a&gt;类命名&lt;/h3&gt;&lt;p&gt;使用骆驼法则&lt;br&gt;首字母大写&lt;br&gt;专有名词保持其默认大小写规范。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;class UserController &amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;接口类命名&lt;/p&gt;
+&lt;p&gt;使用 目录名称 + “_” + 骆驼法则的形式实现(首字母小写)&lt;br&gt;object/user/User_getUser.php&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;class User_getUser &amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;函数命名&quot;&gt;&lt;a href=&quot;#函数命名&quot; class=&quot;headerlink&quot; title=&quot;函数命名&quot;&gt;&lt;/a&gt;函数命名&lt;/h3&gt;&lt;p&gt;骆驼法则的形式实现，首字母小写,专有名词保持其默认大小写规范。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;function getUser() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;function userAddslashes($value, $force = 0) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	return $value = is_array($value) ? true : false;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;方法命名&quot;&gt;&lt;a href=&quot;#方法命名&quot; class=&quot;headerlink&quot; title=&quot;方法命名&quot;&gt;&lt;/a&gt;方法命名&lt;/h3&gt;&lt;p&gt;使用骆驼法则，首字母小写, 接口对外提供的方法请声明为 public，其他接口本内部身使用的方法请全部声明为 private 。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;public function stripvTag($s) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	$vtagRegexp = $this-&amp;gt;getVtagRegexp();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	return true;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;private function getVtagRegexp() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	return &amp;apos;something&amp;apos;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;变量命名&quot;&gt;&lt;a href=&quot;#变量命名&quot; class=&quot;headerlink&quot; title=&quot;变量命名&quot;&gt;&lt;/a&gt;变量命名&lt;/h3&gt;&lt;p&gt;使用骆驼法则，首字母小写。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$callbackFunctions;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;常量命名&quot;&gt;&lt;a href=&quot;#常量命名&quot; class=&quot;headerlink&quot; title=&quot;常量命名&quot;&gt;&lt;/a&gt;常量命名&lt;/h3&gt;&lt;p&gt;所有字母大写，单词之间用下划线分割。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;define(&amp;apos;MAGIC_QUOTES_GPC&amp;apos;, get_magic_quotes_gpc());&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;注释&quot;&gt;&lt;a href=&quot;#注释&quot; class=&quot;headerlink&quot; title=&quot;注释&quot;&gt;&lt;/a&gt;注释&lt;/h2&gt;&lt;p&gt;注释是开源项目的重点，请务必重视。&lt;/p&gt;
+&lt;h3 id=&quot;头部注释&quot;&gt;&lt;a href=&quot;#头部注释&quot; class=&quot;headerlink&quot; title=&quot;头部注释&quot;&gt;&lt;/a&gt;头部注释&lt;/h3&gt;&lt;p&gt;头部注释主要用来阐述此文件的版权，协议，作者，版本。对于核心开发组，请按照下列形式书写(你可以把它设置为代码模板)。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;?php&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;/*&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	More &amp;amp; Original PHP Framwork&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	Copyright (c) 2009 - 2010 Chuangpingke Inc.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	$Id$&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;*/&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;其中author为作者的名称，请自己命名。version定义为$Id$是为了匹配svn的关键字，设置此文件的svn:keywords属性为id，每次提交以后,$Id$就会被替换为具体的版本信息，比如:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$Id: User_getUser.php 52 2010-03-31 08:24:35Z kimi $。
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;引用文件和定义常量注释&quot;&gt;&lt;a href=&quot;#引用文件和定义常量注释&quot; class=&quot;headerlink&quot; title=&quot;引用文件和定义常量注释&quot;&gt;&lt;/a&gt;引用文件和定义常量注释&lt;/h3&gt;&lt;p&gt;文件的引用和常量的定义一般都放置在文件的开头部分。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;/** 定义GPC变量 **/&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;define(&amp;apos;MAGIC_QUOTES_GPC&amp;apos;, get_magic_quotes_gpc());&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;多行注释，使用如下形式&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;/**&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; * 定义数据库缓存存储方式&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; * true表示...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; * false表示...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; *&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;define(&amp;apos;PHP_DB_FILECACHE&amp;apos;, true);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;define(&amp;apos;PHP_DB_DBCACHE&amp;apos;, false);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;类-接口-注释&quot;&gt;&lt;a href=&quot;#类-接口-注释&quot; class=&quot;headerlink&quot; title=&quot;类(接口)注释&quot;&gt;&lt;/a&gt;类(接口)注释&lt;/h3&gt;&lt;p&gt;一个类(接口)在声明的时候必须声明其作用&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;/**&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; * 包含获取数据支持方法的类&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;class UserController &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	//....&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;函数-方法-接口-注释&quot;&gt;&lt;a href=&quot;#函数-方法-接口-注释&quot; class=&quot;headerlink&quot; title=&quot;函数(方法,接口)注释&quot;&gt;&lt;/a&gt;函数(方法,接口)注释&lt;/h3&gt;&lt;p&gt;函数(方法,接口)的声明注释参考phpdoc规范。注意，如果是无返回函数，必须指明@return void，请尽量在函数参数表中使用已知类型。如果函数中抛出异常则必须指明@throws &amp;lt;异常类型&amp;gt;。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;/**&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* 获取GPC变量。对于type为integer的变量强制转化为数字型&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* @param string $key - 权限表达式&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* @param string $type - integer 数字类型；string 字符串类型；array 数组类型&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* @param string $var - R $REQUEST变量；G $GET变量；P $POST变量；C $COOKIE变量&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;* @return string&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;*/&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;function UserGetGPC($key, $type = &amp;apos;integer&amp;apos;, $var = &amp;apos;R&amp;apos;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;程序行间注释&quot;&gt;&lt;a href=&quot;#程序行间注释&quot; class=&quot;headerlink&quot; title=&quot;程序行间注释&quot;&gt;&lt;/a&gt;程序行间注释&lt;/h3&gt;&lt;p&gt;行间注释采用双斜线注释法，反斜杠与描述之间，应该保留一个空格&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;// 禁止对全局变量注入&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;if (isset($_REQUEST[&amp;apos;GLOBALS&amp;apos;]) OR isset($_FILES[&amp;apos;GLOBALS&amp;apos;])) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	exit(&amp;apos;Request tainting attempted.&amp;apos;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;书写规则&quot;&gt;&lt;a href=&quot;#书写规则&quot; class=&quot;headerlink&quot; title=&quot;书写规则&quot;&gt;&lt;/a&gt;书写规则&lt;/h2&gt;&lt;h3 id=&quot;缩进&quot;&gt;&lt;a href=&quot;#缩进&quot; class=&quot;headerlink&quot; title=&quot;缩进&quot;&gt;&lt;/a&gt;缩进&lt;/h3&gt;&lt;p&gt;详细的代码缩进会在后面提到，这里需要注意的是，PHP项目中的代码缩进使用每个缩进的单位约定是一个TAB(4个空白字符宽度)，需每个参与项目的开发人员在编辑器(UltraEdit、EditPlus、Zend Studio等)中进行强制设定，以防在编写代码时遗忘而造成格式上的不规范。&lt;/p&gt;
+&lt;p&gt;本缩进规范适用于PHP、Javascript中的函数、类、逻辑结构、循环等。&lt;/p&gt;
+&lt;h3 id=&quot;UNIX编码规范&quot;&gt;&lt;a href=&quot;#UNIX编码规范&quot; class=&quot;headerlink&quot; title=&quot;UNIX编码规范&quot;&gt;&lt;/a&gt;UNIX编码规范&lt;/h3&gt;&lt;p&gt;如果你正在编写一个php文件，那么根据UNIX的C语言编码规范，必须留出最后一个空行。比如&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;?php&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;// this is a test file&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;echo &amp;apos;hello&amp;apos;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;// &amp;lt;---这行留空&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;而且，如果此文件为纯php文件(没有嵌套HTML)，请不要用&lt;strong&gt;?&amp;gt;&lt;/strong&gt;符号结尾，保持最后一行留空即可。&lt;/p&gt;
+&lt;h3 id=&quot;大括号-、if和switch&quot;&gt;&lt;a href=&quot;#大括号-、if和switch&quot; class=&quot;headerlink&quot; title=&quot;大括号{}、if和switch&quot;&gt;&lt;/a&gt;大括号{}、if和switch&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;首括号与关键词同行，尾括号与关键字同列；&lt;/li&gt;
+&lt;li&gt;if结构中，else和elseif与前后两个大括号同行，左右各一个空格。另外，即便if后只有一行语句，仍然需要加入大括号，以保证结构清晰；&lt;/li&gt;
+&lt;li&gt;switch结构中，通常当一个case块处理后，将跳过之后的case块处理，因此大多数情况下需要添加break。break的位置视程序逻辑，与case同在一行，或新起一行均可，但同一switch体中，break的位置格式应当保持一致。&lt;br&gt;以下是符合上述规范的例子：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;if ($condition) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	switch ($var) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		case 1: 	echo &amp;apos;var is 1&amp;apos;; break;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		case 2: 	echo &amp;apos;var is 2&amp;apos;; break;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		default: 	echo &amp;apos;var is neither 1 or 2&amp;apos;; break;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125; else &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	switch ($str) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		case &amp;apos;abc&amp;apos;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			$result = &amp;apos;abc&amp;apos;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			break;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		default:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			$result = &amp;apos;unknown&amp;apos;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			break;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;运算符、小括号、空格、关键词&quot;&gt;&lt;a href=&quot;#运算符、小括号、空格、关键词&quot; class=&quot;headerlink&quot; title=&quot;运算符、小括号、空格、关键词&quot;&gt;&lt;/a&gt;运算符、小括号、空格、关键词&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;每个运算符与两边参与运算的值或表达式中间要有一个空格；&lt;/li&gt;
+&lt;li&gt;左括号“(” 应和函数关键词紧贴在一起，除此以外应当使用空格将“(”同前面内容分开；&lt;/li&gt;
+&lt;li&gt;右括号“)”除后面是“)”以外，其他一律用空格隔开它们；&lt;/li&gt;
+&lt;li&gt;除字符串中特意需要，一般情况下，在程序以及HTML中不出现两个连续的空格；&lt;/li&gt;
+&lt;li&gt;任何情况下，PHP程序中不能出现空白的带有TAB或空格的行，即：这类空白行应当不包含任何TAB或空格。同时，任何程序行尾也不能出现多余的TAB或空格。多数编辑器具有自动去除行尾空格的功能，如果习惯养成不好，可临时使用它，避免多余空格产生；&lt;/li&gt;
+&lt;li&gt;每段较大的程序体，上、下应当加入空白行，两个程序块之间只使用1个空行，禁止使用多行；&lt;/li&gt;
+&lt;li&gt;程序块划分尽量合理，过大或者过小的分割都会影响他人对代码的阅读和理解。一般可以以较大函数定义、逻辑结构、功能结构来进行划分。少于15行的程序块，可不加上下空白行；&lt;/li&gt;
+&lt;li&gt;说明或显示部分中，内容如含有中文、数字、英文单词混杂，应当在数字或者英文单词的前后加入空格。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;根据上述原则，以下举例说明正确的书写格式：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$result = (($a + 1) * 3 / 2 + $num)) . ’Test’;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$condition ? func1($var) : func2($var); &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$condition ? $long_statement&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	: $another_long_statement;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;if ($flag) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	// Statements(more than 15 lines)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;函数定义&quot;&gt;&lt;a href=&quot;#函数定义&quot; class=&quot;headerlink&quot; title=&quot;函数定义&quot;&gt;&lt;/a&gt;函数定义&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;参数的名字和变量的命名规范一致；&lt;/li&gt;
+&lt;li&gt;函数定义中的左小括号，与函数名紧挨，中间无需空格；&lt;/li&gt;
+&lt;li&gt;开始的左大括号与函数定义为同一行，中间加一个空格，不要另起一行；&lt;/li&gt;
+&lt;li&gt;具有默认值的参数应该位于参数列表的后面；&lt;/li&gt;
+&lt;li&gt;函数调用与定义的时候参数与参数之间加入一个空格；&lt;/li&gt;
+&lt;li&gt;必须仔细检查并切实杜绝函数起始缩进位置与结束缩进位置不同的现象。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;function userGetGPC($k, $type = &amp;apos;ini&amp;apos;, $var = &amp;apos;R&amp;apos;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	if ($flag) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		// Statement&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;PHP-编码规范&quot;&gt;&lt;a href=&quot;#PHP-编码规范&quot; class=&quot;headerlink&quot; title=&quot;PHP 编码规范&quot;&gt;&lt;/a&gt;PHP 编码规范&lt;/h1&gt;&lt;p&gt;当一个软件项目尝试着遵守公共一致的标准时，可以使参与项目的开发人员更容易了解项目中的代码、弄
+    
+    </summary>
+    
+      <category term="php" scheme="http://benvim.github.io/categories/php/"/>
+    
+    
+      <category term="php" scheme="http://benvim.github.io/tags/php/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>rsync快速删除海量文件</title>
+    <link href="http://benvim.github.io/2016/04/27/centos-rsync/"/>
+    <id>http://benvim.github.io/2016/04/27/centos-rsync/</id>
+    <published>2016-04-27T01:23:30.000Z</published>
+    <updated>2016-05-01T17:35:22.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;rsync快速删除海量文件&quot;&gt;&lt;a href=&quot;#rsync快速删除海量文件&quot; class=&quot;headerlink&quot; title=&quot;rsync快速删除海量文件&quot;&gt;&lt;/a&gt;rsync快速删除海量文件&lt;/h1&gt;&lt;p&gt;由于业务侧使用时，一些脚本文件写的不够严谨，造成/var/spool/postfix/maildrop/目录经常被用户通知邮件文件堆满。而通过rm  -rf * 删除时，会提示-bash: /bin/rm: Argument list too long 。通过ls |xargs rm -rf 进行删除时也耗时较长，这里可以通过rsync进行删除。&lt;/p&gt;
+&lt;p&gt;一、rsync删除文件&lt;br&gt;针对上面的问题，我们可以通过以下方法清空该目录：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;先创建一个空目录&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# mkdir /tmp/empty/&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;清空目标目录&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# rsync --delete-before -avH --progress --stats /tmp/empty/ /var/spool/postfix/maildrop&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;选项说明：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;-delete-before 接收者在传输之前进行删除操作&lt;br&gt;– -progress 在传输时显示传输过程&lt;/li&gt;
+&lt;li&gt;-a 归档模式，表示以递归方式传输文件，并保持所有文件属性&lt;/li&gt;
+&lt;li&gt;-H 保持硬连接的文件&lt;/li&gt;
+&lt;li&gt;-v 详细输出模式&lt;br&gt;– -stats 给出某些文件的传输状态&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;不过在使用上面的命令进行清理时，存在一个问题，清空后，目标目录的权限会和源目录的权限一样。如：/tmp/empty是root：root，而maildrop之前是postfix：postdrop ，执行之后也会maildrop目录的权限也会变成root：root 。由于-a权限是-rlptogD几个参数的集合，所以可以将og（owner:group）两个参数去掉。清空时自动保持之前的目录权限，如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;rsync  --delete -rlptD /tmp/empty/ /var/spool/postfix/maildrop/&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;二、rsync与rm 删除速度比较&lt;br&gt;便于说明问题，我在一台主机上创建5万个空文件后再分别用rsync和rm 进行清理，以下是测试结果：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;[root@www data1]# mkdir -p /tmp/empty/&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[root@www data1]# mkdir 361way;seq 1 50000 | xargs -I&amp;#123;&amp;#125; touch 361way/file_&amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[root@www data1]# time rsync  --delete -rlptD /tmp/empty/ /data1/361way/&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;real    0m0.149s&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;user    0m0.018s&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sys     0m0.091s&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[root@www data1]# seq 1 50000 | xargs -I&amp;#123;&amp;#125; touch 361way/file_&amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[root@www data1]# time rm -rf 361way/*&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;real    0m0.831s&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;user    0m0.366s&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sys     0m0.464s&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;对比结果已经比较能说明问题了吧。&lt;/p&gt;
+&lt;h3 id=&quot;为什么rsync这么快呢？&quot;&gt;&lt;a href=&quot;#为什么rsync这么快呢？&quot; class=&quot;headerlink&quot; title=&quot;为什么rsync这么快呢？&quot;&gt;&lt;/a&gt;为什么rsync这么快呢？&lt;/h3&gt;&lt;p&gt;rm删除内容时，将目录的每一个条目逐个删除(unlink)，需要循环重复操作很多次；rsync删除内容时，建立好新的空目录，替换掉老目录，基本没开销。想要深层次的区分两个命令在调用系统函数时的区别，可以使用SystemTap工具进行分析（由于本人也不懂该工具的使用，所以这里就不献丑了）。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;rsync快速删除海量文件&quot;&gt;&lt;a href=&quot;#rsync快速删除海量文件&quot; class=&quot;headerlink&quot; title=&quot;rsync快速删除海量文件&quot;&gt;&lt;/a&gt;rsync快速删除海量文件&lt;/h1&gt;&lt;p&gt;由于业务侧使用时，一些脚本文件写的不够严谨，造成/v
+    
+    </summary>
+    
+      <category term="oop" scheme="http://benvim.github.io/categories/oop/"/>
+    
+    
+      <category term="oop" scheme="http://benvim.github.io/tags/oop/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>shell 批量重命名文件名</title>
+    <link href="http://benvim.github.io/2016/04/26/shell-rename/"/>
+    <id>http://benvim.github.io/2016/04/26/shell-rename/</id>
+    <published>2016-04-26T02:10:29.000Z</published>
+    <updated>2016-05-01T17:00:39.000Z</updated>
+    
+    <content type="html">&lt;p&gt;这里是列出了所有文件信息，并打印出一个需要执行的shell脚本&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;ls -al | grep &amp;quot;^-&amp;quot; | awk &amp;apos;&amp;#123;a=toupper(substr($9,1,1));b=substr($9,2);print(&amp;quot;git mv &amp;quot;$9&amp;quot; &amp;quot;a&amp;quot;&amp;quot;b);&amp;#125;&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;输出结果&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git mv ActiveAskController.class.php ActiveAskController.class.php&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git mv AdController.class.php AdController.class.php&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git mv AdboardController.class.php AdboardController.class.php&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git mv AdminController.class.php AdminController.class.php&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git mv AdminLogController.class.php AdminLogController.class.php&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git mv AdminRoleController.class.php AdminRoleController.class.php&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git mv AnalyseGeneralController.class.php AnalyseGeneralController.class.php&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git mv AnalyseUserController.class.php AnalyseUserController.class.php&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git mv ApplyController.class.php ApplyController.class.php&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git mv ArticleCateController.class.php ArticleCateController.class.php&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;把文件名第一个字母改成大写。使用mv命令。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这里是列出了所有文件信息，并打印出一个需要执行的shell脚本&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/p
+    
+    </summary>
+    
+      <category term="shell" scheme="http://benvim.github.io/categories/shell/"/>
+    
+    
+      <category term="rename" scheme="http://benvim.github.io/tags/rename/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mysql按年度、季度、月度、周、日SQL统计查询mysql</title>
+    <link href="http://benvim.github.io/2016/04/25/mysql-unixtim/"/>
+    <id>http://benvim.github.io/2016/04/25/mysql-unixtim/</id>
+    <published>2016-04-25T12:12:12.000Z</published>
+    <updated>2016-05-01T16:29:59.000Z</updated>
+    
+    <content type="html">&lt;p&gt;mysql没有提供unix时间戳的专门处理函数，所以，如果遇到时间分组，而你用的又是整型unix时间戳，则只有转化为mysql的其他日期类型！FROM_UNIXTIM()将unix时间戳转为datetime等日期型，然后再查询即可。&lt;/p&gt;
+&lt;h3 id=&quot;年度查询&quot;&gt;&lt;a href=&quot;#年度查询&quot; class=&quot;headerlink&quot; title=&quot;年度查询&quot;&gt;&lt;/a&gt;年度查询&lt;/h3&gt;&lt;p&gt;查询本年度的数据,如下所示，&lt;figure class=&quot;highlight plain&quot;&gt;&lt;figcaption&gt;&lt;span&gt;该sql函数是返回当前日期。其中BlogCreateTime字段是unix时间戳格式。所以使用 **FROM_UNIXTIME** 函数进行格式转换&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;SELECT *&lt;br&gt;FROM blog_article&lt;br&gt;WHERE year( FROM_UNIXTIME(BlogCreateTime)) = year( curdate())&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;### 查询季度数据	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;查询季度要用到季度函数 **quarter()** ，把unix时间戳转换成日期格式，并用quarter()函数取出季度时间，进行筛选结果。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;SELECT ArticleId, quarter( FROM_UNIXTIME( &lt;code&gt;BlogCreateTime&lt;/code&gt; ) )&lt;br&gt;FROM &lt;code&gt;blog_article&lt;/code&gt;&lt;br&gt;其他的同前面部分：查询 本季度的数据&lt;br&gt;SELECT *&lt;br&gt;FROM blog_article&lt;br&gt;WHERE quarter( FROM_UNIXTIME( BlogCreateTime ) ) = quarter( curdate( ))&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;### 查询月度数据&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;和前面季度查询差不多，只不过把quarter()函数换成month()函数。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;本月统计(MySQL)&lt;br&gt;select * from booking where month(booking_time) =&lt;br&gt;month(curdate()) and year(booking_time) = year(curdate())&lt;/p&gt;
+&lt;p&gt;本周统计(MySQL)&lt;br&gt;select * from spf_booking where month(booking_time) =&lt;br&gt;month(curdate()) and week(booking_time) = week(curdate())&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;### 时间段&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;时间段查询，几个SQL函数需要了解一下&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- TO_DAYS(date) :给定一个日期date, 返回一个天数 (从年份0开始的天数 )。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- INTERVAL : 有两种类型的interval:一种为“年份-月份”，即保存年份和月份(YYYY-MM);一种为“天-时间”(DD HH:MM:SS)，用来保存天数、小时、分钟和秒。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;SQL日期函数&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- NOW()	返回当前的日期和时间&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- CURDATE()	返回当前的日期&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- CURTIME()	返回当前的时间&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- DATE()	提取日期或日期/时间表达式的日期部分&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- EXTRACT()	返回日期/时间按的单独部分&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- DATE_ADD()	给日期添加指定的时间间隔&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- DATE_SUB()	从日期减去指定的时间间隔&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- DATEDIFF()	返回两个日期之间的天数&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- DATE_FORMAT()	用不同的格式显示日期/时间&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;N天内记录&lt;br&gt;WHERE TO_DAYS(NOW()) - TO_DAYS(时间字段) &amp;lt;= N&lt;/p&gt;
+&lt;p&gt;当天的记录&lt;br&gt;where date(时间字段)=date(now())&lt;br&gt;或&lt;br&gt;where to_days(时间字段) = to_days(now());&lt;/p&gt;
+&lt;p&gt;查询一周：&lt;br&gt;select * from table　 where DATE_SUB(CURDATE(), INTERVAL 7 DAY) &amp;lt;= date(column_time);&lt;/p&gt;
+&lt;p&gt;查询一个月：&lt;br&gt;select * from table where DATE_SUB(CURDATE(), INTERVAL INTERVAL 1 MONTH) &amp;lt;= date(column_time);&lt;/p&gt;
+&lt;p&gt;查询’06-03’到’07-08’这个时间段内所有过生日的会员：&lt;br&gt;　 Select * From user Where&lt;br&gt;DATE_FORMAT(birthday,’%m-%d’) &amp;gt;= ‘06-03’ and DATE_FORMAT(birthday,’%m-%d’)&lt;/p&gt;
+&lt;p&gt;&amp;lt;= ‘07-08’;&lt;/p&gt;
+&lt;p&gt;统计一季度数据，表时间字段为：savetime&lt;br&gt;group by concat(date_format(savetime, ‘%Y ‘),FLOOR((date_format(savetime, ‘%m ‘)+2)/3))&lt;/p&gt;
+&lt;p&gt;或&lt;/p&gt;
+&lt;p&gt;select YEAR(savetime)&lt;em&gt;10+((MONTH(savetime)-1) DIV 3) +1,count(&lt;/em&gt;)&lt;br&gt;from yourTable&lt;br&gt;group by YEAR(savetime)*10+((MONTH(savetime)-1) DIV 3) +1;&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;### 分组查询&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;1、年度分组&lt;br&gt;SELECT count(ArticleId), date_format(FROM_UNIXTIME( &lt;code&gt;BlogCreateTime&lt;/code&gt;),’%y%m’) sdate FROM &lt;code&gt;blog_article&lt;/code&gt; group by sdate&lt;/p&gt;
+&lt;p&gt;2、月度分组&lt;br&gt;SELECT count(id), date_format(FROM_UNIXTIME(&lt;code&gt;reg_time&lt;/code&gt;),’%y%m’) sdate FROM &lt;code&gt;gxr_user&lt;/code&gt; group by sdate&lt;/p&gt;
+&lt;p&gt;3、先按年度分组，再按月度分组&lt;br&gt;SELECT count(id), date_format(FROM_UNIXTIME(&lt;code&gt;reg_time&lt;/code&gt;),’%y%m%d’) sdate FROM &lt;code&gt;gxr_user&lt;/code&gt; group by sdate desc limit 7&lt;/p&gt;
+&lt;p&gt;4、按年月分组&lt;br&gt;SELECT count(id), date_format(FROM_UNIXTIME(&lt;code&gt;reg_time&lt;/code&gt;),’%y%m%d’) sdate FROM &lt;code&gt;gxr_user&lt;/code&gt; group by sdate desc limit 30&lt;/p&gt;
+&lt;p&gt;```&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;mysql没有提供unix时间戳的专门处理函数，所以，如果遇到时间分组，而你用的又是整型unix时间戳，则只有转化为mysql的其他日期类型！FROM_UNIXTIM()将unix时间戳转为datetime等日期型，然后再查询即可。&lt;/p&gt;
+&lt;h3 id=&quot;年度查询&quot;&gt;&lt;a
+    
+    </summary>
+    
+      <category term="mysql" scheme="http://benvim.github.io/categories/mysql/"/>
+    
+    
+      <category term="date" scheme="http://benvim.github.io/tags/date/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>服务器httpd服务的日志</title>
+    <link href="http://benvim.github.io/2016/04/25/centos-logs/"/>
+    <id>http://benvim.github.io/2016/04/25/centos-logs/</id>
+    <published>2016-04-25T12:12:12.000Z</published>
+    <updated>2016-05-01T17:23:26.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;服务器日志很重要，可以查看分析服务情况，centos默认路径是-var-logs-httpd&quot;&gt;&lt;a href=&quot;#服务器日志很重要，可以查看分析服务情况，centos默认路径是-var-logs-httpd&quot; class=&quot;headerlink&quot; title=&quot;服务器日志很重要，可以查看分析服务情况，centos默认路径是 /var/logs/httpd/.&quot;&gt;&lt;/a&gt;服务器日志很重要，可以查看分析服务情况，centos默认路径是 /var/logs/httpd/.&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;按天截断日志&lt;/li&gt;
+&lt;li&gt;日志参数说明&lt;/li&gt;
+&lt;li&gt;日志解析&lt;/li&gt;
+&lt;li&gt;数据分析&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;使用vim打开httpd服务的配置httpd-conf查看里面的内容。找到如CustomLog&quot;&gt;&lt;a href=&quot;#使用vim打开httpd服务的配置httpd-conf查看里面的内容。找到如CustomLog&quot; class=&quot;headerlink&quot; title=&quot;使用vim打开httpd服务的配置httpd.conf查看里面的内容。找到如CustomLog&quot;&gt;&lt;/a&gt;使用vim打开httpd服务的配置httpd.conf查看里面的内容。找到如CustomLog&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;CustomLog &amp;quot;logs/access.log&amp;quot; common&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ErrorLog &amp;quot;logs/error.log&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;日志显示最后100行&quot;&gt;&lt;a href=&quot;#日志显示最后100行&quot; class=&quot;headerlink&quot; title=&quot;日志显示最后100行&quot;&gt;&lt;/a&gt;日志显示最后100行&lt;/h4&gt;&lt;p&gt;&lt;code&gt;tail -100f log_file.log&lt;/code&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;服务器日志很重要，可以查看分析服务情况，centos默认路径是-var-logs-httpd&quot;&gt;&lt;a href=&quot;#服务器日志很重要，可以查看分析服务情况，centos默认路径是-var-logs-httpd&quot; class=&quot;headerlink&quot; title=&quot;
+    
+    </summary>
+    
+      <category term="git" scheme="http://benvim.github.io/categories/git/"/>
+    
+    
+      <category term="git" scheme="http://benvim.github.io/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git 基本操作</title>
+    <link href="http://benvim.github.io/2016/04/25/git-list/"/>
+    <id>http://benvim.github.io/2016/04/25/git-list/</id>
+    <published>2016-04-25T12:12:12.000Z</published>
+    <updated>2016-05-01T16:30:47.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;Git-的基本操作&quot;&gt;&lt;a href=&quot;#Git-的基本操作&quot; class=&quot;headerlink&quot; title=&quot;Git 的基本操作&quot;&gt;&lt;/a&gt;Git 的基本操作&lt;/h1&gt;&lt;h2 id=&quot;Git-提交重置&quot;&gt;&lt;a href=&quot;#Git-提交重置&quot; class=&quot;headerlink&quot; title=&quot;Git 提交重置&quot;&gt;&lt;/a&gt;Git 提交重置&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;git reset –hard HEAD&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;git解决冲突与merge&lt;br&gt;&lt;a href=&quot;http://blog.csdn.net/lincyang/article/details/45269491&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.csdn.net/lincyang/article/details/45269491&lt;/a&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;th width=&amp;quot;60&amp;quot;&amp;gt;参考价格&amp;lt;a  href=&amp;quot;javascript:void();&amp;quot; title=&amp;quot;三级分类的参考价格（其他不用填）&amp;quot; class=&amp;quot;help_icon&amp;quot; /&amp;gt;&amp;lt;/th&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h1 id=&quot;Git-命令操作&quot;&gt;&lt;a href=&quot;#Git-命令操作&quot; class=&quot;headerlink&quot; title=&quot;Git 命令操作&quot;&gt;&lt;/a&gt;Git 命令操作&lt;/h1&gt;&lt;h4 id=&quot;git-rev-list-HEAD-wc-l-查看提交了多少次。&quot;&gt;&lt;a href=&quot;#git-rev-list-HEAD-wc-l-查看提交了多少次。&quot; class=&quot;headerlink&quot; title=&quot;git rev-list HEAD | wc -l 查看提交了多少次。&quot;&gt;&lt;/a&gt;git rev-list HEAD | wc -l 查看提交了多少次。&lt;/h4&gt;&lt;h4 id=&quot;git-log-–graph-图形化查看GIT-LOG日志。&quot;&gt;&lt;a href=&quot;#git-log-–graph-图形化查看GIT-LOG日志。&quot; class=&quot;headerlink&quot; title=&quot;git log –graph 图形化查看GIT LOG日志。&quot;&gt;&lt;/a&gt;git log –graph 图形化查看GIT LOG日志。&lt;/h4&gt;&lt;h4 id=&quot;git-log-–graph-–oneline&quot;&gt;&lt;a href=&quot;#git-log-–graph-–oneline&quot; class=&quot;headerlink&quot; title=&quot;git log –graph –oneline&quot;&gt;&lt;/a&gt;git log –graph –oneline&lt;/h4&gt;&lt;h4 id=&quot;git-log-3-–oneline-显示3条日志&quot;&gt;&lt;a href=&quot;#git-log-3-–oneline-显示3条日志&quot; class=&quot;headerlink&quot; title=&quot;git log -3 –oneline 显示3条日志&quot;&gt;&lt;/a&gt;git log -3 –oneline 显示3条日志&lt;/h4&gt;&lt;h4 id=&quot;git-log-3-显示3条日志的不同表示形式。&quot;&gt;&lt;a href=&quot;#git-log-3-显示3条日志的不同表示形式。&quot; class=&quot;headerlink&quot; title=&quot;git log -3 显示3条日志的不同表示形式。&quot;&gt;&lt;/a&gt;git log -3 显示3条日志的不同表示形式。&lt;/h4&gt;&lt;h4 id=&quot;git-log-p-显示修改内容&quot;&gt;&lt;a href=&quot;#git-log-p-显示修改内容&quot; class=&quot;headerlink&quot; title=&quot;git log -p 显示修改内容&quot;&gt;&lt;/a&gt;git log -p 显示修改内容&lt;/h4&gt;&lt;h4 id=&quot;git-log-–stat-或-git-log-–stat-–oneline-显示每次变更概要&quot;&gt;&lt;a href=&quot;#git-log-–stat-或-git-log-–stat-–oneline-显示每次变更概要&quot; class=&quot;headerlink&quot; title=&quot;git log –stat 或 git log –stat –oneline 显示每次变更概要&quot;&gt;&lt;/a&gt;git log –stat 或 git log –stat –oneline 显示每次变更概要&lt;/h4&gt;&lt;h4 id=&quot;log定制输出&quot;&gt;&lt;a href=&quot;#log定制输出&quot; class=&quot;headerlink&quot; title=&quot;log定制输出&quot;&gt;&lt;/a&gt;log定制输出&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;git log --pretty=raw -1
+git log --pretty=fuller -1 #显示作者和提交者。
+git log --pretty=oneline -1 #提供最精简的日志输出
+git show D --stat 显示里程碑及其提交。
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;文件追溯：git-blame&quot;&gt;&lt;a href=&quot;#文件追溯：git-blame&quot; class=&quot;headerlink&quot; title=&quot;文件追溯：git blame&quot;&gt;&lt;/a&gt;文件追溯：git blame&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;git blame README
+&lt;/code&gt;&lt;/pre&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;➜  chuangpinke git:(develop) ✗ git log --stat&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;848056fc (BenVim 2016-04-23 16:15:25 +0800 1) &amp;lt;U+FEFF&amp;gt;ALTER TABLE `gxr_items_cate` ADD `icon` VARCHAR(50) NOT NULL COMMENT &amp;apos;文&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;字图标 标识&amp;apos; AFTER `deep`;O&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2f536062 (BenVim 2016-04-22 14:09:00 +0800 2) ALTER TABLE `gxr_items_cate` ADD `icon_type` VARCHAR(50) NOT NULL DEFAULT &amp;apos;fa&amp;apos; COMMENT &amp;apos;文字图标类型&amp;apos; AFTER `deep`;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6fc821c9 (BenVim 2016-04-23 16:10:22 +0800 3)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6fc821c9 (BenVim 2016-04-23 16:10:22 +0800 4) ### 修改文件日志&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6fc821c9 (BenVim 2016-04-23 16:10:22 +0800 5)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;(END)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;Git学习—改变历史&quot;&gt;&lt;a href=&quot;#Git学习—改变历史&quot; class=&quot;headerlink&quot; title=&quot;Git学习—改变历史&quot;&gt;&lt;/a&gt;Git学习—改变历史&lt;/h2&gt;&lt;h4 id=&quot;一、悔棋&quot;&gt;&lt;a href=&quot;#一、悔棋&quot; class=&quot;headerlink&quot; title=&quot;一、悔棋&quot;&gt;&lt;/a&gt;一、悔棋&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;git commit --amend 修改提交注释。
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;二、多步悔棋&quot;&gt;&lt;a href=&quot;#二、多步悔棋&quot; class=&quot;headerlink&quot; title=&quot;二、多步悔棋&quot;&gt;&lt;/a&gt;二、多步悔棋&lt;/h4&gt;&lt;p&gt;回到之前2步前，把这两次提交合并为一个。或者是再修改后提交&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git reset --soft HEAD^^ #
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Git-的基本操作&quot;&gt;&lt;a href=&quot;#Git-的基本操作&quot; class=&quot;headerlink&quot; title=&quot;Git 的基本操作&quot;&gt;&lt;/a&gt;Git 的基本操作&lt;/h1&gt;&lt;h2 id=&quot;Git-提交重置&quot;&gt;&lt;a href=&quot;#Git-提交重置&quot; class=&quot;
+    
+    </summary>
+    
+      <category term="git" scheme="http://benvim.github.io/categories/git/"/>
+    
+    
+      <category term="git" scheme="http://benvim.github.io/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>shell命令 删除当前目录下的所有SVN目录</title>
+    <link href="http://benvim.github.io/2016/04/21/shell-find/"/>
+    <id>http://benvim.github.io/2016/04/21/shell-find/</id>
+    <published>2016-04-21T15:22:11.000Z</published>
+    <updated>2016-05-01T17:07:58.000Z</updated>
+    
+    <content type="html">&lt;p&gt;删除所有.svn目录 &lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;find . -type d -iname &amp;quot;.svn&amp;quot; -exec rm -rf &amp;#123;&amp;#125; \;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;find-命令&quot;&gt;&lt;a href=&quot;#find-命令&quot; class=&quot;headerlink&quot; title=&quot;find 命令&quot;&gt;&lt;/a&gt;find 命令&lt;/h3&gt;&lt;p&gt;这个命令是find的基本用法，可以分两部分:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;find . -type d -iname &amp;quot;.svn&amp;quot;&lt;/code&gt;和 &lt;code&gt;-exec rm -rf {} \;&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;“.”在当前目录下查找。&lt;/li&gt;
+&lt;li&gt;“-type” 查找文件夹。&lt;/li&gt;
+&lt;li&gt;“.svn” 文件夹名称。&lt;/li&gt;
+&lt;li&gt;“-exec” 找到后执行命令。&lt;/li&gt;
+&lt;li&gt;“rm -rf {}”命令就是删除文件。&lt;/li&gt;
+&lt;li&gt;“\;”这是格式要求的，没有具体含义。&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;删除所有.svn目录 &lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;c
+    
+    </summary>
+    
+      <category term="shell" scheme="http://benvim.github.io/categories/shell/"/>
+    
+    
+      <category term="svn" scheme="http://benvim.github.io/tags/svn/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CentOS下du查看计算目录大小的命令</title>
+    <link href="http://benvim.github.io/2016/04/20/centos-du/"/>
+    <id>http://benvim.github.io/2016/04/20/centos-du/</id>
+    <published>2016-04-20T03:02:32.000Z</published>
+    <updated>2016-05-01T16:43:41.000Z</updated>
+    
+    <content type="html">&lt;p&gt;在对linux服务器远程操作的时候，经常需要了解服务器的磁盘状态&lt;/p&gt;
+&lt;h3 id=&quot;查看整个硬盘的概况可以使用-df命令&quot;&gt;&lt;a href=&quot;#查看整个硬盘的概况可以使用-df命令&quot; class=&quot;headerlink&quot; title=&quot;查看整个硬盘的概况可以使用 df命令&quot;&gt;&lt;/a&gt;查看整个硬盘的概况可以使用 &lt;strong&gt;df&lt;/strong&gt;命令&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;#查看整个硬盘的使用状况，硬盘空间&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[root@hskj ~]# df -hv&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;文件系统              容量  已用 可用 已用% 挂载点&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;/dev/sda3             9.7G  744M  8.5G   8% /&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;/dev/sda6             199G  142G   48G  76% /usr&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;/dev/sda2              48G  309M   45G   1% /home&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;/dev/sda1              99M   12M   83M  12% /boot&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;tmpfs                 2.0G     0  2.0G   0% /dev/shm&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;查看某个目录的大小&quot;&gt;&lt;a href=&quot;#查看某个目录的大小&quot; class=&quot;headerlink&quot; title=&quot;查看某个目录的大小&quot;&gt;&lt;/a&gt;查看某个目录的大小&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;[root@localhost local]# du -hs weike&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3.3G    wieki&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[root@localhost local]# du -hs /usr/local/mysql/data/fdlfh&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;42G     /usr/local/mysql/data/fdlfh&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;介绍&quot;&gt;&lt;a href=&quot;#介绍&quot; class=&quot;headerlink&quot; title=&quot;介绍:&quot;&gt;&lt;/a&gt;介绍:&lt;/h4&gt;&lt;p&gt;du命令用于显示指定文件(夹)在磁盘中所占的空间信息。假如指定的文件参数实际上是一个目录，就要计算该目录下的所有文件。假如 没有提供文件参数，执行du命令，显示当前目录内的文件占用空间信息。&lt;/p&gt;
+&lt;h4 id=&quot;语法&quot;&gt;&lt;a href=&quot;#语法&quot; class=&quot;headerlink&quot; title=&quot;语法:&quot;&gt;&lt;/a&gt;语法:&lt;/h4&gt;&lt;p&gt;du [-abcDhHklmsSx] [-L &amp;lt;符号连接&amp;gt;] [–block-size] [–exclude=&amp;lt;目录或文件&amp;gt;] [–max-depth=&amp;lt;目录层数&amp;gt;] [目录或文件]&lt;/p&gt;
+&lt;h4 id=&quot;选项介绍&quot;&gt;&lt;a href=&quot;#选项介绍&quot; class=&quot;headerlink&quot; title=&quot;选项介绍:&quot;&gt;&lt;/a&gt;选项介绍:&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;-a: 显示目录中个别文件的大小;&lt;/li&gt;
+&lt;li&gt;-b: 显示目录或文件大小时，以byte为单位;&lt;/li&gt;
+&lt;li&gt;-c: 除了显示个别目录或文件的大小外，同时也显示所有目录或文件的总和;&lt;/li&gt;
+&lt;li&gt;-D: 显示指定符号连接的源文件大小;&lt;/li&gt;
+&lt;li&gt;-h: 以K，M，G为单位，提高信息的可读性;&lt;/li&gt;
+&lt;li&gt;-H: 与-h参数相同，但是K，M，G是以1000为换算单位;&lt;/li&gt;
+&lt;li&gt;-k: 以1024 bytes为单位;&lt;/li&gt;
+&lt;li&gt;-l: 重复计算硬链接文件;&lt;/li&gt;
+&lt;li&gt;-L&amp;lt;符号连接&amp;gt;: 显示选项中所指定符号链接(软链接)的源文件大小;&lt;/li&gt;
+&lt;li&gt;-m: 以1MB为单位;&lt;/li&gt;
+&lt;li&gt;-s: 显示总计大小;&lt;/li&gt;
+&lt;li&gt;-S: 显示个别目录的大小时，并不含其子目录的大小;&lt;/li&gt;
+&lt;li&gt;-x: 以一开始处理时的文件系统为准，若遇上其它不同的文件系统目录则略过;&lt;/li&gt;
+&lt;li&gt;–exclude=&amp;lt;目录或文件&amp;gt;: 略过指定的目录或文件;&lt;/li&gt;
+&lt;li&gt;–max-depth=&amp;lt;目录层数&amp;gt;: 超过指定层数的目录后，予以忽略;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;执行范例&quot;&gt;&lt;a href=&quot;#执行范例&quot; class=&quot;headerlink&quot; title=&quot;执行范例:&quot;&gt;&lt;/a&gt;执行范例:&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;PhpstormProjects$ du -hs chuangpinke&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;371M	chuangpinke&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;blockquote&gt;
+&lt;p&gt;扩展阅读:&lt;br&gt;相信长时间用linux的人一定遇到过整理磁盘的问题(由于磁盘空间将满)。想知道哪些文件夹的内容过大，删除一些大且无用文件。这时du命令会非常有用。 &lt;font color=&quot;red&quot;&gt;在你用户目录下输入&lt;/font&gt;：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;du –max-depth=1 -h
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;查看哪些文件夹的内容过大，然后进入那些文件夹，再不断的du –max-depth=1 -h，筛选出你要删除的文件,然后rm … , 大功告成!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;Linux下查看目录大小的命令是du，从man中找到几个常用的参数就可以轻松的统计某个文件夹的容量&quot;&gt;&lt;a href=&quot;#Linux下查看目录大小的命令是du，从man中找到几个常用的参数就可以轻松的统计某个文件夹的容量&quot; class=&quot;headerlink&quot; title=&quot;Linux下查看目录大小的命令是du，从man中找到几个常用的参数就可以轻松的统计某个文件夹的容量.&quot;&gt;&lt;/a&gt;Linux下查看目录大小的命令是du，从man中找到几个常用的参数就可以轻松的统计某个文件夹的容量.&lt;/h3&gt;&lt;p&gt;1.统计出目录的总大小，并以比较合适的单位表示&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;-h, –human-readable&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print sizes in human readable format (e.g., 1K 234M 2G)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;-s, –summarize&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;display only a total for each argument&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[blinux@localhost test]$ du -hs /boot&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5.7M    /boot&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;2.当然了，你还可以让结果以单位b、k、m来表示&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;[blinux@localhost test]$ du -bs /boot&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5746310 /boot&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[blinux@localhost test]$ du -ks /boot&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5772    /boot&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[blinux@localhost test]$ du -ms /boot&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6       /boot&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;3.显示目录的总大小及目录树中各文件夹的大小，并以较好的单位表示&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;[blinux@localhost test]$ du -h /boot&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;308K    /boot/grub&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5.7M    /boot&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在对linux服务器远程操作的时候，经常需要了解服务器的磁盘状态&lt;/p&gt;
+&lt;h3 id=&quot;查看整个硬盘的概况可以使用-df命令&quot;&gt;&lt;a href=&quot;#查看整个硬盘的概况可以使用-df命令&quot; class=&quot;headerlink&quot; title=&quot;查看整个硬盘的概况可以使用 df
+    
+    </summary>
+    
+      <category term="centos" scheme="http://benvim.github.io/categories/centos/"/>
+    
+    
+      <category term="du" scheme="http://benvim.github.io/tags/du/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git 基本操作 - gitignore 忽略文件</title>
+    <link href="http://benvim.github.io/2016/04/18/git-gitignore/"/>
+    <id>http://benvim.github.io/2016/04/18/git-gitignore/</id>
+    <published>2016-04-18T14:42:12.000Z</published>
+    <updated>2016-05-01T16:48:25.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;第一步：添加”-gitignore”文件&quot;&gt;&lt;a href=&quot;#第一步：添加”-gitignore”文件&quot; class=&quot;headerlink&quot; title=&quot;第一步：添加”.gitignore”文件&quot;&gt;&lt;/a&gt;第一步：添加”.gitignore”文件&lt;/h3&gt;&lt;p&gt;往项目根目录添加一个文件”.gitignore”。这文件和”.git”文件夹同级。&lt;br&gt;但是在windows下无法创建”.gitignore”文件名，必须把文件名改成这样”.gitignore.”,&lt;br&gt;在文件名最后加一个英文句号就可以了。&lt;/p&gt;
+&lt;h3 id=&quot;第二步：设置过滤条件&quot;&gt;&lt;a href=&quot;#第二步：设置过滤条件&quot; class=&quot;headerlink&quot; title=&quot;第二步：设置过滤条件&quot;&gt;&lt;/a&gt;第二步：设置过滤条件&lt;/h3&gt;&lt;p&gt;bin/ 过滤所有bin文件夹&lt;br&gt;obj/ 过滤所有obj文件夹&lt;br&gt;ValorNAV_deploy/ 过滤所有ValorNAV_deploy文件夹&lt;br&gt;*.dll 过滤所有dll文件，这个最好不要使用dll，因为项目中像lib文件夹我们会放一些dll包。  &lt;/p&gt;
+&lt;h3 id=&quot;第三步：把”-gitignore”文件提交并且push到服务器&quot;&gt;&lt;a href=&quot;#第三步：把”-gitignore”文件提交并且push到服务器&quot; class=&quot;headerlink&quot; title=&quot;第三步：把”.gitignore”文件提交并且push到服务器&quot;&gt;&lt;/a&gt;第三步：把”.gitignore”文件提交并且push到服务器&lt;/h3&gt;&lt;p&gt;其它的协作成员可以通过pull获取这个文件,其它人的过滤规则保持一致了。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;1.如果新建一个空的Git仓库。直接拉取就可以了。&lt;/li&gt;
+&lt;li&gt;2.如果是一个已经使用了Git仓库，如果需要应用规则，则需要通过命令把相应要过滤的目录&lt;br&gt;的缓存删除。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git rm --cached &amp;lt;文件名&amp;gt; 删除文件的缓存&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git rm --cached -r &amp;lt;目录名&amp;gt; 删除目录下的所有文件的缓存&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;blockquote&gt;
+&lt;p&gt;通过上面的命令把缓存删除后，commit后再push到服务器。&lt;br&gt;其它的团队成员可以直接pull，过滤功能就能正常使用了。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;例子&quot;&gt;&lt;a href=&quot;#例子&quot; class=&quot;headerlink&quot; title=&quot;例子&quot;&gt;&lt;/a&gt;例子&lt;/h3&gt;&lt;p&gt;忽略的文件及文件夹&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;.DS_Store&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Home_school.html&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Home_customer.html&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Home_notices_.html&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Home_notices_375.html&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Home_notices_395.html&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Home_video_.html&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;data&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Html&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Runtime&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;.bak&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;.svn&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;第一步：添加”-gitignore”文件&quot;&gt;&lt;a href=&quot;#第一步：添加”-gitignore”文件&quot; class=&quot;headerlink&quot; title=&quot;第一步：添加”.gitignore”文件&quot;&gt;&lt;/a&gt;第一步：添加”.gitignore”文件&lt;/h3&gt;&lt;
+    
+    </summary>
+    
+      <category term="git" scheme="http://benvim.github.io/categories/git/"/>
+    
+    
+      <category term="gitignore" scheme="http://benvim.github.io/tags/gitignore/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>看乔布斯是如何形象解释OOP的</title>
+    <link href="http://benvim.github.io/2016/04/12/code-oop/"/>
+    <id>http://benvim.github.io/2016/04/12/code-oop/</id>
+    <published>2016-04-12T12:30:30.000Z</published>
+    <updated>2016-05-01T17:31:52.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;看乔布斯是如何形象解释OOP的&quot;&gt;&lt;a href=&quot;#看乔布斯是如何形象解释OOP的&quot; class=&quot;headerlink&quot; title=&quot;看乔布斯是如何形象解释OOP的&quot;&gt;&lt;/a&gt;看乔布斯是如何形象解释OOP的&lt;/h1&gt;&lt;p&gt;对于面向对象编程这个概念，至今为止我还未见过有人能比乔布斯诠释得更加透彻。乔布斯从来没有接受过正式的工程训练，但是他对于自己所做的和所说的都有非常清晰的思路，无论是技术、设计还是艺术。&lt;/p&gt;
+&lt;p&gt;下面的这段话摘自 1994 年 Rolling Stone 对乔布斯的采访，乔布斯解释了什么是面向对象编程。&lt;/p&gt;
+&lt;p&gt;Jeff Goodell：请你用尽量简练的语言解释一下，究竟什么是面向对象的软件？  &lt;/p&gt;
+&lt;p&gt;乔布斯：对象就像人一样，也是活生生的生命。他们有知识，知道怎么完成任务；他们有记忆，可以把发生的事情记下来。你和他们不在低层次上交互，而是像我们现在的对话一样，在一个高度抽象的层面上交互。&lt;/p&gt;
+&lt;p&gt;我举个例子来说明。如果我是你的“洗衣”对象，你可以把脏衣服给我，然后告诉我说：“请帮我把这些衣服洗了吧！”而我恰好知道旧金山最好的洗衣房在哪，并且我会说英语，兜里也有美元。于是我出门打了一辆出租车，告诉司机带我去位于旧金山的洗衣房。我到了那里洗好衣服之后，又坐车回到这里。我把洗好的衣服交还给你，说：“你的衣服已经洗好了。”&lt;/p&gt;
+&lt;p&gt;你并不知道我是怎么做到的。你不知道哪里有洗衣店，也可能只会说法语，或者是兜里没钱，连车都打不了。但是我知道怎么完成这项任务，而你不需要知道任何细节。所有的这些复杂流程都隐藏在我的内部，而我们之间可以高度抽象地互动。这就是对象。他们把复杂过程封装在内部，而对外呈现的接口是高层次的，抽象的。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;看乔布斯是如何形象解释OOP的&quot;&gt;&lt;a href=&quot;#看乔布斯是如何形象解释OOP的&quot; class=&quot;headerlink&quot; title=&quot;看乔布斯是如何形象解释OOP的&quot;&gt;&lt;/a&gt;看乔布斯是如何形象解释OOP的&lt;/h1&gt;&lt;p&gt;对于面向对象编程这个概念，至今为止我
+    
+    </summary>
+    
+      <category term="oop" scheme="http://benvim.github.io/categories/oop/"/>
+    
+    
+      <category term="oop" scheme="http://benvim.github.io/tags/oop/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>详解spl_autoload_register()函数</title>
+    <link href="http://benvim.github.io/2016/04/08/php-spl_autoload_register/"/>
+    <id>http://benvim.github.io/2016/04/08/php-spl_autoload_register/</id>
+    <published>2016-04-08T01:32:59.000Z</published>
+    <updated>2016-05-01T17:15:56.000Z</updated>
+    
+    <content type="html">&lt;ul&gt;
+&lt;li&gt;__autoload&lt;/li&gt;
+&lt;li&gt;spl_autoload_register&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在了解这个函数之前先来看另一个函数：__autoload&lt;br&gt;这是一个自动加载函数，在PHP5中，当我们实例化一个未定义的类时，就会触发此函数。看下面例子：&lt;/p&gt;
+&lt;h4 id=&quot;autoload&quot;&gt;&lt;a href=&quot;#autoload&quot; class=&quot;headerlink&quot; title=&quot;__autoload&quot;&gt;&lt;/a&gt;__autoload&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;printit.class.php &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;?php &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;class PRINTIT &amp;#123; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; function doPrint() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  echo &amp;apos;hello world&amp;apos;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;?&amp;gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;index.php &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;?&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;function __autoload( $class ) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; $file = $class . &amp;apos;.class.php&amp;apos;;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; if ( is_file($file) ) &amp;#123;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  require_once($file);  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$obj = new PRINTIT();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$obj-&amp;gt;doPrint();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;运行index.php后正常输出hello world。在index.php中，由于没有包含printit.class.php，在实例化printit时，自动调用__autoload函数，参数$class的值即为类名printit，此时printit.class.php就被引进来了。&lt;/p&gt;
+&lt;p&gt;在面向对象中这种方法经常使用，可以避免书写过多的引用文件，同时也使整个系统更加灵活。&lt;/p&gt;
+&lt;h4 id=&quot;spl-autoload-register&quot;&gt;&lt;a href=&quot;#spl-autoload-register&quot; class=&quot;headerlink&quot; title=&quot;spl_autoload_register()&quot;&gt;&lt;/a&gt;spl_autoload_register()&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;? &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;class test &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; public static function loadprint( $class ) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  $file = $class . &amp;apos;.class.php&amp;apos;;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  if (is_file($file)) &amp;#123;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   require_once($file);  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;spl_autoload_register(  array(&amp;apos;test&amp;apos;,&amp;apos;loadprint&amp;apos;)  );&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;//另一种写法：spl_autoload_register(  &amp;quot;test::loadprint&amp;quot;  ); &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$obj = new PRINTIT();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$obj-&amp;gt;doPrint();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;register-shutdown-function-函数执行完后的程序&quot;&gt;&lt;a href=&quot;#register-shutdown-function-函数执行完后的程序&quot; class=&quot;headerlink&quot; title=&quot;register_shutdown_function 函数执行完后的程序&quot;&gt;&lt;/a&gt;register_shutdown_function 函数执行完后的程序&lt;/h4&gt;&lt;p&gt;再看spl_autoload_register()，这个函数与__autoload有与曲同工之妙，看个简单的例子： &lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;?&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;function loadprint( $class ) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; $file = $class . &amp;apos;.class.php&amp;apos;;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; if (is_file($file)) &amp;#123;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  require_once($file);  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &amp;#125; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;spl_autoload_register( &amp;apos;loadprint&amp;apos; ); &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$obj = new PRINTIT();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$obj-&amp;gt;doPrint();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;将&lt;strong&gt;autoload换成loadprint函数。但是loadprint不会像&lt;/strong&gt;autoload自动触发，这时spl_autoload_register()就起作用了，它告诉PHP碰到没有定义的类就执行loadprint()&lt;/p&gt;
+&lt;p&gt;spl_autoload_register() 调用静态方法 &lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;? &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;class test &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; public static function loadprint( $class ) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  $file = $class . &amp;apos;.class.php&amp;apos;;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  if (is_file($file)) &amp;#123;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   require_once($file);  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;spl_autoload_register(  array(&amp;apos;test&amp;apos;,&amp;apos;loadprint&amp;apos;)  );&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;//另一种写法：spl_autoload_register(  &amp;quot;test::loadprint&amp;quot;  ); &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$obj = new PRINTIT();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$obj-&amp;gt;doPrint();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;blockquote&gt;
+&lt;p&gt;转载：&lt;a href=&quot;http://blog.csdn.net/panpan639944806/article/details/23192267&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.csdn.net/panpan639944806/article/details/23192267&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;__autoload&lt;/li&gt;
+&lt;li&gt;spl_autoload_register&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在了解这个函数之前先来看另一个函数：__autoload&lt;br&gt;这是一个自动加载函数，在PHP5中，当我们实例化一个未定义的类时，就会触发此函数。看下
+    
+    </summary>
+    
+      <category term="php" scheme="http://benvim.github.io/categories/php/"/>
+    
+    
+      <category term="spl_autoload_register" scheme="http://benvim.github.io/tags/spl-autoload-register/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Centos查看端口占用情况和开启端口命令</title>
+    <link href="http://benvim.github.io/2016/04/06/centos-iptables/"/>
+    <id>http://benvim.github.io/2016/04/06/centos-iptables/</id>
+    <published>2016-04-06T08:49:12.000Z</published>
+    <updated>2016-05-01T17:10:17.000Z</updated>
+    
+    <content type="html">&lt;p&gt;Centos查看端口占用情况命令，比如查看80端口占用情况使用如下命令：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;lsof -i tcp:80&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;列出所有端口&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;netstat -ntlp&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;1-开启端口（以80端口为例）&quot;&gt;&lt;a href=&quot;#1-开启端口（以80端口为例）&quot; class=&quot;headerlink&quot; title=&quot;1.开启端口（以80端口为例）&quot;&gt;&lt;/a&gt;1.开启端口（以80端口为例）&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;方法一：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;/sbin/iptables -I INPUT -p tcp --dport 80 -j ACCEPT   写入修改&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;/etc/init.d/iptables save   保存修改&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;service iptables restart    重启防火墙，修改生效&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;方法二：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;vi /etc/sysconfig/iptables  打开配置文件加入如下语句:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;-A INPUT -p tcp -m state --state NEW -m tcp --dport 80 -j ACCEPT   重启防火墙，修改完成&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;2-关闭端口&quot;&gt;&lt;a href=&quot;#2-关闭端口&quot; class=&quot;headerlink&quot; title=&quot;2.关闭端口&quot;&gt;&lt;/a&gt;2.关闭端口&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;方法一：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;/sbin/iptables -I INPUT -p tcp --dport 80 -j DROP   写入修改&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;/etc/init.d/iptables save   保存修改&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;service iptables restart    重启防火墙，修改生效&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;方法二：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;vi /etc/sysconfig/iptables  打开配置文件加入如下语句:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;-A INPUT -p tcp -m state --state NEW -m tcp --dport 80 -j DROP   重启防火墙，修改完成&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;查看端状态&quot;&gt;&lt;a href=&quot;#查看端状态&quot; class=&quot;headerlink&quot; title=&quot;查看端状态&quot;&gt;&lt;/a&gt;查看端状态&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;/etc/init.d/iptables status&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Centos查看端口占用情况命令，比如查看80端口占用情况使用如下命令：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;b
+    
+    </summary>
+    
+      <category term="centos" scheme="http://benvim.github.io/categories/centos/"/>
+    
+    
+      <category term="iptables" scheme="http://benvim.github.io/tags/iptables/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>解决centos cp命令复制提示覆盖的问题</title>
+    <link href="http://benvim.github.io/2016/04/05/centos-cp/"/>
+    <id>http://benvim.github.io/2016/04/05/centos-cp/</id>
+    <published>2016-04-05T12:12:12.000Z</published>
+    <updated>2016-05-01T17:05:02.000Z</updated>
+    
+    <content type="html">&lt;p&gt;有的时候需要在centos vps本地复制目录文件，但是系统cp命令复制目录下所有文件的时候，复制每个文件的时候都会提示y或n之类，如果目录下文件有千万，那么够我们受的了，有没办法去除这个提示呢，有两种办法，下面是我在平时在vps上面常用到两个命令&lt;/p&gt;
+&lt;h3 id=&quot;第一种方法&quot;&gt;&lt;a href=&quot;#第一种方法&quot; class=&quot;headerlink&quot; title=&quot;第一种方法&quot;&gt;&lt;/a&gt;第一种方法&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;第1种方法：&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;\cp -a ccffmc/include/* gongyelvban/include/ #cp命令加个\反斜杠就不会提示了&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;第二种方法&quot;&gt;&lt;a href=&quot;#第二种方法&quot; class=&quot;headerlink&quot; title=&quot;第二种方法&quot;&gt;&lt;/a&gt;第二种方法&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;cp -rap ccffmc/include/* gongyelvban/include/&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#这句意思 拷贝ccffmc/include/下所有文件到gongyelvban/include/下&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#其中a参数是说它保留链接、文件属性，并递归地拷贝目录，在拷贝目录时候会用到&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#r参数：cp将递归复制该目录下所有的子目录和文件&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#p参数：将把修改时间和访问权限也复制到新文件中&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;服务器更新命令&quot;&gt;&lt;a href=&quot;#服务器更新命令&quot; class=&quot;headerlink&quot; title=&quot;服务器更新命令&quot;&gt;&lt;/a&gt;服务器更新命令&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;rm -rf /mnt/svnCode/code&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;svn export /mnt/svnCode/weike/ /mnt/svnCode/code&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;\cp -ra /mnt/svnCode/code/app /mnt/www/baidu.com/&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;\cp -ra /mnt/svnCode/code/static /mnt/www/baidu.com/&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;有的时候需要在centos vps本地复制目录文件，但是系统cp命令复制目录下所有文件的时候，复制每个文件的时候都会提示y或n之类，如果目录下文件有千万，那么够我们受的了，有没办法去除这个提示呢，有两种办法，下面是我在平时在vps上面常用到两个命令&lt;/p&gt;
+&lt;h3 id=&quot;
+    
+    </summary>
+    
+      <category term="centos" scheme="http://benvim.github.io/categories/centos/"/>
+    
+    
+      <category term="cp" scheme="http://benvim.github.io/tags/cp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mac环境变量设置</title>
+    <link href="http://benvim.github.io/2016/03/26/mac-path/"/>
+    <id>http://benvim.github.io/2016/03/26/mac-path/</id>
+    <published>2016-03-26T02:12:12.000Z</published>
+    <updated>2016-03-26T14:14:03.000Z</updated>
+    
+    <content type="html">&lt;p&gt;打开~/.profile 或 ~/.bash_profile 看看 PATH 变量是怎么设置的，删掉或改成下面那样。&lt;br&gt;这是默认值&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ echo $PATH&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;如果要追加PATH的话，你要这样&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;export PATH=your_path:$PATH&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;其实一般不用改PATH，只需要把命令软连接/usr/bin即可。&lt;/p&gt;
+&lt;p&gt;mac 一般使用bash作为默认shell&lt;br&gt;Mac系统的环境变量，加载顺序为：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;/etc/profile &lt;/li&gt;
+&lt;li&gt;/etc/paths &lt;/li&gt;
+&lt;li&gt;~/.bash_profile &lt;/li&gt;
+&lt;li&gt;~/.bash_login &lt;/li&gt;
+&lt;li&gt;~/.profile &lt;/li&gt;
+&lt;li&gt;~/.bashrc&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;当然/etc/profile和/etc/paths是系统级别的，系统启动就会加载，后面几个是当前用户级的环境变量。后面3个按照从前往后的顺序读取，如果~/.bash_profile文件存在，则后面的几个文件就会被忽略不读了，如果~/.bash_profile文件不存在，才会以此类推读取后面的文件。~/.bashrc没有上述规则，它是bash shell打开的时候载入的。&lt;/p&gt;
+&lt;p&gt;如果没特殊说明,设置PATH的语法都为：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;export PATH=$PATH:&amp;lt;PATH 1&amp;gt;:&amp;lt;PATH 2&amp;gt;:&amp;lt;PATH 3&amp;gt;#中间用冒号隔开 
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;全局设置&quot;&gt;&lt;a href=&quot;#全局设置&quot; class=&quot;headerlink&quot; title=&quot;全局设置&quot;&gt;&lt;/a&gt;全局设置&lt;/h3&gt;&lt;p&gt;下面的几个文件设置是全局的，修改时需要root权限&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;/etc/paths 编辑 paths，将环境变量添加到 paths文件中 ，一行一个路径&lt;/li&gt;
+&lt;li&gt;/etc/profile（建议不修改这个文件 ）全局（公有）配置，不管是哪个用户，登录时都会读取该文件。&lt;/li&gt;
+&lt;li&gt;/etc/bashrc 一般在这个文件中添加系统级环境变量 全局（公有）配置，bash shell执行时，不管是何种方式，都会读取此文件。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;单个用户设置&quot;&gt;&lt;a href=&quot;#单个用户设置&quot; class=&quot;headerlink&quot; title=&quot;单个用户设置&quot;&gt;&lt;/a&gt;单个用户设置&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;~/.bash_profile （任意一个文件中添加用户级环境变量）（注：Linux 里面是 .bashrc 而 Mac 是 .bash_profile）若bash shell是以login方式执行时，才会读取此文件。该文件仅仅执行一次! 默认情况下，设置一些环境变量设置命令别名&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;alias ll=&amp;apos;ls -la&amp;apos;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;设置环境变量：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;~/.bashrc 同上，如果想立刻生效，则可执行下面的语句：$ source 相应的文件&lt;br&gt;一般环境变量更改后，重启后生效。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;打开~/.profile 或 ~/.bash_profile 看看 PATH 变量是怎么设置的，删掉或改成下面那样。&lt;br&gt;这是默认值&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pr
+    
+    </summary>
+    
+      <category term="mac" scheme="http://benvim.github.io/categories/mac/"/>
+    
+    
+      <category term="mac" scheme="http://benvim.github.io/tags/mac/"/>
+    
+  </entry>
+  
+  <entry>
     <title>JS 实现上下滚动文字</title>
     <link href="http://benvim.github.io/2016/03/25/js-scroll-text/"/>
     <id>http://benvim.github.io/2016/03/25/js-scroll-text/</id>
     <published>2016-03-25T14:45:23.000Z</published>
-    <updated>2016-03-25T15:09:53.000Z</updated>
+    <updated>2016-03-26T03:38:08.000Z</updated>
     
     <content type="html">&lt;p&gt;网站实现JS上下滚动文本。这种东西经常会要，所以写个小组件用用，轻量级的。js原生和jquery混搭实现，jquery实在太方便了。&lt;/p&gt;
 &lt;h3 id=&quot;一、组件初始化&quot;&gt;&lt;a href=&quot;#一、组件初始化&quot; class=&quot;headerlink&quot; title=&quot;一、组件初始化&quot;&gt;&lt;/a&gt;一、组件初始化&lt;/h3&gt;&lt;p&gt;初始化组件的参数说明&lt;/p&gt;
@@ -38,7 +805,7 @@
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$(function()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	var notic = rollTextControl.createObj();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   notic.init(&amp;quot;notice_task_container_id&amp;quot;, 3, 3000, -40, 1000);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;这样就可以了。&lt;/p&gt;
 &lt;h3 id=&quot;四、组件源代码&quot;&gt;&lt;a href=&quot;#四、组件源代码&quot; class=&quot;headerlink&quot; title=&quot;四、组件源代码&quot;&gt;&lt;/a&gt;四、组件源代码&lt;/h3&gt;&lt;p&gt;有空再优化和整理，暂且这样吧。代码比较简，看看就明白了。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;46&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;47&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;48&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;49&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;50&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;51&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;52&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;53&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;54&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;55&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;56&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;57&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;58&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;59&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;60&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;61&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;62&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;63&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;64&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;65&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;66&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;67&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;68&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;69&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;70&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;71&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;72&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;73&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;74&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;75&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;76&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;77&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;78&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;79&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;80&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;81&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;82&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;83&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;84&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;85&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;86&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;87&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;88&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;89&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;90&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;91&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;92&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;93&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;94&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;95&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;96&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;97&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;98&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;99&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;var rollTextControl = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;　　　　createObj: function()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            var rollObj = &amp;#123;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            var containerName = null; //列表的容器。用于删除，和创建子对象&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            var showNum = 1; //显示的数量&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            var timeInterval = 1000;//间隔1秒操作一次。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            var rollData = null;//列表数据&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            var dataLen = 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            var listHeight = -32;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            var indexID = 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            var animateSpeed = 1000;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            rollObj.init = function(_containerName, _showNum, _timeInterval, _listHeight, _animateSpeed)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                containerName   =  _containerName;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                showNum         = _showNum;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                timeInterval    = _timeInterval;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                animateSpeed    = _animateSpeed;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                listHeight      = _listHeight;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                onGetData();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            function onGetData()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                var element = document.getElementById(containerName);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                rollData = [];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                if(element)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    while(element.hasChildNodes()) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        var obj = element.removeChild(element.firstChild).cloneNode(true);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        if(obj)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                            var str = obj.tagName;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                            if(str)str=str.toLocaleLowerCase();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                            if(str==&amp;quot;li&amp;quot;) rollData.push(obj); &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        &amp;#125;   &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                if(rollData!=null) startGo();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            function startGo()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                dataLen = rollData.length;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                for (var i = 0; i &amp;lt; showNum; i++) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    var data = rollData[i];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    if(data) createView(data);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                indexID = showNum-1;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                if(dataLen&amp;gt;showNum) timer();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            function timer()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                setInterval(rollUpdate, timeInterval);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            function rollUpdate(argument) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                getNextData();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                var element = document.getElementById(containerName);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                if(element.hasChildNodes())&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    firstChild = element.firstChild;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    $(&amp;quot;#&amp;quot;+containerName).animate(&amp;#123;&amp;apos;top&amp;apos;:listHeight&amp;#125;, animateSpeed,animateComplete);    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            function animateComplete()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                //动画完成后，删除最顶上的内容，并重设置容器坐标。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                var firstChild = null;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                var element = document.getElementById(containerName);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                if(element.hasChildNodes() &amp;amp;&amp;amp; element.children.length&amp;gt;showNum)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    firstChild = element.firstChild;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    if(firstChild)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        element.removeChild(element.firstChild);    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#125;else&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    //console.log(&amp;quot;faild&amp;quot; + element.children.length);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                $(&amp;quot;#&amp;quot;+containerName).css(&amp;#123;&amp;apos;top&amp;apos;:0&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            function createView(data)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                $(&amp;quot;#&amp;quot;+containerName).append(data);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            function getNextData()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                if(indexID &amp;lt; dataLen)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    indexID++;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#125;else&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    indexID = 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                var data  = rollData[indexID];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                if(data) createView(data);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            return rollObj;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$(function()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var roll = rollTextControl.createObj();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    roll.init(&amp;quot;employListContainer&amp;quot;, 6, 2000, -32, 1000);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var notic = rollTextControl.createObj();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    notic.init(&amp;quot;notice_task_container_id&amp;quot;, 3, 3000, -40, 1000);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;46&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;47&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;48&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;49&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;50&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;51&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;52&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;53&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;54&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;55&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;56&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;57&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;58&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;59&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;60&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;61&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;62&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;63&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;64&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;65&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;66&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;67&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;68&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;69&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;70&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;71&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;72&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;73&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;74&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;75&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;76&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;77&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;78&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;79&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;80&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;81&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;82&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;83&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;84&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;85&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;86&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;87&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;88&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;89&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;90&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;91&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;92&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;93&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;94&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;95&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;96&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;97&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;98&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;99&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;var rollTextControl = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;　　　　createObj: function()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            var rollObj = &amp;#123;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            var containerName = null; //列表的容器。用于删除，和创建子对象&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            var showNum = 1; //显示的数量&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            var timeInterval = 1000;//间隔1秒操作一次。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            var rollData = null;//列表数据&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            var dataLen = 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            var listHeight = -32;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            var indexID = 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            var animateSpeed = 1000;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            rollObj.init = function(_containerName, _showNum, _timeInterval, _listHeight, _animateSpeed)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                containerName   =  _containerName;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                showNum         = _showNum;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                timeInterval    = _timeInterval;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                animateSpeed    = _animateSpeed;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                listHeight      = _listHeight;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                onGetData();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            function onGetData()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                var element = document.getElementById(containerName);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                rollData = [];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                if(element)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    while(element.hasChildNodes()) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        var obj = element.removeChild(element.firstChild).cloneNode(true);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        if(obj)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                            var str = obj.tagName;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                            if(str)str=str.toLocaleLowerCase();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                            if(str==&amp;quot;li&amp;quot;) rollData.push(obj); &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        &amp;#125;   &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                if(rollData!=null) startGo();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            function startGo()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                dataLen = rollData.length;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                for (var i = 0; i &amp;lt; showNum; i++) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    var data = rollData[i];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    if(data) createView(data);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                indexID = showNum-1;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                if(dataLen&amp;gt;showNum) timer();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            function timer()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                setInterval(rollUpdate, timeInterval);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            function rollUpdate(argument) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                getNextData();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                var element = document.getElementById(containerName);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                if(element.hasChildNodes())&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    firstChild = element.firstChild;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    $(&amp;quot;#&amp;quot;+containerName).animate(&amp;#123;&amp;apos;top&amp;apos;:listHeight&amp;#125;, animateSpeed,animateComplete);    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            function animateComplete()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                //动画完成后，删除最顶上的内容，并重设置容器坐标。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                var firstChild = null;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                var element = document.getElementById(containerName);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                if(element.hasChildNodes() &amp;amp;&amp;amp; element.children.length&amp;gt;showNum)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    firstChild = element.firstChild;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    if(firstChild)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                        element.removeChild(element.firstChild);    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#125;else&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    //console.log(&amp;quot;faild&amp;quot; + element.children.length);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                $(&amp;quot;#&amp;quot;+containerName).css(&amp;#123;&amp;apos;top&amp;apos;:0&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            function createView(data)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                $(&amp;quot;#&amp;quot;+containerName).append(data);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            function getNextData()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                if(indexID &amp;lt; dataLen-1)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    indexID++;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#125;else&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    indexID = 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                var data  = rollData[indexID];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                if(data) createView(data);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            return rollObj;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$(function()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var roll = rollTextControl.createObj();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    roll.init(&amp;quot;employListContainer&amp;quot;, 6, 2000, -32, 1000);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var notic = rollTextControl.createObj();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    notic.init(&amp;quot;notice_task_container_id&amp;quot;, 3, 3000, -40, 1000);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 </content>
     
     <summary type="html">
@@ -52,6 +819,34 @@
     
     
       <category term="js" scheme="http://benvim.github.io/tags/js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>解决IE8 placeholder 不兼容的问题</title>
+    <link href="http://benvim.github.io/2016/03/25/js-placeholder/"/>
+    <id>http://benvim.github.io/2016/03/25/js-placeholder/</id>
+    <published>2016-03-25T11:45:52.000Z</published>
+    <updated>2016-05-01T16:54:06.000Z</updated>
+    
+    <content type="html">&lt;p&gt;placeholder参数很友好的提示语，可惜在IE下显示不正常。搜索一段完整的有效的处理方案，代码如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;jQuery(&amp;apos;[placeholder]&amp;apos;).focus(function() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  var input = jQuery(this);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  if (input.val() == input.attr(&amp;apos;placeholder&amp;apos;)) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    input.val(&amp;apos;&amp;apos;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    input.removeClass(&amp;apos;placeholder&amp;apos;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;).blur(function() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  var input = jQuery(this);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  if (input.val() == &amp;apos;&amp;apos; || input.val() == input.attr(&amp;apos;placeholder&amp;apos;)) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    input.addClass(&amp;apos;placeholder&amp;apos;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    input.val(input.attr(&amp;apos;placeholder&amp;apos;));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;).blur().parents(&amp;apos;form&amp;apos;).submit(function() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  jQuery(this).find(&amp;apos;[placeholder]&amp;apos;).each(function() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var input = jQuery(this);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    if (input.val() == input.attr(&amp;apos;placeholder&amp;apos;)) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      input.val(&amp;apos;&amp;apos;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;blockquote&gt;
+&lt;p&gt;完美解决placeholder在IE下不兼容的问题。&lt;br&gt;需要注意：IE下提交，会把提示语作为值提交。&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;placeholder参数很友好的提示语，可惜在IE下显示不正常。搜索一段完整的有效的处理方案，代码如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=
+    
+    </summary>
+    
+      <category term="js" scheme="http://benvim.github.io/categories/js/"/>
+    
+    
+      <category term="placeholder" scheme="http://benvim.github.io/tags/placeholder/"/>
     
   </entry>
   
@@ -125,722 +920,6 @@
       <category term="cdn" scheme="http://benvim.github.io/tags/cdn/"/>
     
       <category term="验证码" scheme="http://benvim.github.io/tags/%E9%AA%8C%E8%AF%81%E7%A0%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>如何更快的学习</title>
-    <link href="http://benvim.github.io/2016/03/21/method-learn/"/>
-    <id>http://benvim.github.io/2016/03/21/method-learn/</id>
-    <published>2016-03-21T01:20:23.000Z</published>
-    <updated>2016-03-21T01:32:31.000Z</updated>
-    
-    <content type="html">&lt;h4 id=&quot;钻研（The-Drilldown-Method-使用你学得更快&quot;&gt;&lt;a href=&quot;#钻研（The-Drilldown-Method-使用你学得更快&quot; class=&quot;headerlink&quot; title=&quot;钻研（The Drilldown Method):使用你学得更快&quot;&gt;&lt;/a&gt;钻研（The Drilldown Method):使用你学得更快&lt;/h4&gt;&lt;p&gt;经年累月，我完善了一个方法，可以加速逐层增进理解的过程。这个方法至今已被我用于各科目的课题，包括数学、生物学、物理学、经济学与工程学。只需些许修改，它对掌握实用技能也效果很好，比如编程、设计或语言。这个方法的基本结构是：知识面、练习、自省。我将解释每个阶段，让你了解如何尽可能有效率地执行它们，同时给出详细的例子，展示我是怎么应用在实际课程的。&lt;/p&gt;
-&lt;h4 id=&quot;第一阶段：-知识面覆盖&quot;&gt;&lt;a href=&quot;#第一阶段：-知识面覆盖&quot; class=&quot;headerlink&quot; title=&quot;第一阶段： 知识面覆盖&quot;&gt;&lt;/a&gt;第一阶段： 知识面覆盖&lt;/h4&gt;&lt;p&gt;你不可能组织一场进攻，如果你连一张地形图都没有。因此，深入研习的第一步，就是对你需要学习的内容有个大致印象。若在课堂上，这意味着你要看讲义或读课本；若是自学，你可能要多读几本同主题的书，相互考证。&lt;/p&gt;
-&lt;p&gt;学生们常犯的一个错误，就是认为这个阶段是最重要的。从很多方面来讲，这个阶段却是效率最低的，因为你每单位时间的投入只换来了最少量的知识回报。我常常加速完成这个阶段，很有好处，这样，我就可以投入更多时间到后面两个阶段。&lt;/p&gt;
-&lt;p&gt;如果你在看课程讲座的视频，最好是调到1.5x或2x倍速快进。这很容易做到，只要你下载好视频，然后使用播放器（如VLC）的“调速”功能。我用这法子两天内看完了一学期的课程视频。如果你在读一本书，我建议你不要花时间去高亮文本。这样只会让你的知识理解停留在低层次，而从长远来看，也使学习效率低下。更好的方法是，阅读时只偶尔做做笔记，或在读过每个主要章节后写一段落的总结。&lt;/p&gt;
-&lt;p&gt;这里有个&lt;a href=&quot;http://www.scotthyoung.com/mit/machine-vision-notes.pdf&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;例子&lt;/a&gt;，是我上机器视觉这门课时的笔记。&lt;/p&gt;
-&lt;h4 id=&quot;第二阶段：练习&quot;&gt;&lt;a href=&quot;#第二阶段：练习&quot; class=&quot;headerlink&quot; title=&quot;第二阶段：练习&quot;&gt;&lt;/a&gt;第二阶段：练习&lt;/h4&gt;&lt;p&gt;做练习题，能极大地促进你的知识理解。但是，如果你不小心，可能会落入两个效率陷阱：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;没有获得即时的反馈：研究表明，如果你想更好地学习，你需要即时的反馈。因此，做题时最好是答案在手，天下我有，每做完一题就对答案，自我审查。没有反馈或反馈迟来的练习，只会严重牵制学习效率；&lt;/li&gt;
-&lt;li&gt;题海战术：正如有人以为学习是始于教室终于教室，一些学生也认为大多数的知识理解产自练习题。是的，你总能通过题海战术最终搭起知识框架，但过程缓慢、效率低下。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;练习题，应该能凸显你需要建立更好直觉的知识领域。一些技巧，比如我将会谈到的费曼技巧（the Feynman technique），对此则相当有效。对于非技术类学科，它更多的是要求你掌握概念而不是解决问题，所以，你常常只需要完成最少量的习题。对这些科目，你最好花更多的时间在第三阶段，形成学科的洞察力。&lt;/p&gt;
-&lt;h3 id=&quot;第三阶段：自省&quot;&gt;&lt;a href=&quot;#第三阶段：自省&quot; class=&quot;headerlink&quot; title=&quot;第三阶段：自省&quot;&gt;&lt;/a&gt;第三阶段：自省&lt;/h3&gt;&lt;p&gt;知识面覆盖，与做练习题，是为了让你知道你还有什么不懂。这并不像听上去那么容易，毕竟知之为知之，不知为不知，难矣。你以为你都懂了，其实不是，所以老犯错；或者，你对某综合性学科心里没底，但又看不确切还有哪里不懂。&lt;/p&gt;
-&lt;p&gt;接下来的技巧，我称之为“费曼技巧”，将帮助你查漏补缺，在求知路上走得更远。当你能准确识别出你不懂的知识点时，这个技巧助你填补知识的缺口，尤其是那些最难以填补的巨大缺口。这个技巧还能两用。即使你真的理解了某个想法，它也能让你关联更多的想法，于是，你可以继续钻研，深化理解。&lt;/p&gt;
-&lt;h3 id=&quot;费曼技巧（The-Feynman-Technique）&quot;&gt;&lt;a href=&quot;#费曼技巧（The-Feynman-Technique）&quot; class=&quot;headerlink&quot; title=&quot;费曼技巧（The Feynman Technique）&quot;&gt;&lt;/a&gt;费曼技巧（The Feynman Technique）&lt;/h3&gt;&lt;p&gt;这个技巧的灵感，源于诺贝尔物理奖获得者，理查德·费曼（Richard Feynman）。在他的自传里，他提到曾纠结于某篇艰深的研究论文。他的办法是，仔细审阅这篇论文的辅助材料（supporting material），直到他掌握了相关的知识基础、足以理解其中的艰深想法为止。&lt;/p&gt;
-&lt;p&gt;费曼技巧，亦同此理。对付一个知识枝节繁杂如发丝、富有内涵的想法，应该分而化之，切成小知识块，再逐个对付，你最终能填补所有的知识缺口，否则，这些缺口将阻挠你理解这个想法。对此，&lt;a href=&quot;https://www.youtube.com/watch?v=FrNqSLPaZLc&amp;amp;feature=youtu.be&amp;amp;t=1m17s&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;请看这个简短的教程视频&lt;/a&gt;。&lt;/p&gt;
-&lt;h4 id=&quot;费曼技巧很简单：&quot;&gt;&lt;a href=&quot;#费曼技巧很简单：&quot; class=&quot;headerlink&quot; title=&quot;费曼技巧很简单：&quot;&gt;&lt;/a&gt;费曼技巧很简单：&lt;/h4&gt;&lt;ul&gt;
-&lt;li&gt;拿张白纸；&lt;/li&gt;
-&lt;li&gt;在白纸顶部写上你想理解的某想法或某过程 &lt;/li&gt;
-&lt;li&gt;用你自己的话解释它，就像你在教给别人这个想法。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;em&gt;最要紧的是，对一个想法分而化之，虽然可能重复解释某些已经弄懂的知识点。&lt;/em&gt; 但你最终会到达一个临界点，无法再解释清楚。那里正是你需要填补的知识缺口。为了填补这个缺口，你可以查课本、问老师、或到互联网搜寻答案。通常来说，一旦你精准地定义了你的不解或误解，找到确切的答案则相对而言更轻松。&lt;/p&gt;
-&lt;p&gt;我已经使用过这个费曼技巧有数百次，确信它能应付各种各样的学习情境。然而，由于学习情境各有特点，它需要灵活变通，似乎显得难以入门，所以，我将尝试举些不同的例子。&lt;/p&gt;
-&lt;h5 id=&quot;1-对付你完全摸不着头脑的概念&quot;&gt;&lt;a href=&quot;#1-对付你完全摸不着头脑的概念&quot; class=&quot;headerlink&quot; title=&quot;1.对付你完全摸不着头脑的概念&quot;&gt;&lt;/a&gt;1.对付你完全摸不着头脑的概念&lt;/h5&gt;&lt;p&gt;对此，我仍坚持使用费曼技巧，但翻开课本，找到解释这个概念的章节。我先浏览一遍作者的解释，然后仔细地摹仿它，并也试着用自己的思维详述和阐明它。如此一来，当你不能用自己的话写下任何解释时，“引导式”费曼技巧很有用处。这里有个&lt;a href=&quot;http://www.scotthyoung.com/mit/photogrammetry.pdf&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;例子&lt;/a&gt;，展示我如何理解摄影测量学。&lt;/p&gt;
-&lt;h5 id=&quot;2-对付各种过程&quot;&gt;&lt;a href=&quot;#2-对付各种过程&quot; class=&quot;headerlink&quot; title=&quot;2.对付各种过程&quot;&gt;&lt;/a&gt;2.对付各种过程&lt;/h5&gt;&lt;p&gt;你也能通过费曼技巧去了解一个你需要用到的过程。审视所有的步骤，不光解释每一步在干什么，还要清楚它是怎么执行的。我常这样理解数学的证明过程、化学的方程式、与生物学的糖酵解过程。这里有个&lt;a href=&quot;http://www.scotthyoung.com/mit/grid-accel.pdf&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;例子&lt;/a&gt;，展示我如何想到怎么实现网格加速。&lt;/p&gt;
-&lt;h5 id=&quot;3-对付各种公式&quot;&gt;&lt;a href=&quot;#3-对付各种公式&quot; class=&quot;headerlink&quot; title=&quot;3.对付各种公式&quot;&gt;&lt;/a&gt;3.对付各种公式&lt;/h5&gt;&lt;p&gt;公式，应该被理解，而不只是死记硬背。因此，当你看到一个公式，却无法理解它的运作机理时，试着用费曼技巧分而化之。这里有个&lt;a href=&quot;http://www.scotthyoung.com/mit/fourier.pdf&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;例子&lt;/a&gt;，展示我如何理解傅里叶分析方程。&lt;/p&gt;
-&lt;h5 id=&quot;4-对付需要记忆的内容&quot;&gt;&lt;a href=&quot;#4-对付需要记忆的内容&quot; class=&quot;headerlink&quot; title=&quot;4.对付需要记忆的内容&quot;&gt;&lt;/a&gt;4.对付需要记忆的内容&lt;/h5&gt;&lt;p&gt;费曼技巧，也可以帮你自查是否掌握非技术类学科那些博大精深的知识概念。对于某个主题，如果你能顺利应用费曼技巧，而无需参考原始材料（讲义、课本等），就证明你已经理解和记住它。。这里有个&lt;a href=&quot;http://www.scotthyoung.com/mit/predatory-pricing.pdf&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;例子&lt;/a&gt;，展示我如何回忆起经济学中的掠夺性定价概念。&lt;/p&gt;
-&lt;h4 id=&quot;形成更深刻的直觉（Deeper-Intuition）&quot;&gt;&lt;a href=&quot;#形成更深刻的直觉（Deeper-Intuition）&quot; class=&quot;headerlink&quot; title=&quot;形成更深刻的直觉（Deeper Intuition）&quot;&gt;&lt;/a&gt;形成更深刻的直觉（Deeper Intuition）&lt;/h4&gt;&lt;p&gt;结合做习题，费曼技巧能帮你剥开知识理解的浅层表皮。但它也能帮你钻研下去，走得更远，不只是浅层的理解，而是形成深刻的知识直觉。直观地理解一个想法，并非易事。它看似有些许神秘，但这不是它的本相。一个想法的多数直觉，可作以下归类。&lt;/p&gt;
-&lt;h5 id=&quot;1-类比、可视化、简化&quot;&gt;&lt;a href=&quot;#1-类比、可视化、简化&quot; class=&quot;headerlink&quot; title=&quot;1.类比、可视化、简化&quot;&gt;&lt;/a&gt;1.类比、可视化、简化&lt;/h5&gt;&lt;p&gt;类比：你理解一个想法，是通过确认它与某个更易理解的想法之间的重要相似点；可视化：抽象概念也常成为有用的直觉，只要我们能在脑海为它们构筑画面，即使这个画面只是一个更大更多样化想法的不完全表达；简化：一位著名的科学家曾说过，如果你不能给你的祖母解释一样东西，说明你还没有完全理解它。简化是一门艺术，它加强了基础概念与复杂想法之间的思维联系。&lt;/p&gt;
-&lt;p&gt;你可以用费曼技巧去激发这些直觉。对于某个想法，一旦你有了大致的理解，下一步就是深入分析，看能不能用以上三种直觉来阐释它。期间，就算是借用已有的意象喻义，也是情有可原的。例如，把复数放到二维空间里理解，很难称得上是新颖的，但它能让你很好地可视化这个概念，让概念在脑海中构图成型。DNA复制，被想象成拉开一条单向拉链，这也不是一个完美的类比，但只要你心里清楚其中的异同，它会变得有用。&lt;/p&gt;
-&lt;h5 id=&quot;2-学得更快的策略&quot;&gt;&lt;a href=&quot;#2-学得更快的策略&quot; class=&quot;headerlink&quot; title=&quot;2.学得更快的策略&quot;&gt;&lt;/a&gt;2.学得更快的策略&lt;/h5&gt;&lt;p&gt;在这篇文章里，我描述了学习的三个阶段：知识面、练习、与自省。但这可能让你误解，错以为它们总在不同的时期被各自执行，从不重叠或反复。实际上，随着不断地深入理解知识，你可能会周而复始地经历这些阶段。你刚开始读一个章节，只能有个大概的肤浅印象，但做过练习题和建立了直觉以后，你再回过来重新阅读，又会有更深刻的理解，即温故而知新。&lt;/p&gt;
-&lt;h5 id=&quot;3-钻研吧，即便你不是学生&quot;&gt;&lt;a href=&quot;#3-钻研吧，即便你不是学生&quot; class=&quot;headerlink&quot; title=&quot;3.钻研吧，即便你不是学生&quot;&gt;&lt;/a&gt;3.钻研吧，即便你不是学生&lt;/h5&gt;&lt;p&gt;这个过程不只是适用于学生，也同样有助于学习复杂技能或积累某话题的专业知识。学习像编程或设计的技能，大多数人遵循前两个阶段。他们阅读一本相关的基础书籍，然后在一个项目里历练。然而，你能运用费曼技巧更进一步，更好地锁定与清晰表述你的深刻见解。积累某话题的专业知识，亦同此理；唯一的差别是，你在建立知识面以前，需要搜集一些学习材料，包括相关的研究文章、书籍等。无论如何，只要你弄清楚了想掌握的知识领域，你就钻研下去，深入学习它。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://calnewport.com/blog/2012/10/26/mastering-linear-algebra-in-10-days-astounding-experiments-in-ultra-learning/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;原文来自&lt;/a&gt; &lt;a href=&quot;http://calnewport.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;CAL NEWPORT&lt;/a&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h4 id=&quot;钻研（The-Drilldown-Method-使用你学得更快&quot;&gt;&lt;a href=&quot;#钻研（The-Drilldown-Method-使用你学得更快&quot; class=&quot;headerlink&quot; title=&quot;钻研（The Drilldown Method):使用你学得
-    
-    </summary>
-    
-      <category term="method" scheme="http://benvim.github.io/categories/method/"/>
-    
-    
-      <category term="method" scheme="http://benvim.github.io/tags/method/"/>
-    
-      <category term="learn" scheme="http://benvim.github.io/tags/learn/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MAC OS X系统下编写汇编 assembly language</title>
-    <link href="http://benvim.github.io/2016/03/20/assembly/"/>
-    <id>http://benvim.github.io/2016/03/20/assembly/</id>
-    <published>2016-03-20T12:44:53.000Z</published>
-    <updated>2016-03-20T12:58:34.000Z</updated>
-    
-    <content type="html">&lt;p&gt;汇编语言（assembly language)：介于机器语言与C语言之间的一种低级语言。书写风格分为windows/dos常用的intel风格和UNIX的AT&amp;amp;T风格。&lt;/p&gt;
-&lt;p&gt;mac 下的汇编代码：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;_syscall:               # declaring a kernel call function &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    int      $0x80      # make the system call &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ret                 # return to the caller  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;_print_info_s:          # entry point for linker &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    pushl    $len       # message length&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    pushl    $msg       # message to write&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    pushl    $0x1       # file descriptor value &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    movl     $0x4, %eax # system call number (sys_write) &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    call     _syscall   # call the kernel &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    addl     $12, %esp  # clean the stack&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ret&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;参数传递:linux主要是靠寄存器，而 BSD 主要靠堆栈。&lt;br&gt;在Xcode里如果需要使用 Intel 风格的代码，请将扩展名改成 .nasm，如果是 AT&amp;amp;T ，那么.s 即可。要在 C 代码里调用汇编写的函数，请在汇编里用 global (.globl) 导出符号&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;汇编语言（assembly language)：介于机器语言与C语言之间的一种低级语言。书写风格分为windows/dos常用的intel风格和UNIX的AT&amp;amp;T风格。&lt;/p&gt;
-&lt;p&gt;mac 下的汇编代码：&lt;/p&gt;
-&lt;figure class=&quot;highlight 
-    
-    </summary>
-    
-      <category term="assembly" scheme="http://benvim.github.io/categories/assembly/"/>
-    
-    
-      <category term="assembly" scheme="http://benvim.github.io/tags/assembly/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>冥冥天籁之音涤荡你我的心灵，红尘中还有谁能及？</title>
-    <link href="http://benvim.github.io/2016/03/19/fo/"/>
-    <id>http://benvim.github.io/2016/03/19/fo/</id>
-    <published>2016-03-19T06:02:42.000Z</published>
-    <updated>2016-03-19T06:12:05.000Z</updated>
-    
-    <content type="html">&lt;p&gt;　　如若我是来还债的，&lt;br&gt;　　那就尽量多还一些，&lt;br&gt;　　宁人负我，我不负人。&lt;br&gt;　　如若我是来报恩的，&lt;br&gt;　　那就尽量多报一些，&lt;br&gt;　　今生为人实属不易，&lt;br&gt;　　我要把人性发挥到极致。&lt;br&gt;　　&lt;br&gt;　　每当遭遇困境、&lt;br&gt;　　面对挫折、&lt;br&gt;　　感觉不被理解、&lt;br&gt;　　内心不能够平静时，&lt;br&gt;　　告诉自己：&lt;br&gt;　　今生已经是最后一生，&lt;br&gt;　　我将永远告别这个&lt;br&gt;　　娑婆世界，&lt;br&gt;　　没有什么值得长久计较。&lt;br&gt;　　虽一时之间&lt;br&gt;　　偶尔会有抵触与抱怨，&lt;br&gt;　　但我会很快&lt;br&gt;　　提醒自己保持正念觉知。&lt;br&gt;　　&lt;br&gt;　　人生再长，&lt;br&gt;　　不过百年，&lt;br&gt;　　这一生的岁月&lt;br&gt;　　只是我在这个空间的&lt;br&gt;　　一场梦幻。&lt;br&gt;　　不论如何活着，&lt;br&gt;　　快乐着或是痛苦着，&lt;br&gt;　　其实都是最有意义的一生，&lt;br&gt;　　值得自豪的一生，&lt;br&gt;　　值得珍惜的一生。&lt;br&gt;　　&lt;br&gt;　　今生。&lt;br&gt;　　将是我在娑婆世界的&lt;br&gt;　　最后一生，&lt;br&gt;　　这真是一件天大喜事。&lt;br&gt;　　当慧命在红尘历尽&lt;br&gt;　　劫难之后，&lt;br&gt;　　我终于可以回归&lt;br&gt;　　万有的源头。&lt;br&gt;　　那么，&lt;br&gt;　　还有什么值得抱怨、&lt;br&gt;　　唠叨、遗憾、&lt;br&gt;　　痛悔、嗔恨的呢？&lt;br&gt;　　&lt;br&gt;　　如果还有，&lt;br&gt;　　就是忘记了&lt;br&gt;　　“最后”这两个字，&lt;br&gt;　　或者是对“最后”&lt;br&gt;　　这两个字认识不够、&lt;br&gt;　　信心不够。&lt;br&gt;　　时时牢记着：&lt;br&gt;　　今生，&lt;br&gt;　　是我在红尘的最后一生！&lt;br&gt;　　再来时，我必脚踏莲花，&lt;br&gt;　　乘愿而来。来时凡夫，&lt;br&gt;　　回时必己超凡入圣！&lt;br&gt;　　人身难得今已得，&lt;br&gt;　　佛法难闻今已闻，&lt;br&gt;　　今生不借此身渡，&lt;br&gt;　　更待何生渡此身&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;　　如若我是来还债的，&lt;br&gt;　　那就尽量多还一些，&lt;br&gt;　　宁人负我，我不负人。&lt;br&gt;　　如若我是来报恩的，&lt;br&gt;　　那就尽量多报一些，&lt;br&gt;　　今生为人实属不易，&lt;br&gt;　　我要把人性发挥到极致。&lt;br&gt;　　&lt;br&gt;　　每当遭遇困境、&lt;br&gt;　　面对挫折、&lt;br
-    
-    </summary>
-    
-      <category term="碎碎念" scheme="http://benvim.github.io/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/"/>
-    
-    
-      <category term="碎碎念" scheme="http://benvim.github.io/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>shell命令的操作及命令的搜索</title>
-    <link href="http://benvim.github.io/2016/03/12/shell-Oprate/"/>
-    <id>http://benvim.github.io/2016/03/12/shell-Oprate/</id>
-    <published>2016-03-12T00:50:07.000Z</published>
-    <updated>2016-03-12T01:12:47.000Z</updated>
-    
-    <content type="html">&lt;p&gt;经常会使用shell对文件进行一些操作。但是命令行的操作不熟悉也是特别影响效率的，如何快速度的返回上一次目录，如何编辑当前命令行的内容对于提高效率是非常有帮助的。&lt;br&gt;你是否经常连续按“backSpace”键来删除当前的命令，是否为了返回上次目录而不断的“cd”,而又或者不断的按方向键去修改其中写错的某个单词…..这些土鳖的方向必须抛弃。&lt;/p&gt;
-&lt;h3 id=&quot;回到上一次操作的目录&quot;&gt;&lt;a href=&quot;#回到上一次操作的目录&quot; class=&quot;headerlink&quot; title=&quot;回到上一次操作的目录&quot;&gt;&lt;/a&gt;回到上一次操作的目录&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;cd -
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;历史命令快捷键&quot;&gt;&lt;a href=&quot;#历史命令快捷键&quot; class=&quot;headerlink&quot; title=&quot;历史命令快捷键&quot;&gt;&lt;/a&gt;历史命令快捷键&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;[Ctrl+r], [Ctrl+p], [Ctrl+n]
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;[Ctrl+r] 是搜索历史命令的，当使用这个组合键后，会出现个输入框，你每按一个字符都会自动从历史命令中匹配出相关结果，选择你要的按回车即可,该命令可以快速定位到你之前使用的任何命令，比如cd过哪个很长的目录。&lt;/p&gt;
-&lt;p&gt;[Ctrl+p]和[Ctrl+n]主要功能是翻阅历史命令，上一条和下一条。此命令一般在最近使用过的命令比较方便。&lt;/p&gt;
-&lt;h3 id=&quot;命令行内快速操作键&quot;&gt;&lt;a href=&quot;#命令行内快速操作键&quot; class=&quot;headerlink&quot; title=&quot;命令行内快速操作键&quot;&gt;&lt;/a&gt;命令行内快速操作键&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;移动操作快捷键&lt;br&gt;Ctrl + f– 向右移动一个字符，当然多数人用→&lt;br&gt;Ctrl + b– 向左移动一个字符， 多数人用←&lt;br&gt;ESC + f– 向右移动一个单词，MAC下建议用ALT + →&lt;br&gt;ESC + b– 向左移动一个单词，MAC下建议用ALT + ←&lt;br&gt;Ctrl + a– 跳到行首&lt;br&gt;Ctrl + e– 跳到行尾&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;删除操作快捷键&lt;br&gt;Ctrl + d– 向右删除一个字符&lt;br&gt;Ctrl + h– 向左删除一个字符&lt;br&gt;Ctrl + u– 删除当前位置字符至行首（输入密码错误的时候多用下这个）&lt;br&gt;Ctrl + k– 删除当前位置字符至行尾&lt;br&gt;Ctrl + w– 删除从光标到当前单词开头&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;其他操作快捷键&lt;br&gt;Ctrl + y– 插入最近删除的单词&lt;br&gt;Ctrl + c– 终止操作&lt;br&gt;Ctrl + d– 当前操作转到后台&lt;br&gt;Ctrl + l– 清屏 （有时候为了好看）&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;使用了这些快捷后，立马感觉神清气爽~。over.&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;经常会使用shell对文件进行一些操作。但是命令行的操作不熟悉也是特别影响效率的，如何快速度的返回上一次目录，如何编辑当前命令行的内容对于提高效率是非常有帮助的。&lt;br&gt;你是否经常连续按“backSpace”键来删除当前的命令，是否为了返回上次目录而不断的“cd”,而又或者
-    
-    </summary>
-    
-      <category term="shell" scheme="http://benvim.github.io/categories/shell/"/>
-    
-    
-      <category term="shell" scheme="http://benvim.github.io/tags/shell/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>AlphaGo VS Human</title>
-    <link href="http://benvim.github.io/2016/03/10/Human/"/>
-    <id>http://benvim.github.io/2016/03/10/Human/</id>
-    <published>2016-03-10T00:19:34.000Z</published>
-    <updated>2016-03-19T06:09:51.000Z</updated>
-    
-    <content type="html">&lt;p&gt;3月9日可能会成为写入人类史册的一天，一场世界上最会下围棋的人与人工智能的超级对弈，被全人类通过网络直播共同围观。谷歌董事长斯密特说，“输赢都是人类的胜利”。他这么说是因为李世石要迎战的不单是个机器人，而是这个世界上最聪明的霸道总裁和科学狂人们。&lt;/p&gt;
-&lt;p&gt;AlphaGo机器人最厉害的地方，他不是一个机械的编码程序，他有一个“监督预判机制”，每走一步，他会考虑这种走法是不是更有前途，这是一种类似“想象力”的能力。这种思维模式，几乎和人类的直觉类似，使得他前所未有地更加像人类。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;uploads/12.jpg&quot; alt=&quot;AlphaGo vs Human&quot;&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;3月9日可能会成为写入人类史册的一天，一场世界上最会下围棋的人与人工智能的超级对弈，被全人类通过网络直播共同围观。谷歌董事长斯密特说，“输赢都是人类的胜利”。他这么说是因为李世石要迎战的不单是个机器人，而是这个世界上最聪明的霸道总裁和科学狂人们。&lt;/p&gt;
-&lt;p&gt;AlphaG
-    
-    </summary>
-    
-      <category term="闲聊" scheme="http://benvim.github.io/categories/%E9%97%B2%E8%81%8A/"/>
-    
-    
-      <category term="随记" scheme="http://benvim.github.io/tags/%E9%9A%8F%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>東京日和</title>
-    <link href="http://benvim.github.io/2016/03/08/%E6%9D%B1%E4%BA%AC%E6%97%A5%E5%92%8C/"/>
-    <id>http://benvim.github.io/2016/03/08/東京日和/</id>
-    <published>2016-03-08T03:57:59.000Z</published>
-    <updated>2016-03-08T04:37:11.000Z</updated>
-    
-    <content type="html">&lt;div class=&quot;group-picture&quot;&gt;&lt;div class=&quot;group-picture-container&quot;&gt;&lt;div class=&quot;group-picture-row&quot;&gt;&lt;div class=&quot;group-picture-column&quot; style=&quot;width: 100%;&quot;&gt;&lt;img src=&quot;/uploads/p2260354451.jpg&quot; alt=&quot;东京日和&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;group-picture-row&quot;&gt;&lt;div class=&quot;group-picture-column&quot; style=&quot;width: 33.333333333333336%;&quot;&gt;&lt;img src=&quot;/uploads/p2260498779.jpg&quot; alt=&quot;东京日和&quot;&gt;&lt;/div&gt;&lt;div class=&quot;group-picture-column&quot; style=&quot;width: 33.333333333333336%;&quot;&gt;&lt;img src=&quot;/uploads/p2260498780.jpg&quot; alt=&quot;东京日和&quot;&gt;&lt;/div&gt;&lt;div class=&quot;group-picture-column&quot; style=&quot;width: 33.333333333333336%;&quot;&gt;&lt;img src=&quot;/uploads/p2322111491.jpg&quot; alt=&quot;东京日和&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;div class=&quot;group-picture&quot;&gt;&lt;div class=&quot;group-picture-container&quot;&gt;&lt;div class=&quot;group-picture-row&quot;&gt;&lt;div class=&quot;group-picture-column&quot; style=&quot;widt
-    
-    </summary>
-    
-      <category term="album" scheme="http://benvim.github.io/categories/album/"/>
-    
-    
-      <category term="美图" scheme="http://benvim.github.io/tags/%E7%BE%8E%E5%9B%BE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>言轻语长</title>
-    <link href="http://benvim.github.io/2016/03/07/%E8%A8%80%E8%BD%BB%E8%AF%AD%E9%95%BF/"/>
-    <id>http://benvim.github.io/2016/03/07/言轻语长/</id>
-    <published>2016-03-07T12:53:50.000Z</published>
-    <updated>2016-03-07T14:09:31.000Z</updated>
-    
-    <content type="html">&lt;p&gt;当意识再次醒来时，过去如同山崩之流，倾泻而来，将萌芽的光线拖入无尽的黑暗之中。挣脱之后，恍如昨日，一线之隔，南为乾坤，北为虚无。&lt;/p&gt;
-&lt;p&gt;一把岁月，无尽悲伤，聚散离合皆付风中。不曾相遇，何曾相识；不曾相识，何曾相知；未曾相知，遑论感伤。如若初遇，不如不遇。于世之最大谎言在于问心无愧。&lt;/p&gt;
-&lt;p&gt;风来雨去，日落月升，蓦然回首时物是人非。虚度彩练当空，徘徊庭树遍绿，长叹夕阳沉暮。不言问心无愧，只许一纸墨迹。&lt;/p&gt;
-&lt;p&gt;言轻轻待摆渡，语长长候倾听。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;当意识再次醒来时，过去如同山崩之流，倾泻而来，将萌芽的光线拖入无尽的黑暗之中。挣脱之后，恍如昨日，一线之隔，南为乾坤，北为虚无。&lt;/p&gt;
-&lt;p&gt;一把岁月，无尽悲伤，聚散离合皆付风中。不曾相遇，何曾相识；不曾相识，何曾相知；未曾相知，遑论感伤。如若初遇，不如不遇。于世之最大谎
-    
-    </summary>
-    
-    
-      <category term="随笔" scheme="http://benvim.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>十年</title>
-    <link href="http://benvim.github.io/2016/03/07/%E5%8D%81%E5%B9%B4/"/>
-    <id>http://benvim.github.io/2016/03/07/十年/</id>
-    <published>2016-03-07T12:51:39.000Z</published>
-    <updated>2016-03-07T14:08:57.000Z</updated>
-    
-    <content type="html">&lt;p&gt;昨日之事已在风中冷却，明天的回忆会不会被忘却？我想在这黑暗的城市上空飞行，看看灯火里别人的故事是否也如此的彷徨？&lt;/p&gt;
-&lt;p&gt;千家灯火万家难。望着他人的幸福，徒生向往；注目他人的难处，油然怜悯。他们时而欢笑，时而落泪。因为小事而倍感幸福，因为小事而万分感伤。&lt;/p&gt;
-&lt;p&gt;那些绽放如花的笑容，那些泪洒如雨的忧伤，都随着时间的流逝或被遗忘，或被掩藏。万物皆无法摆脱时间的摆弄。时间是一个随意的雕刻家，雕塑着一幕幕的喜怒哀乐。&lt;/p&gt;
-&lt;p&gt;一幕无人视，繁华一曲谁人听。半生浮萍，一世漂泊，肝肠寸断，所为几何？&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;昨日之事已在风中冷却，明天的回忆会不会被忘却？我想在这黑暗的城市上空飞行，看看灯火里别人的故事是否也如此的彷徨？&lt;/p&gt;
-&lt;p&gt;千家灯火万家难。望着他人的幸福，徒生向往；注目他人的难处，油然怜悯。他们时而欢笑，时而落泪。因为小事而倍感幸福，因为小事而万分感伤。&lt;/p&gt;
-&lt;p
-    
-    </summary>
-    
-    
-      <category term="随笔" scheme="http://benvim.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>开始码字生活</title>
-    <link href="http://benvim.github.io/2016/03/07/test/"/>
-    <id>http://benvim.github.io/2016/03/07/test/</id>
-    <published>2016-03-07T05:59:30.000Z</published>
-    <updated>2016-03-23T06:04:34.000Z</updated>
-    
-    <content type="html">&lt;p&gt;用VIM写文章不晓得会是一种什么样的体验&lt;/p&gt;
-&lt;p&gt;发现个最大的问题就是输入法的切换问题，因为每次切换成VIM的正常模式，都要切换输入法，这是个很麻烦的操作，或许有更方法的操作我不晓得。&lt;/p&gt;
-&lt;p&gt;$$\begin{array}{c|lcr}n&amp;amp;\text{Left}&amp;amp;\text{Center}&amp;amp;\text{Right}\\\hline1&amp;amp;0.24&amp;amp;1&amp;amp;125\\2&amp;amp;-1&amp;amp;189&amp;amp;-8\\3&amp;amp;-20&amp;amp;2000&amp;amp;1+10i\end{array}$$&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;用VIM写文章不晓得会是一种什么样的体验&lt;/p&gt;
-&lt;p&gt;发现个最大的问题就是输入法的切换问题，因为每次切换成VIM的正常模式，都要切换输入法，这是个很麻烦的操作，或许有更方法的操作我不晓得。&lt;/p&gt;
-&lt;p&gt;$$\begin{array}{c|lcr}n&amp;amp;\text{
-    
-    </summary>
-    
-      <category term="随记" scheme="http://benvim.github.io/categories/%E9%9A%8F%E8%AE%B0/"/>
-    
-    
-      <category term="随笔" scheme="http://benvim.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MYSQL数据库备份操作</title>
-    <link href="http://benvim.github.io/2016/01/13/mysql-mysqldump/"/>
-    <id>http://benvim.github.io/2016/01/13/mysql-mysqldump/</id>
-    <published>2016-01-13T07:29:14.000Z</published>
-    <updated>2016-03-20T16:01:22.000Z</updated>
-    
-    <content type="html">&lt;p&gt;用PHP语言进行MYSQL数据库备份操作。技术上需要的函数 &lt;em&gt;mysqldump&lt;/em&gt; 方法，该方法是 &lt;em&gt;MYSQL&lt;/em&gt; 的程序，所以需要指明该程序的地址，另外需要PHP语言的 &lt;em&gt;exec&lt;/em&gt;去执行该方法。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;    public function export(){
-    $cfg_dbhost = C(&amp;quot;DB_HOST&amp;quot;);
-    $cfg_dbuser = C(&amp;quot;DB_USER&amp;quot;);
-    $cfg_dbpwd  = C(&amp;quot;DB_PWD&amp;quot;);
-    $cfg_dbname = C(&amp;quot;DB_NAME&amp;quot;);
-
-    $cfg_dbname = &amp;quot;cpk&amp;quot;;
-    $filename=date(&amp;quot;Y-m-d_H-i-s&amp;quot;).&amp;quot;-&amp;quot;.$cfg_dbname.&amp;quot;.sql&amp;quot;; 
-    // 所保存的文件名 
-    header(&amp;quot;Content-disposition:filename=&amp;quot;.$filename); 
-    header(&amp;quot;Content-type:application/octetstream&amp;quot;); 
-    header(&amp;quot;Pragma:no-cache&amp;quot;); 
-    header(&amp;quot;Expires:0&amp;quot;); 
-
-    $tmpFile = $_SERVER[&amp;apos;DOCUMENT_ROOT&amp;apos;].$this-&amp;gt;path.$filename;// 获取当前页面文件路径，SQL文件就导出到此文件夹内 
-    exec($this-&amp;gt;mysqlDumpPath.&amp;quot;mysqldump -u$cfg_dbuser -p$cfg_dbpwd -h$cfg_dbhost  $cfg_dbname &amp;gt; &amp;quot;.$tmpFile); 
-    $file = fopen($tmpFile, &amp;quot;r&amp;quot;); // 打开文件 
-    $info = fread($file,filesize($tmpFile));
-    $this-&amp;gt;ajaxReturn(&amp;quot;0&amp;quot;, &amp;quot;备份完成&amp;quot;,&amp;quot;$filename&amp;quot;);
-    fclose($file);
-}
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;用PHP语言进行MYSQL数据库备份操作。技术上需要的函数 &lt;em&gt;mysqldump&lt;/em&gt; 方法，该方法是 &lt;em&gt;MYSQL&lt;/em&gt; 的程序，所以需要指明该程序的地址，另外需要PHP语言的 &lt;em&gt;exec&lt;/em&gt;去执行该方法。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt; 
-    
-    </summary>
-    
-      <category term="mysql" scheme="http://benvim.github.io/categories/mysql/"/>
-    
-    
-      <category term="mysql" scheme="http://benvim.github.io/tags/mysql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ssh连接缓慢解决方法</title>
-    <link href="http://benvim.github.io/2016/01/09/cenos-ssh/"/>
-    <id>http://benvim.github.io/2016/01/09/cenos-ssh/</id>
-    <published>2016-01-09T12:12:05.000Z</published>
-    <updated>2016-03-20T16:00:59.000Z</updated>
-    
-    <content type="html">&lt;p&gt;连接服务器的SSH服务的时候，等待输入密码的状态时间太长，要等很久。而且是局域网，并且PING的速度非常快，所以很有必要解决一下连接速度的问题了。&lt;/p&gt;
-&lt;p&gt;下面说下如何解决这样的问题，最为常见的原因是因为server的sshd会去DNS查找访问client IP的hostname,如果DNS不可用或者没有相关记录，就会耗费大量时间。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;在server上 &lt;em&gt;/etc/hosts&lt;/em&gt; 文件中把你本机的ip和hostname加入 &lt;/li&gt;
-&lt;li&gt;在server上 &lt;em&gt;/etc/ssh/sshd_config&lt;/em&gt; 文件中修改或加入UseDNS=no，另外在 &lt;em&gt;authentication gssapi-with-mic&lt;/em&gt; 也有可能出现问题，在server上 &lt;em&gt;/etc/ssh/sshd_config&lt;/em&gt; 文件中修改GSSAPIAuthentication no.&lt;/li&gt;
-&lt;li&gt;修改 &lt;em&gt;server上/etc/nsswitch.conf&lt;/em&gt; 中hosts为hosts： files&lt;/li&gt;
-&lt;li&gt;reboot server使配置生效&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;※虽然配置文件中[UseDNS yes]被注释点，但默认开关就是yes…(SSH服务默认启用了DNS反向解析的功能)&lt;/p&gt;
-&lt;p&gt;在目标服务器上有一个文件/etc/nsswitch.conf ，里面有如下一行&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;hoosts:files dns
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这行的含义是对于访问的主机进行域名解析的顺序，是先访问file，也就是/etc/hosts文件，如果hosts中没有记录域名，则访问dns，进行域名解析，如果dns也无法访问，就会等待访问超时后返回，因此等待时间比较长。&lt;/p&gt;
-&lt;p&gt;那如果将这一行屏蔽掉是不是也可以达到同样的效果呢？应该是可以的，但是如果本机要通过域名访问其他服务器，则肯定无法访问，因此这行应该需要保留。这个问题也提示我们，dns如果不可用，会带来的一些副作用的。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;连接服务器的SSH服务的时候，等待输入密码的状态时间太长，要等很久。而且是局域网，并且PING的速度非常快，所以很有必要解决一下连接速度的问题了。&lt;/p&gt;
-&lt;p&gt;下面说下如何解决这样的问题，最为常见的原因是因为server的sshd会去DNS查找访问client IP的ho
-    
-    </summary>
-    
-      <category term="linux" scheme="http://benvim.github.io/categories/linux/"/>
-    
-    
-      <category term="centos" scheme="http://benvim.github.io/tags/centos/"/>
-    
-      <category term="ssh" scheme="http://benvim.github.io/tags/ssh/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>PHP关于时间的问题，今天、昨天、前天、最近7天，最近30天</title>
-    <link href="http://benvim.github.io/2015/12/29/php-time/"/>
-    <id>http://benvim.github.io/2015/12/29/php-time/</id>
-    <published>2015-12-29T02:20:34.000Z</published>
-    <updated>2016-03-20T16:00:53.000Z</updated>
-    
-    <content type="html">&lt;ul&gt;
-&lt;li&gt;获取日期&lt;/li&gt;
-&lt;li&gt;获取日期时间&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;经常会用到时间查询之类问题，直接获取天日期由以下方法即可达到。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;echo &amp;quot;今天:&amp;quot;.date(&amp;quot;Y-m-d&amp;quot;).&amp;quot;&amp;lt;br&amp;gt;&amp;quot;;     
-echo &amp;quot;今天:&amp;quot;.date(&amp;quot;Y-m-d&amp;quot;).&amp;quot;&amp;lt;br&amp;gt;&amp;quot;;     
-echo &amp;quot;今天:&amp;quot;.date(&amp;quot;Y-m-d&amp;quot;).&amp;quot;&amp;lt;br&amp;gt;&amp;quot;;     
-echo &amp;quot;昨天:&amp;quot;.date(&amp;quot;Y-m-d&amp;quot;,strtotime(&amp;quot;-1 day&amp;quot;)), &amp;quot;&amp;lt;br&amp;gt;&amp;quot;; 
-echo &amp;quot;前天:&amp;quot;.date(&amp;quot;Y-m-d&amp;quot;,strtotime(&amp;quot;-2 day&amp;quot;)), &amp;quot;&amp;lt;br&amp;gt;&amp;quot;;
-echo &amp;quot;最近30天：&amp;quot;.date(&amp;quot;Y-m-d&amp;quot;,strtotime(&amp;quot;-30 day&amp;quot;)), &amp;quot;&amp;lt;br&amp;gt;&amp;quot;;
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;ul&gt;
-&lt;li&gt;获取日期&lt;/li&gt;
-&lt;li&gt;获取日期时间&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;经常会用到时间查询之类问题，直接获取天日期由以下方法即可达到。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;echo &amp;quot;今天:&amp;quot;.date(&amp;quot;Y-m-d&amp;quot;).&amp;quo
-    
-    </summary>
-    
-      <category term="php" scheme="http://benvim.github.io/categories/php/"/>
-    
-    
-      <category term="php" scheme="http://benvim.github.io/tags/php/"/>
-    
-      <category term="time" scheme="http://benvim.github.io/tags/time/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>AWS中Centos创建后登录以及修改密码配置</title>
-    <link href="http://benvim.github.io/2015/12/23/centos-aws/"/>
-    <id>http://benvim.github.io/2015/12/23/centos-aws/</id>
-    <published>2015-12-23T11:22:43.000Z</published>
-    <updated>2016-03-20T13:38:58.000Z</updated>
-    
-    <content type="html">&lt;p&gt;根据AWS中的文档，创建并启动实例后，使用pem密钥进行登录系统，但是使用的是centos用户登录，权限受限，可以使用sudo提升权限进行安装、删除软件，除此之外我们还需要修改root的密码，方便系统管理。修改方法如下：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;sudo passwd root
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;系统会提示输入密码和确认密码，就修改完成。然后使用su切换成root用户，输入密码即切换成root用户了。&lt;/p&gt;
-&lt;h4 id=&quot;修改centos登录方式为密码登录&quot;&gt;&lt;a href=&quot;#修改centos登录方式为密码登录&quot; class=&quot;headerlink&quot; title=&quot;修改centos登录方式为密码登录&quot;&gt;&lt;/a&gt;修改centos登录方式为密码登录&lt;/h4&gt;&lt;p&gt;打开配置文件 /etc/ssh/sshd_config (ubuntu 为/etc/ssh/sshd-config)，设置如下几个参数&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;PermitRootLogin yes
-PubkeyAuthentication no #（也可用#号注释）
-PasswordAuthentication yes
-&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;重启sshd服务&quot;&gt;&lt;a href=&quot;#重启sshd服务&quot; class=&quot;headerlink&quot; title=&quot;重启sshd服务&quot;&gt;&lt;/a&gt;重启sshd服务&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;/etc/init.d/sshd restart
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;根据AWS中的文档，创建并启动实例后，使用pem密钥进行登录系统，但是使用的是centos用户登录，权限受限，可以使用sudo提升权限进行安装、删除软件，除此之外我们还需要修改root的密码，方便系统管理。修改方法如下：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;sudo passwd
-    
-    </summary>
-    
-      <category term="linux" scheme="http://benvim.github.io/categories/linux/"/>
-    
-    
-      <category term="aws" scheme="http://benvim.github.io/tags/aws/"/>
-    
-      <category term="linux" scheme="http://benvim.github.io/tags/linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Centos配置国内yum源</title>
-    <link href="http://benvim.github.io/2015/12/20/centos-yum/"/>
-    <id>http://benvim.github.io/2015/12/20/centos-yum/</id>
-    <published>2015-12-20T02:00:12.000Z</published>
-    <updated>2016-03-20T13:17:06.000Z</updated>
-    
-    <content type="html">&lt;p&gt;网易（163）yum源是国内最好的yum源之一，无论是速度还是软件版本，都非常的不错，将yum源设置为163yum，可以提升软件包安装和更新的速度，同时避免一些常见软件版本无法找到。具体设置方法如下：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;进入yum源配置目录&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;cd /etc/yum.repos.d
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;备份系统自带的yum源&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;mv CentOS-Base.repo CentOS-Base.repo.bk #下载163网易的yum源：
-wget http://mirrors.163.com/.help/CentOS6-Base-163.repo
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;更新玩yum源后，执行下边命令更新yum配置，使操作立即生效&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;yum makecache
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;除了网易之外，国内还有其他不错的yum源，比如中科大和搜狐的，大家可以根据自己需求下载&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;中科大的yum源：&lt;/li&gt;
-&lt;li&gt;sohu的yum源&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;blockquote&gt;
-&lt;p&gt;wget &lt;a href=&quot;http://centos.ustc.edu.cn/CentOS-Base.repo&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://centos.ustc.edu.cn/CentOS-Base.repo&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;wget &lt;a href=&quot;http://mirrors.sohu.com/help/CentOS-Base-sohu.repo&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://mirrors.sohu.com/help/CentOS-Base-sohu.repo&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;理论上讲，这些yum源redhat系统以及fedora也是可以用的，但是没有经过测试，需要的站长可以自己测试一下。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;网易（163）yum源是国内最好的yum源之一，无论是速度还是软件版本，都非常的不错，将yum源设置为163yum，可以提升软件包安装和更新的速度，同时避免一些常见软件版本无法找到。具体设置方法如下：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;进入yum源配置目录&lt;/p&gt;
-&lt;pre&gt;
-    
-    </summary>
-    
-      <category term="linux" scheme="http://benvim.github.io/categories/linux/"/>
-    
-    
-      <category term="centos" scheme="http://benvim.github.io/tags/centos/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>正则表达式替换图片格式</title>
-    <link href="http://benvim.github.io/2015/12/10/php-reg/"/>
-    <id>http://benvim.github.io/2015/12/10/php-reg/</id>
-    <published>2015-12-10T06:12:00.000Z</published>
-    <updated>2016-03-20T16:00:39.000Z</updated>
-    
-    <content type="html">&lt;p&gt;项目中需要对现有的用户发表的详情图片展示功能增加点击放大预览的效果。查看代码：现有代码逻辑为上传图片，生成最大宽600像素以内和最大高400像素以内的缩略图，并删除原图。所以修改该代码，上传图片生成600x400像素的缩略图，并保留原图以备点击放大使用。&lt;/p&gt;
-&lt;p&gt;使用的jquery插件&lt;a href=&quot;http://www.helloweba.com/view-blog-65.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;fancybox&lt;/a&gt;。Fancybox是一款优秀的jquery插件，它能够展示丰富的弹出层效果。前面我们有文章介绍了facybox弹出层效果，相比facybox，fancybox显得功能更为齐全，它除了可以加载DIV，图片、图片集、Ajax数据，还能加载SWF影片，iframe页面等等&lt;/p&gt;
-&lt;h3 id=&quot;fancybox具有以下特性：&quot;&gt;&lt;a href=&quot;#fancybox具有以下特性：&quot; class=&quot;headerlink&quot; title=&quot;fancybox具有以下特性：&quot;&gt;&lt;/a&gt;fancybox具有以下特性：&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;可以加载DIV、图片、图片集、Ajax数据、SWF影片，iframe页面等。&lt;/li&gt;
-&lt;li&gt;支持键盘方向键和ESC键。&lt;/li&gt;
-&lt;li&gt;丰富的参数设置和方法调用。&lt;/li&gt;
-&lt;li&gt;可扩展性强.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;基本的代码如下：&quot;&gt;&lt;a href=&quot;#基本的代码如下：&quot; class=&quot;headerlink&quot; title=&quot;基本的代码如下：&quot;&gt;&lt;/a&gt;基本的代码如下：&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;/**
-* 对投稿者上交的稿件描述内容的图片增加点击放大功能;
-* 1.匹配所有相关的项，找出描述中上传的图片;
-* 2.遍历数组，找到图形中的src.并保存到$res中;
-* 3.对src值进行查询替换，改装成正则表达式。对元字符做转义;
-* 4.用改装的正则去匹配并替换格式化的IMG地址;
-* @param string $str 需要遍历并替换的文本
-* @return string $str 替换处理过的文本  
-*/
-private function taskManuscriptInfoImagesOperate($str){
-    preg_match_all(&amp;apos;/&amp;lt;\s*img\s+[^&amp;gt;]*?src\s*=\s*(\&amp;apos;|\&amp;quot;)(.*?)\\1[^&amp;gt;]*?\/?\s*&amp;gt;/i&amp;apos;,$str,$match);
-    foreach ($match[0] as $key =&amp;gt; $value) {
-    preg_match(&amp;quot;/\/data\/upload\/editer\/image\/.*g/&amp;quot;, $value, $res);
-    $r = preg_replace(&amp;quot;/\//&amp;quot;, &amp;quot;\\/&amp;quot;, $res);
-    $r = preg_replace(&amp;quot;/\./&amp;quot;, &amp;quot;\\.&amp;quot;, $r);
-    $str = preg_replace(&amp;quot;/&amp;lt;\s*img\s+[^&amp;gt;]*?src\s*=\s*(\&amp;apos;|\&amp;quot;)(&amp;quot;.$r[0].&amp;quot;)\\1[^&amp;gt;]*?\/?\s*&amp;gt;/i&amp;quot;, $this-&amp;gt;formatURL($res[0]), $str);
-    }
-    return $str;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;该函数中的perg_match_all函数是PHP正则匹配多次的函数。并通过正则查找字符串中的图片。该函数返回的是一个数组，匹配结果中可能会有1个或多个图片对象。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;preg_match_all(&amp;apos;/&amp;lt;\s*img\s+[^&amp;gt;]*?src\s*=\s*(\&amp;apos;|\&amp;quot;)(.*?)\\1[^&amp;gt;]*?\/?\s*&amp;gt;/i&amp;apos;,$str,$match);
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;找出每个图片IMG标签中的SRC值，并用formatURL()方法重新生成符合&lt;a href=&quot;http://www.helloweba.com/view-blog-65.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;fancybox&lt;/a&gt;的语法格式的字符串，并通过匹配查询并替换现有的图片代码块。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;preg_match(&amp;quot;/\/data\/upload\/editer\/image\/.*g/&amp;quot;, $value, $res);//找出SRC值
-$r = preg_replace(&amp;quot;/\//&amp;quot;, &amp;quot;\\/&amp;quot;, $res);//把SRC值的字符进行替换，以符合正则规则。
-$r = preg_replace(&amp;quot;/\./&amp;quot;, &amp;quot;\\.&amp;quot;, $r);
-$str = preg_replace(&amp;quot;/&amp;lt;\s*img\s+[^&amp;gt;]*?src\s*=\s*(\&amp;apos;|\&amp;quot;)(&amp;quot;.$r[0].&amp;quot;)\\1[^&amp;gt;]*?\/?\s*&amp;gt;/i&amp;quot;, $this-&amp;gt;formatURL($res[0]), $str);//查找并替换
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;格式化地址代码如下：使用匹配出来的图片地址，生成新的图片地址信息，符合&lt;a href=&quot;http://www.helloweba.com/view-blog-65.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;fancybox&lt;/a&gt;的要求格式。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;/**
-* 格式化地址
-* @return [type] [description]
-*/
-private function formatURL($url){
-    $name = basename($url);
-    $path = dirname($url);
-    $arr  = explode(&amp;quot;_&amp;quot;, $name);
-    $len  = count($arr);
-    $html = &amp;quot;&amp;quot;;
-    if($len&amp;gt;2 || $len==1){
-        $html = &amp;quot;&amp;lt;a rel=&amp;apos;group&amp;apos; href=&amp;apos;&amp;quot;.$url.&amp;quot;&amp;apos;&amp;gt;&amp;lt;img src=&amp;apos;&amp;quot;.$url.&amp;quot;&amp;apos;&amp;gt;&amp;lt;/a&amp;gt;&amp;quot;; //兼容老地址。
-    }else if($len&amp;gt;1){
-        $p = $arr[1];
-        $p = explode(&amp;quot;?&amp;quot;, $p);
-        if (count($p)&amp;gt;1){$p = $p[0];}
-        $u = $path.&amp;quot;/&amp;quot;.$p[0];
-        $char = substr($u, 0, 1 );
-        if($char==&amp;quot;/&amp;quot;){$u = substr($u,1,(strlen($u)-1));}
-        if(file_exists($u)){
-            $html = &amp;quot;&amp;lt;a rel=&amp;apos;group&amp;apos; href=&amp;apos;/&amp;quot;.$u.&amp;quot;&amp;apos;&amp;gt;&amp;lt;img src=&amp;apos;&amp;quot;.$url.&amp;quot;&amp;apos;&amp;gt;&amp;lt;/a&amp;gt;&amp;quot;;
-            }else{
-            $html = &amp;quot;&amp;lt;a rel=&amp;apos;group&amp;apos; href=&amp;apos;&amp;quot;.$url.&amp;quot;&amp;apos;&amp;gt;&amp;lt;img src=&amp;apos;&amp;quot;.$url.&amp;quot;&amp;apos;&amp;gt;&amp;lt;/a&amp;gt;&amp;quot;;
-            }
-    }
-    return $html;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;}&lt;/p&gt;
-&lt;p&gt;总的思路就是查找图片，找出图片地址，用地址生成新的格式，然后再用地址匹配并用新的格式替换老的图片代码块。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;项目中需要对现有的用户发表的详情图片展示功能增加点击放大预览的效果。查看代码：现有代码逻辑为上传图片，生成最大宽600像素以内和最大高400像素以内的缩略图，并删除原图。所以修改该代码，上传图片生成600x400像素的缩略图，并保留原图以备点击放大使用。&lt;/p&gt;
-&lt;p&gt;使用
-    
-    </summary>
-    
-      <category term="php" scheme="http://benvim.github.io/categories/php/"/>
-    
-    
-      <category term="php" scheme="http://benvim.github.io/tags/php/"/>
-    
-      <category term="fancybox" scheme="http://benvim.github.io/tags/fancybox/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>财务数值表示法</title>
-    <link href="http://benvim.github.io/2015/11/28/php-numberformat/"/>
-    <id>http://benvim.github.io/2015/11/28/php-numberformat/</id>
-    <published>2015-11-28T06:19:00.000Z</published>
-    <updated>2016-03-20T16:01:46.000Z</updated>
-    
-    <content type="html">&lt;p&gt;类似这样的： &lt;em&gt;￥97,709.99元&lt;/em&gt; 保留两位小数并且千位分隔。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;//财务四舍五入保留两位小数。
-function getPrecisionNumber($cash, $type=&amp;quot;0&amp;quot;){
-    $cash = round($cash, 2);
-    $cash = number_format($cash, 2, &amp;apos;.&amp;apos;, &amp;quot;,&amp;quot;);
-    if(!$type){
-        $cash = &amp;quot;￥&amp;quot;.$cash.&amp;quot;元&amp;quot;;
-    }
-    return $cash;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;由于财务要求高精度对帐， 所以要使用round进行四舍五入后的值来显示，本身数据是7位小数点的高精度值。使用 &lt;em&gt;number_format&lt;/em&gt; 方法格式化数值对象。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;number_format() 函数通过千位分组来格式化数字。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;注释：该函数支持一个、两个或四个参数（不是三个）&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;number_format(number,decimals,decimalpoint,separator)
-&lt;/code&gt;&lt;/pre&gt;&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;参数&lt;/th&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;描述&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;number&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;必需。要格式化的数字。&lt;br&gt;如果未设置其他参数，则数字会被格式化为不带小数点且以逗号（,）作为千位分隔符。&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;decimals&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;可选。规定多少个小数。如果设置了该参数，则使用点号（.）作为小数点来格式化数字。&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;decimalpoint&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;可选。规定用作小数点的字符串。&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;separator&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;可选。规定用作千位分隔符的字符串。仅使用该参数的第一个字符。比如 “xxx” 仅输出 “x”。&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;注释：如果设置了该参数，那么所有其他参数都是必需的。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;类似这样的： &lt;em&gt;￥97,709.99元&lt;/em&gt; 保留两位小数并且千位分隔。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;//财务四舍五入保留两位小数。
-function getPrecisionNumber($cash, $type=&amp;quot;0&amp;quot;){
-    $ca
-    
-    </summary>
-    
-      <category term="php" scheme="http://benvim.github.io/categories/php/"/>
-    
-    
-      <category term="php" scheme="http://benvim.github.io/tags/php/"/>
-    
-      <category term="number_format" scheme="http://benvim.github.io/tags/number-format/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>生成appkey和appSecret</title>
-    <link href="http://benvim.github.io/2015/11/17/php-appSecret/"/>
-    <id>http://benvim.github.io/2015/11/17/php-appSecret/</id>
-    <published>2015-11-17T12:54:01.000Z</published>
-    <updated>2016-03-20T14:36:03.000Z</updated>
-    
-    <content type="html">&lt;p&gt;通常情况下，这种很长一段数字字母的key和secret都是通过md5和sha1加密算法来生成的&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;appkey的生成&lt;/p&gt;
-&lt;p&gt; appkey生成比较简单，一般是客户的唯一值+字符串组成，方法很多，做到唯一性的字符串就可以。比如使用用户的uid+”abc”字符串组成。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;appSecret生成方法&lt;/p&gt;
-&lt;p&gt; 其原始数据有可能是你的账号的id，还有注册时间之类的唯一值进行组合再通过md5和sha1来生成，而md5和sha1对比的话，md5比sha1更快，但sha1比md5强度更高，所以在此类授权应用里，通常都使用sha1算法，例如oauth的签名算法&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;验证授权&lt;/p&gt;
-&lt;p&gt; 例如要和微信通信里，要传递三个参数ABC，则需要将ABC与appsecret一起sha1一遍，得到一个签名串，然后将这个签名串与appkey一起传递给微信，&lt;br&gt;此时，微信会通过appkey去查找对应的appsecret，然后再将ABC参数与查询出来的appsecret做一遍相同的签名算法，如果得到的签名串一致，则认为是授权成功&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;如下的代码可以参考：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;public function  test(){
-    if(!isset($_GET[&amp;apos;token&amp;apos;])){
-        $this-&amp;gt;apiReturn(4001,&amp;apos;invalid token&amp;apos;);
-    }else if(!S($_GET[&amp;apos;token&amp;apos;])){            
-        $this-&amp;gt;apiReturn(4001,&amp;apos;invalid token&amp;apos;); 
-    }
-    $data = array(
-    &amp;apos;id&amp;apos;=&amp;gt;2,
-    &amp;apos;username&amp;apos;=&amp;gt;&amp;apos;明之暗夜&amp;apos;,
-    &amp;apos;info&amp;apos;=&amp;gt;array(&amp;apos;age&amp;apos;=&amp;gt;24,&amp;apos;address&amp;apos;=&amp;gt;&amp;apos;学府路&amp;apos;,&amp;apos;url&amp;apos;=&amp;gt;&amp;apos;http://cnblogs.com/dmm888&amp;apos;));
-    if($data){
-    $this-&amp;gt;apiReturn(200,&amp;apos;读取用户信息成功&amp;apos;,$data,xml);
-    }
-}
-
-public function getToken(){
-    $ori_str = S($this-&amp;gt;appid.&amp;apos;_&amp;apos;.$this-&amp;gt;appsecret);
-    //这里appid和appsecret我写固定了，实际是通过客户端获取  所以这里我们可以做很多 比如判断appid和appsecret有效性等
-    if($ori_str){//重新获取就把以前的token删除
-        S($ori_str,null);
-    }
-
-    //这里是token产生的机制  您也可以自己定义
-    $nonce = $this-&amp;gt;createNoncestr(32);
-    $tmpArr = array($nonce,$this-&amp;gt;appid,$this-&amp;gt;appsecret);
-
-    sort($tmpArr, SORT_STRING);
-    $tmpStr = implode( $tmpArr );
-    $tmpStr = sha1( $tmpStr );
-    // echo $tmpStr;
-    //这里做了缓存 &amp;apos;a&amp;apos;=&amp;gt;b 和&amp;apos;b&amp;apos;=&amp;gt;a格式的缓存
-    S($this-&amp;gt;appid.&amp;apos;_&amp;apos;.$this-&amp;gt;appsecret,$tmpStr,7200);  
-    S($tmpStr,$this-&amp;gt;appid.&amp;apos;_&amp;apos;.$this-&amp;gt;appsecret,7200);
-}
-/**
-* 作用：产生随机字符串，不长于32位
-*/
-function createNoncestr( $length = 32 ) 
-{
-    $chars = &amp;quot;abcdefghijklmnopqrstuvwxyz0123456789&amp;quot;;              $str =&amp;quot;&amp;quot;;
-    for ( $i = 0; $i &amp;lt; $length; $i++ )  {  
-        $str.= substr($chars, mt_rand(0, strlen($chars)-1), 1);
-    }  
-    return $str;
-}     
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;通常情况下，这种很长一段数字字母的key和secret都是通过md5和sha1加密算法来生成的&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;appkey的生成&lt;/p&gt;
-&lt;p&gt; appkey生成比较简单，一般是客户的唯一值+字符串组成，方法很多，做到唯一性的字符串就可以。比如使用用户的u
-    
-    </summary>
-    
-      <category term="php" scheme="http://benvim.github.io/categories/php/"/>
-    
-    
-      <category term="php" scheme="http://benvim.github.io/tags/php/"/>
-    
-      <category term="appSecret" scheme="http://benvim.github.io/tags/appSecret/"/>
     
   </entry>
   
